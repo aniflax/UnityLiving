@@ -22,6 +22,40 @@ const deniedExecutableTypes = [
   'application/x-mach-binary',
 ];
 
+const uploadConfig = (env: Core.Config.Shared.ConfigParams['env']) => {
+  if (env('R2_ACCESS_KEY_ID')) {
+    return {
+      provider: 'aws-s3',
+      providerOptions: {
+        s3Options: {
+          credentials: {
+            accessKeyId: env('R2_ACCESS_KEY_ID'),
+            secretAccessKey: env('R2_SECRET_ACCESS_KEY'),
+          },
+          region: env('S3_REGION', 'auto'),
+          endpoint: env('R2_ENDPOINT'),
+          forcePathStyle: true,
+          params: {
+            Bucket: env('R2_BUCKET_NAME'),
+          },
+        },
+        baseUrl: env('CDN_URL'),
+      },
+      security: {
+        allowedTypes: allowedMediaTypes,
+        deniedTypes: deniedExecutableTypes,
+      },
+    };
+  }
+
+  return {
+    security: {
+      allowedTypes: allowedMediaTypes,
+      deniedTypes: deniedExecutableTypes,
+    },
+  };
+};
+
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({
   'users-permissions': {
     config: {
@@ -32,12 +66,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
     },
   },
   upload: {
-    config: {
-      security: {
-        allowedTypes: allowedMediaTypes,
-        deniedTypes: deniedExecutableTypes,
-      },
-    },
+    config: uploadConfig(env),
   },
 });
 
