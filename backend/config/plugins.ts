@@ -22,7 +22,15 @@ const deniedExecutableTypes = [
   'application/x-mach-binary',
 ];
 
+const normalizeCdnUrl = (url?: string): string | undefined => {
+  if (!url) return undefined;
+  const trimmed = url.trim().replace(/\/+$/, '');
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+};
+
 const uploadConfig = (env: Core.Config.Shared.ConfigParams['env']) => {
+  const cdnUrl = normalizeCdnUrl(env('CDN_URL'));
+
   if (env('R2_ACCESS_KEY_ID')) {
     return {
       provider: 'aws-s3',
@@ -39,7 +47,7 @@ const uploadConfig = (env: Core.Config.Shared.ConfigParams['env']) => {
             Bucket: env('R2_BUCKET_NAME'),
           },
         },
-        baseUrl: env('CDN_URL'),
+        baseUrl: cdnUrl,
       },
       security: {
         allowedTypes: allowedMediaTypes,
