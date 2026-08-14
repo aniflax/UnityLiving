@@ -26,7 +26,20 @@ const fixFile = (file: any): boolean => {
 };
 
 export default {
-  register() {},
+  register({ strapi }: { strapi: Core.Strapi }) {
+    strapi.server.routes([
+      {
+        method: 'GET',
+        path: '/health',
+        handler: (ctx: any) => {
+          ctx.body = 'Ok';
+        },
+        config: {
+          auth: false,
+        },
+      },
+    ]);
+  },
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
     try {
