@@ -6,12 +6,9 @@
 //
 // This mirrors the values previously hardcoded in the frontend
 // (Frontend/src/lib/site.ts) so the frontend can fetch them from Strapi only.
+// name, tagline, mission and address stay hardcoded in the frontend.
 
 const CURRENT_PERSONAL_INFORMATION = {
-  name: 'Unityaliving',
-  tagline: 'Where Living Finds Its Meaning',
-  mission: 'Redefining the standard of thoughtful living in Indore, Madhya Pradesh.',
-  address: 'Unityaliving, Indore, Madhya Pradesh, India',
   email: 'unityaliving@gmail.com',
   phone: '+91 6232 691 255',
   whatsapp:

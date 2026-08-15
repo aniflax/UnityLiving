@@ -11,18 +11,6 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "name": {
-      "type": "string"
-    },
-    "tagline": {
-      "type": "string"
-    },
-    "mission": {
-      "type": "text"
-    },
-    "address": {
-      "type": "string"
-    },
     "email": {
       "type": "email"
     },
