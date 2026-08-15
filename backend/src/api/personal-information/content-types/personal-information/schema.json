@@ -20,9 +20,6 @@
     "whatsapp": {
       "type": "string"
     },
-    "hours": {
-      "type": "string"
-    },
     "instagram": {
       "type": "string"
     },
