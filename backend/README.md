@@ -1,61 +1,77 @@
-# 🚀 Getting started with Strapi
+# Unityaliving — Backend (Strapi 5)
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+Headless CMS backend for the Unityaliving real-estate site, built with **Strapi 5**. Deployed on **Render** at [https://admin.unityaliving.com](https://admin.unityaliving.com).
 
-### `develop`
+- **Database:** [Neon](https://neon.tech) (serverless PostgreSQL), connected via Render env vars
+- **Media storage:** [Cloudflare R2](https://developers.cloudflare.com/r2/) via Strapi's `aws-s3` provider, served from [https://cdn.unityaliving.com](https://cdn.unityaliving.com)
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+## Architecture
 
 ```
+Browser ──> unityaliving.com (Cloudflare Worker frontend)
+                 │
+                 │  GET /api/personal-information (public, auth: false)
+                 ▼
+        admin.unityaliving.com (this Strapi CMS on Render)
+                 │
+                 ├── Neon PostgreSQL (serverless)
+                 └── Cloudflare R2 (media → cdn.unityaliving.com)
+```
+
+The frontend consumes the public REST API; the database is only reachable from the Render service (never exposed publicly).
+
+## Content types
+
+- **Personal Informations** (single type) — site-wide contact/social fields read by the frontend: `email`, `phone`, `whatsapp`, `instagram`, `facebook`, `youtube`, `linkedin`.
+
+## Getting started
+
+Requires Node.js 20+.
+
+```sh
+git clone git@github.com:aniflax/UnityLiving.git
+cd UnityLiving/backend
+npm i
 npm run develop
-# or
-yarn develop
 ```
 
-### `start`
+Visit http://localhost:1337/admin. Local dev defaults to SQLite (`.tmp/data.db`) and local media (no R2).
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+## Environment variables
 
+| Variable                      | Purpose                                          |
+| ----------------------------- | ------------------------------------------------ |
+| `HOST`, `PORT`                | Server host/port                                 |
+| `DATABASE_CLIENT=postgres`    | DB client (sqlite locally, postgres in prod)     |
+| `DATABASE_URL`, `DATABASE_SSL`, `DATABASE_SCHEMA` | Neon connection                      |
+| `APP_KEYS`                    | Strapi app keys (comma-separated)                |
+| `ADMIN_JWT_SECRET`            | Admin panel JWT secret                           |
+| `API_TOKEN_SALT`              | API token salt                                   |
+| `JWT_SECRET`                  | Users-permissions JWT secret                     |
+| `TRANSFER_TOKEN_SALT`         | Transfer token salt                              |
+| `ENCRYPTION_KEY`              | Transfer encryption key                          |
+| `R2_ACCESS_KEY_ID`            | R2 credentials (enable S3 media when set)        |
+| `R2_SECRET_ACCESS_KEY`        | R2 secret key                                    |
+| `R2_ENDPOINT`                 | R2 S3 endpoint                                   |
+| `R2_BUCKET_NAME`              | R2 bucket name                                   |
+| `S3_REGION`                   | Region (default `auto`)                          |
+| `CDN_URL`                     | Public media URL, e.g. `https://cdn.unityaliving.com` |
+| `CORS_ORIGINS`                | Comma-separated allowed origins (default `*`)    |
+
+## Scripts
+
+```sh
+npm run develop   # dev server with autoReload
+npm run build     # build admin panel (NODE_ENV=production strapi build)
+npm run start     # production server (no autoReload)
 ```
-npm run start
-# or
-yarn start
-```
 
-### `build`
+## Deployment
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+Auto-deploy: pushing to `main` in [aniflax/UnityLiving](https://github.com/aniflax/UnityLiving) triggers a Render rebuild + redeploy of this `backend/` directory. Render runs `NODE_ENV=production strapi build`, then starts the server on `PORT` (Render sets `10000`).
 
-```
-npm run build
-# or
-yarn build
-```
+New/changed env vars must be applied in the Render dashboard and the service redeployed to take effect.
 
-## ⚙️ Deployment
+## Public API
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
-```
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+- `GET /api/personal-information` — public, consumed by the frontend. Keep `auth: false` on this route or the site footer renders empty.
