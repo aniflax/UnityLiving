@@ -6,7 +6,7 @@
 //
 // This mirrors the values previously hardcoded in the frontend
 // (Frontend/src/lib/site.ts) so the frontend can fetch them from Strapi only.
-// name, tagline, mission and address stay hardcoded in the frontend.
+// name, tagline, mission, address and rera stay hardcoded in the frontend.
 
 const CURRENT_PERSONAL_INFORMATION = {
   email: 'unityaliving@gmail.com',
@@ -14,7 +14,6 @@ const CURRENT_PERSONAL_INFORMATION = {
   whatsapp:
     'https://wa.me/916232691255?text=Hi%20Unityaliving%2C%20I%27d%20like%20to%20know%20more',
   hours: 'Mon–Sat · 10am–7pm',
-  rera: 'RERA registered · Indore, Madhya Pradesh',
   instagram: 'https://instagram.com',
   facebook: 'https://facebook.com',
   youtube: 'https://youtube.com',

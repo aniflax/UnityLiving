@@ -23,9 +23,6 @@
     "hours": {
       "type": "string"
     },
-    "rera": {
-      "type": "string"
-    },
     "instagram": {
       "type": "string"
     },

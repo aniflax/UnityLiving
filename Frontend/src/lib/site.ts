@@ -1,7 +1,7 @@
 // Site-wide contact & social information.
-// email, phone, whatsapp, hours, rera and the social links are fetched from the
-// Strapi backend ("Personal Informations" single type). name, tagline, mission
-// and address stay defined here in the frontend.
+// email, phone, whatsapp, hours and the social links are fetched from the
+// Strapi backend ("Personal Informations" single type). name, tagline, mission,
+// address and rera stay defined here in the frontend.
 
 export type SiteSocial = { label: string; href: string; icon: string };
 
@@ -24,6 +24,7 @@ export const STATIC_SITE = {
   tagline: "Where Living Finds Its Meaning",
   mission: "Redefining the standard of thoughtful living in Indore, Madhya Pradesh.",
   address: "Unityaliving, Indore, Madhya Pradesh, India",
+  rera: "RERA registered · Indore, Madhya Pradesh",
 } as const;
 
 /** Raw shape of the Strapi "Personal Informations" single type. */
@@ -32,7 +33,6 @@ export type PersonalInformation = {
   phone?: string | null;
   whatsapp?: string | null;
   hours?: string | null;
-  rera?: string | null;
   instagram?: string | null;
   facebook?: string | null;
   youtube?: string | null;
@@ -62,7 +62,6 @@ export function normalizeSite(info: PersonalInformation | null | undefined): Sit
     phoneHref: phone ? `tel:+${phone.replace(/\D/g, "")}` : "",
     whatsapp: i.whatsapp ?? "",
     hours: i.hours ?? "",
-    rera: i.rera ?? "",
     socials: socialIcons
       .filter((s) => i[s.key])
       .map((s) => ({ label: s.label, href: i[s.key] as string, icon: s.icon })),
@@ -76,7 +75,6 @@ export const EMPTY_SITE: Site = {
   phoneHref: "",
   whatsapp: "",
   hours: "",
-  rera: "",
   socials: [],
 };
 
