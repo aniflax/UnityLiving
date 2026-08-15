@@ -11,9 +11,11 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/button";
 import { getAmenities } from "@/lib/data/amenities";
 import type { Project } from "@/lib/data/types";
+import { useSite } from "@/lib/site-context";
 
 export function ProjectDetail({ project }: { project: Project }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const site = useSite();
   const amenities = getAmenities(project.amenitySlugs);
 
   const specs = [
@@ -50,7 +52,10 @@ export function ProjectDetail({ project }: { project: Project }) {
           <Reveal className="lg:col-span-5" delay={0.15}>
             <dl className="border-t border-border">
               {specs.map((s) => (
-                <div key={s.label} className="flex justify-between gap-6 border-b border-border py-5">
+                <div
+                  key={s.label}
+                  className="flex justify-between gap-6 border-b border-border py-5"
+                >
                   <dt className="text-[0.68rem] tracking-[0.18em] text-muted-foreground uppercase">
                     {s.label}
                   </dt>
@@ -132,7 +137,7 @@ export function ProjectDetail({ project }: { project: Project }) {
               PDF. Request the set and we will send it across the same day.
             </p>
             <Button variant="luxeOutline" size="luxe" className="mt-8" asChild>
-              <a href={`mailto:unityaliving@gmail.com?subject=Floor plans — ${project.name}`}>
+              <a href={`mailto:${site.email}?subject=Floor plans — ${project.name}`}>
                 <Download className="h-4 w-4" /> Download Plan Set
               </a>
             </Button>
@@ -152,7 +157,8 @@ export function ProjectDetail({ project }: { project: Project }) {
               Arrange a site visit to {project.name}
             </h2>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/65">
-              Visits run Monday to Saturday. Tell us when suits you and we will confirm within a day.
+              Visits run Monday to Saturday. Tell us when suits you and we will confirm within a
+              day.
             </p>
           </div>
           <div className="lg:col-span-7">

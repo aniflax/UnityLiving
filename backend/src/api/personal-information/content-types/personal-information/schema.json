@@ -1,0 +1,54 @@
+{
+  "kind": "singleType",
+  "collectionName": "personal_informations",
+  "info": {
+    "singularName": "personal-information",
+    "pluralName": "personal-informations",
+    "displayName": "Personal Informations",
+    "description": "Site-wide contact details and social links"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "mission": {
+      "type": "text"
+    },
+    "address": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "whatsapp": {
+      "type": "string"
+    },
+    "hours": {
+      "type": "string"
+    },
+    "rera": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "youtube": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    }
+  }
+}

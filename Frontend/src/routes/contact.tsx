@@ -6,30 +6,41 @@ import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { MapCard } from "@/components/site/MapCard";
 import { Reveal } from "@/components/motion/Reveal";
 import { img } from "@/lib/data/images";
-import { site } from "@/lib/site";
+import { useSite } from "@/lib/site-context";
+import { fetchSite, type Site } from "@/lib/site";
 
 const socialIcons = { Instagram, Facebook, Linkedin, Youtube } as const;
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact Unityaliving — Indore, Madhya Pradesh" },
-      {
-        name: "description",
-        content:
-          "Call +91 6232 691 255, email unityaliving@gmail.com, or send an enquiry to arrange a site visit in Indore.",
-      },
-      { property: "og:title", content: "Contact Unityaliving" },
-      {
-        property: "og:description",
-        content: "Talk to our team about residences and weekend homes in Madhya Pradesh.",
-      },
-    ],
-  }),
+  loader: async () => {
+    const site = await fetchSite();
+    return { site };
+  },
+  head: ({ loaderData }) => {
+    const site = (loaderData as { site: Site } | undefined)?.site;
+    const phone = site?.phoneDisplay;
+    const email = site?.email;
+    const contactLine = phone && email ? `Call ${phone}, email ${email},` : "Contact our team";
+    return {
+      meta: [
+        { title: "Contact Unityaliving — Indore, Madhya Pradesh" },
+        {
+          name: "description",
+          content: `${contactLine} or send an enquiry to arrange a site visit in Indore.`,
+        },
+        { property: "og:title", content: "Contact Unityaliving" },
+        {
+          property: "og:description",
+          content: "Talk to our team about residences and weekend homes in Madhya Pradesh.",
+        },
+      ],
+    };
+  },
   component: ContactPage,
 });
 
 function ContactPage() {
+  const site = useSite();
   return (
     <>
       <PageHero

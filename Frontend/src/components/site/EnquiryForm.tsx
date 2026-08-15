@@ -6,6 +6,7 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { submitEnquiry, type EnquiryPayload } from "@/lib/api";
 import { enquiryTypes } from "@/lib/site";
+import { useSite } from "@/lib/site-context";
 import { cn } from "@/lib/utils";
 
 type Errors = Partial<Record<"name" | "phone" | "email" | "message" | "consent", string>>;
@@ -30,6 +31,7 @@ export function EnquiryForm({
   source?: string;
   className?: string;
 }) {
+  const site = useSite();
   const [values, setValues] = useState({
     name: "",
     phone: "",
@@ -90,9 +92,14 @@ export function EnquiryForm({
           <Check className="h-5 w-5" />
         </span>
         <h3 className="font-display text-2xl">Thank you — we have your details.</h3>
-        <p className={cn("text-sm leading-relaxed", light ? "text-cream/70" : "text-muted-foreground")}>
-          A member of our team will reach out within one working day. For anything urgent, call us on
-          +91 6232 691 255.
+        <p
+          className={cn(
+            "text-sm leading-relaxed",
+            light ? "text-cream/70" : "text-muted-foreground",
+          )}
+        >
+          A member of our team will reach out within one working day. For anything urgent, call us
+          on {site.phoneDisplay || "the number on this page"}.
         </p>
         <Button
           type="button"
@@ -194,7 +201,12 @@ export function EnquiryForm({
           onChange={(e) => setValues({ ...values, consent: e.target.checked })}
           className="mt-0.5 h-4 w-4 cursor-pointer accent-[oklch(0.6248_0.0764_84.4)]"
         />
-        <span className={cn("text-xs leading-relaxed", light ? "text-cream/65" : "text-muted-foreground")}>
+        <span
+          className={cn(
+            "text-xs leading-relaxed",
+            light ? "text-cream/65" : "text-muted-foreground",
+          )}
+        >
           I agree to be contacted about my enquiry and accept the{" "}
           <Link to="/privacy-policy" className="underline hover:text-gold">
             Privacy Policy

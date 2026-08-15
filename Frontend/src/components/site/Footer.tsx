@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
 import { MapCard } from "./MapCard";
-import { site } from "@/lib/site";
+import { useSite } from "@/lib/site-context";
 
 const socialIcons = { Instagram, Facebook, Linkedin, Youtube } as const;
 
@@ -22,6 +22,7 @@ const exploreLinks = [
 ];
 
 export function Footer() {
+  const site = useSite();
   return (
     <footer className="bg-charcoal text-charcoal-foreground">
       <div className="container-luxe grid gap-14 py-20 lg:grid-cols-12 lg:py-24">

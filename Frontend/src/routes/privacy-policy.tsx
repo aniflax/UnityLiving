@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { LegalPage } from "@/components/site/LegalPage";
+import { useSite } from "@/lib/site-context";
 
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
@@ -14,7 +15,12 @@ export const Route = createFileRoute("/privacy-policy")({
       { property: "og:description", content: "Our approach to your data and enquiry details." },
     ],
   }),
-  component: () => (
+  component: PrivacyPolicyPage,
+});
+
+function PrivacyPolicyPage() {
+  const site = useSite();
+  return (
     <LegalPage
       title="Privacy Policy"
       updated="1 February 2026"
@@ -46,10 +52,10 @@ export const Route = createFileRoute("/privacy-policy")({
           id: "your-rights",
           heading: "Your rights",
           paragraphs: [
-            "Write to unityaliving@gmail.com to see, correct or delete the information we hold about you. We respond within thirty days.",
+            `Write to ${site.email || "our support team"} to see, correct or delete the information we hold about you. We respond within thirty days.`,
           ],
         },
       ]}
     />
-  ),
-});
+  );
+}

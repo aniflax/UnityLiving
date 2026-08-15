@@ -15,6 +15,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { Toaster } from "@/components/ui/sonner";
+import { SiteProvider } from "@/lib/site-context";
+import { fetchSite } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
@@ -103,6 +105,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
+  loader: async () => {
+    const site = await fetchSite();
+    return { site };
+  },
 });
 
 function RootShell({ children }: { children: ReactNode }) {
@@ -121,17 +127,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { site } = Route.useLoaderData();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
-      <main>
-        {/* Required: nested routes render here. */}
-        <Outlet />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-      <Toaster position="bottom-left" />
+      <SiteProvider site={site}>
+        <Header />
+        <main>
+          {/* Required: nested routes render here. */}
+          <Outlet />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+        <Toaster position="bottom-left" />
+      </SiteProvider>
     </QueryClientProvider>
   );
 }

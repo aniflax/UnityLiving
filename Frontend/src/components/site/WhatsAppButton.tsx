@@ -1,6 +1,7 @@
-import { site } from "@/lib/site";
+import { useSite } from "@/lib/site-context";
 
 export function WhatsAppButton() {
+  const site = useSite();
   return (
     <a
       href={site.whatsapp}
