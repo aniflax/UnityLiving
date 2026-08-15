@@ -175,11 +175,6 @@ export function Header() {
             size="luxeSm"
             className={cn(!solid && "border-cream/35 text-cream")}
           >
-            <Link to="/contact" hash="callback">
-              Callback
-            </Link>
-          </Button>
-          <Button asChild variant="luxe" size="luxeSm" className={cn(!solid && "bg-cream text-charcoal hover:bg-gold hover:text-cream")}>
             <Link to="/contact">Enquire Now</Link>
           </Button>
         </div>
@@ -249,13 +244,8 @@ export function Header() {
                 </motion.div>
               ))}
               <div className="mt-8 flex flex-col gap-3">
-                <Button asChild variant="luxe" size="luxe">
+                <Button asChild variant="pill" size="luxe">
                   <Link to="/contact">Enquire Now</Link>
-                </Button>
-                <Button asChild variant="luxeOutline" size="luxe">
-                  <Link to="/contact" hash="callback">
-                    Request a Callback
-                  </Link>
                 </Button>
               </div>
             </motion.nav>
