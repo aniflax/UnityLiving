@@ -78,13 +78,16 @@ export const EMPTY_SITE: Site = {
   socials: [],
 };
 
+const PRODUCTION_STRAPI_URL = "https://admin.unityaliving.com";
+
 function resolveStrapiUrl(): string {
   // Runtime env (Cloudflare Worker vars / Render-provided): STRAPI_URL
   // Build-time env (Vite): VITE_STRAPI_URL
-  // Local dev fallback.
+  // Dev fallback: local backend. Production fallback: the deployed backend.
   const runtimeUrl = typeof process !== "undefined" ? process.env?.["STRAPI_URL"] : undefined;
   const buildUrl = import.meta.env?.["VITE_STRAPI_URL"];
-  return (runtimeUrl ?? buildUrl ?? "http://localhost:1337").replace(/\/+$/, "");
+  const fallback = import.meta.env.DEV ? "http://localhost:1337" : PRODUCTION_STRAPI_URL;
+  return (runtimeUrl ?? buildUrl ?? fallback).replace(/\/+$/, "");
 }
 
 const STRAPI_URL = resolveStrapiUrl();
