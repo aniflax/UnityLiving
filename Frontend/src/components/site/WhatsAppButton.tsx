@@ -2,6 +2,7 @@ import { useSite } from "@/lib/site-context";
 
 export function WhatsAppButton() {
   const site = useSite();
+  if (!site.whatsapp) return null;
   return (
     <a
       href={site.whatsapp}
