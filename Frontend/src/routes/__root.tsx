@@ -116,6 +116,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Unityaliving builds considered residences in Indore, Madhya Pradesh — where living finds its meaning.",
       },
       { name: "author", content: "Unityaliving" },
+      { name: "google-adsense-account", content: "ca-pub-4893209698743849" },
       { property: "og:site_name", content: "Unityaliving" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -131,6 +132,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
+      {
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4893209698743849",
+        async: true,
+        crossOrigin: "anonymous",
+      },
       {
         src: "https://www.googletagmanager.com/gtag/js?id=G-8R20S13F6M",
         async: true,
