@@ -7,16 +7,46 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import type { RouterSubscriber } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteProvider } from "@/lib/site-context";
 import { fetchSite } from "@/lib/site";
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+function usePageViewTracking() {
+  const router = useRouter();
+  const isInitialLoad = useRef(true);
+
+  useEffect(() => {
+    const sendPageView = () => {
+      // The gtag config snippet already fires page_view on the initial page
+      // load; only track subsequent client-side navigations.
+      if (isInitialLoad.current) {
+        isInitialLoad.current = false;
+        return;
+      }
+      const { pathname, search, hash } = router.state.location;
+      window.gtag?.("event", "page_view", {
+        page_path: `${pathname}${search}${hash}`,
+        page_title: document.title,
+      });
+    };
+    const unsubscribe = router.subscribe("onResolved", sendPageView);
+    return unsubscribe;
+  }, [router]);
+}
 
 function NotFoundComponent() {
   return (
@@ -141,6 +171,8 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const { site } = Route.useLoaderData();
+
+  usePageViewTracking();
 
   return (
     <QueryClientProvider client={queryClient}>
