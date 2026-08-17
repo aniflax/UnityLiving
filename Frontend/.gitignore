@@ -20,6 +20,9 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Deploy secrets (purge-cache.sh)
+.deploy.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
