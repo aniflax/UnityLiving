@@ -134,6 +134,7 @@ export function Hero() {
           <div
             className={cn(
               "mx-auto",
+              "max-[1000px]:mt-4",
               "min-[1001px]:relative min-[1001px]:z-[15] min-[1001px]:mt-[-92px] min-[1001px]:w-[81%]",
             )}
           >

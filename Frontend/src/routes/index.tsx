@@ -62,9 +62,21 @@ const features = [
 ];
 
 const locationTags = [
-  { icon: MapPin, title: "Seamless Connectivity", caption: "Ring road, airport and metro corridor within reach." },
-  { icon: ShieldCheck, title: "Safe & Secure", caption: "Gated communities with round-the-clock security." },
-  { icon: Trees, title: "Peaceful Living", caption: "Landscaped courtyards at the centre of every plan." },
+  {
+    icon: MapPin,
+    title: "Seamless Connectivity",
+    caption: "Ring road, airport and metro corridor within reach.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Safe & Secure",
+    caption: "Gated communities with round-the-clock security.",
+  },
+  {
+    icon: Trees,
+    title: "Peaceful Living",
+    caption: "Landscaped courtyards at the centre of every plan.",
+  },
 ];
 
 function Home() {
@@ -82,18 +94,20 @@ function Home() {
       <section className="container-luxe py-24 md:py-32">
         <div className="grid gap-14 lg:grid-cols-12 lg:items-center">
           <Reveal className="lg:col-span-5">
-            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">More Than Four Walls</p>
-            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
+            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">
+              More Than Four Walls
+            </p>
+            <h2 className="hidden font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl md:block">
               A home is the one place that keeps a record of your life
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              We build in Indore because it is a city still deciding what it will become. The homes we
-              put here are meant to outlast that decision — plans that hold a growing family, courtyards
-              that gather neighbours, materials that soften rather than fade.
+            <p className="mt-6 hidden text-base leading-relaxed text-muted-foreground md:block">
+              We build in Indore because it is a city still deciding what it will become. The homes
+              we put here are meant to outlast that decision — plans that hold a growing family,
+              courtyards that gather neighbours, materials that soften rather than fade.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Nothing here is designed to impress a passer-by. It is designed for the fifteenth year,
-              when the trees have grown and the house still feels right.
+            <p className="mt-4 hidden text-base leading-relaxed text-muted-foreground md:block">
+              Nothing here is designed to impress a passer-by. It is designed for the fifteenth
+              year, when the trees have grown and the house still feels right.
             </p>
             <Button asChild variant="luxeOutline" size="luxe" className="mt-9">
               <Link to="/about">About Unitya Living</Link>
@@ -186,18 +200,23 @@ function Home() {
             />
           </Reveal>
           <Reveal delay={0.15}>
-            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">Location & Connectivity</p>
+            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">
+              Location & Connectivity
+            </p>
             <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
               Indore — Central India's growth hub
             </h2>
             <p className="mt-6 text-[0.98rem] leading-relaxed text-muted-foreground">
-              Infrastructure here arrived ahead of demand. The Super Corridor, the western ring road and
-              the metro alignment were built on projections rather than pressure, which is why commutes
-              have held while the city has grown.
+              Infrastructure here arrived ahead of demand. The Super Corridor, the western ring road
+              and the metro alignment were built on projections rather than pressure, which is why
+              commutes have held while the city has grown.
             </p>
             <RevealGroup className="mt-10 flex flex-col gap-6" stagger={0.1}>
               {locationTags.map((tag) => (
-                <RevealItem key={tag.title} className="flex items-start gap-4 border-t border-border pt-5">
+                <RevealItem
+                  key={tag.title}
+                  className="flex items-start gap-4 border-t border-border pt-5"
+                >
                   <tag.icon className="mt-0.5 h-5 w-5 shrink-0 text-gold" strokeWidth={1.4} />
                   <div>
                     <p className="text-sm tracking-[0.06em]">{tag.title}</p>
@@ -275,7 +294,11 @@ function Home() {
       {/* Testimonials */}
       <section className="bg-secondary/60 py-24 md:py-32">
         <div className="container-luxe">
-          <SectionHeading eyebrow="In Their Words" title="Residents on living with us" className="mb-14" />
+          <SectionHeading
+            eyebrow="In Their Words"
+            title="Residents on living with us"
+            className="mb-14"
+          />
           <TestimonialsCarousel items={testimonialList} />
         </div>
       </section>
