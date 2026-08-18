@@ -30,7 +30,12 @@ export const STATIC_SITE = {
 } as const;
 
 /** Raw shape of the Strapi "Personal Informations" single type. */
-export type StrapiMedia = { data: { attributes: { url: string } } | null } | null;
+export type StrapiMedia =
+  | {
+      url?: string | null;
+      data?: { attributes?: { url?: string | null } | null } | null;
+    }
+  | null;
 
 export type PersonalInformation = {
   email?: string | null;
@@ -89,11 +94,12 @@ export function normalizeSite(info: PersonalInformation | null | undefined): Sit
 }
 
 /**
- * Resolves a Strapi media object to an absolute URL. Relative upload paths are
- * prefixed with the backend URL so they work in both dev and production.
+ * Resolves a Strapi media object to an absolute URL. Handles both the flat
+ * Strapi v5 shape (`{ url }`) and the older wrapped shape (`{ data.attributes.url }`).
+ * Relative upload paths are prefixed with the backend URL so they work in dev too.
  */
 function resolveMediaUrl(media: StrapiMedia | undefined): string {
-  const url = media?.data?.attributes?.url;
+  const url = media?.url ?? media?.data?.attributes?.url;
   if (!url) return "";
   if (/^https?:\/\//i.test(url)) return url;
   const base = STRAPI_URL.replace(/\/+$/, "");
