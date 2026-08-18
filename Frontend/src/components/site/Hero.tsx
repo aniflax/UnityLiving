@@ -1,24 +1,24 @@
 import { Link } from "@tanstack/react-router";
-import {
-  Banknote,
-  ChevronDown,
-  Facebook,
-  Home,
-  Instagram,
-  Linkedin,
-  MapPin,
-  Play,
-  Search,
-  Twitter,
-  Youtube,
-} from "lucide-react";
+import { Banknote, ChevronDown, Home, MapPin, Play, Search } from "lucide-react";
 
 import { useSite } from "@/lib/site-context";
 import { cn } from "@/lib/utils";
 
 const HOUSE_IMAGE = "https://cdn.unityaliving.com/Hero%20Image/House.png";
 
-const socialIcons = { Facebook, Instagram, Linkedin, Youtube, Twitter } as const;
+const facebookPath = "M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1z";
+
+const twitterPath =
+  "M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.8.5-1.7.8-2.6 1A4.1 4.1 0 0 0 11.7 8c0 .3 0 .6.1.9-3.4-.2-6.4-1.8-8.4-4.2-.4.6-.6 1.3-.6 2.1 0 1.4.7 2.7 1.7 3.4-.6 0-1.2-.2-1.8-.5v.1c0 2 1.4 3.7 3.3 4.1-.3.1-.7.1-1 .1-.2 0-.5 0-.7-.1.5 1.6 2 2.8 3.8 2.8A8.3 8.3 0 0 1 3 18.5 11.7 11.7 0 0 0 9.3 20c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.1z";
+
+const linkedinPath =
+  "M6.5 8.5H3V21h3.5V8.5zM4.8 3C3.7 3 3 3.8 3 4.8s.7 1.8 1.8 1.8 1.8-.8 1.8-1.8S5.9 3 4.8 3zM21 13.8c0-3.8-2-5.6-4.8-5.6-2.2 0-3.2 1.2-3.8 2v-1.7H9V21h3.5v-6.2c0-1.6.3-3.2 2.3-3.2 2 0 2 1.9 2 3.3V21H21v-7.2z";
+
+const heroSocials = [
+  { label: "Facebook", path: facebookPath },
+  { label: "Twitter", path: twitterPath },
+  { label: "LinkedIn", path: linkedinPath },
+];
 
 const searchFields = [
   {
@@ -44,8 +44,8 @@ export function Hero() {
   return (
     <section className="bg-white">
       <div className="mx-auto w-full max-w-[1720px] px-6 md:px-10 xl:px-24">
-        <div className="pt-[62px]">
-          <div className="relative mt-1 min-[1001px]:h-[650px]">
+        <div className="pt-[62px] pb-[50px]">
+          <div className="relative mt-[15px] min-[1001px]:h-[650px]">
             {/* Hero copy */}
             <div
               className={cn(
@@ -59,12 +59,12 @@ export function Hero() {
                 <span className="block font-bold">Dream Homes</span>
               </h1>
 
-              <p className="mt-5 max-w-[445px] text-[14px] leading-[1.55] font-normal text-[#686868] min-[600px]:text-base min-[1001px]:mt-[25px]">
+              <p className="mt-[25px] max-w-[445px] font-poppins text-[14px] leading-[1.55] font-normal text-[#686868] min-[600px]:text-base max-[600px]:mt-5">
                 Discover a curated collection of dream homes at your fingertips, simplified and
                 personalized.
               </p>
 
-              <div className="mt-7 flex items-center gap-5 min-[1001px]:mt-10 min-[1001px]:gap-[34px] max-[600px]:mt-7">
+              <div className="mt-10 flex items-center gap-[34px] max-[600px]:mt-7 max-[600px]:gap-5">
                 <Link
                   to="/projects"
                   className="inline-flex h-[54px] cursor-pointer items-center justify-center rounded-full bg-[#111] px-9 font-baloo text-base font-semibold text-white transition-opacity duration-200 hover:opacity-80 max-[600px]:h-12 max-[600px]:px-[25px] max-[600px]:text-sm"
@@ -79,35 +79,37 @@ export function Hero() {
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border-2 border-[#111] max-[600px]:h-10 max-[600px]:w-10">
                     <Play className="ml-0.5 h-[13px] w-[13px] fill-[#111] text-[#111]" />
                   </span>
-                  <span className="text-[15px] font-semibold max-[600px]:text-[13px]">
+                  <span className="font-poppins text-[15px] font-semibold max-[600px]:text-[13px]">
                     Watch Demo
                   </span>
                 </button>
               </div>
 
-              {site.socials.length > 0 ? (
-                <div className="mt-7 flex items-center gap-3 min-[1001px]:mt-11 max-[600px]:mt-[26px]">
-                  {site.socials.map((s) => {
-                    const Icon = socialIcons[s.icon as keyof typeof socialIcons];
-                    if (!Icon) return null;
-                    return (
-                      <a
-                        key={s.label}
-                        href={s.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={s.label}
-                        className="flex h-7 w-7 items-center justify-center text-[#111] transition duration-200 hover:-translate-y-px hover:opacity-55 max-[600px]:h-[22px] max-[600px]:w-[22px]"
+              <div className="mt-11 flex items-center gap-3 max-[600px]:mt-[26px] max-[600px]:gap-[10px]">
+                {heroSocials.map((social) => {
+                  const href =
+                    site.socials.find((s) => s.label.toLowerCase() === social.label.toLowerCase())
+                      ?.href ?? "#";
+                  return (
+                    <a
+                      key={social.label}
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={social.label}
+                      className="flex h-7 w-7 items-center justify-center text-[#111] transition duration-200 hover:-translate-y-px hover:opacity-55 max-[600px]:h-[22px] max-[600px]:w-[22px]"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="block h-6 w-6 max-[600px]:h-[19px] max-[600px]:w-[19px]"
                       >
-                        <Icon
-                          className="h-6 w-6 max-[600px]:h-[19px] max-[600px]:w-[19px]"
-                          strokeWidth={1.6}
-                        />
-                      </a>
-                    );
-                  })}
-                </div>
-              ) : null}
+                        <path d={social.path} />
+                      </svg>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
 
             {/* House image */}
@@ -149,7 +151,7 @@ export function Hero() {
                   ) : null}
                   <div
                     className={cn(
-                      "flex min-w-0 flex-1 flex-col justify-center gap-[5px] px-7",
+                      "flex min-w-0 flex-1 flex-col justify-center gap-[5px] px-7 font-poppins",
                       "first:pl-0",
                       "max-[1000px]:w-[45%] max-[1000px]:flex-none max-[1000px]:p-0",
                       "max-[600px]:w-full",

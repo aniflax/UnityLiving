@@ -78,10 +78,10 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[60] border-b border-[#e7e7e7] bg-white">
-        <div className="mx-auto grid h-[62px] max-w-[1720px] grid-cols-[1fr_auto_1fr] items-center px-6 md:px-10 xl:px-24">
+      <header className="fixed inset-x-0 top-0 z-[60] bg-white">
+        <div className="mx-auto flex h-[62px] max-w-[1720px] items-center gap-6 px-6 md:px-10 xl:px-24">
           {/* Brand: hamburger + name */}
-          <div className="flex items-center gap-4 justify-self-start">
+          <div className="flex shrink-0 items-center gap-4">
             {menuOpen ? (
               <button
                 type="button"
@@ -112,13 +112,19 @@ export function Header() {
             </Link>
           </div>
 
+          {/* Spacer pushes nav links toward the Enquire button */}
+          <div className="min-h-px flex-1" />
+
           {/* Nav links */}
-          <nav className="hidden items-center justify-center gap-12 lg:flex" aria-label="Main">
+          <nav
+            className="hidden items-center gap-12 max-[1200px]:gap-[34px] min-[1001px]:flex"
+            aria-label="Main"
+          >
             {topLinks.map((link) => (
               <Link
                 key={link.label}
                 to={link.to}
-                className="text-[15px] font-normal whitespace-nowrap text-[#111] opacity-90 transition-opacity duration-200 hover:opacity-60"
+                className="font-poppins text-[15px] font-normal whitespace-nowrap text-[#111] opacity-90 transition-opacity duration-200 hover:opacity-60"
               >
                 {link.label}
               </Link>
@@ -128,7 +134,7 @@ export function Header() {
           {/* Enquire */}
           <Link
             to="/contact"
-            className="inline-flex h-[52px] min-w-[108px] cursor-pointer items-center justify-center rounded-full bg-[#111] px-7 font-baloo text-base font-semibold text-white transition-opacity duration-200 hover:opacity-80 justify-self-end max-[600px]:h-11 max-[600px]:min-w-[90px] max-[600px]:px-5 max-[600px]:text-sm"
+            className="inline-flex h-[52px] min-w-[108px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#111] px-7 font-baloo text-base font-semibold text-white transition-opacity duration-200 hover:opacity-80 max-[600px]:h-11 max-[600px]:min-w-[90px] max-[600px]:px-5 max-[600px]:text-sm"
           >
             Enquire
           </Link>
