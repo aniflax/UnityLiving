@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { director } from "@/lib/data/teamMembers";
@@ -23,16 +23,8 @@ export const Route = createFileRoute("/director")({
   component: DirectorPage,
 });
 
-const exploreLinks = [
-  { label: "Projects", to: "/projects" },
-  { label: "Upcoming Projects", to: "/upcoming-projects" },
-  { label: "Media", to: "/media" },
-  { label: "Careers", to: "/careers" },
-  { label: "Contact", to: "/contact" },
-];
-
 function DirectorPage() {
-  const { directorImage, mission } = useSite();
+  const { directorImage } = useSite();
 
   return (
     <section className="bg-background pt-28 md:pt-36">
@@ -58,27 +50,6 @@ function DirectorPage() {
               <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground uppercase">
                 {director.role} · Unityaliving, Indore
               </p>
-            </div>
-            <div className="mt-10 border-t border-border pt-8">
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif text-2xl font-semibold tracking-wider text-foreground">
-                  UNITYA
-                </span>
-                <span className="text-[0.6rem] tracking-[0.35em] text-brand">LIVING</span>
-              </div>
-              <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">{mission}</p>
-              <div className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Explore
-              </div>
-              <ul className="mt-4 space-y-3 text-sm">
-                {exploreLinks.map((l) => (
-                  <li key={l.label}>
-                    <Link to={l.to} className="link-underline text-foreground/80 hover:text-brand">
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
