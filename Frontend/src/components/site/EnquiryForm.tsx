@@ -198,7 +198,7 @@ export function EnquiryForm({
           type="checkbox"
           checked={values.consent}
           onChange={(e) => setValues({ ...values, consent: e.target.checked })}
-          className="mt-0.5 h-4 w-4 cursor-pointer rounded accent-[oklch(0.51_0.06_60)]"
+          className="mt-0.5 h-4 w-4 cursor-pointer rounded accent-[#111111]"
         />
         <span
           className={cn(
