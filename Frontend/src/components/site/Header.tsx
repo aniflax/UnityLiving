@@ -85,14 +85,15 @@ export function Header() {
   const solid = scrolled || mobileOpen;
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-[60] transition-all duration-500",
-        solid
-          ? "border-b border-border/70 bg-background/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent",
-      )}
-    >
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-[60] transition-all duration-500",
+          solid
+            ? "border-b border-border/70 bg-background/85 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent",
+        )}
+      >
       <div className="container-luxe flex h-[72px] items-center justify-between gap-6 lg:h-[84px]">
         <Logo tone={solid ? "dark" : "light"} />
 
@@ -191,6 +192,7 @@ export function Header() {
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
+      </header>
 
       <AnimatePresence>
         {mobileOpen ? (
@@ -252,6 +254,6 @@ export function Header() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
