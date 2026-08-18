@@ -42,7 +42,7 @@ function DirectorPage() {
         <div className="grid gap-14 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <img
-              src={directorImage || director.photo || img.director}
+              src={directorImage}
               alt={`Portrait of ${director.name}`}
               width={1008}
               height={1264}

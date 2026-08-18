@@ -17,7 +17,6 @@ import interior3 from "@/assets/interior-3.jpg";
 import interior4 from "@/assets/interior-4.jpg";
 import indoreAerial from "@/assets/indore-aerial.jpg";
 import bannerDark from "@/assets/banner-dark.jpg";
-import director from "@/assets/director.jpg";
 
 export const img = {
   hero1,
@@ -37,7 +36,6 @@ export const img = {
   interior4,
   indoreAerial,
   bannerDark,
-  director,
 };
 
 export const galleryStrip = [

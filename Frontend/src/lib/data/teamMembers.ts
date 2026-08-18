@@ -1,5 +1,4 @@
 import { collection, type StrapiEntity, type TeamMember } from "./types";
-import { img } from "./images";
 
 export const teamMemberEntities: StrapiEntity<TeamMember>[] = [
   {
@@ -8,7 +7,6 @@ export const teamMemberEntities: StrapiEntity<TeamMember>[] = [
       name: "Rohan Astoliya",
       role: "Managing Director",
       initials: "RA",
-      photo: img.director,
       signature: "Rohan Astoliya",
       bio: [
         "When we began Unityaliving, Indore was still a city that people described in terms of what it might become. We chose to build here precisely because of that — a city on the edge of its own growth deserves homes built with patience rather than haste.",
