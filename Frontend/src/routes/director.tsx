@@ -4,6 +4,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { img } from "@/lib/data/images";
 import { director } from "@/lib/data/teamMembers";
+import { useSite } from "@/lib/site-context";
 
 export const Route = createFileRoute("/director")({
   head: () => ({
@@ -25,6 +26,8 @@ export const Route = createFileRoute("/director")({
 });
 
 function DirectorPage() {
+  const { directorImage } = useSite();
+
   return (
     <>
       <PageHero
@@ -39,7 +42,7 @@ function DirectorPage() {
         <div className="grid gap-14 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <img
-              src={director.photo ?? img.director}
+              src={directorImage || director.photo || img.director}
               alt={`Portrait of ${director.name}`}
               width={1008}
               height={1264}

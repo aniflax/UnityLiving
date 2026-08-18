@@ -17,6 +17,7 @@ export type Site = {
   hours: string;
   rera: string;
   socials: SiteSocial[];
+  directorImage: string;
 };
 
 export const STATIC_SITE = {
@@ -29,6 +30,8 @@ export const STATIC_SITE = {
 } as const;
 
 /** Raw shape of the Strapi "Personal Informations" single type. */
+export type StrapiMedia = { data: { attributes: { url: string } } | null } | null;
+
 export type PersonalInformation = {
   email?: string | null;
   phone?: string | null;
@@ -37,6 +40,7 @@ export type PersonalInformation = {
   facebook?: string | null;
   youtube?: string | null;
   linkedin?: string | null;
+  directorImage?: StrapiMedia;
 };
 
 export const enquiryTypes = ["Home Buyer", "Broker", "Investor", "Corporate", "NRI Buyer"] as const;
@@ -80,7 +84,20 @@ export function normalizeSite(info: PersonalInformation | null | undefined): Sit
     socials: socialIcons
       .filter((s) => i[s.key])
       .map((s) => ({ label: s.label, href: i[s.key] as string, icon: s.icon })),
+    directorImage: resolveMediaUrl(i.directorImage),
   };
+}
+
+/**
+ * Resolves a Strapi media object to an absolute URL. Relative upload paths are
+ * prefixed with the backend URL so they work in both dev and production.
+ */
+function resolveMediaUrl(media: StrapiMedia | undefined): string {
+  const url = media?.data?.attributes?.url;
+  if (!url) return "";
+  if (/^https?:\/\//i.test(url)) return url;
+  const base = STRAPI_URL.replace(/\/+$/, "");
+  return `${base}${url.startsWith("/") ? "" : "/"}${url}`;
 }
 
 export const EMPTY_SITE: Site = {
@@ -91,6 +108,7 @@ export const EMPTY_SITE: Site = {
   whatsapp: "",
   hours: STATIC_SITE.hours,
   socials: [],
+  directorImage: "",
 };
 
 const PRODUCTION_STRAPI_URL = "https://admin.unityaliving.com";
@@ -144,7 +162,7 @@ async function fetchSiteOnce(): Promise<Response> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
   try {
-    return await fetch(`${STRAPI_URL}/api/personal-information`, {
+    return await fetch(`${STRAPI_URL}/api/personal-information?populate=*`, {
       headers: { Accept: "application/json" },
       signal: controller.signal,
     });
