@@ -41,17 +41,19 @@ function DirectorPage() {
       <section className="container-luxe py-24 md:py-32">
         <div className="grid gap-14 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
-            <img
-              src={directorImage}
-              alt={`Portrait of ${director.name}`}
-              width={1008}
-              height={1264}
-              loading="lazy"
-              decoding="async"
-              className="aspect-[4/5] w-full object-cover"
-            />
-            <p className="mt-6 font-display text-xl">{director.name}</p>
-            <p className="mt-1 text-[0.7rem] tracking-[0.2em] text-muted-foreground uppercase">
+            <div className="overflow-hidden rounded-[2rem] bg-secondary">
+              <img
+                src={directorImage}
+                alt={`Portrait of ${director.name}`}
+                width={1008}
+                height={1264}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </div>
+            <p className="mt-6 font-serif text-2xl">{director.name}</p>
+            <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground uppercase">
               {director.role}
             </p>
           </Reveal>

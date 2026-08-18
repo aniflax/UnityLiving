@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 type Errors = Partial<Record<"name" | "phone" | "email" | "message" | "consent", string>>;
 
 const fieldClass =
-  "h-12 w-full rounded-none border-0 border-b bg-transparent px-0 text-sm outline-none transition-colors placeholder:text-current/40 focus:border-gold";
+  "h-12 w-full rounded-xl border border-border bg-white px-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-brand focus:ring-1 focus:ring-brand";
 
 export function EnquiryForm({
   tone = "dark",
@@ -46,7 +46,7 @@ export function EnquiryForm({
   const [done, setDone] = useState(false);
 
   const light = tone === "light";
-  const border = light ? "border-cream/25 text-cream" : "border-border text-foreground";
+  const border = light ? "border-cream/25" : "border-border";
 
   function validate() {
     const next: Errors = {};
@@ -83,15 +83,14 @@ export function EnquiryForm({
     return (
       <div
         className={cn(
-          "flex flex-col items-start gap-4 border p-8",
-          light ? "border-cream/25 text-cream" : "border-border text-foreground",
+          "flex flex-col items-start gap-4 rounded-2xl border border-border bg-white p-8",
           className,
         )}
       >
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold text-gold-foreground">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white">
           <Check className="h-5 w-5" />
         </span>
-        <h3 className="font-display text-2xl">Thank you — we have your details.</h3>
+        <h3 className="font-serif text-2xl text-foreground">Thank you — we have your details.</h3>
         <p
           className={cn(
             "text-sm leading-relaxed",
@@ -184,7 +183,7 @@ export function EnquiryForm({
           <textarea
             rows={4}
             className={cn(
-              "w-full resize-none rounded-none border-0 border-b bg-transparent px-0 py-3 text-sm outline-none transition-colors placeholder:text-current/40 focus:border-gold",
+              "w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-brand focus:ring-1 focus:ring-brand",
               border,
             )}
             value={values.message}
@@ -199,7 +198,7 @@ export function EnquiryForm({
           type="checkbox"
           checked={values.consent}
           onChange={(e) => setValues({ ...values, consent: e.target.checked })}
-          className="mt-0.5 h-4 w-4 cursor-pointer accent-[oklch(0.6248_0.0764_84.4)]"
+          className="mt-0.5 h-4 w-4 cursor-pointer rounded accent-[oklch(0.51_0.06_60)]"
         />
         <span
           className={cn(

@@ -28,10 +28,12 @@ export function SectionHeading({
       )}
     >
       <Reveal className={cn("max-w-2xl", align === "center" && "text-center")}>
-        {eyebrow ? <p className="eyebrow mb-4">{eyebrow}</p> : null}
+        {eyebrow ? (
+          <p className={cn("mb-4 text-xs uppercase tracking-[0.28em] text-brand")}>{eyebrow}</p>
+        ) : null}
         <h2
           className={cn(
-            "font-display text-[clamp(1.9rem,4vw,3.25rem)] leading-[1.1]",
+            "font-display text-4xl leading-[1.05] tracking-tight md:text-5xl",
             tone === "light" ? "text-cream" : "text-foreground",
           )}
         >
@@ -40,7 +42,7 @@ export function SectionHeading({
         {intro ? (
           <p
             className={cn(
-              "mt-5 max-w-xl text-[0.95rem] leading-relaxed",
+              "mt-5 max-w-xl text-base leading-relaxed md:text-lg",
               tone === "light" ? "text-cream/70" : "text-muted-foreground",
               align === "center" && "mx-auto",
             )}

@@ -149,21 +149,20 @@ export function ProjectDetail({ project }: { project: Project }) {
         </div>
       </section>
 
-      <section className="bg-charcoal py-24 text-cream md:py-32">
-        <div className="container-luxe grid gap-14 lg:grid-cols-12">
+      <section className="bg-secondary/60 py-24 md:py-32">
+        <div className="container-luxe grid gap-14 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-5">
-            <p className="eyebrow mb-5">Enquire</p>
-            <h2 className="font-display text-[clamp(1.8rem,3.6vw,2.9rem)] leading-tight text-cream">
+            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">Enquire</p>
+            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
               Arrange a site visit to {project.name}
             </h2>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/65">
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
               Visits run Monday to Saturday. Tell us when suits you and we will confirm within a
               day.
             </p>
           </div>
-          <div className="lg:col-span-7">
+          <div className="rounded-3xl border border-border bg-white p-8 shadow-[var(--shadow-soft)] lg:col-span-7 lg:p-10">
             <EnquiryForm
-              tone="light"
               interestedIn={`${project.name} — ${project.locality}`}
               showMessage
               submitLabel="Request a Site Visit"

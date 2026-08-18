@@ -103,7 +103,7 @@ function ContactPage() {
           <div className="lg:col-span-7" id="callback">
             <Reveal>
               <p className="eyebrow mb-5">Send an enquiry</p>
-              <h2 className="font-display text-[clamp(1.7rem,3.4vw,2.6rem)] leading-tight">
+              <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
                 Tell us what you are looking for
               </h2>
               <EnquiryForm

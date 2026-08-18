@@ -1,114 +1,114 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Youtube } from "lucide-react";
 
-import { MapCard } from "./MapCard";
 import { useSite } from "@/lib/site-context";
+import { mapEmbedFor, mapLinkFor } from "@/lib/site";
 
 const socialIcons = { Instagram, Facebook, Linkedin, Youtube } as const;
-
-const companyLinks = [
-  { label: "About Us", to: "/about" },
-  { label: "Director's Desk", to: "/director" },
-  { label: "Careers", to: "/careers" },
-  { label: "Privacy Policy", to: "/privacy-policy" },
-  { label: "Terms & Conditions", to: "/terms-and-conditions" },
-];
 
 const exploreLinks = [
   { label: "Projects", to: "/projects" },
   { label: "Upcoming Projects", to: "/upcoming-projects" },
-  { label: "News", to: "/media" },
+  { label: "Media", to: "/media" },
+  { label: "Careers", to: "/careers" },
   { label: "Contact", to: "/contact" },
 ];
 
 export function Footer() {
   const site = useSite();
+
   return (
-    <footer className="bg-charcoal text-charcoal-foreground">
-      <div className="container-luxe grid gap-14 py-20 lg:grid-cols-12 lg:py-24">
-        <div className="lg:col-span-4">
-          <p className="font-display text-2xl leading-none font-light text-cream">
-            Unity<span className="italic">aliving</span>
+    <footer className="mt-24 border-t border-border bg-white">
+      <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <div className="font-serif text-2xl font-semibold tracking-tight text-foreground">
+            Unity<span className="italic font-medium text-brand">aliving</span>
+          </div>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+            {site.mission}
           </p>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-cream/65">{site.mission}</p>
-          <address className="mt-6 text-sm leading-relaxed text-cream/50 not-italic">
-            {site.address}
-          </address>
-        </div>
-
-        <div className="lg:col-span-2">
-          <h3 className="eyebrow mb-5">Company</h3>
-          <ul className="flex flex-col gap-3">
-            {companyLinks.map((l) => (
-              <li key={l.label}>
-                <Link
-                  to={l.to}
-                  className="nav-underline text-sm text-cream/65 transition-colors hover:text-cream"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="lg:col-span-2">
-          <h3 className="eyebrow mb-5">Explore</h3>
-          <ul className="flex flex-col gap-3">
-            {exploreLinks.map((l) => (
-              <li key={l.label}>
-                <Link
-                  to={l.to}
-                  className="nav-underline text-sm text-cream/65 transition-colors hover:text-cream"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="lg:col-span-4">
-          <h3 className="eyebrow mb-5">Get in Touch</h3>
-          <ul className="flex flex-col gap-3 text-sm text-cream/65">
-            <li>
-              <a href={site.phoneHref} className="transition-colors hover:text-cream">
-                {site.phoneDisplay}
-              </a>
-            </li>
-            <li>
-              <a href={`mailto:${site.email}`} className="transition-colors hover:text-cream">
-                {site.email}
-              </a>
-            </li>
-            <li className="text-cream/45">{site.hours}</li>
-          </ul>
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-6 flex gap-3">
             {site.socials.map((s) => {
               const Icon = socialIcons[s.icon as keyof typeof socialIcons];
+              if (!Icon) return null;
               return (
                 <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noreferrer"
                   aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center border border-cream/20 text-cream/60 transition-colors duration-500 hover:border-gold hover:text-gold"
+                  className="rounded-full border border-border p-2 text-muted-foreground transition-colors hover:bg-foreground hover:text-background"
                 >
-                  <Icon className="h-4 w-4" strokeWidth={1.5} />
+                  <Icon size={16} strokeWidth={1.6} />
                 </a>
               );
             })}
           </div>
-          <MapCard className="mt-8 max-w-[320px] text-cream" height={190} />
+        </div>
+
+        <div>
+          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Explore</div>
+          <ul className="mt-5 space-y-3 text-sm">
+            {exploreLinks.map((l) => (
+              <li key={l.label}>
+                <Link to={l.to} className="link-underline text-foreground/80 hover:text-brand">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Reach us</div>
+          <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
+            <li className="flex gap-2">
+              <MapPin size={16} className="mt-0.5 shrink-0" />
+              <span>{site.address}</span>
+            </li>
+            <li className="flex gap-2">
+              <Phone size={16} className="mt-0.5 shrink-0" />
+              <a href={site.phoneHref} className="link-underline text-foreground/80 hover:text-brand">
+                {site.phoneDisplay}
+              </a>
+            </li>
+            <li className="flex gap-2">
+              <Mail size={16} className="mt-0.5 shrink-0" />
+              <a href={`mailto:${site.email}`} className="link-underline text-foreground/80 hover:text-brand">
+                {site.email}
+              </a>
+            </li>
+            <li className="text-xs">{site.hours}</li>
+          </ul>
+        </div>
+
+        <div>
+          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Visit</div>
+          <a
+            href={mapLinkFor("Indore, Madhya Pradesh, India")}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 block overflow-hidden rounded-2xl border border-border hover-lift"
+            aria-label="Open Google Maps"
+          >
+            <iframe
+              title="Unityaliving location"
+              src={mapEmbedFor("Indore, Madhya Pradesh, India")}
+              className="pointer-events-none h-40 w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </a>
+          <p className="mt-2 text-xs text-muted-foreground">{site.hours}</p>
         </div>
       </div>
 
-      <div className="border-t border-cream/10">
-        <div className="container-luxe flex flex-col gap-2 py-6 text-[0.7rem] tracking-[0.12em] text-cream/40 uppercase md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Unityaliving. All rights reserved.</p>
-          <p>{site.rera}</p>
-          <p>Designed &amp; developed in Indore</p>
+      <div className="border-t border-border">
+        <div className="container-x flex flex-col items-center justify-between gap-2 py-6 text-xs text-muted-foreground md:flex-row">
+          <div>© {new Date().getFullYear()} Unityaliving. All Rights Reserved.</div>
+          <div>{site.rera}</div>
+          <div>Crafted in Indore, India.</div>
         </div>
       </div>
     </footer>

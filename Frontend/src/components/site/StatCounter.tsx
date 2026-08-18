@@ -24,20 +24,22 @@ export function StatCounter({ stat }: { stat: Stat }) {
   }, [inView, stat.value]);
 
   return (
-    <div ref={ref} className="border-t border-border pt-6">
-      <p className="font-display text-[clamp(2.4rem,5vw,3.75rem)] leading-none">
+    <div ref={ref} className="bg-white p-4 text-center md:p-10">
+      <p className="font-serif text-2xl leading-none text-foreground md:text-5xl">
         {display}
-        <span className="text-gold">{stat.suffix}</span>
+        <span className="text-brand">{stat.suffix}</span>
       </p>
-      <p className="mt-4 text-[0.7rem] tracking-[0.2em] uppercase">{stat.label}</p>
-      <p className="mt-2 hidden text-sm text-muted-foreground sm:block">{stat.caption}</p>
+      <p className="mt-2 text-[0.6rem] tracking-[0.15em] text-muted-foreground uppercase md:mt-3 md:text-xs md:tracking-[0.2em]">
+        {stat.label}
+      </p>
+      <p className="mt-2 hidden text-sm text-muted-foreground md:block">{stat.caption}</p>
     </div>
   );
 }
 
 export function StatRow({ stats }: { stats: Stat[] }) {
   return (
-    <div className="grid grid-cols-3 gap-10">
+    <div className="grid grid-cols-3 gap-px overflow-hidden rounded-3xl border border-border bg-border">
       {stats.map((stat) => (
         <StatCounter key={stat.label} stat={stat} />
       ))}

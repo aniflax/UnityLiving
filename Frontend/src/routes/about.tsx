@@ -49,8 +49,8 @@ function AboutPage() {
       <section className="container-luxe py-24 md:py-32">
         <div className="grid gap-14 lg:grid-cols-12">
           <Reveal className="lg:col-span-6">
-            <p className="eyebrow mb-5">The Foundation</p>
-            <h2 className="font-display text-[clamp(1.9rem,4vw,3rem)] leading-[1.12]">
+            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">The Foundation</p>
+            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
               The foundation of everything we do
             </h2>
             <p className="mt-6 text-[0.98rem] leading-relaxed text-muted-foreground">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
-import { LineReveal } from "@/components/motion/Reveal";
+import { AnimatePresence, motion } from "motion/react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, Sparkles } from "lucide-react";
 import type { HeroSlide } from "@/lib/data/types";
 
 export function Hero({
@@ -11,10 +12,6 @@ export function Hero({
   intervalMs?: number;
 }) {
   const [index, setIndex] = useState(0);
-  const { scrollY } = useScroll();
-  const imageY = useTransform(scrollY, [0, 900], [0, 160]);
-  const contentY = useTransform(scrollY, [0, 700], [0, 90]);
-  const contentOpacity = useTransform(scrollY, [0, 520], [1, 0]);
 
   useEffect(() => {
     if (slides.length < 2) return;
@@ -28,88 +25,98 @@ export function Hero({
   const slide = slides[index] ?? slides[0];
   if (!slide) return null;
 
-
   return (
-    <section className="relative h-[100svh] min-h-[620px] overflow-hidden bg-charcoal">
-      <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[8%] h-[116%]">
-        <AnimatePresence initial={false}>
-          <motion.img
-            key={index}
-            src={slide.image}
-            alt={slide.imageAlt}
-            width={1920}
-            height={1080}
-            loading={index === 0 ? "eager" : "lazy"}
-            fetchPriority={index === 0 ? "high" : "low"}
-            decoding="async"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.6, ease: "easeInOut" }}
-            className="animate-kenburns absolute inset-0 h-full w-full object-cover"
-          />
-        </AnimatePresence>
-      </motion.div>
-
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/25 to-charcoal/85" />
-
-      <motion.div
-        style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 flex h-full items-center"
-      >
-        <div className="container-luxe pt-24">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <p className="eyebrow mb-6">{slide.eyebrow}</p>
-              <h1 className="max-w-4xl font-display text-[clamp(2.4rem,6.4vw,5.25rem)] leading-[1.03] text-cream">
-                <LineReveal lines={slide.headline.split(" ").length > 3 ? splitLines(slide.headline) : [slide.headline]} />
-              </h1>
-              <motion.p
-                className="mt-7 max-w-md text-[0.95rem] leading-relaxed tracking-wide text-cream/70"
-                initial={{ opacity: 0, y: 18 }}
+    <section className="relative overflow-hidden bg-background pt-24 lg:pt-32">
+      <div className="container-x mx-auto max-w-7xl">
+        <div className="flex flex-col gap-10 pb-16 pt-8 lg:grid lg:grid-cols-12 lg:gap-16 lg:pb-24">
+          <div className="order-1 lg:col-span-6 lg:self-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.7 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               >
-                {slide.subline}
-              </motion.p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </motion.div>
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-white/70 px-4 py-1.5 text-[0.7rem] tracking-[0.25em] text-brand uppercase backdrop-blur-sm">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {slide.eyebrow}
+                </div>
+                <h1 className="font-serif text-[2.5rem] leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[4rem]">
+                  {splitHeadline(slide.headline).map((part, i) => (
+                    <span
+                      key={part}
+                      className={i === 1 ? "block italic text-brand" : "block"}
+                    >
+                      {part}
+                    </span>
+                  ))}
+                </h1>
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {slide.subline}
+                </p>
+              </motion.div>
+            </AnimatePresence>
 
-      <div className="absolute inset-x-0 bottom-8 z-10">
-        <div className="container-luxe flex items-end justify-between">
-          <div className="flex flex-col items-start gap-3">
-            <span className="text-[0.62rem] tracking-[0.28em] text-cream/50 uppercase">
-              Scroll
-            </span>
-            <span className="relative block h-14 w-px bg-cream/20">
-              <span className="animate-scroll-line absolute inset-0 block bg-gold" />
-            </span>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link to="/projects" className="btn-solid">
+                Explore Residences <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/contact" className="btn-outline">
+                Contact Us
+              </Link>
+            </div>
+
+            <div className="mt-10 flex items-center gap-3">
+              {slides.map((s, i) => (
+                <button
+                  key={s.headline}
+                  type="button"
+                  onClick={() => setIndex(i)}
+                  aria-label={`Show slide ${i + 1}`}
+                  aria-current={i === index}
+                  className="cursor-pointer py-2"
+                >
+                  <span
+                    className={`block h-1.5 rounded-full transition-all duration-700 ${
+                      i === index ? "w-8 bg-brand" : "w-2 bg-border"
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            {slides.map((s, i) => (
-              <button
-                key={s.headline}
-                type="button"
-                onClick={() => setIndex(i)}
-                aria-label={`Show slide ${i + 1}`}
-                aria-current={i === index}
-                className="group cursor-pointer py-3"
-              >
-                <span
-                  className={`block h-px transition-all duration-700 ${
-                    i === index ? "w-12 bg-gold" : "w-6 bg-cream/35 group-hover:bg-cream/70"
-                  }`}
+
+          <div className="relative order-2 lg:col-span-6">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-secondary">
+              <AnimatePresence initial={false}>
+                <motion.img
+                  key={index}
+                  src={slide.image}
+                  alt={slide.imageAlt}
+                  width={1600}
+                  height={2000}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "low"}
+                  decoding="async"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
-              </button>
-            ))}
+              </AnimatePresence>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-brand/25 via-transparent to-white/10" />
+            </div>
+
+            <div className="animate-floaty absolute -top-6 -left-6 hidden h-24 w-24 rounded-full border border-brand/30 md:block" />
+            <div className="animate-floaty absolute -right-4 -bottom-8 hidden h-32 w-32 rounded-3xl border border-brand/20 bg-white/40 backdrop-blur-sm md:block" />
+
+            <div className="absolute -bottom-6 left-6 hidden max-w-[230px] rounded-2xl border border-border bg-white/90 p-4 shadow-lg backdrop-blur md:block">
+              <div className="text-xs tracking-widest text-brand uppercase">Trusted by</div>
+              <div className="mt-1 font-serif text-2xl text-foreground">900+ Homes</div>
+              <div className="text-xs text-muted-foreground">across Madhya Pradesh</div>
+            </div>
           </div>
         </div>
       </div>
@@ -117,7 +124,7 @@ export function Hero({
   );
 }
 
-function splitLines(headline: string) {
+function splitHeadline(headline: string): string[] {
   const words = headline.split(" ");
   const mid = Math.ceil(words.length / 2);
   return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];

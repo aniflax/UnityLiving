@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import type { Testimonial } from "@/lib/data/types";
 
 export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
@@ -11,8 +11,13 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
   const go = (delta: number) => setIndex((i) => (i + delta + items.length) % items.length);
 
   return (
-    <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-      <div className="lg:col-span-9">
+    <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+      <div className="relative overflow-hidden rounded-[2rem] border border-border bg-white p-8 md:p-14 lg:col-span-9">
+        <div className="flex gap-1 text-brand">
+          {Array.from({ length: 5 }).map((_, k) => (
+            <Star key={k} className="h-4 w-4 fill-current" />
+          ))}
+        </div>
         <AnimatePresence mode="wait">
           <motion.blockquote
             key={item.name}
@@ -21,12 +26,12 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="font-display text-[clamp(1.4rem,3vw,2.35rem)] leading-[1.3] italic">
+            <p className="mt-6 font-serif text-2xl leading-snug text-foreground md:text-3xl">
               “{item.quote}”
             </p>
-            <footer className="mt-8">
-              <p className="text-sm tracking-[0.08em]">{item.name}</p>
-              <p className="mt-1 text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+            <footer className="mt-6">
+              <p className="font-medium text-foreground">{item.name}</p>
+              <p className="mt-0.5 text-sm text-muted-foreground">
                 {item.project} · {item.location}
               </p>
             </footer>
@@ -34,24 +39,26 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
         </AnimatePresence>
       </div>
 
-      <div className="flex items-center gap-3 lg:col-span-3 lg:justify-end">
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          aria-label="Previous testimonial"
-          className="flex h-11 w-11 cursor-pointer items-center justify-center border border-border transition-colors duration-500 hover:border-gold hover:text-gold"
-        >
-          <ArrowLeft className="h-4 w-4" />
-        </button>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          aria-label="Next testimonial"
-          className="flex h-11 w-11 cursor-pointer items-center justify-center border border-border transition-colors duration-500 hover:border-gold hover:text-gold"
-        >
-          <ArrowRight className="h-4 w-4" />
-        </button>
-        <span className="ml-2 text-[0.7rem] tracking-[0.18em] text-muted-foreground">
+      <div className="flex items-center gap-3 lg:col-span-3 lg:flex-col lg:items-start lg:gap-4">
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            aria-label="Previous testimonial"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border transition-colors duration-300 hover:border-brand hover:text-brand"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => go(1)}
+            aria-label="Next testimonial"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border transition-colors duration-300 hover:border-brand hover:text-brand"
+          >
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+        <span className="text-[0.7rem] tracking-[0.18em] text-muted-foreground">
           {String(index + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </span>
       </div>

@@ -8,7 +8,10 @@ export function GalleryMarquee({
     <div className="group relative overflow-hidden py-2" aria-label="Interiors gallery">
       <div className="animate-marquee flex w-max gap-4 group-hover:[animation-play-state:paused]">
         {doubled.map((image, i) => (
-          <figure key={`${image.alt}-${i}`} className="w-[280px] shrink-0 md:w-[380px]">
+          <figure
+            key={`${image.alt}-${i}`}
+            className="w-[280px] shrink-0 md:w-[380px]"
+          >
             <img
               src={image.src}
               alt={image.alt}
@@ -16,7 +19,7 @@ export function GalleryMarquee({
               height={900}
               loading="lazy"
               decoding="async"
-              className="aspect-[4/3] w-full object-cover"
+              className="aspect-[4/3] w-full rounded-2xl object-cover"
             />
           </figure>
         ))}

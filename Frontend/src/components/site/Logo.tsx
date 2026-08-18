@@ -9,21 +9,19 @@ export function Logo({
   tone?: "dark" | "light";
 }) {
   return (
-    <Link to="/" aria-label="Unityaliving — home" className={cn("group inline-flex items-baseline gap-2", className)}>
+    <Link
+      to="/"
+      aria-label="Unityaliving — home"
+      className={cn("group inline-flex items-baseline gap-2", className)}
+    >
       <span
         className={cn(
-          "font-display text-[1.35rem] leading-none font-light tracking-[0.02em] transition-colors duration-500 sm:text-[1.5rem]",
+          "font-serif text-2xl font-semibold leading-none tracking-tight transition-colors duration-500 sm:text-[1.6rem]",
           tone === "light" ? "text-cream" : "text-foreground",
         )}
       >
-        Unity<span className="italic">aliving</span>
+        Unity<span className="italic font-medium text-brand">aliving</span>
       </span>
-      <span
-        className={cn(
-          "hidden h-[3px] w-[3px] rounded-full bg-gold transition-transform duration-500 group-hover:scale-150 sm:block",
-        )}
-        aria-hidden="true"
-      />
     </Link>
   );
 }

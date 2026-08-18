@@ -23,13 +23,17 @@ export function ProjectCard({
           ? "/upcoming-projects/$slug"
           : "/projects/$slug";
 
-
   return (
-    <article className={cn("group flex h-full flex-col", className)}>
+    <article
+      className={cn(
+        "group flex h-full flex-col rounded-2xl border border-border bg-white p-3 transition-shadow duration-500 hover:shadow-xl md:p-6",
+        className,
+      )}
+    >
       <Link
         to={to}
         params={{ slug: project.slug }}
-        className="block overflow-hidden bg-secondary"
+        className="block overflow-hidden rounded-xl bg-secondary"
         aria-label={`${project.name}, ${project.locality}`}
       >
         <img
@@ -46,23 +50,27 @@ export function ProjectCard({
         />
       </Link>
 
-      <div className="flex flex-1 flex-col pt-6">
-        <p className="eyebrow">
+      <div className="flex flex-1 flex-col pt-5">
+        <p className="text-xs uppercase tracking-[0.2em] text-brand">
           {project.category ?? project.builtForm} · {project.locality}
         </p>
-        <h3 className="mt-3 font-display text-2xl leading-tight">
-          <Link to={to} params={{ slug: project.slug }} className="transition-colors hover:text-gold">
+        <h3 className="mt-2 font-serif text-2xl leading-tight">
+          <Link
+            to={to}
+            params={{ slug: project.slug }}
+            className="transition-colors hover:text-brand"
+          >
             {project.name}
           </Link>
         </h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
 
         {variant === "default" ? (
-          <ul className="mt-5 flex flex-wrap gap-2">
+          <ul className="mt-4 flex flex-wrap gap-2">
             {project.specs.map((s) => (
               <li
                 key={s.label}
-                className="border border-border px-3 py-1.5 text-[0.68rem] tracking-[0.12em] text-muted-foreground uppercase"
+                className="rounded-full border border-border px-3 py-1.5 text-[0.68rem] tracking-[0.12em] text-muted-foreground uppercase"
               >
                 {s.value}
               </li>
@@ -73,10 +81,10 @@ export function ProjectCard({
         <Link
           to={to}
           params={{ slug: project.slug }}
-          className="nav-underline mt-6 inline-flex w-fit items-center gap-2 text-[0.7rem] tracking-[0.18em] uppercase transition-colors hover:text-gold"
+          className="link-underline mt-6 inline-flex w-fit items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-brand"
         >
           {project.status === "upcoming" ? "Explore" : "View Residence"}
-          <ArrowRight className="h-3.5 w-3.5" />
+          <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </article>

@@ -32,7 +32,7 @@ export const Route = createFileRoute("/careers")({
 });
 
 const fieldClass =
-  "h-12 w-full rounded-none border-0 border-b border-border bg-transparent px-0 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-gold";
+  "h-12 w-full rounded-xl border border-border bg-white px-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-brand focus:ring-1 focus:ring-brand";
 
 function CareersPage() {
   const [position, setPosition] = useState<string>(jobOpeningList[0]?.title ?? "General");
@@ -154,7 +154,7 @@ function CareersPage() {
               <option value="General">General application</option>
             </select>
             <textarea
-              className="w-full resize-none border-0 border-b border-border bg-transparent px-0 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-gold"
+              className="w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-brand focus:ring-1 focus:ring-brand"
               rows={4}
               placeholder="A short note about your work"
               value={values.message}

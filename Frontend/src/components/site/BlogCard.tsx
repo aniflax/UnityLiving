@@ -13,13 +13,15 @@ export function BlogCard({ post, featured = false }: { post: BlogPost; featured?
   return (
     <article
       className={
-        featured ? "group grid items-center gap-10 md:grid-cols-2" : "group flex h-full flex-col"
+        featured
+          ? "group grid items-center gap-8 rounded-2xl border border-border bg-white p-3 md:grid-cols-2 md:p-6"
+          : "group flex h-full flex-col rounded-2xl border border-border bg-white p-3 transition-shadow duration-500 hover:shadow-xl md:p-6"
       }
     >
       <Link
         to="/media/$slug"
         params={{ slug: post.slug }}
-        className="block overflow-hidden bg-secondary"
+        className="block overflow-hidden rounded-xl bg-secondary"
       >
         <img
           src={post.coverImage}
@@ -31,10 +33,10 @@ export function BlogCard({ post, featured = false }: { post: BlogPost; featured?
           className={`img-zoom w-full object-cover ${featured ? "aspect-[4/3]" : "aspect-[16/11]"}`}
         />
       </Link>
-      <div className={featured ? "flex flex-col" : "flex flex-1 flex-col pt-6"}>
+      <div className={featured ? "flex flex-col" : "flex flex-1 flex-col pt-5"}>
 
         <div className="flex items-center gap-3 text-[0.66rem] tracking-[0.16em] uppercase">
-          <span className="text-gold">{post.category}</span>
+          <span className="text-brand">{post.category}</span>
           <span className="h-px w-4 bg-border" />
           <span className="text-muted-foreground">{formatDate(post.publishedAt)}</span>
         </div>
@@ -42,7 +44,7 @@ export function BlogCard({ post, featured = false }: { post: BlogPost; featured?
           <Link
             to="/media/$slug"
             params={{ slug: post.slug }}
-            className="transition-colors hover:text-gold"
+            className="transition-colors hover:text-brand"
           >
             {post.title}
           </Link>

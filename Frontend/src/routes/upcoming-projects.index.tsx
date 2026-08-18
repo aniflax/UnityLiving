@@ -49,10 +49,10 @@ function UpcomingPage() {
               key={c}
               type="button"
               onClick={() => setCategory(c)}
-              className={`cursor-pointer border px-5 py-2 text-[0.68rem] tracking-[0.16em] uppercase transition-colors duration-500 ${
+              className={`cursor-pointer rounded-full border px-5 py-2 text-xs tracking-[0.14em] uppercase transition-colors duration-300 ${
                 category === c
-                  ? "border-gold bg-gold text-gold-foreground"
-                  : "border-border text-muted-foreground hover:border-gold hover:text-gold"
+                  ? "border-brand bg-brand text-white"
+                  : "border-border text-muted-foreground hover:border-brand hover:text-brand"
               }`}
             >
               {c}

@@ -17,7 +17,7 @@ export function MapCard({
 }) {
   return (
     <div className={cn("w-full", className)}>
-      <div className="overflow-hidden rounded-sm border border-current/15">
+      <div className="overflow-hidden rounded-2xl border border-border">
         <iframe
           title={`Map of ${query}`}
           src={mapEmbedFor(query)}
@@ -34,8 +34,8 @@ export function MapCard({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "nav-underline mt-3 inline-flex items-center gap-1.5 text-[0.7rem] tracking-[0.18em] uppercase transition-colors",
-          tone === "dark" ? "text-cream/70 hover:text-gold" : "text-muted-foreground hover:text-gold",
+          "link-underline mt-3 inline-flex items-center gap-1.5 text-sm font-medium transition-colors",
+          tone === "dark" ? "text-cream/70 hover:text-brand" : "text-muted-foreground hover:text-brand",
         )}
       >
         {title}

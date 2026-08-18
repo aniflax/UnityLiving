@@ -50,16 +50,16 @@ function usePageViewTracking() {
 
 function NotFoundComponent() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-charcoal px-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4">
       <div className="relative z-10 max-w-md text-center">
-        <p className="font-display text-[6rem] leading-none text-cream">404</p>
-        <h1 className="mt-4 font-display text-2xl text-cream">This page has moved on</h1>
-        <p className="mt-3 text-sm text-cream/60">
+        <p className="font-serif text-[6rem] leading-none text-brand">404</p>
+        <h1 className="mt-4 font-display text-3xl text-foreground">This page has moved on</h1>
+        <p className="mt-3 text-sm text-muted-foreground">
           The page you are looking for is no longer here. Let us take you back.
         </p>
         <Link
           to="/"
-          className="mt-8 inline-flex h-12 items-center justify-center border border-cream/30 px-8 text-[0.7rem] tracking-[0.14em] text-cream uppercase transition-colors duration-500 hover:border-gold hover:text-gold"
+          className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-charcoal px-8 text-sm font-medium text-white transition-colors duration-300 hover:bg-brand"
         >
           Back to Home
         </Link>
@@ -88,7 +88,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="h-12 cursor-pointer bg-charcoal px-8 text-[0.7rem] tracking-[0.14em] text-charcoal-foreground uppercase"
+            className="h-12 cursor-pointer rounded-full bg-charcoal px-8 text-sm font-medium text-white transition-colors duration-300 hover:bg-brand"
           >
             Try again
           </button>
@@ -128,7 +128,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Manrope:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap",
       },
     ],
     scripts: [

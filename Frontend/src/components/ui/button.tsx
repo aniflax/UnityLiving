@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium cursor-pointer transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -16,22 +16,22 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        /* Unityaliving design system variants */
-        luxe: "rounded-none bg-charcoal text-charcoal-foreground tracking-[0.14em] uppercase text-[0.7rem] transition-all duration-500 hover:bg-gold",
+        /* Unityaliving design system variants (pill, minimalist premium) */
+        luxe: "bg-charcoal text-charcoal-foreground font-medium transition-all duration-300 hover:bg-brand hover:text-white hover:-translate-y-0.5",
         luxeOutline:
-          "rounded-none border border-charcoal/25 bg-transparent text-foreground tracking-[0.14em] uppercase text-[0.7rem] transition-all duration-500 hover:border-gold hover:text-gold",
+          "border border-foreground/20 bg-transparent text-foreground font-medium transition-all duration-300 hover:border-brand hover:text-brand hover:-translate-y-0.5",
         luxeLight:
-          "rounded-none border border-cream/30 bg-transparent text-cream tracking-[0.14em] uppercase text-[0.7rem] transition-all duration-500 hover:border-gold hover:text-gold",
-        gold: "rounded-none bg-gold text-gold-foreground tracking-[0.14em] uppercase text-[0.7rem] transition-all duration-500 hover:bg-charcoal hover:text-charcoal-foreground",
-        pill: "rounded-full border border-charcoal/20 bg-transparent text-foreground tracking-[0.12em] uppercase text-[0.68rem] transition-colors duration-500 hover:border-gold hover:text-gold",
+          "border border-background/40 bg-transparent text-background font-medium transition-all duration-300 hover:bg-background hover:text-foreground",
+        gold: "bg-brand text-white font-medium transition-all duration-300 hover:bg-brand-hover hover:-translate-y-0.5",
+        pill: "border border-border bg-transparent text-foreground font-medium transition-colors duration-300 hover:border-brand hover:text-brand",
       },
       size: {
         default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
+        sm: "h-8 px-3 text-xs",
+        lg: "h-10 px-8",
         icon: "h-9 w-9",
         luxe: "h-12 px-8",
-        luxeSm: "h-9 px-5",
+        luxeSm: "h-10 px-5",
       },
     },
     defaultVariants: {

@@ -83,16 +83,16 @@ function Home() {
       <section className="container-luxe py-24 md:py-32">
         <div className="grid gap-14 lg:grid-cols-12 lg:items-center">
           <Reveal className="lg:col-span-5">
-            <p className="eyebrow mb-5">More Than Four Walls</p>
-            <h2 className="font-display text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.12]">
+            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">More Than Four Walls</p>
+            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
               A home is the one place that keeps a record of your life
             </h2>
-            <p className="mt-6 text-[0.98rem] leading-relaxed text-muted-foreground">
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               We build in Indore because it is a city still deciding what it will become. The homes we
               put here are meant to outlast that decision — plans that hold a growing family, courtyards
               that gather neighbours, materials that soften rather than fade.
             </p>
-            <p className="mt-4 text-[0.98rem] leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Nothing here is designed to impress a passer-by. It is designed for the fifteenth year,
               when the trees have grown and the house still feels right.
             </p>
@@ -108,7 +108,7 @@ function Home() {
               height={1000}
               loading="lazy"
               decoding="async"
-              className="aspect-[4/3] w-full object-cover"
+              className="aspect-[4/3] w-full rounded-[2rem] object-cover"
             />
           </Reveal>
         </div>
@@ -150,10 +150,10 @@ function Home() {
               key={c}
               type="button"
               onClick={() => setCategory(c)}
-              className={`cursor-pointer border px-5 py-2 text-[0.68rem] tracking-[0.16em] uppercase transition-colors duration-500 ${
+              className={`cursor-pointer rounded-full border px-5 py-2 text-xs tracking-[0.14em] uppercase transition-colors duration-300 ${
                 category === c
-                  ? "border-gold bg-gold text-gold-foreground"
-                  : "border-border text-muted-foreground hover:border-gold hover:text-gold"
+                  ? "border-brand bg-brand text-white"
+                  : "border-border text-muted-foreground hover:border-brand hover:text-brand"
               }`}
             >
               {c}
@@ -174,12 +174,12 @@ function Home() {
               height={1200}
               loading="lazy"
               decoding="async"
-              className="aspect-[4/3] w-full object-cover"
+              className="aspect-[4/3] w-full rounded-[2rem] object-cover"
             />
           </Reveal>
           <Reveal delay={0.15}>
-            <p className="eyebrow mb-5">Location & Connectivity</p>
-            <h2 className="font-display text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.12]">
+            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">Location & Connectivity</p>
+            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
               Indore — Central India's growth hub
             </h2>
             <p className="mt-6 text-[0.98rem] leading-relaxed text-muted-foreground">
@@ -211,9 +211,9 @@ function Home() {
             action={
               <Link
                 to="/projects"
-                className="nav-underline inline-flex items-center gap-2 text-[0.7rem] tracking-[0.18em] uppercase hover:text-gold"
+                className="link-underline inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-brand"
               >
-                All residences <ArrowRight className="h-3.5 w-3.5" />
+                All residences <ArrowRight className="h-4 w-4" />
               </Link>
             }
             className="mb-14"
@@ -256,7 +256,7 @@ function Home() {
                   height={900}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[4/5] w-full object-cover"
+                  className="aspect-[4/5] w-full rounded-2xl object-cover"
                 />
               </RevealItem>
             ))}
@@ -280,9 +280,9 @@ function Home() {
           action={
             <Link
               to="/media"
-              className="nav-underline inline-flex items-center gap-2 text-[0.7rem] tracking-[0.18em] uppercase hover:text-gold"
+              className="link-underline inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-brand"
             >
-              All articles <ArrowRight className="h-3.5 w-3.5" />
+              All articles <ArrowRight className="h-4 w-4" />
             </Link>
           }
           className="mb-14"
@@ -297,29 +297,19 @@ function Home() {
       </section>
 
       {/* Lead capture */}
-      <section id="enquire" className="relative overflow-hidden bg-charcoal py-24 md:py-32">
-        <img
-          src={img.hero1}
-          alt=""
-          aria-hidden="true"
-          width={1920}
-          height={1080}
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover opacity-25"
-        />
-        <div className="container-luxe relative z-10 grid gap-14 lg:grid-cols-12">
+      <section id="enquire" className="bg-secondary/60 py-24 md:py-32">
+        <div className="container-luxe grid gap-14 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-5">
-            <p className="eyebrow mb-5">Get in Touch</p>
-            <h2 className="font-display text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.12] text-cream">
+            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">Get in Touch</p>
+            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
               Ready to find your perfect home?
             </h2>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/65">
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
               Leave your details and a member of our team will call you back within one working day.
             </p>
           </div>
-          <div className="border border-cream/15 bg-charcoal/70 p-8 backdrop-blur-sm lg:col-span-7 lg:p-10">
-            <EnquiryForm tone="light" source="home" />
+          <div className="rounded-3xl border border-border bg-white p-8 shadow-[var(--shadow-soft)] lg:col-span-7 lg:p-10">
+            <EnquiryForm source="home" />
           </div>
         </div>
       </section>
