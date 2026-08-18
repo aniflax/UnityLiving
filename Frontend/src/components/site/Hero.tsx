@@ -1,143 +1,188 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles } from "lucide-react";
-import type { HeroSlide } from "@/lib/data/types";
+import {
+  Banknote,
+  ChevronDown,
+  Facebook,
+  Home,
+  Instagram,
+  Linkedin,
+  MapPin,
+  Play,
+  Search,
+  Twitter,
+  Youtube,
+} from "lucide-react";
 
-export function Hero({
-  slides,
-  intervalMs = 6500,
-}: {
-  slides: HeroSlide[];
-  intervalMs?: number;
-}) {
-  const [index, setIndex] = useState(0);
+import { useSite } from "@/lib/site-context";
+import { cn } from "@/lib/utils";
 
-  useEffect(() => {
-    if (slides.length < 2) return;
-    const id = window.setInterval(
-      () => setIndex((i) => (i + 1) % slides.length),
-      intervalMs,
-    );
-    return () => window.clearInterval(id);
-  }, [slides.length, intervalMs]);
+const HOUSE_IMAGE = "https://cdn.unityaliving.com/Hero%20Image/House.png";
 
-  const slide = slides[index] ?? slides[0];
-  if (!slide) return null;
+const socialIcons = { Facebook, Instagram, Linkedin, Youtube, Twitter } as const;
+
+const searchFields = [
+  {
+    label: "Location",
+    icon: MapPin,
+    value: "Los Angeles, California",
+  },
+  {
+    label: "Property Type",
+    icon: Home,
+    value: "Classic Apartment",
+  },
+  {
+    label: "Price Range",
+    icon: Banknote,
+    value: "$6,000 - $12,000 / month",
+  },
+];
+
+export function Hero() {
+  const site = useSite();
 
   return (
-    <section className="relative h-[100svh] min-h-[620px] overflow-hidden bg-charcoal">
-      <div className="absolute inset-0 -top-[8%] h-[116%]">
-        <AnimatePresence initial={false}>
-          <motion.img
-            key={index}
-            src={slide.image}
-            alt={slide.imageAlt}
-            width={1920}
-            height={1080}
-            loading={index === 0 ? "eager" : "lazy"}
-            fetchPriority={index === 0 ? "high" : "low"}
-            decoding="async"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.6, ease: "easeInOut" }}
-            className="animate-kenburns absolute inset-0 h-full w-full object-cover"
-          />
-        </AnimatePresence>
-      </div>
-
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/30 to-charcoal/80" />
-
-      <div className="relative z-10 flex h-full items-center">
-        <div className="container-x pt-24">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
+    <section className="bg-white">
+      <div className="mx-auto w-full max-w-[1720px] px-6 md:px-10 xl:px-24">
+        <div className="pt-[62px]">
+          <div className="relative mt-1 min-[1001px]:h-[650px]">
+            {/* Hero copy */}
+            <div
+              className={cn(
+                "relative z-10 w-full pt-[70px]",
+                "max-[600px]:pt-[50px]",
+                "min-[1001px]:absolute min-[1001px]:top-[126px] min-[1001px]:left-0 min-[1001px]:w-[520px] min-[1001px]:pt-0",
+              )}
             >
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cream/25 bg-white/10 px-4 py-1.5 text-[0.7rem] tracking-[0.25em] text-cream uppercase backdrop-blur-sm">
-                <Sparkles className="h-3.5 w-3.5 text-brand" />
-                {slide.eyebrow}
-              </div>
-              <h1 className="max-w-4xl font-display text-[clamp(2.6rem,6.4vw,5.25rem)] leading-[1.03] tracking-tight text-cream">
-                {splitHeadline(slide.headline).map((part, i) => (
-                  <span key={part} className={i === 1 ? "block italic text-brand" : "block"}>
-                    {part}
-                  </span>
-                ))}
+              <h1 className="font-baloo text-[44px] leading-[1.02] tracking-[-1px] text-[#111] min-[600px]:text-[54px] min-[1001px]:text-[68px] min-[1001px]:tracking-[-1.4px]">
+                <span className="block font-normal">Gateway to</span>
+                <span className="block font-bold">Dream Homes</span>
               </h1>
-              <motion.p
-                className="mt-7 max-w-md text-base leading-relaxed tracking-wide text-cream/80"
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.7 }}
-              >
-                {slide.subline}
-              </motion.p>
-              <motion.div
-                className="mt-9 flex flex-wrap gap-3"
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.85 }}
-              >
+
+              <p className="mt-5 max-w-[445px] text-[14px] leading-[1.55] font-normal text-[#686868] min-[600px]:text-base min-[1001px]:mt-[25px]">
+                Discover a curated collection of dream homes at your fingertips, simplified and
+                personalized.
+              </p>
+
+              <div className="mt-7 flex items-center gap-5 min-[1001px]:mt-10 min-[1001px]:gap-[34px] max-[600px]:mt-7">
                 <Link
                   to="/projects"
-                  className="btn-solid"
+                  className="inline-flex h-[54px] cursor-pointer items-center justify-center rounded-full bg-[#111] px-9 font-baloo text-base font-semibold text-white transition-opacity duration-200 hover:opacity-80 max-[600px]:h-12 max-[600px]:px-[25px] max-[600px]:text-sm"
                 >
-                  Explore Residences <ArrowRight className="h-4 w-4" />
+                  Discover Now
                 </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/50 px-6 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
-                >
-                  Contact Us
-                </Link>
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
 
-      <div className="absolute inset-x-0 bottom-8 z-10">
-        <div className="container-x flex items-end justify-between">
-          <div className="flex flex-col items-start gap-3">
-            <span className="text-[0.62rem] tracking-[0.28em] text-cream/50 uppercase">
-              Scroll
-            </span>
-            <span className="relative block h-14 w-px bg-cream/20">
-              <span className="animate-scroll-line absolute inset-0 block bg-brand" />
-            </span>
+                <button
+                  type="button"
+                  className="inline-flex cursor-pointer items-center gap-[13px] border-0 bg-transparent p-0 text-[#111]"
+                >
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border-2 border-[#111] max-[600px]:h-10 max-[600px]:w-10">
+                    <Play className="ml-0.5 h-[13px] w-[13px] fill-[#111] text-[#111]" />
+                  </span>
+                  <span className="text-[15px] font-semibold max-[600px]:text-[13px]">
+                    Watch Demo
+                  </span>
+                </button>
+              </div>
+
+              {site.socials.length > 0 ? (
+                <div className="mt-7 flex items-center gap-3 min-[1001px]:mt-11 max-[600px]:mt-[26px]">
+                  {site.socials.map((s) => {
+                    const Icon = socialIcons[s.icon as keyof typeof socialIcons];
+                    if (!Icon) return null;
+                    return (
+                      <a
+                        key={s.label}
+                        href={s.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={s.label}
+                        className="flex h-7 w-7 items-center justify-center text-[#111] transition duration-200 hover:-translate-y-px hover:opacity-55 max-[600px]:h-[22px] max-[600px]:w-[22px]"
+                      >
+                        <Icon
+                          className="h-6 w-6 max-[600px]:h-[19px] max-[600px]:w-[19px]"
+                          strokeWidth={1.6}
+                        />
+                      </a>
+                    );
+                  })}
+                </div>
+              ) : null}
+            </div>
+
+            {/* House image */}
+            <div
+              className={cn(
+                "pointer-events-none relative z-[5] mt-[-10px] w-[110%] -ml-[5%]",
+                "max-[600px]:mt-0 max-[600px]:w-[125%] max-[600px]:-ml-[12%]",
+                "min-[1001px]:absolute min-[1001px]:top-5 min-[1001px]:right-[-100px] min-[1001px]:mt-0 min-[1001px]:ml-0 min-[1001px]:w-[70%]",
+              )}
+            >
+              <img
+                src={HOUSE_IMAGE}
+                alt="Unitya Living Dream Home"
+                width={1600}
+                height={900}
+                className="block h-auto w-full object-contain"
+              />
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            {slides.map((s, i) => (
-              <button
-                key={s.headline}
-                type="button"
-                onClick={() => setIndex(i)}
-                aria-label={`Show slide ${i + 1}`}
-                aria-current={i === index}
-                className="group cursor-pointer py-3"
+
+          {/* Property search bar */}
+          <div
+            className={cn(
+              "mx-auto",
+              "min-[1001px]:relative min-[1001px]:z-[15] min-[1001px]:mt-[-92px] min-[1001px]:w-[81%]",
+            )}
+          >
+            <div
+              className={cn(
+                "flex min-h-[98px] items-center rounded-[30px] border border-[#e7e7e7] bg-white px-[18px] py-[14px] pl-[27px] shadow-[0_18px_45px_rgba(0,0,0,.075)]",
+                "max-[1000px]:min-h-0 max-[1000px]:flex-wrap max-[1000px]:gap-[15px] max-[1000px]:rounded-[24px] max-[1000px]:p-5",
+                "max-[600px]:grid max-[600px]:grid-cols-1 max-[600px]:gap-[18px]",
+              )}
+            >
+              {searchFields.map((field, i) => (
+                <div key={field.label} className="contents">
+                  {i > 0 ? (
+                    <div className="h-[45px] w-px shrink-0 bg-[#e5e5e5] max-[1000px]:hidden" />
+                  ) : null}
+                  <div
+                    className={cn(
+                      "flex min-w-0 flex-1 flex-col justify-center gap-[5px] px-7",
+                      "first:pl-0",
+                      "max-[1000px]:w-[45%] max-[1000px]:flex-none max-[1000px]:p-0",
+                      "max-[600px]:w-full",
+                    )}
+                  >
+                    <div className="flex items-center gap-[7px] text-xs leading-none font-normal text-[#777]">
+                      <field.icon className="h-[14px] w-[14px] shrink-0" strokeWidth={1.8} />
+                      {field.label}
+                    </div>
+                    <div className="flex items-center justify-between gap-2.5">
+                      <div className="text-sm leading-[1.2] font-semibold whitespace-nowrap text-[#111]">
+                        {field.value}
+                      </div>
+                      <ChevronDown
+                        className="h-[15px] w-[15px] shrink-0 text-[#111]"
+                        strokeWidth={2}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <Link
+                to="/projects"
+                aria-label="Search properties"
+                className="ml-3 grid h-14 w-14 shrink-0 cursor-pointer place-items-center rounded-full bg-[#111] text-white transition-opacity duration-200 hover:opacity-80 max-[1000px]:ml-auto max-[600px]:ml-0 max-[600px]:h-[52px] max-[600px]:w-[52px]"
               >
-                <span
-                  className={`block h-1.5 rounded-full transition-all duration-700 ${
-                    i === index ? "w-8 bg-brand" : "w-2 bg-cream/40 group-hover:bg-cream/70"
-                  }`}
-                />
-              </button>
-            ))}
+                <Search className="h-5 w-5" strokeWidth={2.2} />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
-}
-
-function splitHeadline(headline: string): string[] {
-  const words = headline.split(" ");
-  const mid = Math.ceil(words.length / 2);
-  return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
 }

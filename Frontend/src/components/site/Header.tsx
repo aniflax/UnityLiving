@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 
-import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { projectList } from "@/lib/data/projects";
 import { upcomingProjectList } from "@/lib/data/upcomingProjects";
-import { cn } from "@/lib/utils";
 
 type NavChild = { label: string; to: string; params?: Record<string, string> };
 type NavItem = { label: string; to?: string; children?: NavChild[] };
+
+const topLinks = [
+  { label: "About Us", to: "/about" },
+  { label: "Properties", to: "/projects" },
+  { label: "Blogs", to: "/media" },
+];
 
 const navItems: NavItem[] = [
   { label: "Home", to: "/" },
@@ -58,158 +62,95 @@ const navItems: NavItem[] = [
 ];
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState<string | null>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-    setOpen(null);
+    setMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileOpen]);
-
-  const solid = scrolled || mobileOpen || pathname !== "/";
+  }, [menuOpen]);
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-[60] transition-all duration-500",
-          solid
-            ? "border-b border-border bg-background/90 shadow-[0_1px_0_var(--border)] backdrop-blur-md"
-            : "border-b border-transparent bg-transparent",
-        )}
-      >
-        <div className="container-x flex h-20 items-center justify-between gap-6">
-          <Logo tone={solid ? "dark" : "light"} />
-
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Main">
-            {navItems.map((item) => {
-              const active = item.to === pathname;
-              const tone = solid ? "text-foreground/80" : "text-cream/90";
-              if (!item.children) {
-                return (
-                  <Link
-                    key={item.label}
-                    to={item.to!}
-                    data-active={active}
-                    className={cn(
-                      "link-underline text-[0.78rem] font-medium tracking-wider uppercase transition-colors duration-300 hover:text-brand",
-                      tone,
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-              return (
-                <div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={() => setOpen(item.label)}
-                  onMouseLeave={() => setOpen(null)}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpen(open === item.label ? null : item.label)}
-                    aria-expanded={open === item.label}
-                    className={cn(
-                      "link-underline flex cursor-pointer items-center gap-1.5 text-[0.78rem] font-medium tracking-wider uppercase transition-colors duration-300 hover:text-brand",
-                      tone,
-                    )}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className={cn(
-                        "h-3 w-3 transition-transform duration-300",
-                        open === item.label && "rotate-180",
-                      )}
-                    />
-                  </button>
-                  <AnimatePresence>
-                    {open === item.label ? (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute top-full left-1/2 w-64 -translate-x-1/2 pt-5"
-                      >
-                        <div className="rounded-2xl border border-border bg-white py-2 shadow-lg">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.label}
-                              to={child.to}
-                              params={child.params as never}
-                              className="block px-5 py-2.5 text-sm text-foreground/75 transition-colors duration-300 hover:bg-secondary hover:text-brand"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    ) : null}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </nav>
-
-          <div className="hidden items-center gap-3 lg:flex">
+      <header className="fixed inset-x-0 top-0 z-[60] border-b border-[#e7e7e7] bg-white">
+        <div className="mx-auto grid h-[62px] max-w-[1720px] grid-cols-[1fr_auto_1fr] items-center px-6 md:px-10 xl:px-24">
+          {/* Brand: hamburger + name */}
+          <div className="flex items-center gap-4 justify-self-start">
+            {menuOpen ? (
+              <button
+                type="button"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+                className="grid h-6 w-7 cursor-pointer place-items-center"
+              >
+                <X className="h-5 w-5 text-[#111]" />
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setMenuOpen(true)}
+                aria-label="Open menu"
+                aria-expanded={menuOpen}
+                className="flex h-6 w-7 cursor-pointer flex-col justify-between"
+              >
+                <span className="block h-[3px] w-7 rounded-[10px] bg-[#111]" />
+                <span className="block h-[3px] w-7 rounded-[10px] bg-[#111]" />
+                <span className="block h-[3px] w-7 rounded-[10px] bg-[#111]" />
+              </button>
+            )}
             <Link
-              to="/contact"
-              className={cn(
-                "btn-outline",
-                !solid && "border-cream/70 text-cream hover:border-cream hover:text-cream hover:bg-cream/10",
-              )}
+              to="/"
+              className="font-baloo text-[26px] leading-none font-bold tracking-[-0.5px] whitespace-nowrap text-[#111] max-[600px]:text-[22px]"
             >
-              Enquire Now
+              Unitya Living
             </Link>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            className={cn(
-              "grid h-11 w-11 cursor-pointer place-items-center rounded-full border transition-colors lg:hidden",
-              solid ? "border-border text-foreground" : "border-cream/50 text-cream",
-            )}
+          {/* Nav links */}
+          <nav className="hidden items-center justify-center gap-12 lg:flex" aria-label="Main">
+            {topLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.to}
+                className="text-[15px] font-normal whitespace-nowrap text-[#111] opacity-90 transition-opacity duration-200 hover:opacity-60"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Enquire */}
+          <Link
+            to="/contact"
+            className="inline-flex h-[52px] min-w-[108px] cursor-pointer items-center justify-center rounded-full bg-[#111] px-7 font-baloo text-base font-semibold text-white transition-opacity duration-200 hover:opacity-80 justify-self-end max-[600px]:h-11 max-[600px]:min-w-[90px] max-[600px]:px-5 max-[600px]:text-sm"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            Enquire
+          </Link>
         </div>
       </header>
 
+      {/* Full menu */}
       <AnimatePresence>
-        {mobileOpen ? (
+        {menuOpen ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[59] overflow-y-auto bg-white lg:hidden"
+            className="fixed inset-0 z-[59] overflow-y-auto bg-white"
           >
             <motion.nav
-              aria-label="Mobile"
-              className="container-x flex flex-col gap-1 pt-28 pb-10"
+              aria-label="Menu"
+              className="container-x flex flex-col gap-1 pt-24 pb-10"
               initial="hidden"
               animate="visible"
-              variants={{ visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } } }}
+              variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } }}
             >
               {navItems.map((item) => (
                 <motion.div
@@ -223,6 +164,7 @@ export function Header() {
                   {item.to ? (
                     <Link
                       to={item.to}
+                      onClick={() => setMenuOpen(false)}
                       className="font-serif text-2xl text-foreground transition-colors hover:text-brand"
                     >
                       {item.label}
@@ -238,6 +180,7 @@ export function Header() {
                             key={child.label}
                             to={child.to}
                             params={child.params as never}
+                            onClick={() => setMenuOpen(false)}
                             className="text-sm text-foreground/75 transition-colors hover:text-brand"
                           >
                             {child.label}
@@ -250,7 +193,9 @@ export function Header() {
               ))}
               <div className="mt-8 flex flex-col gap-3">
                 <Button asChild variant="gold" size="luxe">
-                  <Link to="/contact">Enquire Now</Link>
+                  <Link to="/contact" onClick={() => setMenuOpen(false)}>
+                    Enquire Now
+                  </Link>
                 </Button>
               </div>
             </motion.nav>

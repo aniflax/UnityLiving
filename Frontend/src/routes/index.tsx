@@ -14,7 +14,6 @@ import { TestimonialsCarousel } from "@/components/site/TestimonialsCarousel";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/button";
-import { heroSlideList } from "@/lib/data/heroSlides";
 import { projectList } from "@/lib/data/projects";
 import { upcomingCategories, upcomingProjectList } from "@/lib/data/upcomingProjects";
 import { blogPostList } from "@/lib/data/blogPosts";
@@ -77,7 +76,7 @@ function Home() {
 
   return (
     <>
-      <Hero slides={heroSlideList} />
+      <Hero />
 
       {/* More Than Four Walls */}
       <section className="container-luxe py-24 md:py-32">
