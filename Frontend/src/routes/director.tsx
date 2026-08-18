@@ -46,7 +46,7 @@ function DirectorPage() {
             <div className="mt-8">
               <p className="font-serif text-2xl text-foreground">{director.signature}</p>
               <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground uppercase">
-                {director.role} · Unityaliving, Indore
+                {director.role} · Unityaliving
               </p>
             </div>
           </Reveal>
