@@ -101,15 +101,24 @@ function Home() {
             </Button>
           </Reveal>
           <Reveal className="lg:col-span-7" delay={0.15}>
-            <img
-              src={img.hero2}
-              alt="Living room in warm neutral tones with tall windows"
-              width={1600}
-              height={1000}
-              loading="lazy"
-              decoding="async"
-              className="aspect-[4/3] w-full rounded-[2rem] object-cover"
-            />
+            <div className="relative">
+              <img
+                src={img.hero2}
+                alt="Living room in warm neutral tones with tall windows"
+                width={1600}
+                height={1000}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/3] w-full rounded-[2rem] object-cover"
+              />
+              <div className="animate-floaty absolute -top-6 -left-6 hidden h-24 w-24 rounded-full border border-brand/30 md:block" />
+              <div className="animate-floaty absolute -right-4 -bottom-8 hidden h-32 w-32 rounded-3xl border border-brand/20 bg-white/40 backdrop-blur-sm md:block" />
+              <div className="absolute -bottom-6 left-6 hidden max-w-[230px] rounded-2xl border border-border bg-white/90 p-4 shadow-lg backdrop-blur md:block">
+                <div className="text-xs tracking-widest text-brand uppercase">Trusted by</div>
+                <div className="mt-1 font-serif text-2xl text-foreground">900+ Homes</div>
+                <div className="text-xs text-muted-foreground">across Madhya Pradesh</div>
+              </div>
+            </div>
           </Reveal>
         </div>
 
