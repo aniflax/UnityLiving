@@ -113,15 +113,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Unityaliving — Thoughtful Homes in Indore" },
+      { title: "Unitya Living — Thoughtful Homes in Indore" },
       {
         name: "description",
         content:
-          "Unityaliving builds considered residences in Indore, Madhya Pradesh — where living finds its meaning.",
+          "Unitya Living builds considered residences in Indore, Madhya Pradesh — where living finds its meaning.",
       },
-      { name: "author", content: "Unityaliving" },
+      { name: "author", content: "Unitya Living" },
       { name: "google-adsense-account", content: "ca-pub-4893209698743849" },
-      { property: "og:site_name", content: "Unityaliving" },
+      { property: "og:site_name", content: "Unitya Living" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

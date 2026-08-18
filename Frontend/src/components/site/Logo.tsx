@@ -11,7 +11,7 @@ export function Logo({
   return (
     <Link
       to="/"
-      aria-label="Unityaliving — home"
+      aria-label="Unitya Living — home"
       className={cn("group inline-flex items-baseline gap-2", className)}
     >
       <span

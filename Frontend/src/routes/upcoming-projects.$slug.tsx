@@ -12,11 +12,11 @@ export const Route = createFileRoute("/upcoming-projects/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Destination not found — Unityaliving" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Destination not found — Unitya Living" }, { name: "robots", content: "noindex" }],
       };
     }
     const { project } = loaderData;
-    const title = `${project.name} — ${project.locality} | Unityaliving`;
+    const title = `${project.name} — ${project.locality} | Unitya Living`;
     return {
       meta: [
         { title },

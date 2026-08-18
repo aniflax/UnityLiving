@@ -11,13 +11,13 @@ import { director } from "@/lib/data/teamMembers";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Unityaliving — Thoughtful Living in Indore" },
+      { title: "About Unitya Living — Thoughtful Living in Indore" },
       {
         name: "description",
         content:
-          "Our vision, mission and standard: how Unityaliving plans, specifies and delivers residences in Indore, Madhya Pradesh.",
+          "Our vision, mission and standard: how Unitya Living plans, specifies and delivers residences in Indore, Madhya Pradesh.",
       },
-      { property: "og:title", content: "About Unityaliving" },
+      { property: "og:title", content: "About Unitya Living" },
       {
         property: "og:description",
         content: "Redefining the standard of thoughtful living in Indore, Madhya Pradesh.",
@@ -54,7 +54,7 @@ function AboutPage() {
               The foundation of everything we do
             </h2>
             <p className="mt-6 text-[0.98rem] leading-relaxed text-muted-foreground">
-              Unityaliving exists because too much of what gets built in growing cities is designed to
+              Unitya Living exists because too much of what gets built in growing cities is designed to
               be sold rather than lived in. We took the opposite position: fewer projects, longer
               timelines, and a specification we would accept for our own families.
             </p>
@@ -90,7 +90,7 @@ function AboutPage() {
             </h3>
             <p className="mt-5 text-[0.95rem] leading-relaxed text-muted-foreground">
               We measure ourselves on referrals rather than launches. More than half of our buyers come
-              from someone who already lives in a Unityaliving home, which is the only marketing metric
+              from someone who already lives in a Unitya Living home, which is the only marketing metric
               we take seriously.
             </p>
           </Reveal>

@@ -9,13 +9,13 @@ import { img } from "@/lib/data/images";
 export const Route = createFileRoute("/media/")({
   head: () => ({
     meta: [
-      { title: "Insights & Updates — Unityaliving Media" },
+      { title: "Insights & Updates — Unitya Living Media" },
       {
         name: "description",
         content:
-          "Market notes, buyer guides and construction thinking from the Unityaliving studio in Indore.",
+          "Market notes, buyer guides and construction thinking from the Unitya Living studio in Indore.",
       },
-      { property: "og:title", content: "Insights & Updates — Unityaliving" },
+      { property: "og:title", content: "Insights & Updates — Unitya Living" },
       {
         property: "og:description",
         content: "Notes on the Indore property market, specification and buying well.",

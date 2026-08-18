@@ -5,7 +5,7 @@ export const heroSlideEntities: StrapiEntity<HeroSlide>[] = [
   {
     id: 1,
     attributes: {
-      eyebrow: "Unityaliving · Indore",
+      eyebrow: "Unitya Living · Indore",
       headline: "Spaces Designed Around Life",
       subline: "Where living finds its meaning.",
       image: img.hero1,

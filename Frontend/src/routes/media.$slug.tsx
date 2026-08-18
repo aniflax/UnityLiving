@@ -14,13 +14,13 @@ export const Route = createFileRoute("/media/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Article not found — Unityaliving" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Article not found — Unitya Living" }, { name: "robots", content: "noindex" }],
       };
     }
     const { post } = loaderData;
     return {
       meta: [
-        { title: `${post.title} | Unityaliving` },
+        { title: `${post.title} | Unitya Living` },
         { name: "description", content: post.excerpt },
         { property: "og:title", content: post.title },
         { property: "og:description", content: post.excerpt },

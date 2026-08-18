@@ -6,12 +6,12 @@ import { useSite } from "@/lib/site-context";
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Unityaliving" },
+      { title: "Privacy Policy — Unitya Living" },
       {
         name: "description",
-        content: "How Unityaliving collects, uses and protects the information you share with us.",
+        content: "How Unitya Living collects, uses and protects the information you share with us.",
       },
-      { property: "og:title", content: "Privacy Policy — Unityaliving" },
+      { property: "og:title", content: "Privacy Policy — Unitya Living" },
       { property: "og:description", content: "Our approach to your data and enquiry details." },
     ],
   }),

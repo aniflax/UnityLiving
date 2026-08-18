@@ -5,12 +5,12 @@ import { LegalPage } from "@/components/site/LegalPage";
 export const Route = createFileRoute("/terms-and-conditions")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions — Unityaliving" },
+      { title: "Terms & Conditions — Unitya Living" },
       {
         name: "description",
-        content: "Terms governing the use of the Unityaliving website and the material published on it.",
+        content: "Terms governing the use of the Unitya Living website and the material published on it.",
       },
-      { property: "og:title", content: "Terms & Conditions — Unityaliving" },
+      { property: "og:title", content: "Terms & Conditions — Unitya Living" },
       { property: "og:description", content: "Website terms, disclaimers and content ownership." },
     ],
   }),
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/terms-and-conditions")({
           id: "use-of-site",
           heading: "Use of this site",
           paragraphs: [
-            "By using this website you agree to these terms. The site is provided for information about Unityaliving projects in Madhya Pradesh and is not an offer or a contract.",
+            "By using this website you agree to these terms. The site is provided for information about Unitya Living projects in Madhya Pradesh and is not an offer or a contract.",
           ],
         },
         {
@@ -38,7 +38,7 @@ export const Route = createFileRoute("/terms-and-conditions")({
           id: "intellectual-property",
           heading: "Intellectual property",
           paragraphs: [
-            "All text, imagery, layouts and marks on this site belong to Unityaliving and may not be reproduced without written permission.",
+            "All text, imagery, layouts and marks on this site belong to Unitya Living and may not be reproduced without written permission.",
           ],
         },
         {

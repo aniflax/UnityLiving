@@ -13,13 +13,13 @@ import { img } from "@/lib/data/images";
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
-      { title: "Careers at Unityaliving — Build in Indore" },
+      { title: "Careers at Unitya Living — Build in Indore" },
       {
         name: "description",
         content:
-          "Open roles in design, construction, sales and marketing at Unityaliving, Indore. Small team, long horizons, high specification.",
+          "Open roles in design, construction, sales and marketing at Unitya Living, Indore. Small team, long horizons, high specification.",
       },
-      { property: "og:title", content: "Careers — Unityaliving" },
+      { property: "og:title", content: "Careers — Unitya Living" },
       {
         property: "og:description",
         content: "Join a small Indore studio building residences meant to last generations.",

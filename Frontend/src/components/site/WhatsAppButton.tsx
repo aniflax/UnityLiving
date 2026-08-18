@@ -8,7 +8,7 @@ export function WhatsAppButton() {
       href={site.whatsapp}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with Unityaliving on WhatsApp"
+      aria-label="Chat with Unitya Living on WhatsApp"
       className="animate-breathe fixed bottom-20 right-6 z-[70] flex h-13 w-13 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform duration-300 hover:scale-105"
       style={{ height: 52, width: 52 }}
     >

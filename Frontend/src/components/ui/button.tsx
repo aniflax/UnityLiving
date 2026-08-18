@@ -16,7 +16,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        /* Unityaliving design system variants (pill, minimalist premium) */
+        /* Unitya Living design system variants (pill, minimalist premium) */
         luxe: "bg-charcoal text-charcoal-foreground font-medium transition-all duration-300 hover:bg-brand hover:text-white hover:-translate-y-0.5",
         luxeOutline:
           "border border-foreground/20 bg-transparent text-foreground font-medium transition-all duration-300 hover:border-brand hover:text-brand hover:-translate-y-0.5",

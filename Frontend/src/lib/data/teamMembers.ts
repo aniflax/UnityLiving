@@ -9,7 +9,7 @@ export const teamMemberEntities: StrapiEntity<TeamMember>[] = [
       initials: "RA",
       signature: "Rohan Astoliya",
       bio: [
-        "When we began Unityaliving, Indore was still a city that people described in terms of what it might become. We chose to build here precisely because of that — a city on the edge of its own growth deserves homes built with patience rather than haste.",
+        "When we began Unitya Living, Indore was still a city that people described in terms of what it might become. We chose to build here precisely because of that — a city on the edge of its own growth deserves homes built with patience rather than haste.",
         "Every project we take up begins with a simple question: will a family still be glad they chose this home fifteen years from now? That question decides our sites, our specifications, our contractors, and the pace at which we grow. It is a slower way to build a company, and it is the only way we know how.",
         "I read every enquiry that reaches us. If you are considering a home with us, I would rather you visit, ask difficult questions, and take your time. A home is not sold in an afternoon; it is chosen over months, and lived in for decades.",
       ],
@@ -22,7 +22,7 @@ export const teamMemberEntities: StrapiEntity<TeamMember>[] = [
       role: "Head of Design",
       initials: "IS",
       bio: [
-        "Ira leads planning and interior specification across every Unityaliving residence, with a focus on daylight, cross-ventilation and materials that age gracefully in Central Indian weather.",
+        "Ira leads planning and interior specification across every Unitya Living residence, with a focus on daylight, cross-ventilation and materials that age gracefully in Central Indian weather.",
       ],
     },
   },

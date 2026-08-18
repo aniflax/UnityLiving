@@ -21,10 +21,10 @@ export type Site = {
 };
 
 export const STATIC_SITE = {
-  name: "Unityaliving",
+  name: "Unitya Living",
   tagline: "Where Living Finds Its Meaning",
   mission: "Redefining the standard of thoughtful living in Indore, Madhya Pradesh.",
-  address: "Unityaliving, Indore, Madhya Pradesh, India",
+  address: "Unitya Living, Indore, Madhya Pradesh, India",
   hours: "Mon–Sat · 10am–7pm",
   rera: "RERA registered · Indore, Madhya Pradesh",
 } as const;

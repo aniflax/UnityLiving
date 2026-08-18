@@ -24,13 +24,13 @@ import { galleryStrip, img } from "@/lib/data/images";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Unityaliving — Where Living Finds Its Meaning | Indore" },
+      { title: "Unitya Living — Where Living Finds Its Meaning | Indore" },
       {
         name: "description",
         content:
           "Thoughtfully designed residences in Indore, Madhya Pradesh. Independent floors, garden homes, duplex villas and sky residences built with quality that lasts.",
       },
-      { property: "og:title", content: "Unityaliving — Where Living Finds Its Meaning" },
+      { property: "og:title", content: "Unitya Living — Where Living Finds Its Meaning" },
       {
         property: "og:description",
         content:
@@ -97,7 +97,7 @@ function Home() {
               when the trees have grown and the house still feels right.
             </p>
             <Button asChild variant="luxeOutline" size="luxe" className="mt-9">
-              <Link to="/about">About Unityaliving</Link>
+              <Link to="/about">About Unitya Living</Link>
             </Button>
           </Reveal>
           <Reveal className="lg:col-span-7" delay={0.15}>
@@ -242,7 +242,7 @@ function Home() {
       {/* Feature block + collage */}
       <section className="container-luxe pb-24 md:pb-32">
         <SectionHeading
-          eyebrow="The Unityaliving Standard"
+          eyebrow="The Unitya Living Standard"
           title={"A home built the way\nyou always imagined"}
           className="mb-14"
         />

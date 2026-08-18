@@ -9,13 +9,13 @@ import { img } from "@/lib/data/images";
 export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
-      { title: "Residences in Indore — Unityaliving Projects" },
+      { title: "Residences in Indore — Unitya Living Projects" },
       {
         name: "description",
         content:
           "Independent floors, garden homes, duplex villas and sky residences across Indore, Madhya Pradesh.",
       },
-      { property: "og:title", content: "Residences by Unityaliving" },
+      { property: "og:title", content: "Residences by Unitya Living" },
       {
         property: "og:description",
         content: "Four residential addresses in Indore, each built to a lasting specification.",

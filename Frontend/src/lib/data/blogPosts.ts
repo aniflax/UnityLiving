@@ -14,7 +14,7 @@ export const blogPostEntities: StrapiEntity<BlogPost>[] = [
       readingTime: "6 min read",
       coverImage: img.indoreAerial,
       coverAlt: "Aerial view of Indore at dusk",
-      author: "Unityaliving Research",
+      author: "Unitya Living Research",
       body: [
         {
           type: "paragraph",
@@ -64,7 +64,7 @@ export const blogPostEntities: StrapiEntity<BlogPost>[] = [
       readingTime: "8 min read",
       coverImage: img.hero2,
       coverAlt: "Living room in warm neutral tones",
-      author: "Unityaliving Research",
+      author: "Unitya Living Research",
       body: [
         {
           type: "paragraph",
@@ -196,7 +196,7 @@ export const blogPostEntities: StrapiEntity<BlogPost>[] = [
       readingTime: "5 min read",
       coverImage: img.destOmkareshwar,
       coverAlt: "River at golden hour",
-      author: "Unityaliving Research",
+      author: "Unitya Living Research",
       body: [
         {
           type: "paragraph",

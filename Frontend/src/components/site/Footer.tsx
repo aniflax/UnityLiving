@@ -96,7 +96,7 @@ export function Footer() {
             aria-label="Open Google Maps"
           >
             <iframe
-              title="Unityaliving location"
+              title="Unitya Living location"
               src={mapEmbedFor("Indore, Madhya Pradesh, India")}
               className="pointer-events-none h-40 w-full"
               loading="lazy"
@@ -109,7 +109,7 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="container-x flex flex-col items-center justify-between gap-2 py-6 text-xs text-muted-foreground md:flex-row">
-          <div>© {new Date().getFullYear()} Unityaliving. All Rights Reserved.</div>
+          <div>© {new Date().getFullYear()} Unitya Living. All Rights Reserved.</div>
           <div>{site.rera}</div>
           <div>Crafted in Indore, India.</div>
         </div>

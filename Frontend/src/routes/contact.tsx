@@ -23,12 +23,12 @@ export const Route = createFileRoute("/contact")({
     const contactLine = phone && email ? `Call ${phone}, email ${email},` : "Contact our team";
     return {
       meta: [
-        { title: "Contact Unityaliving — Indore, Madhya Pradesh" },
+        { title: "Contact Unitya Living — Indore, Madhya Pradesh" },
         {
           name: "description",
           content: `${contactLine} or send an enquiry to arrange a site visit in Indore.`,
         },
-        { property: "og:title", content: "Contact Unityaliving" },
+        { property: "og:title", content: "Contact Unitya Living" },
         {
           property: "og:description",
           content: "Talk to our team about residences and weekend homes in Madhya Pradesh.",

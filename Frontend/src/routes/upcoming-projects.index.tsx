@@ -9,13 +9,13 @@ import { img } from "@/lib/data/images";
 export const Route = createFileRoute("/upcoming-projects/")({
   head: () => ({
     meta: [
-      { title: "Holiday & Weekend Homes — Unityaliving Upcoming Projects" },
+      { title: "Holiday & Weekend Homes — Unitya Living Upcoming Projects" },
       {
         name: "description",
         content:
           "Managed weekend homes and farmland retreats within a drive of Indore — mountain, lake and farmland destinations.",
       },
-      { property: "og:title", content: "Upcoming Projects — Unityaliving" },
+      { property: "og:title", content: "Upcoming Projects — Unitya Living" },
       {
         property: "og:description",
         content: "Escape to nature: managed holiday homes across Madhya Pradesh and Maharashtra.",
