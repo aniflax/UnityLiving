@@ -31,29 +31,21 @@ function DirectorPage() {
       <div className="container-x mx-auto max-w-7xl">
         <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">Director's Desk</p>
         <div className="mt-12 grid gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <Reveal>
-              <div className="overflow-hidden rounded-[2rem] bg-secondary">
-                <img
-                  src={directorImage}
-                  alt={`Portrait of ${director.name}`}
-                  width={1008}
-                  height={1264}
-                  loading="eager"
-                  decoding="async"
-                  className="aspect-[4/5] w-full object-cover"
-                />
-              </div>
-            </Reveal>
-            <div className="mt-8">
-              <p className="font-serif text-2xl text-foreground">{director.name}</p>
-              <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground uppercase">
-                {director.role} · Unityaliving, Indore
-              </p>
+          <Reveal className="lg:col-span-4">
+            <div className="overflow-hidden rounded-[2rem] bg-secondary">
+              <img
+                src={directorImage}
+                alt={`Portrait of ${director.name}`}
+                width={1008}
+                height={1264}
+                loading="eager"
+                decoding="async"
+                className="aspect-[4/5] w-full object-cover"
+              />
             </div>
-          </div>
+          </Reveal>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-8">
             <Reveal>
               <p className="mb-6 font-serif text-2xl text-foreground md:text-3xl">
                 To our residents and future neighbours
@@ -62,6 +54,12 @@ function DirectorPage() {
                 {director.bio.map((para) => (
                   <p key={para.slice(0, 24)}>{para}</p>
                 ))}
+              </div>
+              <div className="mt-12 border-t border-border pt-8">
+                <p className="font-serif text-3xl italic text-foreground">{director.signature}</p>
+                <p className="mt-2 text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                  {director.role} · Unityaliving, Indore
+                </p>
               </div>
             </Reveal>
           </div>
