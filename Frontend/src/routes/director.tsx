@@ -43,6 +43,12 @@ function DirectorPage() {
                 className="aspect-[4/5] w-full object-cover"
               />
             </div>
+            <div className="mt-8">
+              <p className="font-serif text-2xl text-foreground">{director.signature}</p>
+              <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                {director.role} · Unityaliving, Indore
+              </p>
+            </div>
           </Reveal>
 
           <div className="lg:col-span-8">
@@ -54,12 +60,6 @@ function DirectorPage() {
                 {director.bio.map((para) => (
                   <p key={para.slice(0, 24)}>{para}</p>
                 ))}
-              </div>
-              <div className="mt-12 border-t border-border pt-8">
-                <p className="font-serif text-3xl italic text-foreground">{director.signature}</p>
-                <p className="mt-2 text-xs tracking-[0.2em] text-muted-foreground uppercase">
-                  {director.role} · Unityaliving, Indore
-                </p>
               </div>
             </Reveal>
           </div>
