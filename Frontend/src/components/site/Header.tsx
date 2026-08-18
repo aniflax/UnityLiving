@@ -82,7 +82,7 @@ export function Header() {
     };
   }, [mobileOpen]);
 
-  const solid = scrolled || mobileOpen;
+  const solid = scrolled || mobileOpen || pathname !== "/";
 
   return (
     <>

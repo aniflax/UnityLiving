@@ -16,11 +16,18 @@ export function Logo({
     >
       <span
         className={cn(
-          "font-serif text-2xl font-semibold leading-none tracking-tight transition-colors duration-500 sm:text-[1.6rem]",
+          "font-serif text-2xl font-semibold tracking-wider transition-colors duration-500 sm:text-[1.6rem]",
           tone === "light" ? "text-cream" : "text-foreground",
         )}
       >
-        Unity<span className="italic font-medium text-brand">aliving</span>
+        UNITYA
+      </span>
+      <span
+        className={cn(
+          "text-[0.6rem] tracking-[0.35em] text-brand sm:text-[0.65rem]",
+        )}
+      >
+        LIVING
       </span>
     </Link>
   );

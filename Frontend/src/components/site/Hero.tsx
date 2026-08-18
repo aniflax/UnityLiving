@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
 import type { HeroSlide } from "@/lib/data/types";
@@ -12,10 +12,6 @@ export function Hero({
   intervalMs?: number;
 }) {
   const [index, setIndex] = useState(0);
-  const { scrollY } = useScroll();
-  const imageY = useTransform(scrollY, [0, 900], [0, 160]);
-  const contentY = useTransform(scrollY, [0, 700], [0, 90]);
-  const contentOpacity = useTransform(scrollY, [0, 520], [1, 0]);
 
   useEffect(() => {
     if (slides.length < 2) return;
@@ -31,7 +27,7 @@ export function Hero({
 
   return (
     <section className="relative h-[100svh] min-h-[620px] overflow-hidden bg-charcoal">
-      <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[8%] h-[116%]">
+      <div className="absolute inset-0 -top-[8%] h-[116%]">
         <AnimatePresence initial={false}>
           <motion.img
             key={index}
@@ -49,14 +45,11 @@ export function Hero({
             className="animate-kenburns absolute inset-0 h-full w-full object-cover"
           />
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/30 to-charcoal/80" />
 
-      <motion.div
-        style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 flex h-full items-center"
-      >
+      <div className="relative z-10 flex h-full items-center">
         <div className="container-x pt-24">
           <AnimatePresence mode="wait">
             <motion.div
@@ -107,7 +100,7 @@ export function Hero({
             </motion.div>
           </AnimatePresence>
         </div>
-      </motion.div>
+      </div>
 
       <div className="absolute inset-x-0 bottom-8 z-10">
         <div className="container-x flex items-end justify-between">

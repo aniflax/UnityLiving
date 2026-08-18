@@ -37,11 +37,15 @@ function usePageViewTracking() {
         isInitialLoad.current = false;
         return;
       }
-      const { pathname, search, hash } = router.state.location;
-      window.gtag?.("event", "page_view", {
-        page_path: `${pathname}${search}${hash}`,
-        page_title: document.title,
-      });
+      try {
+        const { pathname, search, hash } = router.state.location;
+        window.gtag?.("event", "page_view", {
+          page_path: `${pathname}${search}${hash}`,
+          page_title: document.title,
+        });
+      } catch {
+        // Analytics must never break navigation.
+      }
     };
     const unsubscribe = router.subscribe("onResolved", sendPageView);
     return unsubscribe;

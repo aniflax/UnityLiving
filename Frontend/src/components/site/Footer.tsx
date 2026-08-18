@@ -21,8 +21,11 @@ export function Footer() {
     <footer className="mt-24 border-t border-border bg-white">
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="font-serif text-2xl font-semibold tracking-tight text-foreground">
-            Unity<span className="italic font-medium text-brand">aliving</span>
+          <div className="flex items-baseline gap-2">
+            <span className="font-serif text-2xl font-semibold tracking-wider text-foreground">
+              UNITYA
+            </span>
+            <span className="text-[0.6rem] tracking-[0.35em] text-brand">LIVING</span>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
             {site.mission}
