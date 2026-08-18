@@ -9,10 +9,25 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Middlewar
     .map((o: string) => o.trim())
     .filter(Boolean);
 
+  // CDN origin used for uploaded media (Cloudflare R2 via CDN_URL). Allowed in
+  // the admin panel's Content-Security-Policy so media previews aren't blocked.
+  const cdn = env('CDN_URL')?.trim().replace(/\/+$/, '');
+
   return [
     'strapi::logger',
     'strapi::errors',
-    'strapi::security',
+    {
+      name: 'strapi::security',
+      config: {
+        contentSecurityPolicy: {
+          useDefaults: true,
+          directives: {
+            'img-src': ["'self'", 'data:', 'blob:', 'https://market-assets.strapi.io', ...(cdn ? [cdn] : [])],
+            'media-src': ["'self'", 'data:', 'blob:', ...(cdn ? [cdn] : [])],
+          },
+        },
+      },
+    },
     {
       name: 'strapi::cors',
       config: {
