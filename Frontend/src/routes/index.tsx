@@ -6,7 +6,6 @@ import { Hero } from "@/components/site/Hero";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { StatRow } from "@/components/site/StatCounter";
 import { GalleryMarquee } from "@/components/site/GalleryMarquee";
-import { CtaBanner } from "@/components/site/CtaBanner";
 import { ProjectGrid } from "@/components/site/ProjectGrid";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { BlogCard } from "@/components/site/BlogCard";
@@ -143,15 +142,6 @@ function Home() {
       <section className="pb-24 md:pb-32">
         <GalleryMarquee images={galleryStrip} />
       </section>
-
-      <CtaBanner
-        title="Luxury, redefined as permanence"
-        intro="Four residential addresses across Indore, each built to a specification we would accept in our own homes."
-        image={img.bannerDark}
-        imageAlt="Colonnade of a luxury residence lit at night"
-        ctaLabel="Learn More"
-        ctaTo="/projects"
-      />
 
       {/* Upcoming destinations */}
       <section className="container-luxe py-24 md:py-32">
