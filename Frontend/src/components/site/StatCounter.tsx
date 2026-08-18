@@ -30,14 +30,14 @@ export function StatCounter({ stat }: { stat: Stat }) {
         <span className="text-gold">{stat.suffix}</span>
       </p>
       <p className="mt-4 text-[0.7rem] tracking-[0.2em] uppercase">{stat.label}</p>
-      <p className="mt-2 text-sm text-muted-foreground">{stat.caption}</p>
+      <p className="mt-2 hidden text-sm text-muted-foreground sm:block">{stat.caption}</p>
     </div>
   );
 }
 
 export function StatRow({ stats }: { stats: Stat[] }) {
   return (
-    <div className="grid gap-10 sm:grid-cols-3">
+    <div className="grid grid-cols-3 gap-10">
       {stats.map((stat) => (
         <StatCounter key={stat.label} stat={stat} />
       ))}

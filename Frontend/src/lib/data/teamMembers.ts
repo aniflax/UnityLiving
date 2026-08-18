@@ -5,11 +5,11 @@ export const teamMemberEntities: StrapiEntity<TeamMember>[] = [
   {
     id: 1,
     attributes: {
-      name: "Aarav Mehta",
+      name: "Rohit Astoliya",
       role: "Managing Director",
-      initials: "AM",
+      initials: "RA",
       photo: img.director,
-      signature: "Aarav Mehta",
+      signature: "Rohit Astoliya",
       bio: [
         "When we began Unityaliving, Indore was still a city that people described in terms of what it might become. We chose to build here precisely because of that — a city on the edge of its own growth deserves homes built with patience rather than haste.",
         "Every project we take up begins with a simple question: will a family still be glad they chose this home fifteen years from now? That question decides our sites, our specifications, our contractors, and the pace at which we grow. It is a slower way to build a company, and it is the only way we know how.",
