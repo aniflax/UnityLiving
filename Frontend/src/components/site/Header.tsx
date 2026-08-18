@@ -78,7 +78,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[60] bg-white">
+      <header className="fixed inset-x-0 top-[10px] z-[60] bg-white shadow-[0_10px_25px_-18px_rgba(0,0,0,0.22)]">
         <div className="mx-auto flex h-[62px] max-w-[1720px] items-center gap-6 px-6 md:px-10 xl:px-24">
           {/* Brand: hamburger + name */}
           <div className="flex shrink-0 items-center gap-4">
@@ -117,7 +117,7 @@ export function Header() {
 
           {/* Nav links */}
           <nav
-            className="hidden items-center gap-12 max-[1200px]:gap-[34px] min-[1001px]:flex"
+            className="hidden items-center gap-12 mr-5 max-[1200px]:gap-[34px] min-[1001px]:flex"
             aria-label="Main"
           >
             {topLinks.map((link) => (

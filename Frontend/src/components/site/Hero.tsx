@@ -42,7 +42,7 @@ export function Hero() {
   const site = useSite();
 
   return (
-    <section className="bg-white">
+    <section className="overflow-hidden bg-white">
       <div className="mx-auto w-full max-w-[1720px] px-6 md:px-10 xl:px-24">
         <div className="pt-[62px] pb-[50px]">
           <div className="relative mt-[15px] min-[1001px]:h-[650px]">
