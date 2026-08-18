@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Unitya Living design system — matches the homepage hero theme.
- * Pure white, near-black, neutral grey. Display/headings: Baloo 2. Body: Poppins.
+ * Unitya Living design system — matches the homepage hero color theme.
+ * Pure white, near-black, neutral grey. Headings: Cormorant Garamond. Body: Inter.
+ * The hero section (and header) uses Baloo 2 + Poppins.
  */
 
 @theme inline {
@@ -18,10 +19,10 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --font-serif: "Baloo 2", "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Baloo 2", "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-alt: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Playfair Display", ui-serif, Georgia, serif;
+  --font-display: "Cormorant Garamond", "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-alt: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-baloo: "Baloo 2", "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-poppins: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
 
