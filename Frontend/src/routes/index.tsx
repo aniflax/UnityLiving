@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, ShieldCheck, Trees } from "lucide-react";
+import { MapPin, ShieldCheck, Trees } from "lucide-react";
 
 import { Hero } from "@/components/site/Hero";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -296,12 +296,9 @@ function Home() {
           eyebrow="Insights & Updates"
           title="Notes from the studio"
           action={
-            <Link
-              to="/media"
-              className="link-underline inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-brand"
-            >
-              All articles <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild variant="luxeOutline" size="luxeSm">
+              <Link to="/media">All articles</Link>
+            </Button>
           }
           className="mb-14"
         />
