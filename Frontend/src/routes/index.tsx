@@ -196,7 +196,7 @@ function Home() {
             <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
               Indore — Central India's growth hub
             </h2>
-            <p className="mt-6 text-[0.98rem] leading-relaxed text-muted-foreground">
+            <p className="mt-6 hidden text-[0.98rem] leading-relaxed text-muted-foreground md:block">
               Infrastructure here arrived ahead of demand. The Super Corridor, the western ring road
               and the metro alignment were built on projections rather than pressure, which is why
               commutes have held while the city has grown.
@@ -234,13 +234,11 @@ function Home() {
           />
         </div>
         <div className="container-luxe">
-          <div className="-mx-6 flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {projectList.map((project) => (
-              <div key={project.slug} className="w-[300px] shrink-0 snap-start md:w-[380px]">
-                <ProjectCard project={project} />
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
+          {projectList.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
         </div>
       </section>
 
@@ -302,7 +300,7 @@ function Home() {
           }
           className="mb-14"
         />
-        <RevealGroup className="grid gap-x-8 gap-y-14 md:grid-cols-3" stagger={0.12}>
+        <RevealGroup className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3" stagger={0.12}>
           {blogPostList.slice(0, 3).map((post) => (
             <RevealItem key={post.slug}>
               <BlogCard post={post} />

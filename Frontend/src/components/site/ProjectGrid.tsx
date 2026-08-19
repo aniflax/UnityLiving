@@ -19,7 +19,7 @@ export function ProjectGrid({
   return (
     <RevealGroup
       className={cn(
-        "grid gap-x-8 gap-y-14",
+        "grid grid-cols-2 gap-x-6 gap-y-10",
         columns === 2 && "sm:grid-cols-2",
         columns === 3 && "sm:grid-cols-2 lg:grid-cols-3",
         columns === 4 && "sm:grid-cols-2 lg:grid-cols-4",

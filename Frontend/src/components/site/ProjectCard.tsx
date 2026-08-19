@@ -63,7 +63,7 @@ export function ProjectCard({
             {project.name}
           </Link>
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+        <p className="mt-2 hidden text-sm leading-relaxed text-muted-foreground md:block">{project.description}</p>
 
         {variant === "default" ? (
           <ul className="mt-4 flex flex-wrap gap-2">
