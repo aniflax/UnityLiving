@@ -234,7 +234,7 @@ function Home() {
           />
         </div>
         <div className="container-luxe">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
           {projectList.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
@@ -300,7 +300,7 @@ function Home() {
           }
           className="mb-14"
         />
-        <RevealGroup className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3" stagger={0.12}>
+        <RevealGroup className="grid gap-x-4 gap-y-10 md:grid-cols-3" stagger={0.12}>
           {blogPostList.slice(0, 3).map((post) => (
             <RevealItem key={post.slug}>
               <BlogCard post={post} />
