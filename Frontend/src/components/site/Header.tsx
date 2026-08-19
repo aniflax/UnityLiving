@@ -10,34 +10,105 @@ import { upcomingProjectList } from "@/lib/data/upcomingProjects";
 type NavChild = { label: string; to: string; params?: Record<string, string> };
 type NavItem = { label: string; to?: string; children?: NavChild[] };
 
-const topLinks = [
+const companyChildren: NavChild[] = [
   { label: "About Us", to: "/about" },
-  { label: "Properties", to: "/projects" },
-  { label: "Blogs", to: "/media" },
+  { label: "Director's Desk", to: "/director" },
+  { label: "Careers", to: "/careers" },
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Terms & Conditions", to: "/terms-and-conditions" },
 ];
+
+const projectsChildren: NavChild[] = [
+  { label: "All Residences", to: "/projects" },
+  ...projectList.map((p) => ({
+    label: `${p.name} — ${p.locality}`,
+    to: "/projects/$slug",
+    params: { slug: p.slug },
+  })),
+];
+
+const mediaChildren: NavChild[] = [
+  { label: "News & Blog", to: "/media" },
+  { label: "Press", to: "/media" },
+];
+
+const topLinks: NavItem[] = [
+  { label: "About Us", children: companyChildren },
+  { label: "Properties", children: projectsChildren },
+  { label: "Media", children: mediaChildren },
+];
+
+function TopNavItem({ item }: { item: NavItem }) {
+  const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      {item.children ? (
+        <>
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+            className="font-poppins text-[15px] font-normal whitespace-nowrap text-[#111] opacity-90 transition-opacity duration-200 hover:opacity-60"
+          >
+            {item.label}
+          </button>
+          <AnimatePresence>
+            {open ? (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                className="absolute top-full left-1/2 -translate-x-1/2 pt-4"
+              >
+                <div className="w-64 rounded-2xl border border-border bg-white p-2 shadow-xl">
+                  {item.children.map((child) => (
+                    <Link
+                      key={child.label}
+                      to={child.to}
+                      params={child.params as never}
+                      onClick={() => setOpen(false)}
+                      className="block rounded-xl px-3 py-2.5 text-sm text-foreground/75 transition-colors hover:bg-muted hover:text-brand"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </>
+      ) : (
+        <Link
+          to={item.to!}
+          className="font-poppins text-[15px] font-normal whitespace-nowrap text-[#111] opacity-90 transition-opacity duration-200 hover:opacity-60"
+        >
+          {item.label}
+        </Link>
+      )}
+    </div>
+  );
+}
 
 const navItems: NavItem[] = [
   { label: "Home", to: "/" },
   {
     label: "Company",
-    children: [
-      { label: "About Us", to: "/about" },
-      { label: "Director's Desk", to: "/director" },
-      { label: "Careers", to: "/careers" },
-      { label: "Privacy Policy", to: "/privacy-policy" },
-      { label: "Terms & Conditions", to: "/terms-and-conditions" },
-    ],
+    children: companyChildren,
   },
   {
     label: "Projects",
-    children: [
-      { label: "All Residences", to: "/projects" },
-      ...projectList.map((p) => ({
-        label: `${p.name} — ${p.locality}`,
-        to: "/projects/$slug",
-        params: { slug: p.slug },
-      })),
-    ],
+    children: projectsChildren,
   },
   {
     label: "Upcoming Projects",
@@ -53,10 +124,7 @@ const navItems: NavItem[] = [
   { label: "Careers", to: "/careers" },
   {
     label: "Media",
-    children: [
-      { label: "News & Blog", to: "/media" },
-      { label: "Press", to: "/media" },
-    ],
+    children: mediaChildren,
   },
   { label: "Contact", to: "/contact" },
 ];
@@ -121,13 +189,7 @@ export function Header() {
             aria-label="Main"
           >
             {topLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                className="font-poppins text-[15px] font-normal whitespace-nowrap text-[#111] opacity-90 transition-opacity duration-200 hover:opacity-60"
-              >
-                {link.label}
-              </Link>
+              <TopNavItem key={link.label} item={link} />
             ))}
           </nav>
 
