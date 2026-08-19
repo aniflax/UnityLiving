@@ -34,7 +34,7 @@ const searchFields = [
   {
     label: "Price Range",
     icon: Banknote,
-    value: "$6,000 - $12,000 / month",
+    value: "₹6,000 - ₹12,000 / month",
   },
 ];
 
