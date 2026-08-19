@@ -226,12 +226,9 @@ function Home() {
             eyebrow="Find Your Dream Home"
             title="Featured residences"
             action={
-              <Link
-                to="/projects"
-                className="link-underline inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-brand"
-              >
-                All residences <ArrowRight className="h-4 w-4" />
-              </Link>
+              <Button asChild variant="luxeOutline" size="luxeSm">
+                <Link to="/projects">All residences</Link>
+              </Button>
             }
             className="mb-14"
           />

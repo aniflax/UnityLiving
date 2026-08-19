@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 import type { Project } from "@/lib/data/types";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export function ProjectCard({
   project,
@@ -78,14 +78,11 @@ export function ProjectCard({
           </ul>
         ) : null}
 
-        <Link
-          to={to}
-          params={{ slug: project.slug }}
-          className="link-underline mt-6 inline-flex w-fit items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-brand"
-        >
-          {project.status === "upcoming" ? "Explore" : "View Residence"}
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+        <Button asChild variant="luxeOutline" size="luxeSm" className="mt-6 w-fit">
+          <Link to={to} params={{ slug: project.slug }}>
+            {project.status === "upcoming" ? "Explore" : "View Residence"}
+          </Link>
+        </Button>
       </div>
     </article>
   );
