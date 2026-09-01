@@ -177,9 +177,6 @@ function Index() {
                   className="group mt-8 inline-flex items-center gap-2 rounded-[10px] border border-border px-6 py-3 text-sm font-medium transition-colors duration-300 hover:bg-secondary"
                 >
                   View Project
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
                 </a>
               </Reveal>
             </div>
@@ -292,10 +289,7 @@ function Index() {
                 className="group mt-8 inline-flex items-center gap-2 rounded-[10px] bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-300 hover:bg-secondary"
               >
                 Start a Conversation
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </a>
+                </a>
             </div>
           </div>
         </Reveal>
