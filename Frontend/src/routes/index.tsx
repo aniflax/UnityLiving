@@ -59,7 +59,7 @@ function Index() {
       <Hero />
       {/* PROCESS */}
       <section>
-        <div className="mx-auto max-w-[1400px] px-6 pb-24 md:px-10 md:pb-28">
+        <div className="mx-auto max-w-[1400px] px-6 pt-24 pb-24 md:px-10 md:pt-28 md:pb-28">
           <Reveal>
             <p className="eyebrow">The process</p>
           </Reveal>
