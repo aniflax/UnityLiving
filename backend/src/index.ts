@@ -25,6 +25,33 @@ const fixFile = (file: any): boolean => {
   return changed;
 };
 
+/** Idempotently grants the public role read access to the blog collection API. */
+async function ensurePublicBlogPermissions(strapi: Core.Strapi) {
+  try {
+    const publicRole = await strapi.db
+      .query('plugin::users-permissions.role')
+      .findOne({ where: { type: 'public' } });
+    if (!publicRole) return;
+
+    const existing = await strapi.db
+      .query('plugin::users-permissions.permission')
+      .findMany({ where: { role: { type: 'public' } } });
+    const existingActions = new Set(existing.map((p: any) => p.action));
+    const wanted = ['api::blog.blog.find', 'api::blog.blog.findOne'];
+
+    for (const action of wanted) {
+      if (!existingActions.has(action)) {
+        await strapi.db
+          .query('plugin::users-permissions.permission')
+          .create({ data: { action, role: publicRole.id } });
+        strapi.log.info(`[permissions] Granted public access to ${action}`);
+      }
+    }
+  } catch (err) {
+    strapi.log.warn(`[permissions] Could not grant public blog access: ${err}`);
+  }
+}
+
 export default {
   register({ strapi }: { strapi: Core.Strapi }) {
     strapi.server.routes([
@@ -60,5 +87,7 @@ export default {
     } catch (err) {
       strapi.log.warn(`[r2-url-fix] Could not fix upload URLs: ${err}`);
     }
+
+    await ensurePublicBlogPermissions(strapi);
   },
 };

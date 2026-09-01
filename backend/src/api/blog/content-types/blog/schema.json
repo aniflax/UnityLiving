@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "Blogs",
+    "description": "Blog posts managed from the CMS"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Type": {
+      "type": "string"
+    },
+    "ReadingTime": {
+      "type": "string"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "shortTag": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "Blog": {
+      "type": "richtext"
+    },
+    "Ending": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false
+    },
+    "imp": {
+      "type": "boolean",
+      "default": false
+    },
+    "showOnhomePage": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

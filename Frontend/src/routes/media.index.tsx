@@ -1,11 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/reveal";
 import { BlogCard } from "@/components/site/blog-card";
-import { blogPostList } from "@/lib/data/blogPosts";
+import { fetchBlogPosts } from "@/lib/blog";
 import heroBuilding from "@/assets/new/hero-building.jpg";
 import cta from "@/assets/new/cta.jpg";
 
 export const Route = createFileRoute("/media/")({
+  loader: async () => {
+    const posts = await fetchBlogPosts();
+    return { posts };
+  },
   head: () => ({
     meta: [
       { title: "Media — Unitya Living" },
@@ -20,7 +24,9 @@ export const Route = createFileRoute("/media/")({
 });
 
 function MediaPage() {
-  const [featured, ...rest] = blogPostList;
+  const { posts } = Route.useLoaderData();
+  const featured = posts.find((p) => p.imp) ?? posts[0];
+  const rest = posts.filter((p) => p.slug !== featured?.slug);
 
   return (
     <>
