@@ -1,7 +1,7 @@
 // Site-wide contact & social information.
-// Email, phone, WhatsApp, and social links are fetched from the Strapi backend
-// ("Personal Informations" single type). The remaining site details, including
-// business hours, stay defined here in the frontend.
+// Email, phone, WhatsApp, social links and the director image are fetched from
+// the Strapi backend ("Personal Informations" single type). The remaining site
+// details, including business hours, stay defined here in the frontend.
 
 export type SiteSocial = { label: string; href: string; icon: string };
 
@@ -47,8 +47,6 @@ export type PersonalInformation = {
   linkedin?: string | null;
   directorImage?: StrapiMedia;
 };
-
-export const enquiryTypes = ["Home Buyer", "Broker", "Investor", "Corporate", "NRI Buyer"] as const;
 
 const socialIcons: {
   key: "instagram" | "facebook" | "youtube" | "linkedin";
@@ -210,12 +208,4 @@ export async function fetchSite(force = false): Promise<Site> {
   }
   cachedAt = Date.now();
   return cachedSite;
-}
-
-export function mapEmbedFor(query: string) {
-  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&hl=en&z=13&output=embed`;
-}
-
-export function mapLinkFor(query: string) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }

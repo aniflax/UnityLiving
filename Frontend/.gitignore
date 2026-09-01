@@ -20,8 +20,8 @@ dist-ssr
 .wrangler/
 .dev.vars
 
-# Deploy secrets (purge-cache.sh)
-.deploy.env
+# Vite cache
+.vite
 
 # Editor directories and files
 .vscode/*
@@ -33,3 +33,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.DS_Store

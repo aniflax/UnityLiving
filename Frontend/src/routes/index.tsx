@@ -1,331 +1,305 @@
-import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { MapPin, ShieldCheck, Trees } from "lucide-react";
-
-import { Hero } from "@/components/site/Hero";
-import { SectionHeading } from "@/components/site/SectionHeading";
-import { StatRow } from "@/components/site/StatCounter";
-import { GalleryMarquee } from "@/components/site/GalleryMarquee";
-import { ProjectGrid } from "@/components/site/ProjectGrid";
-import { ProjectCard } from "@/components/site/ProjectCard";
-import { BlogCard } from "@/components/site/BlogCard";
-import { TestimonialsCarousel } from "@/components/site/TestimonialsCarousel";
-import { EnquiryForm } from "@/components/site/EnquiryForm";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { Button } from "@/components/ui/button";
-import { projectList } from "@/lib/data/projects";
-import { upcomingCategories, upcomingProjectList } from "@/lib/data/upcomingProjects";
-import { blogPostList } from "@/lib/data/blogPosts";
-import { testimonialList } from "@/lib/data/testimonials";
-import { galleryStrip, img } from "@/lib/data/images";
+import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/site/hero";
+import { Services } from "@/components/site/services";
+import { CountUp, Reveal } from "@/components/site/reveal";
+import featuredProject from "@/assets/featured-project.jpg";
+import propLa from "@/assets/prop-la.jpg";
+import propMiami from "@/assets/prop-miami.jpg";
+import propNy from "@/assets/prop-ny.jpg";
+import philosophy from "@/assets/philosophy.jpg";
+import ctaBuilding from "@/assets/cta-building.jpg";
+import interiorWebSection from "@/assets/Interior Sectionn.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Unitya Living — Where Living Finds Its Meaning | Indore" },
+      { title: "Unitya Living — Architecture, Interiors & Real Estate" },
       {
         name: "description",
         content:
-          "Thoughtfully designed residences in Indore, Madhya Pradesh. Independent floors, garden homes, duplex villas and sky residences built with quality that lasts.",
+          "A full-service studio for architecture, interior and exterior design, construction and real estate. From the first idea to the finished space.",
       },
-      { property: "og:title", content: "Unitya Living — Where Living Finds Its Meaning" },
+      {
+        property: "og:title",
+        content: "Unitya Living — Architecture, Interiors & Real Estate",
+      },
       {
         property: "og:description",
         content:
-          "Considered residences in Indore, Madhya Pradesh — crafted with quality that lasts, creating homes for generations.",
+          "Architecture, interiors, construction and real estate — brought together under one vision.",
       },
     ],
   }),
-  component: Home,
+  component: Index,
 });
 
+const properties = [
+  { name: "Modern Residence", place: "Los Angeles, CA", img: propLa },
+  { name: "Private Villa", place: "Miami, FL", img: propMiami },
+  { name: "Urban Residence", place: "New York, NY", img: propNy },
+];
+
 const stats = [
-  { value: 900, suffix: "+", label: "Homes", caption: "Built to last across Madhya Pradesh." },
-  { value: 22, suffix: "yrs", label: "Design", caption: "Led by excellence, not by trend." },
-  { value: 100, suffix: "%", label: "Quality", caption: "Checked in every detail, every stage." },
+  { value: 15, label: "Years of Experience" },
+  { value: 120, label: "Projects" },
+  { value: 40, label: "Completed Builds" },
+  { value: 25, label: "Locations" },
 ];
 
-const features = [
-  {
-    title: "Crafted",
-    body: "Materials are chosen for their fifth year, not their first. Honed stone, engineered oak, matte ironmongery — finishes that wear in rather than out.",
-  },
-  {
-    title: "Connected",
-    body: "Every site is picked for the commute it spares you. Schools, hospitals and the ring road stay within a short drive of every project we take up.",
-  },
-  {
-    title: "Complete",
-    body: "Water treatment, back-up, drainage and parking are specified before the elevation is drawn. The unglamorous parts decide how a home ages.",
-  },
+const process = [
+  { n: "01", name: "Discover", copy: "We listen, study the site and define the brief." },
+  { n: "02", name: "Design", copy: "Drawings, materials and detail resolved together." },
+  { n: "03", name: "Build", copy: "Construction managed with precision and care." },
+  { n: "04", name: "Deliver", copy: "A finished space, handed over complete." },
 ];
 
-const locationTags = [
-  {
-    icon: MapPin,
-    title: "Seamless Connectivity",
-    caption: "Ring road, airport and metro corridor within reach.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Safe & Secure",
-    caption: "Gated communities with round-the-clock security.",
-  },
-  {
-    icon: Trees,
-    title: "Peaceful Living",
-    caption: "Landscaped courtyards at the centre of every plan.",
-  },
-];
-
-function Home() {
-  const [category, setCategory] = useState<string>("All");
-  const destinations =
-    category === "All"
-      ? upcomingProjectList
-      : upcomingProjectList.filter((p) => p.category === category);
-
+function Index() {
   return (
-    <>
+    <div className="bg-background">
       <Hero />
-
-      {/* More Than Four Walls */}
-      <section className="container-luxe py-24 md:py-32">
-        <div className="grid gap-14 lg:grid-cols-12 lg:items-center">
-          <Reveal className="lg:col-span-5">
-            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">
-              More Than Four Walls
-            </p>
-            <h2 className="hidden font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl md:block">
-              A home is the one place that keeps a record of your life
-            </h2>
-            <p className="mt-6 hidden text-base leading-relaxed text-muted-foreground md:block">
-              We build in Indore because it is a city still deciding what it will become. The homes
-              we put here are meant to outlast that decision — plans that hold a growing family,
-              courtyards that gather neighbours, materials that soften rather than fade.
-            </p>
-            <p className="mt-4 hidden text-base leading-relaxed text-muted-foreground md:block">
-              Nothing here is designed to impress a passer-by. It is designed for the fifteenth
-              year, when the trees have grown and the house still feels right.
-            </p>
-            <Button asChild variant="luxeOutline" size="luxe" className="mt-9">
-              <Link to="/about">About Unitya Living</Link>
-            </Button>
+      {/* PROCESS */}
+      <section>
+        <div className="mx-auto max-w-[1400px] px-6 pb-24 md:px-10 md:pb-28">
+          <Reveal>
+            <p className="eyebrow">The process</p>
           </Reveal>
-          <Reveal className="lg:col-span-7" delay={0.15}>
-            <div className="relative">
-              <img
-                src={img.hero2}
-                alt="Living room in warm neutral tones with tall windows"
-                width={1600}
-                height={1000}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[4/3] w-full rounded-[2rem] object-cover"
-              />
-              <div className="animate-floaty absolute -top-6 -left-6 hidden h-24 w-24 rounded-full border border-brand/30 md:block" />
-              <div className="animate-floaty absolute -right-4 -bottom-8 hidden h-32 w-32 rounded-3xl border border-brand/20 bg-white/40 backdrop-blur-sm md:block" />
-              <div className="absolute -bottom-6 left-6 hidden max-w-[230px] rounded-2xl border border-border bg-white/90 p-4 shadow-lg backdrop-blur md:block">
-                <div className="text-xs tracking-widest text-brand uppercase">Trusted by</div>
-                <div className="mt-1 font-serif text-2xl text-foreground">900+ Homes</div>
-                <div className="text-xs text-muted-foreground">across Madhya Pradesh</div>
-              </div>
-            </div>
-          </Reveal>
+          <div className="mt-12 grid gap-10 md:grid-cols-4 md:gap-0">
+            {process.map((p, i) => (
+              <Reveal
+                key={p.name}
+                delay={i * 90}
+                className={`border-t border-border pt-6 md:pr-8 ${
+                  i > 0 ? "md:border-l md:pl-8" : ""
+                }`}
+              >
+                <p className="text-xs text-muted-foreground">{p.n}</p>
+                <h3 className="mt-3 text-sm font-medium tracking-[0.16em] uppercase">{p.name}</h3>
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                  {p.copy}
+                </p>
+              </Reveal>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <Reveal className="mt-20">
-          <StatRow stats={stats} />
+      {/* PHILOSOPHY */}
+      <section>
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-6 pb-24 md:grid-cols-12 md:px-10 md:pb-32">
+          <div className="md:col-span-6">
+            <Reveal>
+              <div className="overflow-hidden rounded-[20px] border border-border">
+                <img
+                  src={philosophy}
+                  alt="Sculptural white concrete architecture against a blue sky"
+                  loading="lazy"
+                  width={1200}
+                  height={1504}
+                  className="aspect-4/5 w-full object-cover"
+                />
+              </div>
+            </Reveal>
+          </div>
+          <div className="flex flex-col justify-center md:col-span-5 md:col-start-8">
+            <Reveal delay={120}>
+              <p className="eyebrow">Our approach</p>
+              <h2 className="display mt-6 text-[clamp(2rem,4.5vw,3.6rem)]">
+                GOOD SPACES
+                <br />
+                START WITH
+                <br />
+                GOOD THINKING.
+              </h2>
+              <p className="mt-8 max-w-lg text-[0.95rem] leading-relaxed text-muted-foreground">
+                Every project begins with function and ends with detail. We choose materials that
+                age well, design for daylight and longevity, and hold every junction to the same
+                standard of craftsmanship — so a space still feels considered decades after it is
+                finished.
+              </p>
+              <a
+                href="#about"
+                className="mt-8 inline-flex items-center rounded-[10px] border border-border px-6 py-3 text-sm font-medium transition-colors duration-300 hover:bg-secondary"
+              >
+                Our Story
+              </a>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* INTERIOR SECTION */}
+      <section id="about" className="mx-auto max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
+        <Reveal>
+          <div className="overflow-hidden">
+            <img
+              src={interiorWebSection}
+              alt="Interior design section"
+              loading="lazy"
+              width={5495}
+              height={1575}
+              className="w-full object-cover"
+            />
+          </div>
         </Reveal>
       </section>
 
-      <section className="pb-24 md:pb-32">
-        <GalleryMarquee images={galleryStrip} />
-      </section>
+      <Services />
 
-      {/* Upcoming destinations */}
-      <section className="container-luxe py-24 md:py-32">
-        <SectionHeading
-          eyebrow="Holiday & Weekend Homes"
-          title="Escape to Nature"
-          intro="Retreats within a comfortable drive of Indore — managed by us, so a second home does not become a second job."
-          action={
-            <Button asChild variant="luxeOutline" size="luxeSm">
-              <Link to="/upcoming-projects">All destinations</Link>
-            </Button>
-          }
-          className="mb-10"
-        />
-        <div className="mb-12 flex flex-wrap gap-3">
-          {["All", ...upcomingCategories].map((c) => (
-            <button
-              key={c}
-              type="button"
-              onClick={() => setCategory(c)}
-              className={`cursor-pointer rounded-full border px-5 py-2 text-xs tracking-[0.14em] uppercase transition-colors duration-300 ${
-                category === c
-                  ? "border-brand bg-brand text-white"
-                  : "border-border text-muted-foreground hover:border-brand hover:text-brand"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-        <ProjectGrid projects={destinations} columns={3} variant="compact" />
-      </section>
-
-      {/* Location & connectivity */}
-      <section className="bg-secondary/60 py-24 md:py-32">
-        <div className="container-luxe grid gap-14 lg:grid-cols-2 lg:items-center">
+      {/* FEATURED PROJECT */}
+      <section id="projects" className="border-t border-border">
+        <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
           <Reveal>
-            <img
-              src={img.indoreAerial}
-              alt="Aerial view of Indore at dusk"
-              width={1600}
-              height={1200}
-              loading="lazy"
-              decoding="async"
-              className="aspect-[4/3] w-full rounded-[2rem] object-cover"
-            />
+            <p className="eyebrow">Featured project / 01</p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">
-              Location & Connectivity
-            </p>
-            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
-              Indore — Central India's growth hub
-            </h2>
-            <p className="mt-6 hidden text-[0.98rem] leading-relaxed text-muted-foreground md:block">
-              Infrastructure here arrived ahead of demand. The Super Corridor, the western ring road
-              and the metro alignment were built on projections rather than pressure, which is why
-              commutes have held while the city has grown.
-            </p>
-            <RevealGroup className="mt-10 flex flex-col gap-6" stagger={0.1}>
-              {locationTags.map((tag) => (
-                <RevealItem
-                  key={tag.title}
-                  className="flex items-start gap-4 border-t border-border pt-5"
-                >
-                  <tag.icon className="mt-0.5 h-5 w-5 shrink-0 text-gold" strokeWidth={1.4} />
+          <div className="mt-10 grid items-end gap-10 md:grid-cols-12">
+            <div className="md:col-span-4">
+              <Reveal delay={80}>
+                <h2 className="display text-[clamp(2.2rem,5vw,4.2rem)]">
+                  A PLACE
+                  <br />
+                  DESIGNED
+                  <br />
+                  AROUND LIGHT.
+                </h2>
+                <dl className="mt-10 space-y-4 border-t border-border pt-6 text-sm">
                   <div>
-                    <p className="text-sm tracking-[0.06em]">{tag.title}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{tag.caption}</p>
+                    <dt className="eyebrow">Scope</dt>
+                    <dd className="mt-1">Residential Architecture</dd>
+                    <dd className="text-muted-foreground">Interior + Exterior + Construction</dd>
                   </div>
-                </RevealItem>
-              ))}
-            </RevealGroup>
+                  <div>
+                    <dt className="eyebrow">Location</dt>
+                    <dd className="mt-1">Los Angeles, California</dd>
+                  </div>
+                </dl>
+                <a
+                  href="#contact"
+                  className="group mt-8 inline-flex items-center gap-2 rounded-[10px] border border-border px-6 py-3 text-sm font-medium transition-colors duration-300 hover:bg-secondary"
+                >
+                  View Project
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+              </Reveal>
+            </div>
+            <div className="md:col-span-7 md:col-start-6">
+              <Reveal delay={140}>
+                <div className="overflow-hidden rounded-[20px] border border-border">
+                  <img
+                    src={featuredProject}
+                    alt="White modern residence with a long horizontal roof under a clear blue sky"
+                    loading="lazy"
+                    width={1920}
+                    height={1200}
+                    className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
+                  />
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SELECTED SPACES */}
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
+          <Reveal>
+            <div className="flex items-end justify-between gap-6">
+              <h2 className="display text-[clamp(2rem,4.5vw,3.4rem)]">SELECTED SPACES</h2>
+              <p className="hidden max-w-xs text-sm text-muted-foreground md:block">
+                A short selection of residences currently represented by the studio.
+              </p>
+            </div>
           </Reveal>
-        </div>
-      </section>
 
-      {/* Featured residences carousel */}
-      <section className="py-24 md:py-32">
-        <div className="container-luxe">
-          <SectionHeading
-            eyebrow="Find Your Dream Home"
-            title="Featured residences"
-            action={
-              <Button asChild variant="luxeOutline" size="luxeSm">
-                <Link to="/projects">All residences</Link>
-              </Button>
-            }
-            className="mb-14"
-          />
-        </div>
-        <div className="container-luxe">
-        <div className="grid gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
-          {projectList.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
-        </div>
-      </section>
-
-      {/* Feature block + collage */}
-      <section className="container-luxe pb-24 md:pb-32">
-        <SectionHeading
-          eyebrow="The Unitya Living Standard"
-          title={"A home built the way\nyou always imagined"}
-          className="mb-14"
-        />
-        <div className="grid gap-14 lg:grid-cols-12">
-          <RevealGroup className="flex flex-col gap-10 lg:col-span-6" stagger={0.12}>
-            {features.map((f) => (
-              <RevealItem key={f.title} className="border-t border-border pt-6">
-                <h3 className="font-display text-2xl">{f.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-              </RevealItem>
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {properties.map((p, i) => (
+              <Reveal key={p.name} delay={i * 110}>
+                <a href="#contact" className="group block">
+                  <div className="overflow-hidden rounded-[18px] border border-border">
+                    <img
+                      src={p.img}
+                      alt={`${p.name} in ${p.place}`}
+                      loading="lazy"
+                      width={1024}
+                      height={1280}
+                      className="aspect-4/5 w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                    />
+                  </div>
+                  <div className="mt-5 flex items-baseline justify-between">
+                    <div>
+                      <h3 className="text-sm font-medium tracking-[0.12em] uppercase">{p.name}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{p.place}</p>
+                    </div>
+                    <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </div>
+                </a>
+              </Reveal>
             ))}
-          </RevealGroup>
-          <RevealGroup className="grid grid-cols-2 gap-4 lg:col-span-6" stagger={0.1}>
-            {[img.interior1, img.interior2, img.interior3, img.interior4].map((src, i) => (
-              <RevealItem key={src} className={i % 3 === 0 ? "mt-8" : ""}>
-                <img
-                  src={src}
-                  alt="Interior finish sample"
-                  width={1200}
-                  height={900}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[4/5] w-full rounded-2xl object-cover"
-                />
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="bg-secondary/60 py-24 md:py-32">
-        <div className="container-luxe">
-          <SectionHeading
-            eyebrow="In Their Words"
-            title="Residents on living with us"
-            className="mb-14"
-          />
-          <TestimonialsCarousel items={testimonialList} />
-        </div>
-      </section>
-
-      {/* Insights */}
-      <section className="container-luxe py-24 md:py-32">
-        <SectionHeading
-          eyebrow="Insights & Updates"
-          title="Notes from the studio"
-          action={
-            <Button asChild variant="luxeOutline" size="luxeSm">
-              <Link to="/media">All articles</Link>
-            </Button>
-          }
-          className="mb-14"
-        />
-        <RevealGroup className="grid gap-x-4 gap-y-10 md:grid-cols-3" stagger={0.12}>
-          {blogPostList.slice(0, 3).map((post) => (
-            <RevealItem key={post.slug}>
-              <BlogCard post={post} />
-            </RevealItem>
-          ))}
-        </RevealGroup>
-      </section>
-
-      {/* Lead capture */}
-      <section id="enquire" className="bg-secondary/60 py-24 md:py-32">
-        <div className="container-luxe grid gap-14 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-5">
-            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-brand">Get in Touch</p>
-            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
-              Ready to find your perfect home?
-            </h2>
-            <p className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
-              Leave your details and a member of our team will call you back within one working day.
-            </p>
-          </div>
-          <div className="rounded-3xl border border-border bg-white p-8 shadow-[var(--shadow-soft)] lg:col-span-7 lg:p-10">
-            <EnquiryForm source="home" />
           </div>
         </div>
       </section>
-    </>
+
+      {/* NUMBERS */}
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {stats.map((s, i) => (
+              <Reveal
+                key={s.label}
+                delay={i * 90}
+                className={`px-4 py-8 md:px-10 ${i > 0 ? "md:border-l md:border-border" : ""}`}
+              >
+                <p className="display text-[clamp(2.6rem,6vw,4.6rem)]">
+                  <CountUp to={s.value} />
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">{s.label}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section id="contact" className="px-4 pb-24 md:px-10">
+        <Reveal>
+          <div className="relative mx-auto max-w-[1400px] overflow-hidden rounded-[20px] border border-border">
+            <img
+              src={ctaBuilding}
+              alt="Bright white modern building with glass under a clear blue sky"
+              loading="lazy"
+              width={1920}
+              height={1088}
+              className="h-[70vh] min-h-[460px] w-full object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-black/60 via-black/25 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-6 md:p-12">
+              <h2 className="display max-w-3xl text-[clamp(2.4rem,6.5vw,5rem)] text-white">
+                LET'S BUILD
+                <br />
+                SOMETHING
+                <br />
+                EXCEPTIONAL.
+              </h2>
+              <p className="mt-6 max-w-md text-sm leading-relaxed text-white/80">
+                Have a property, project or vision in mind? Let's create it together.
+              </p>
+              <a
+                href="mailto:studio@ateliernorth.com"
+                className="group mt-8 inline-flex items-center gap-2 rounded-[10px] bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-300 hover:bg-secondary"
+              >
+                Start a Conversation
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+    </div>
   );
 }

@@ -1,0 +1,5 @@
+# Kept locally but intentionally not pushed (superseded frontend).
+ex_Frontend/
+
+# macOS
+.DS_Store
