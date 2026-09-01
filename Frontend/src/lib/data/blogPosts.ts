@@ -15,6 +15,12 @@ export type BlogPost = {
   coverImage: string;
   coverAlt: string;
   author: string;
+  /** Closing line shown at the end of the article. */
+  ending: string;
+  /** When true, the post is shown big/featured on the media page. */
+  imp: boolean;
+  /** When true, the post is shown on the homepage. */
+  showOnHomePage: boolean;
   body: { type: "paragraph" | "heading" | "quote"; text: string }[];
 };
 
@@ -22,6 +28,9 @@ export const blogPostList: BlogPost[] = [
   {
     slug: "indore-central-india-real-estate-hotspot",
     title: "5 Reasons Indore Is Emerging as Central India's Real Estate Hotspot",
+    ending: "",
+    imp: true,
+    showOnHomePage: true,
     excerpt:
       "Infrastructure that arrived ahead of demand, a services economy that keeps hiring, and land still priced below comparable Tier-2 cities.",
     category: "Market",
@@ -69,6 +78,9 @@ export const blogPostList: BlogPost[] = [
   {
     slug: "rent-vs-buy-indore-2026",
     title: "Rent vs Buy in Indore: What Actually Makes Sense in 2026",
+    ending: "",
+    imp: false,
+    showOnHomePage: true,
     excerpt:
       "Rental yields, the real cost of ownership and the break-even horizon — run through honest numbers rather than a sales pitch.",
     category: "Guides",
@@ -101,6 +113,9 @@ export const blogPostList: BlogPost[] = [
   {
     slug: "materials-that-age-well",
     title: "Materials That Age Well: A Specification Note",
+    ending: "",
+    imp: false,
+    showOnHomePage: true,
     excerpt:
       "Why we specify honed limestone over polished vitrified, engineered oak over laminate, and matte ironmongery over chrome.",
     category: "Design",
@@ -133,6 +148,9 @@ export const blogPostList: BlogPost[] = [
   {
     slug: "reading-a-rera-registration",
     title: "How to Read a RERA Registration Before You Book",
+    ending: "",
+    imp: false,
+    showOnHomePage: true,
     excerpt:
       "The four fields on a RERA listing that tell you more about a project's delivery risk than any brochure will.",
     category: "Guides",
@@ -161,6 +179,9 @@ export const blogPostList: BlogPost[] = [
   {
     slug: "courtyard-planning-central-india",
     title: "Why We Keep Building Courtyards in Central India",
+    ending: "",
+    imp: false,
+    showOnHomePage: true,
     excerpt:
       "A shaded courtyard is not nostalgia — it is a climate strategy that lowers surface temperatures and gives a community a centre.",
     category: "Design",
@@ -189,6 +210,9 @@ export const blogPostList: BlogPost[] = [
   {
     slug: "weekend-homes-madhya-pradesh",
     title: "The Case for a Weekend Home Within Three Hours of Indore",
+    ending: "",
+    imp: false,
+    showOnHomePage: true,
     excerpt:
       "Second homes only get used when they are close. A look at the Narmada belt, Pachmarhi and the farmland corridor.",
     category: "Upcoming",

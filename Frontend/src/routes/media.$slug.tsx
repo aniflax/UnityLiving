@@ -1,13 +1,14 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/reveal";
 import { BlogCard, formatDate } from "@/components/site/blog-card";
-import { getBlogPost, getRelatedPosts } from "@/lib/data/blogPosts";
+import { getBlogPost, getRelatedPosts } from "@/lib/blog";
 
 export const Route = createFileRoute("/media/$slug")({
-  loader: ({ params }) => {
-    const post = getBlogPost(params.slug);
+  loader: async ({ params }) => {
+    const post = await getBlogPost(params.slug);
     if (!post) throw notFound();
-    return { post, related: getRelatedPosts(params.slug, 3) };
+    const related = await getRelatedPosts(params.slug, 3);
+    return { post, related };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {

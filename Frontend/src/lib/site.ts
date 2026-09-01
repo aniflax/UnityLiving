@@ -98,7 +98,7 @@ export function normalizeSite(info: PersonalInformation | null | undefined): Sit
  * Strapi v5 shape (`{ url }`) and the older wrapped shape (`{ data.attributes.url }`).
  * Relative upload paths are prefixed with the backend URL so they work in dev too.
  */
-function resolveMediaUrl(media: StrapiMedia | undefined): string {
+export function resolveMediaUrl(media: StrapiMedia | undefined): string {
   const url = media?.url ?? media?.data?.attributes?.url;
   if (!url) return "";
   if (/^https?:\/\//i.test(url)) return url;
@@ -156,7 +156,7 @@ function resolveStrapiUrl(): string {
   return candidate && /^https:\/\//.test(candidate) ? candidate : fallback;
 }
 
-const STRAPI_URL = resolveStrapiUrl();
+export const STRAPI_URL = resolveStrapiUrl();
 
 let cachedSite: Site | null = null;
 let cachedAt = 0;
