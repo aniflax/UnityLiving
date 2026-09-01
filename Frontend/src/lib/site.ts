@@ -45,16 +45,18 @@ export type PersonalInformation = {
   facebook?: string | null;
   youtube?: string | null;
   linkedin?: string | null;
+  twitter?: string | null;
   directorImage?: StrapiMedia;
 };
 
 const socialIcons: {
-  key: "instagram" | "facebook" | "youtube" | "linkedin";
+  key: "instagram" | "facebook" | "youtube" | "linkedin" | "twitter";
   label: string;
   icon: string;
 }[] = [
   { key: "instagram", label: "Instagram", icon: "Instagram" },
   { key: "facebook", label: "Facebook", icon: "Facebook" },
+  { key: "twitter", label: "Twitter", icon: "Twitter" },
   { key: "linkedin", label: "LinkedIn", icon: "Linkedin" },
   { key: "youtube", label: "YouTube", icon: "Youtube" },
 ];

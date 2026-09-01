@@ -28,11 +28,11 @@ const twitterPath =
 const linkedinPath =
   "M6.5 8.5H3V21h3.5V8.5zM4.8 3C3.7 3 3 3.8 3 4.8s.7 1.8 1.8 1.8 1.8-.8 1.8-1.8S5.9 3 4.8 3zM21 13.8c0-3.8-2-5.6-4.8-5.6-2.2 0-3.2 1.2-3.8 2v-1.7H9V21h3.5v-6.2c0-1.6.3-3.2 2.3-3.2 2 0 2 1.9 2 3.3V21H21v-7.2z";
 
-const heroSocials = [
-  { label: "Facebook", path: facebookPath },
-  { label: "Twitter", path: twitterPath },
-  { label: "LinkedIn", path: linkedinPath },
-];
+const heroIconPaths: Record<string, string> = {
+  Facebook: facebookPath,
+  Twitter: twitterPath,
+  Linkedin: linkedinPath,
+};
 
 function Chevron() {
   return (
@@ -222,20 +222,22 @@ export function Hero() {
                 transition: "opacity 1s ease 600ms",
               }}
             >
-              {heroSocials.map((s) => (
-                <a
-                  key={s.label}
-                  href="#"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center text-white transition-all duration-200 hover:-translate-y-px hover:opacity-55"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="block h-8 w-8">
-                    <path d={s.path} />
-                  </svg>
-                </a>
-              ))}
+              {site.socials
+                .filter((s) => heroIconPaths[s.icon])
+                .map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={s.label}
+                    className="flex h-10 w-10 items-center justify-center text-white transition-all duration-200 hover:-translate-y-px hover:opacity-55"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="block h-8 w-8">
+                      <path d={heroIconPaths[s.icon]} />
+                    </svg>
+                  </a>
+                ))}
             </div>
           </div>
 

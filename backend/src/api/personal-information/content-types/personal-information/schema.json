@@ -32,6 +32,9 @@
     "linkedin": {
       "type": "string"
     },
+    "twitter": {
+      "type": "string"
+    },
     "directorImage": {
       "type": "media",
       "multiple": false,
