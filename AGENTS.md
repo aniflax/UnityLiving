@@ -2,6 +2,12 @@
 
 Luxury real-estate marketing site ("Unityaliving", Indore, India). Headless CMS front-end built with React/TanStack Start (SSR) deployed on Cloudflare Workers, backed by a Strapi headless CMS running on Render.
 
+## Workflow
+
+- **Push directly to `main`** for every change — do not create feature branches or pull requests.
+- **No co-author trailer** on commit messages (do not append `Co-authored-by: ...`).
+- Pushing to `main` auto-deploys both the frontend (Cloudflare) and backend (Render).
+
 ## Topology
 
 ```

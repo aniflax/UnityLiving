@@ -61,12 +61,12 @@ export function Hero() {
   return (
     <section id="top" className="relative w-full overflow-hidden bg-black">
       {/* Full-bleed background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-top bg-no-repeat"
-        style={{
-          backgroundImage: `url(${HERO_BG})`,
-          backgroundAttachment: "fixed",
-        }}
+      <img
+        src={HERO_BG}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover object-top"
+        loading="eager"
       />
 
       <div className="relative flex min-h-screen items-end p-3 md:p-6">
@@ -93,8 +93,7 @@ export function Hero() {
                 <span className="display text-xl tracking-[0.14em] text-white uppercase">
                   Unitya
                 </span>
-                <span className="hidden h-4 w-px bg-white/40 sm:inline-block" />
-                <span className="hidden text-[10px] tracking-[0.3em] text-white/75 uppercase sm:inline">
+                <span className="text-[10px] tracking-[0.3em] text-white/75 uppercase">
                   Living
                 </span>
               </span>

@@ -43,7 +43,7 @@ export function SiteNav() {
           </button>
           <Link to="/" className="flex items-baseline gap-2">
             <span className="display text-xl tracking-[0.14em] uppercase md:text-2xl">Unitya</span>
-            <span className="hidden text-[10px] tracking-[0.3em] text-muted-foreground uppercase sm:inline">
+            <span className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
               Living
             </span>
           </Link>
@@ -73,12 +73,9 @@ export function SiteNav() {
 
         <a
           href="/#contact"
-          className="group inline-flex items-center gap-1.5 rounded-[10px] border border-border px-4 py-2 text-sm transition-colors duration-300 hover:bg-secondary"
+          className="group inline-flex items-center rounded-[10px] border border-border px-4 py-2 text-sm transition-colors duration-300 hover:bg-secondary"
         >
           Contact
-          <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-            ↗
-          </span>
         </a>
       </nav>
 
