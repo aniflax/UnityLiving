@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { ChevronDown } from "lucide-react";
 import { useSite } from "@/lib/site-context";
 
 const HERO_BG =
@@ -7,17 +9,15 @@ const LIFESTYLE_IMG =
   "https://res.cloudinary.com/ezxnx53v/image/upload/v1788027631/ChatGPT_Image_Aug_29_2026_at_11_49_09_PM.png";
 
 const navLinks = [
-  { label: "Home", href: "#top", active: true },
-  { label: "Properties", href: "#projects" },
-  { label: "About", href: "#about" },
-  { label: "Blog", href: "/media" },
-  { label: "Contact", href: "#contact" },
+  { label: "Properties", to: "/properties" },
+  { label: "Services", to: "/services" },
+  { label: "Media", to: "/media" },
 ];
 
 const fields = [
-  { label: "Location", value: "Dubai" },
-  { label: "Property", value: "House" },
-  { label: "Price Range", value: "$240k-260k" },
+  { label: "Location", value: "Indore" },
+  { label: "Property", value: "Residence" },
+  { label: "Price Range", value: "On Request" },
 ];
 
 const facebookPath = "M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1z";
@@ -51,7 +51,11 @@ function Chevron() {
 export function Hero() {
   const site = useSite();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [ready, setReady] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  const aboutActive = pathname === "/about" || pathname === "/our-story";
 
   useEffect(() => {
     const t = window.setTimeout(() => setReady(true), 80);
@@ -93,24 +97,71 @@ export function Hero() {
                 <span className="display text-xl tracking-[0.14em] text-white uppercase">
                   Unitya
                 </span>
-                <span className="text-[10px] tracking-[0.3em] text-white/75 uppercase">
-                  Living
-                </span>
+                <span className="text-[10px] tracking-[0.3em] text-white/75 uppercase">Living</span>
               </span>
             </div>
 
             {/* Nav pill (desktop) */}
             <div className="hidden items-center gap-1 rounded-full border border-white/15 bg-white/10 p-1.5 backdrop-blur-xl lg:flex">
+              {/* About — hover dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setAboutOpen(true)}
+                onMouseLeave={() => setAboutOpen(false)}
+              >
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={aboutOpen}
+                  onClick={() => setAboutOpen((o) => !o)}
+                  className={`flex items-center gap-1 rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap transition-colors duration-200 ${
+                    aboutActive ? "bg-white/15 text-white" : "text-white/85 hover:text-white"
+                  }`}
+                >
+                  About
+                  <ChevronDown
+                    size={14}
+                    className={`transition-transform duration-200 ${aboutOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                <div
+                  className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
+                    aboutOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible -translate-y-1 opacity-0"
+                  }`}
+                >
+                  <div className="min-w-[11rem] overflow-hidden rounded-xl border border-white/20 bg-black/70 p-2 shadow-lg backdrop-blur-xl">
+                    <Link
+                      to="/our-story"
+                      onClick={() => setAboutOpen(false)}
+                      className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                    >
+                      Our Story
+                    </Link>
+                    <Link
+                      to="/about"
+                      onClick={() => setAboutOpen(false)}
+                      className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                    >
+                      Founder
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
               {navLinks.map((l) => (
-                <a
+                <Link
                   key={l.label}
-                  href={l.href}
+                  to={l.to as never}
                   className={`rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap transition-colors duration-200 ${
-                    l.active ? "bg-white/15 text-white" : "text-white/85 hover:text-white"
+                    pathname.startsWith(l.to)
+                      ? "bg-white/15 text-white"
+                      : "text-white/85 hover:text-white"
                   }`}
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -136,15 +187,32 @@ export function Hero() {
           {menuOpen && (
             <div className="relative z-10 border-t border-white/15 bg-black/40 backdrop-blur-xl">
               <div className="flex flex-col p-4">
+                <div className="border-b border-white/10 py-3 text-base text-white">About</div>
+                <div className="border-b border-white/10 pl-4">
+                  <Link
+                    to="/our-story"
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-2.5 text-sm text-white/75"
+                  >
+                    Our Story
+                  </Link>
+                  <Link
+                    to="/about"
+                    onClick={() => setMenuOpen(false)}
+                    className="block pb-2.5 text-sm text-white/85"
+                  >
+                    Founder
+                  </Link>
+                </div>
                 {navLinks.map((l) => (
-                  <a
+                  <Link
                     key={l.label}
-                    href={l.href}
+                    to={l.to as never}
                     onClick={() => setMenuOpen(false)}
                     className="border-b border-white/10 py-3 text-base text-white"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 ))}
                 <a
                   href="#contact"
@@ -195,22 +263,22 @@ export function Hero() {
               {fields.map((f) => (
                 <div key={f.label} className="flex flex-col gap-2">
                   <span className="text-[13.5px] text-white/75">{f.label}</span>
-                  <button
-                    type="button"
+                  <Link
+                    to="/properties"
                     className="flex min-w-[150px] items-center justify-between gap-4 rounded-full border border-white/35 bg-white/5 px-5 py-3 text-base font-bold text-white"
                   >
                     {f.value}
                     <Chevron />
-                  </button>
+                  </Link>
                 </div>
               ))}
 
-              <button
-                type="button"
-                className="w-full rounded-full bg-white px-8 py-[17px] text-base font-bold text-neutral-900 transition-all duration-200 hover:-translate-y-px hover:opacity-90 md:w-auto"
+              <Link
+                to="/properties"
+                className="w-full rounded-full bg-white px-8 py-[17px] text-center text-base font-bold text-neutral-900 transition-all duration-200 hover:-translate-y-px hover:opacity-90 md:w-auto"
               >
                 Find Now
-              </button>
+              </Link>
             </div>
 
             {/* Socials */}

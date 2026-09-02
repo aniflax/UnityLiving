@@ -109,12 +109,12 @@ function Index() {
                 standard of craftsmanship — so a space still feels considered decades after it is
                 finished.
               </p>
-              <a
-                href="#about"
+              <Link
+                to="/our-story"
                 className="mt-8 inline-flex items-center rounded-[10px] border border-border px-6 py-3 text-sm font-medium transition-colors duration-300 hover:bg-secondary"
               >
                 Our Story
-              </a>
+              </Link>
             </Reveal>
           </div>
         </div>

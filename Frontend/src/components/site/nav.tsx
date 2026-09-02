@@ -83,8 +83,7 @@ export function SiteNav() {
             >
               <div className="min-w-[11rem] overflow-hidden rounded-xl border border-border bg-background p-2 shadow-lg">
                 <Link
-                  to="/"
-                  hash="about"
+                  to="/our-story"
                   onClick={() => setAboutOpen(false)}
                   className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors duration-300 hover:bg-secondary hover:text-foreground"
                 >
@@ -126,8 +125,7 @@ export function SiteNav() {
             <div className="border-b border-border py-4 text-lg text-foreground">About</div>
             <div className="border-b border-border pl-4">
               <Link
-                to="/"
-                hash="about"
+                to="/our-story"
                 onClick={closeMenu}
                 className="block py-3 text-base text-muted-foreground"
               >

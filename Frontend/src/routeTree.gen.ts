@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutIndexRouteImport } from './routes/about.index'
 import { Route as MediaIndexRouteImport } from './routes/media.index'
 import { Route as MediaSlugRouteImport } from './routes/media.$slug'
+import { Route as OurStoryIndexRouteImport } from './routes/our-story.index'
 import { Route as PropertiesIndexRouteImport } from './routes/properties.index'
 import { Route as PropertiesSlugRouteImport } from './routes/properties.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -37,6 +38,11 @@ const MediaSlugRoute = MediaSlugRouteImport.update({
   path: '/media/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OurStoryIndexRoute = OurStoryIndexRouteImport.update({
+  id: '/our-story/',
+  path: '/our-story/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PropertiesIndexRoute = PropertiesIndexRouteImport.update({
   id: '/properties/',
   path: '/properties/',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/properties/$slug': typeof PropertiesSlugRoute
   '/about/': typeof AboutIndexRoute
   '/media/': typeof MediaIndexRoute
+  '/our-story/': typeof OurStoryIndexRoute
   '/properties/': typeof PropertiesIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/properties/$slug': typeof PropertiesSlugRoute
   '/about': typeof AboutIndexRoute
   '/media': typeof MediaIndexRoute
+  '/our-story': typeof OurStoryIndexRoute
   '/properties': typeof PropertiesIndexRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/properties/$slug': typeof PropertiesSlugRoute
   '/about/': typeof AboutIndexRoute
   '/media/': typeof MediaIndexRoute
+  '/our-story/': typeof OurStoryIndexRoute
   '/properties/': typeof PropertiesIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/properties/$slug'
     | '/about/'
     | '/media/'
+    | '/our-story/'
     | '/properties/'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/properties/$slug'
     | '/about'
     | '/media'
+    | '/our-story'
     | '/properties'
     | '/services'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/properties/$slug'
     | '/about/'
     | '/media/'
+    | '/our-story/'
     | '/properties/'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   PropertiesSlugRoute: typeof PropertiesSlugRoute
   AboutIndexRoute: typeof AboutIndexRoute
   MediaIndexRoute: typeof MediaIndexRoute
+  OurStoryIndexRoute: typeof OurStoryIndexRoute
   PropertiesIndexRoute: typeof PropertiesIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MediaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/our-story/': {
+      id: '/our-story/'
+      path: '/our-story'
+      fullPath: '/our-story/'
+      preLoaderRoute: typeof OurStoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/properties/': {
       id: '/properties/'
       path: '/properties'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   PropertiesSlugRoute: PropertiesSlugRoute,
   AboutIndexRoute: AboutIndexRoute,
   MediaIndexRoute: MediaIndexRoute,
+  OurStoryIndexRoute: OurStoryIndexRoute,
   PropertiesIndexRoute: PropertiesIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
