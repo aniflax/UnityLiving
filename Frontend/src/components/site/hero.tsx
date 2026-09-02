@@ -7,14 +7,6 @@ const HERO_BG =
 const LIFESTYLE_IMG =
   "https://res.cloudinary.com/ezxnx53v/image/upload/v1788027631/ChatGPT_Image_Aug_29_2026_at_11_49_09_PM.png";
 
-const navLinks = [
-  { label: "Home", href: "#top", active: true },
-  { label: "Properties", href: "#projects" },
-  { label: "About", href: "#about" },
-  { label: "Blog", href: "/media" },
-  { label: "Contact", href: "#contact" },
-];
-
 const fields = [
   { label: "Location", value: "Indore" },
   { label: "Property", value: "Residence" },
@@ -52,6 +44,7 @@ function Chevron() {
 export function Hero() {
   const site = useSite();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -100,17 +93,74 @@ export function Hero() {
 
             {/* Nav pill (desktop) */}
             <div className="hidden items-center gap-1 rounded-full border border-white/15 bg-white/10 p-1.5 backdrop-blur-xl lg:flex">
-              {navLinks.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className={`rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap transition-colors duration-200 ${
-                    l.active ? "bg-white/15 text-white" : "text-white/85 hover:text-white"
+              {/* Home */}
+              <a
+                href="#top"
+                className="rounded-full bg-white/15 px-4 py-2 text-[14.5px] font-medium whitespace-nowrap text-white transition-colors duration-200"
+              >
+                Home
+              </a>
+              {/* Properties */}
+              <Link
+                to="/properties"
+                className="rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap text-white/85 transition-colors duration-200 hover:text-white"
+              >
+                Properties
+              </Link>
+              {/* About — hover dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setAboutOpen(true)}
+                onMouseLeave={() => setAboutOpen(false)}
+              >
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={aboutOpen}
+                  onClick={() => setAboutOpen((o) => !o)}
+                  className="rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap text-white/85 transition-colors duration-200 hover:text-white"
+                >
+                  About
+                </button>
+                <div
+                  className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
+                    aboutOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible -translate-y-1 opacity-0"
                   }`}
                 >
-                  {l.label}
-                </a>
-              ))}
+                  <div className="min-w-[11rem] overflow-hidden rounded-xl border border-white/15 bg-white/10 p-1.5 shadow-lg backdrop-blur-xl">
+                    <Link
+                      to="/our-story"
+                      onClick={() => setAboutOpen(false)}
+                      className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors duration-200 hover:bg-white/15 hover:text-white"
+                    >
+                      Our Story
+                    </Link>
+                    <Link
+                      to="/about"
+                      onClick={() => setAboutOpen(false)}
+                      className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors duration-200 hover:bg-white/15 hover:text-white"
+                    >
+                      Founder
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              {/* Blog */}
+              <Link
+                to="/media"
+                className="rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap text-white/85 transition-colors duration-200 hover:text-white"
+              >
+                Blog
+              </Link>
+              {/* Contact */}
+              <a
+                href="/#contact"
+                className="rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap text-white/85 transition-colors duration-200 hover:text-white"
+              >
+                Contact
+              </a>
             </div>
 
             <div className="hidden items-center gap-5 md:flex">
@@ -135,18 +185,46 @@ export function Hero() {
           {menuOpen && (
             <div className="relative z-10 border-t border-white/15 bg-black/40 backdrop-blur-xl">
               <div className="flex flex-col p-4">
-                {navLinks.map((l) => (
-                  <a
-                    key={l.label}
-                    href={l.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="border-b border-white/10 py-3 text-base text-white"
-                  >
-                    {l.label}
-                  </a>
-                ))}
                 <a
-                  href="#contact"
+                  href="#top"
+                  onClick={() => setMenuOpen(false)}
+                  className="border-b border-white/10 py-3 text-base text-white"
+                >
+                  Home
+                </a>
+                <Link
+                  to="/properties"
+                  onClick={() => setMenuOpen(false)}
+                  className="border-b border-white/10 py-3 text-base text-white"
+                >
+                  Properties
+                </Link>
+                <div className="border-b border-white/10 py-3 text-base text-white">About</div>
+                <div className="border-b border-white/10 pl-4">
+                  <Link
+                    to="/our-story"
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-2.5 text-sm text-white/75"
+                  >
+                    Our Story
+                  </Link>
+                  <Link
+                    to="/about"
+                    onClick={() => setMenuOpen(false)}
+                    className="block pb-2.5 text-sm text-white/85"
+                  >
+                    Founder
+                  </Link>
+                </div>
+                <Link
+                  to="/media"
+                  onClick={() => setMenuOpen(false)}
+                  className="border-b border-white/10 py-3 text-base text-white"
+                >
+                  Blog
+                </Link>
+                <a
+                  href="/#contact"
                   onClick={() => setMenuOpen(false)}
                   className="py-3 text-base text-white"
                 >
