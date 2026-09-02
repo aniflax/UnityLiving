@@ -1,14 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProject from "@/assets/featured-project.jpg";
-import propLa from "@/assets/prop-la.jpg";
-import propMiami from "@/assets/prop-miami.jpg";
-import propNy from "@/assets/prop-ny.jpg";
 import philosophy from "@/assets/philosophy.jpg";
 import ctaBuilding from "@/assets/cta-building.jpg";
 import interiorWebSection from "@/assets/Interior Sectionn.png";
+import { propertyList } from "@/lib/data/properties";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,12 +30,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const properties = [
-  { name: "Modern Residence", place: "Los Angeles, CA", img: propLa },
-  { name: "Private Villa", place: "Miami, FL", img: propMiami },
-  { name: "Urban Residence", place: "New York, NY", img: propNy },
-];
 
 const stats = [
   { value: 15, label: "Years of Experience" },
@@ -211,13 +203,13 @@ function Index() {
           </Reveal>
 
           <div className="mt-14 grid gap-8 md:grid-cols-3">
-            {properties.map((p, i) => (
-              <Reveal key={p.name} delay={i * 110}>
-                <a href="#contact" className="group block">
+            {propertyList.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 110}>
+                <Link to="/properties/$slug" params={{ slug: p.slug }} className="group block">
                   <div className="overflow-hidden rounded-[18px] border border-border">
                     <img
-                      src={p.img}
-                      alt={`${p.name} in ${p.place}`}
+                      src={p.image}
+                      alt={p.imageAlt}
                       loading="lazy"
                       width={1024}
                       height={1280}
@@ -233,7 +225,7 @@ function Index() {
                       →
                     </span>
                   </div>
-                </a>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -289,7 +281,7 @@ function Index() {
                 className="group mt-8 inline-flex items-center gap-2 rounded-[10px] bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-300 hover:bg-secondary"
               >
                 Start a Conversation
-                </a>
+              </a>
             </div>
           </div>
         </Reveal>

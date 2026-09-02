@@ -3,7 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Projects", href: "/#projects" },
+  { label: "Properties", href: "/properties", internal: true },
   { label: "Services", href: "/#services" },
   { label: "About", href: "/#about" },
   { label: "Media", href: "/media", internal: true },
@@ -54,7 +54,7 @@ export function SiteNav() {
             l.internal ? (
               <Link
                 key={l.label}
-                to="/media"
+                to={l.href as never}
                 className="text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
               >
                 {l.label}
@@ -82,16 +82,27 @@ export function SiteNav() {
       {open && (
         <div className="md:hidden">
           <div className="mx-auto max-w-[1400px] px-6 py-2 md:px-10">
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="block border-b border-border py-4 text-lg"
-              >
-                {l.label}
-              </a>
-            ))}
+            {links.map((l) =>
+              l.internal ? (
+                <Link
+                  key={l.label}
+                  to={l.href as never}
+                  onClick={() => setOpen(false)}
+                  className="block border-b border-border py-4 text-lg"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block border-b border-border py-4 text-lg"
+                >
+                  {l.label}
+                </a>
+              ),
+            )}
             <a href="/#contact" onClick={() => setOpen(false)} className="block py-4 text-lg">
               Contact
             </a>
