@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { useSite } from "@/lib/site-context";
 
 const HERO_BG =
