@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
+import { TestimonialsSection } from "@/components/site/testimonials";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProject from "@/assets/featured-project.jpg";
 import philosophy from "@/assets/philosophy.jpg";
@@ -251,6 +252,9 @@ function Index() {
           </div>
         </div>
       </section>
+
+      {/* WHAT CLIENTS SAY */}
+      <TestimonialsSection />
 
       {/* FINAL CTA */}
       <section id="contact" className="px-4 pb-24 md:px-10">

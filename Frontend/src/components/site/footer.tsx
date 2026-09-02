@@ -9,7 +9,7 @@ const whatsappPath =
 
 const exploreLinks = [
   { label: "Properties", to: "/properties" },
-  { label: "Services", to: "/" },
+  { label: "Services", to: "/services" },
   { label: "Media", to: "/media" },
   { label: "Contact", to: "/" },
 ];

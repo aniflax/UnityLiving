@@ -14,6 +14,7 @@ import { Route as MediaIndexRouteImport } from './routes/media.index'
 import { Route as MediaSlugRouteImport } from './routes/media.$slug'
 import { Route as PropertiesIndexRouteImport } from './routes/properties.index'
 import { Route as PropertiesSlugRouteImport } from './routes/properties.$slug'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const PropertiesSlugRoute = PropertiesSlugRouteImport.update({
   path: '/properties/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/properties/$slug': typeof PropertiesSlugRoute
   '/media/': typeof MediaIndexRoute
   '/properties/': typeof PropertiesIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/properties/$slug': typeof PropertiesSlugRoute
   '/media': typeof MediaIndexRoute
   '/properties': typeof PropertiesIndexRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,25 @@ export interface FileRoutesById {
   '/properties/$slug': typeof PropertiesSlugRoute
   '/media/': typeof MediaIndexRoute
   '/properties/': typeof PropertiesIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/media/$slug' | '/properties/$slug' | '/media/' | '/properties/'
+    | '/'
+    | '/media/$slug'
+    | '/properties/$slug'
+    | '/media/'
+    | '/properties/'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/media/$slug' | '/properties/$slug' | '/media' | '/properties'
+  to:
+    | '/'
+    | '/media/$slug'
+    | '/properties/$slug'
+    | '/media'
+    | '/properties'
+    | '/services'
   id:
     | '__root__'
     | '/'
@@ -76,6 +96,7 @@ export interface FileRouteTypes {
     | '/properties/$slug'
     | '/media/'
     | '/properties/'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -84,6 +105,7 @@ export interface RootRouteChildren {
   PropertiesSlugRoute: typeof PropertiesSlugRoute
   MediaIndexRoute: typeof MediaIndexRoute
   PropertiesIndexRoute: typeof PropertiesIndexRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -123,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PropertiesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -132,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   PropertiesSlugRoute: PropertiesSlugRoute,
   MediaIndexRoute: MediaIndexRoute,
   PropertiesIndexRoute: PropertiesIndexRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
