@@ -5,6 +5,7 @@ Luxury real-estate marketing site ("Unityaliving", Indore, India). Headless CMS 
 ## Workflow
 
 - **Push directly to `main`** for every change — do not create feature branches or pull requests.
+- **Never ask before pushing** — commit and push to `main` automatically at the end of every task.
 - **No co-author trailer** on commit messages (do not append `Co-authored-by: ...`).
 - Pushing to `main` auto-deploys both the frontend (Cloudflare) and backend (Render).
 
@@ -78,6 +79,7 @@ Frontend (set in **Cloudflare Worker**):
 
 Changes pushed to `main` (auto-deployed) — add new entries on top as they ship.
 
+- **Restore hero nav to original design**: the hero's first header (the internal nav pill) was reverted to exactly its original design-UI state — links (Home, Properties, About, Blog, Contact), pill styling, plain-link treatment and mobile menu — while keeping the earlier search-button fixes (Indore context values linking to `/properties`). The About dropdown for Our Story/Founder remains in the main site header only.
 - **Our Story page imagery + hero nav style**: the `/our-story` page now uses photography throughout (architecture image in The Foundation, a residential build in Our Mission, a Unityaliving residence in Our Vision, and the founder's photo — Strapi `directorImage` — in the Leadership card, replacing the initials avatar). The hero's internal nav pill was returned to the design-UI style: the About trigger is a plain pill link (chevron removed) and its dropdown panel now uses the same glass treatment (`bg-white/10`, `border-white/15`, `backdrop-blur`) as the pill.
 - **Our Story page + hero nav/search fixes**: new `/our-story` page (`Frontend/src/routes/our-story.index.tsx`) with the full brand narrative — hero, The Foundation (4 principles), Our Mission, Our Vision, founder quote, and a Leadership section linking to the founder page. The nav "Our Story" item (desktop dropdown + mobile) now points to `/our-story` instead of the homepage anchor, as does the homepage "Our Story" button. The hero's internal nav pill was rebuilt to match the real site nav (About dropdown → Our Story/Founder, Properties, Services, Media) and the three search buttons now show Indore context values and link to `/properties`.
 - **Founder page + About nav dropdown + homepage CTA gap**: new `/about` founder page (`Frontend/src/routes/about.index.tsx`) with the founder letter, name (Rohit Astololiya) and the director image from the Strapi `Personal Informations` single type (`directorImage`); the header **About** link moved before **Properties** and is now a hover dropdown (Founder → `/about`, Our Story → `/#about`) with matching mobile sub-links; the homepage final CTA ("LET'S BUILD SOMETHING EXCEPTIONAL.") got top padding so it no longer touches the testimonials section.
