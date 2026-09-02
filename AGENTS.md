@@ -74,6 +74,13 @@ Frontend (set in **Cloudflare Worker**):
 - Backend: pushed to git → Render auto-builds (`NODE_ENV=production strapi build`) and deploys.
 - Frontend: `cd Frontend && npm run build` (generates `.output`, Cloudflare preset) then `wrangler deploy`. New env vars/secrets require a redeploy to take effect.
 
+## Recent changes
+
+Changes pushed to `main` (auto-deployed) — add new entries on top as they ship.
+
+- **Testimonials section → fixed background + glassmorphism**: "Client stories" on the homepage now uses `Frontend/src/assets/Homepage Background.png` as a fixed (parallax) background with a dark overlay and grain; the quote card is a translucent glass card (`backdrop-blur`). The background stays fixed while scrolling so the next section slides over it.
+- **Testimonials section + Services page**: added "What Clients Say" carousel to the homepage (`Frontend/src/components/site/testimonials.tsx`, data in `Frontend/src/lib/data/testimonials.ts`) and a new `/services` page (`Frontend/src/routes/services.index.tsx`, data in `Frontend/src/lib/data/services.ts`) with "What We Offer / Our Services" (Architecture, Interior Design, Exterior Design, Construction, Real Estate) and "In Detail / Our Process" (Discovery, Design Development, Site & Execution, Styling & Experience). Nav + footer now link to `/services`.
+
 ## Gotchas
 
 - If `STRAPI_URL` is set in Cloudflare it must be exactly `https://admin.unityaliving.com` (no trailing slash, no `/api`, must include `https://`) — a bad value overrides the built-in fallback and the footer shows empty.
