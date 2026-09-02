@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 const links = [
   { label: "Properties", href: "/properties", internal: true },
   { label: "Services", href: "/services", internal: true },
-  { label: "About", href: "/#about" },
   { label: "Media", href: "/media", internal: true },
 ];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
@@ -21,6 +21,11 @@ export function SiteNav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const closeMenu = () => {
+    setOpen(false);
+    setAboutOpen(false);
+  };
 
   return (
     <header
@@ -50,25 +55,61 @@ export function SiteNav() {
         </div>
 
         <div className="hidden items-center gap-10 md:flex">
-          {links.map((l) =>
-            l.internal ? (
-              <Link
-                key={l.label}
-                to={l.href as never}
-                className="text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
-              >
-                {l.label}
-              </Link>
-            ) : (
-              <a
-                key={l.label}
-                href={l.href}
-                className="text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
-              >
-                {l.label}
-              </a>
-            ),
-          )}
+          {/* About — hover dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setAboutOpen(true)}
+            onMouseLeave={() => setAboutOpen(false)}
+          >
+            <button
+              type="button"
+              aria-haspopup="true"
+              aria-expanded={aboutOpen}
+              onClick={() => setAboutOpen((o) => !o)}
+              className="flex items-center gap-1 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+            >
+              About
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-300 ${aboutOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+            <div
+              className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
+                aboutOpen
+                  ? "visible translate-y-0 opacity-100"
+                  : "invisible -translate-y-1 opacity-0"
+              }`}
+            >
+              <div className="min-w-[11rem] overflow-hidden rounded-xl border border-border bg-background p-2 shadow-lg">
+                <Link
+                  to="/"
+                  hash="about"
+                  onClick={() => setAboutOpen(false)}
+                  className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors duration-300 hover:bg-secondary hover:text-foreground"
+                >
+                  Our Story
+                </Link>
+                <Link
+                  to="/about"
+                  onClick={() => setAboutOpen(false)}
+                  className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors duration-300 hover:bg-secondary hover:text-foreground"
+                >
+                  Founder
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {links.map((l) => (
+            <Link
+              key={l.label}
+              to={l.href as never}
+              className="text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+            >
+              {l.label}
+            </Link>
+          ))}
         </div>
 
         <a
@@ -82,28 +123,35 @@ export function SiteNav() {
       {open && (
         <div className="md:hidden">
           <div className="mx-auto max-w-[1400px] px-6 py-2 md:px-10">
-            {links.map((l) =>
-              l.internal ? (
-                <Link
-                  key={l.label}
-                  to={l.href as never}
-                  onClick={() => setOpen(false)}
-                  className="block border-b border-border py-4 text-lg"
-                >
-                  {l.label}
-                </Link>
-              ) : (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block border-b border-border py-4 text-lg"
-                >
-                  {l.label}
-                </a>
-              ),
-            )}
-            <a href="/#contact" onClick={() => setOpen(false)} className="block py-4 text-lg">
+            <div className="border-b border-border py-4 text-lg text-foreground">About</div>
+            <div className="border-b border-border pl-4">
+              <Link
+                to="/"
+                hash="about"
+                onClick={closeMenu}
+                className="block py-3 text-base text-muted-foreground"
+              >
+                Our Story
+              </Link>
+              <Link
+                to="/about"
+                onClick={closeMenu}
+                className="block pb-3 text-base text-foreground"
+              >
+                Founder
+              </Link>
+            </div>
+            {links.map((l) => (
+              <Link
+                key={l.label}
+                to={l.href as never}
+                onClick={closeMenu}
+                className="block border-b border-border py-4 text-lg"
+              >
+                {l.label}
+              </Link>
+            ))}
+            <a href="/#contact" onClick={closeMenu} className="block py-4 text-lg">
               Contact
             </a>
           </div>

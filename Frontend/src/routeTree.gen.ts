@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutIndexRouteImport } from './routes/about.index'
 import { Route as MediaIndexRouteImport } from './routes/media.index'
 import { Route as MediaSlugRouteImport } from './routes/media.$slug'
 import { Route as PropertiesIndexRouteImport } from './routes/properties.index'
@@ -19,6 +20,11 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MediaIndexRoute = MediaIndexRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/media/$slug': typeof MediaSlugRoute
   '/properties/$slug': typeof PropertiesSlugRoute
+  '/about/': typeof AboutIndexRoute
   '/media/': typeof MediaIndexRoute
   '/properties/': typeof PropertiesIndexRoute
   '/services/': typeof ServicesIndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/media/$slug': typeof MediaSlugRoute
   '/properties/$slug': typeof PropertiesSlugRoute
+  '/about': typeof AboutIndexRoute
   '/media': typeof MediaIndexRoute
   '/properties': typeof PropertiesIndexRoute
   '/services': typeof ServicesIndexRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/media/$slug': typeof MediaSlugRoute
   '/properties/$slug': typeof PropertiesSlugRoute
+  '/about/': typeof AboutIndexRoute
   '/media/': typeof MediaIndexRoute
   '/properties/': typeof PropertiesIndexRoute
   '/services/': typeof ServicesIndexRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/media/$slug'
     | '/properties/$slug'
+    | '/about/'
     | '/media/'
     | '/properties/'
     | '/services/'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/media/$slug'
     | '/properties/$slug'
+    | '/about'
     | '/media'
     | '/properties'
     | '/services'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/media/$slug'
     | '/properties/$slug'
+    | '/about/'
     | '/media/'
     | '/properties/'
     | '/services/'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MediaSlugRoute: typeof MediaSlugRoute
   PropertiesSlugRoute: typeof PropertiesSlugRoute
+  AboutIndexRoute: typeof AboutIndexRoute
   MediaIndexRoute: typeof MediaIndexRoute
   PropertiesIndexRoute: typeof PropertiesIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof AboutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/media/': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MediaSlugRoute: MediaSlugRoute,
   PropertiesSlugRoute: PropertiesSlugRoute,
+  AboutIndexRoute: AboutIndexRoute,
   MediaIndexRoute: MediaIndexRoute,
   PropertiesIndexRoute: PropertiesIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,

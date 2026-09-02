@@ -257,7 +257,7 @@ function Index() {
       <TestimonialsSection />
 
       {/* FINAL CTA */}
-      <section id="contact" className="px-4 pb-24 md:px-10">
+      <section id="contact" className="px-4 pt-24 pb-24 md:px-10 md:pt-32">
         <Reveal>
           <div className="relative mx-auto max-w-[1400px] overflow-hidden rounded-[20px] border border-border">
             <img
