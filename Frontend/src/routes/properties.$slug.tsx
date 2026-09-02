@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/reveal";
 import { PropertyCard } from "@/components/site/property-card";
+import { AmenitiesSection } from "@/components/site/amenities";
 import { getProperty, propertyList } from "@/lib/data/properties";
 
 export const Route = createFileRoute("/properties/$slug")({
@@ -116,6 +117,9 @@ function PropertyPage() {
           </div>
         </div>
       </section>
+
+      {/* AMENITIES */}
+      <AmenitiesSection />
 
       {/* OTHER PROPERTIES */}
       {others.length ? (
