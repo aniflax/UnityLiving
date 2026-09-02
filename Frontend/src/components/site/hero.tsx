@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ChevronDown } from "lucide-react";
 import { useSite } from "@/lib/site-context";
 
 const HERO_BG =
@@ -114,15 +113,11 @@ export function Hero() {
                   aria-haspopup="true"
                   aria-expanded={aboutOpen}
                   onClick={() => setAboutOpen((o) => !o)}
-                  className={`flex items-center gap-1 rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap transition-colors duration-200 ${
+                  className={`rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap transition-colors duration-200 ${
                     aboutActive ? "bg-white/15 text-white" : "text-white/85 hover:text-white"
                   }`}
                 >
                   About
-                  <ChevronDown
-                    size={14}
-                    className={`transition-transform duration-200 ${aboutOpen ? "rotate-180" : ""}`}
-                  />
                 </button>
                 <div
                   className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
@@ -131,18 +126,18 @@ export function Hero() {
                       : "invisible -translate-y-1 opacity-0"
                   }`}
                 >
-                  <div className="min-w-[11rem] overflow-hidden rounded-xl border border-white/20 bg-black/70 p-2 shadow-lg backdrop-blur-xl">
+                  <div className="min-w-[11rem] overflow-hidden rounded-xl border border-white/15 bg-white/10 p-1.5 shadow-lg backdrop-blur-xl">
                     <Link
                       to="/our-story"
                       onClick={() => setAboutOpen(false)}
-                      className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                      className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors duration-200 hover:bg-white/15 hover:text-white"
                     >
                       Our Story
                     </Link>
                     <Link
                       to="/about"
                       onClick={() => setAboutOpen(false)}
-                      className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                      className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors duration-200 hover:bg-white/15 hover:text-white"
                     >
                       Founder
                     </Link>

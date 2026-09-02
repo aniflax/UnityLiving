@@ -1,6 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/reveal";
+import { useSite } from "@/lib/site-context";
 import heroBuilding from "@/assets/new/hero-building.jpg";
+import philosophy from "@/assets/philosophy.jpg";
+import ctaImage from "@/assets/new/cta.jpg";
+import visionImage from "@/assets/new/prop-1.jpg";
 
 export const Route = createFileRoute("/our-story/")({
   head: () => ({
@@ -24,6 +28,9 @@ const principles = [
 ];
 
 function OurStoryPage() {
+  const site = useSite();
+  const founderImage = site.directorImage || philosophy;
+
   return (
     <>
       {/* PAGE HERO */}
@@ -62,6 +69,16 @@ function OurStoryPage() {
                 <br />
                 everything we do
               </h2>
+              <div className="mt-8 overflow-hidden rounded-[20px] border border-border">
+                <img
+                  src={philosophy}
+                  alt="Sculptural white concrete architecture against a blue sky"
+                  loading="lazy"
+                  width={1200}
+                  height={1504}
+                  className="aspect-4/5 w-full object-cover"
+                />
+              </div>
             </Reveal>
           </div>
           <div className="md:col-span-6 md:col-start-7">
@@ -104,6 +121,16 @@ function OurStoryPage() {
                   specification once a project is sold. Every decision after booking is made in the
                   buyer's favour, because the decision was made honestly before it.
                 </p>
+                <div className="mt-10 overflow-hidden rounded-[20px] border border-border">
+                  <img
+                    src={ctaImage}
+                    alt="Modern white residential building against a blue sky"
+                    loading="lazy"
+                    width={1920}
+                    height={1080}
+                    className="aspect-16/9 w-full object-cover"
+                  />
+                </div>
               </Reveal>
             </div>
           </div>
@@ -128,6 +155,16 @@ function OurStoryPage() {
                 come from someone who already lives in a Unityaliving home, which is the only
                 marketing metric we take seriously.
               </p>
+              <div className="mt-10 overflow-hidden rounded-[20px] border border-border">
+                <img
+                  src={visionImage}
+                  alt="A Unityaliving residence in Indore"
+                  loading="lazy"
+                  width={1920}
+                  height={1080}
+                  className="aspect-16/9 w-full object-cover"
+                />
+              </div>
             </Reveal>
           </div>
         </div>
@@ -165,11 +202,18 @@ function OurStoryPage() {
           <div className="mt-14 grid gap-10 md:grid-cols-12">
             <div className="md:col-span-4">
               <Reveal delay={100}>
-                <div className="flex items-center gap-5 rounded-[20px] border border-border bg-white p-6 shadow-sm">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-border bg-sand font-serif text-xl text-foreground">
-                    AM
+                <div className="overflow-hidden rounded-[20px] border border-border bg-white shadow-sm">
+                  <div className="overflow-hidden">
+                    <img
+                      src={founderImage}
+                      alt="Rohit Astololiya, Founder of Unitya Living"
+                      loading="lazy"
+                      width={1024}
+                      height={1280}
+                      className="aspect-4/5 w-full object-cover"
+                    />
                   </div>
-                  <div>
+                  <div className="p-6">
                     <p className="text-sm font-semibold tracking-[0.15em] text-foreground uppercase">
                       Founder
                     </p>
