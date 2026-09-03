@@ -240,22 +240,22 @@ export function UnityalivingRecentWorks() {
 const processSteps = [
   {
     title: "Enquire With Us",
-    copy: "Share your requirements and aspirations with our team to begin your journey.",
+    copy: "Share your requirements to begin your journey.",
     icon: "https://framerusercontent.com/images/bwtsx5vrHbuA82P7pJ9Cz9H6xk.png?width=160&height=160",
   },
   {
     title: "We Arrive on Time",
-    copy: "We understand your needs, lifestyle, and vision to guide you to the right offering.",
+    copy: "We understand your needs and vision.",
     icon: "https://framerusercontent.com/images/FsHXEJJtZlskjiT8bfewBOviqtY.png?width=160&height=160",
   },
   {
     title: "Site Visit & Planning",
-    copy: "Experience the space, explore the design philosophy, and finalize details with clarity.",
+    copy: "Explore the design and finalize the details.",
     icon: "https://framerusercontent.com/images/J40taA1IWJcIDemC7DS8ytu7Y.png?width=160&height=160",
   },
   {
     title: "Seamless Ownership",
-    copy: "From documentation to handover, we ensure a smooth, transparent, and stress-free process.",
+    copy: "A smooth, transparent, stress-free handover.",
     icon: "https://framerusercontent.com/images/CBnLFHIKMYLxY7gGxEBJAgnRMzk.png?width=160&height=160",
   },
 ];
@@ -278,13 +278,14 @@ export function UnityalivingProcess() {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-3">
                   <h4
                     className="font-serif text-[22px] leading-[1.4] tracking-[-0.01em]"
                     style={{ color: brandBrown }}
                   >
                     {s.title}
                   </h4>
+                  <p className="text-[13px] leading-snug text-[#3b3b3b]/70">{s.copy}</p>
                 </div>
               </div>
             </Reveal>
