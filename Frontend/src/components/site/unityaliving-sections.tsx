@@ -5,7 +5,7 @@ import cardResidential from "@/assets/featured-project.jpg";
 import cardInstitutional from "@/assets/svc-architecture.jpg";
 import cardCommunity from "@/assets/cta-building.jpg";
 import cardMindful from "@/assets/svc-interior.jpg";
-import videoPoster from "@/assets/youtube-thumbnail.png";
+import videoPoster from "@/assets/youtube.png";
 import work1 from "@/assets/prop-la.jpg";
 import work2 from "@/assets/prop-miami.jpg";
 import work3 from "@/assets/hero-building.jpg";
