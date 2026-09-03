@@ -3,7 +3,7 @@ import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
 import { TestimonialsSection } from "@/components/site/testimonials";
 import { CountUp, Reveal } from "@/components/site/reveal";
-import featuredProject from "@/assets/featured-project.jpg";
+import featuredProjectBg from "@/assets/featured-project-bg.jpg";
 import philosophy from "@/assets/philosophy.jpg";
 import ctaBuilding from "@/assets/cta-building.jpg";
 import interiorWebSection from "@/assets/Interior Sectionn.png";
@@ -139,54 +139,83 @@ function Index() {
       <Services />
 
       {/* FEATURED PROJECT */}
-      <section id="projects" className="border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
+      <section id="projects" className="relative overflow-hidden">
+        {/* Background */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${featuredProjectBg})` }}
+        />
+        {/* Overlay for readability */}
+        <div aria-hidden className="absolute inset-0 bg-black/60" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E\")",
+            backgroundSize: "300px",
+            opacity: 0.06,
+          }}
+        />
+
+        <div className="relative mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
           <Reveal>
-            <p className="eyebrow">Featured project / 01</p>
+            <p className="eyebrow text-white/80">Featured project / 01</p>
           </Reveal>
-          <div className="mt-10 grid items-end gap-10 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <Reveal delay={80}>
-                <h2 className="display text-[clamp(2.2rem,5vw,4.2rem)]">
-                  A PLACE
-                  <br />
-                  DESIGNED
-                  <br />
-                  AROUND LIGHT.
-                </h2>
-                <dl className="mt-10 space-y-4 border-t border-border pt-6 text-sm">
-                  <div>
-                    <dt className="eyebrow">Scope</dt>
-                    <dd className="mt-1">Residential Architecture</dd>
-                    <dd className="text-muted-foreground">Interior + Exterior + Construction</dd>
-                  </div>
-                  <div>
-                    <dt className="eyebrow">Location</dt>
-                    <dd className="mt-1">Los Angeles, California</dd>
-                  </div>
-                </dl>
+
+          <div className="mt-10 grid items-stretch gap-8 md:grid-cols-12 md:gap-10">
+            {/* Glass title + scope card */}
+            <Reveal delay={80} className="md:col-span-6">
+              <div className="flex h-full flex-col justify-between rounded-2xl border border-white/25 bg-white/10 p-8 shadow-[0_8px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl backdrop-saturate-150 md:p-12">
+                <div>
+                  <h2 className="display text-[clamp(2.2rem,4.5vw,3.8rem)] text-white">
+                    A PLACE
+                    <br />
+                    DESIGNED
+                    <br />
+                    AROUND LIGHT.
+                  </h2>
+                  <p className="mt-6 max-w-md text-sm leading-relaxed text-white/80 md:text-base">
+                    A residence composed around daylight — open interiors, deep overhangs and
+                    materials that soften with age. Architecture, interiors and construction
+                    resolved as one continuous idea.
+                  </p>
+                </div>
                 <a
                   href="#contact"
-                  className="group mt-8 inline-flex items-center gap-2 rounded-[10px] border border-border px-6 py-3 text-sm font-medium transition-colors duration-300 hover:bg-secondary"
+                  className="group mt-10 inline-flex items-center gap-2 self-start rounded-[10px] border border-white/40 bg-white/15 px-6 py-3 text-sm font-medium text-white backdrop-blur-md transition-colors duration-300 hover:bg-white/25"
                 >
                   View Project
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
                 </a>
-              </Reveal>
-            </div>
-            <div className="md:col-span-7 md:col-start-6">
-              <Reveal delay={140}>
-                <div className="overflow-hidden rounded-[20px] border border-border">
-                  <img
-                    src={featuredProject}
-                    alt="White modern residence with a long horizontal roof under a clear blue sky"
-                    loading="lazy"
-                    width={1920}
-                    height={1200}
-                    className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
-                  />
-                </div>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
+
+            {/* Glass details card */}
+            <Reveal delay={160} className="md:col-span-5 md:col-start-8">
+              <div className="flex h-full flex-col justify-end rounded-2xl border border-white/20 bg-white/5 p-8 backdrop-blur-md md:p-10">
+                <dl className="space-y-6">
+                  <div className="border-b border-white/15 pb-5">
+                    <dt className="eyebrow text-white/70">Scope</dt>
+                    <dd className="mt-2 text-lg font-light text-white">Residential Architecture</dd>
+                    <dd className="mt-1 text-sm text-white/70">
+                      Interior + Exterior + Construction
+                    </dd>
+                  </div>
+                  <div className="border-b border-white/15 pb-5">
+                    <dt className="eyebrow text-white/70">Location</dt>
+                    <dd className="mt-2 text-lg font-light text-white">Los Angeles, California</dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow text-white/70">Status</dt>
+                    <dd className="mt-2 text-lg font-light text-white">Completed · 2025</dd>
+                  </div>
+                </dl>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
