@@ -3,6 +3,8 @@ import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
 import { TestimonialsSection } from "@/components/site/testimonials";
 import { EnquirySection } from "@/components/site/enquiry-section";
+import { BlogCard } from "@/components/site/blog-card";
+import { Button } from "@/components/ui/button";
 import { UnityalivingProcess, UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProjectBg from "@/assets/featured-project-bg.jpg";
@@ -11,8 +13,13 @@ import philosophy from "@/assets/philosophy.jpg";
 import ctaBuilding from "@/assets/cta-building.jpg";
 import interiorWebSection from "@/assets/Interior Sectionn.png";
 import { propertyList } from "@/lib/data/properties";
+import { fetchBlogPosts } from "@/lib/blog";
 
 export const Route = createFileRoute("/")({
+  loader: async () => {
+    const posts = await fetchBlogPosts();
+    return { posts };
+  },
   head: () => ({
     meta: [
       { title: "Unitya Living — Architecture, Interiors & Real Estate" },
@@ -50,6 +57,9 @@ const process = [
 ];
 
 function Index() {
+  const { posts } = Route.useLoaderData();
+  const homePosts = posts.filter((p) => p.showOnHomePage).slice(0, 3);
+
   return (
     <div className="bg-background">
       <Hero />
@@ -305,6 +315,35 @@ function Index() {
       {/* UNITYALIVING — 2 sections */}
       <UnityalivingVideo />
       <UnityalivingRecentWorks />
+
+      {/* BLOG */}
+      <section className="container-luxe py-24 md:py-32">
+        <Reveal>
+          <div className="mb-14 flex items-end justify-between gap-6">
+            <div>
+              <p className="eyebrow">Insights &amp; Updates</p>
+              <h2 className="display mt-4 text-[clamp(1.9rem,4vw,3rem)] tracking-tight">
+                Notes from the studio
+              </h2>
+            </div>
+            <Button asChild variant="luxeOutline" size="luxeSm" className="hidden sm:inline-flex">
+              <Link to="/media">All articles</Link>
+            </Button>
+          </div>
+        </Reveal>
+        <div className="grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+          {homePosts.map((post, i) => (
+            <Reveal key={post.slug} delay={i * 90}>
+              <BlogCard post={post} />
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-12 sm:hidden">
+          <Button asChild variant="luxeOutline" size="luxeSm" className="w-full">
+            <Link to="/media">All articles</Link>
+          </Button>
+        </div>
+      </section>
 
       {/* ENQUIRY SECTION */}
       <EnquirySection />
