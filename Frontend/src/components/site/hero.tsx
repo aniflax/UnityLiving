@@ -7,11 +7,57 @@ const HERO_BG =
 const LIFESTYLE_IMG =
   "https://res.cloudinary.com/ezxnx53v/image/upload/v1788027631/ChatGPT_Image_Aug_29_2026_at_11_49_09_PM.png";
 
-const fields = [
-  { label: "Location", value: "Indore" },
-  { label: "Property", value: "Residence" },
-  { label: "Price Range", value: "On Request" },
+type FieldKey = "service" | "projectType" | "scope";
+
+const dropdownFields: {
+  key: FieldKey;
+  label: string;
+  options: string[];
+}[] = [
+  {
+    key: "service",
+    label: "Service",
+    options: [
+      "Complete Design & Build",
+      "Architecture",
+      "Interior Design",
+      "Exterior Design",
+      "Construction",
+      "Real Estate",
+    ],
+  },
+  {
+    key: "projectType",
+    label: "Project Type",
+    options: [
+      "Residential",
+      "Villa / Bungalow",
+      "Apartment",
+      "Commercial",
+      "Office",
+      "Café / Restaurant",
+      "Hospitality",
+      "Large-Scale Development",
+    ],
+  },
+  {
+    key: "scope",
+    label: "Scope",
+    options: [
+      "Complete Turnkey",
+      "Design + Construction",
+      "Design + Interiors",
+      "Design Only",
+      "Consultation",
+    ],
+  },
 ];
+
+const defaultValues: Record<FieldKey, string> = {
+  service: "Complete Design & Build",
+  projectType: "Residential",
+  scope: "Complete Turnkey",
+};
 
 const facebookPath = "M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1z";
 
@@ -46,11 +92,29 @@ export function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [ready, setReady] = useState(false);
+  const [openField, setOpenField] = useState<FieldKey | null>(null);
+  const [values, setValues] = useState<Record<FieldKey, string>>(defaultValues);
 
   useEffect(() => {
     const t = window.setTimeout(() => setReady(true), 80);
     return () => window.clearTimeout(t);
   }, []);
+
+  const select = (key: FieldKey, option: string) => {
+    setValues((v) => ({ ...v, [key]: option }));
+    setOpenField(null);
+  };
+
+  const startProjectHref = () => {
+    const base = site.whatsapp || (site.phoneHref ? site.phoneHref.replace("tel:+", "") : "");
+    const number = base.replace(/\D/g, "");
+    const message =
+      `Hi Unitya Living! I'd like to start a project.\n\n` +
+      `Service: ${values.service}\n` +
+      `Project Type: ${values.projectType}\n` +
+      `Scope: ${values.scope}`;
+    return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  };
 
   return (
     <section id="top" className="relative w-full overflow-hidden bg-black">
@@ -244,7 +308,7 @@ export function Hero() {
                 transition: "opacity 1s ease 200ms, transform 1s cubic-bezier(0.22,1,0.36,1) 200ms",
               }}
             >
-              Explore a&nbsp; wide range of properties
+              DESIGN • BUILD • TRANSFORM
             </p>
 
             <h1
@@ -255,12 +319,12 @@ export function Hero() {
                 transition: "opacity 1s ease 300ms, transform 1s cubic-bezier(0.22,1,0.36,1) 300ms",
               }}
             >
-              Discover the
+              We design spaces.
               <br />
-              best properties
+              You live the vision.
             </h1>
 
-            {/* Search row */}
+            {/* Service / Project Type / Scope dropdowns */}
             <div
               className="mt-4 flex flex-wrap items-end gap-x-5 gap-y-3.5"
               style={{
@@ -269,25 +333,57 @@ export function Hero() {
                 transition: "opacity 1s ease 450ms, transform 1s cubic-bezier(0.22,1,0.36,1) 450ms",
               }}
             >
-              {fields.map((f) => (
-                <div key={f.label} className="flex flex-col gap-2">
-                  <span className="text-[13.5px] text-white/75">{f.label}</span>
-                  <Link
-                    to="/properties"
-                    className="flex min-w-[150px] items-center justify-between gap-4 rounded-full border border-white/35 bg-white/5 px-5 py-3 text-base font-bold text-white"
-                  >
-                    {f.value}
-                    <Chevron />
-                  </Link>
-                </div>
-              ))}
+              {dropdownFields.map((f) => {
+                const open = openField === f.key;
+                return (
+                  <div key={f.key} className="relative flex flex-col gap-2">
+                    <span className="text-[13.5px] text-white/75">{f.label}</span>
+                    <button
+                      type="button"
+                      onClick={() => setOpenField(open ? null : f.key)}
+                      aria-haspopup="listbox"
+                      aria-expanded={open}
+                      className="flex min-w-[150px] items-center justify-between gap-4 rounded-full border border-white/35 bg-white/5 px-5 py-3 text-base font-bold text-white transition-colors duration-200 hover:bg-white/10"
+                    >
+                      <span className="truncate">{values[f.key]}</span>
+                      <Chevron />
+                    </button>
+                    <div
+                      className={`absolute right-0 bottom-full z-30 mb-2 max-h-72 min-w-full overflow-y-auto rounded-2xl border border-white/15 bg-[#131316] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.55)] transition-all duration-200 ${
+                        open
+                          ? "visible translate-y-0 opacity-100"
+                          : "pointer-events-none invisible translate-y-1 opacity-0"
+                      }`}
+                    >
+                      {f.options.map((option) => (
+                        <button
+                          key={option}
+                          type="button"
+                          role="option"
+                          aria-selected={values[f.key] === option}
+                          onClick={() => select(f.key, option)}
+                          className={`block w-full truncate rounded-xl px-3 py-2.5 text-left text-sm whitespace-nowrap transition-colors duration-150 ${
+                            values[f.key] === option
+                              ? "bg-white/15 text-white"
+                              : "text-white/80 hover:bg-white/10 hover:text-white"
+                          }`}
+                        >
+                          {option}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
 
-              <Link
-                to="/properties"
+              <a
+                href={startProjectHref()}
+                target="_blank"
+                rel="noreferrer"
                 className="w-full rounded-full bg-white px-8 py-[17px] text-center text-base font-bold text-neutral-900 transition-all duration-200 hover:-translate-y-px hover:opacity-90 md:w-auto"
               >
-                Find Now
-              </Link>
+                Start a Project
+              </a>
             </div>
 
             {/* Socials */}
