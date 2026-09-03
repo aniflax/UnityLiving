@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
 import { TestimonialsSection } from "@/components/site/testimonials";
-import { EnquiryForm } from "@/components/site/enquiry-form";
+import { ContactSection } from "@/components/site/contact-section";
 import { UnityalivingProcess, UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProjectBg from "@/assets/featured-project-bg.jpg";
@@ -306,24 +306,8 @@ function Index() {
       <UnityalivingVideo />
       <UnityalivingRecentWorks />
 
-      {/* CONTACT FORM */}
-      <section className="px-4 pt-20 pb-10 md:px-10 md:pt-28">
-        <Reveal>
-          <div className="mx-auto max-w-3xl">
-            <p className="eyebrow text-center">Send an enquiry</p>
-            <h2 className="display mt-4 text-center text-[clamp(2rem,4.5vw,3.2rem)]">
-              Tell us about your space
-            </h2>
-            <EnquiryForm
-              className="mt-10"
-              showSubject
-              showMessage
-              submitLabel="Send Enquiry"
-              source="homepage"
-            />
-          </div>
-        </Reveal>
-      </section>
+      {/* CONTACT SECTION */}
+      <ContactSection />
 
       {/* FINAL CTA */}
       <section id="contact" className="px-4 pt-24 pb-24 md:px-10 md:pt-32">
