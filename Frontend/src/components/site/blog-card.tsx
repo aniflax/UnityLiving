@@ -9,7 +9,15 @@ export function formatDate(iso: string) {
   });
 }
 
-export function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boolean }) {
+export function BlogCard({
+  post,
+  featured = false,
+  hideExcerpt = false,
+}: {
+  post: BlogPost;
+  featured?: boolean;
+  hideExcerpt?: boolean;
+}) {
   return (
     <article
       className={
@@ -50,9 +58,11 @@ export function BlogCard({ post, featured = false }: { post: BlogPost; featured?
             {post.title}
           </Link>
         </h3>
-        <p className="mt-3 hidden text-sm leading-relaxed text-muted-foreground md:block">
-          {post.excerpt}
-        </p>
+        {!hideExcerpt ? (
+          <p className="mt-3 hidden text-sm leading-relaxed text-muted-foreground md:block">
+            {post.excerpt}
+          </p>
+        ) : null}
         <p className="mt-5 text-[0.68rem] tracking-[0.16em] text-muted-foreground/70 uppercase">
           {post.readingTime}
         </p>

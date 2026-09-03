@@ -14,6 +14,8 @@ import ctaBuilding from "@/assets/cta-building.jpg";
 import interiorWebSection from "@/assets/Interior Sectionn.png";
 import { propertyList } from "@/lib/data/properties";
 import { fetchBlogPosts } from "@/lib/blog";
+import { faqList } from "@/lib/data/faqs";
+import { FaqSection } from "@/components/site/faq-section";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -335,7 +337,7 @@ function Index() {
         <div className="grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
           {homePosts.map((post, i) => (
             <Reveal key={post.slug} delay={i * 90}>
-              <BlogCard post={post} />
+              <BlogCard post={post} hideExcerpt />
             </Reveal>
           ))}
         </div>
@@ -345,6 +347,9 @@ function Index() {
           </Button>
         </div>
       </section>
+
+      {/* FAQ */}
+      <FaqSection faqs={faqList} />
 
       {/* ENQUIRY SECTION */}
       <EnquirySection />
