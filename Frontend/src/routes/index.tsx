@@ -4,6 +4,7 @@ import { Services } from "@/components/site/services";
 import { TestimonialsSection } from "@/components/site/testimonials";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProjectBg from "@/assets/featured-project-bg.jpg";
+import featuredProject from "@/assets/featured-project.jpg";
 import philosophy from "@/assets/philosophy.jpg";
 import ctaBuilding from "@/assets/cta-building.jpg";
 import interiorWebSection from "@/assets/Interior Sectionn.png";
@@ -140,10 +141,10 @@ function Index() {
 
       {/* FEATURED PROJECT */}
       <section id="projects" className="relative overflow-hidden">
-        {/* Background */}
+        {/* Fixed background */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center md:bg-fixed"
           style={{ backgroundImage: `url(${featuredProjectBg})` }}
         />
         {/* Overlay for readability */}
@@ -164,27 +165,40 @@ function Index() {
             <p className="eyebrow text-white/80">Featured project / 01</p>
           </Reveal>
 
-          <div className="mt-10 grid items-stretch gap-8 md:grid-cols-12 md:gap-10">
-            {/* Glass title + scope card */}
+          <div className="mt-10 grid items-center gap-8 md:mt-14 md:grid-cols-12 md:gap-12 lg:gap-16">
+            {/* Text card (more transparent) */}
             <Reveal delay={80} className="md:col-span-6">
-              <div className="flex h-full flex-col justify-between rounded-2xl border border-white/25 bg-white/10 p-8 shadow-[0_8px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl backdrop-saturate-150 md:p-12">
-                <div>
-                  <h2 className="display text-[clamp(2.2rem,4.5vw,3.8rem)] text-white">
-                    A PLACE
-                    <br />
-                    DESIGNED
-                    <br />
-                    AROUND LIGHT.
-                  </h2>
-                  <p className="mt-6 max-w-md text-sm leading-relaxed text-white/80 md:text-base">
-                    A residence composed around daylight — open interiors, deep overhangs and
-                    materials that soften with age. Architecture, interiors and construction
-                    resolved as one continuous idea.
-                  </p>
-                </div>
+              <div className="flex flex-col rounded-2xl border border-white/20 bg-white/5 p-8 shadow-[0_8px_40px_rgba(0,0,0,0.2)] backdrop-blur-md md:p-10 lg:p-12">
+                <h2 className="display text-[clamp(1.5rem,2.4vw,2.4rem)] text-white">
+                  A PLACE DESIGNED AROUND LIGHT.
+                </h2>
+                <div className="mt-8 border-t border-white/15" />
+                <dl className="mt-7 space-y-5">
+                  <div>
+                    <dt className="eyebrow text-white/70">Scope</dt>
+                    <dd className="mt-1.5 text-base font-light text-white md:text-lg">
+                      Residential Architecture
+                    </dd>
+                    <dd className="mt-0.5 text-sm text-white/70">
+                      Interior + Exterior + Construction
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow text-white/70">Location</dt>
+                    <dd className="mt-1.5 text-base font-light text-white md:text-lg">
+                      Los Angeles, California
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow text-white/70">Status</dt>
+                    <dd className="mt-1.5 text-base font-light text-white md:text-lg">
+                      Completed · 2025
+                    </dd>
+                  </div>
+                </dl>
                 <a
                   href="#contact"
-                  className="group mt-10 inline-flex items-center gap-2 self-start rounded-[10px] border border-white/40 bg-white/15 px-6 py-3 text-sm font-medium text-white backdrop-blur-md transition-colors duration-300 hover:bg-white/25"
+                  className="group mt-9 inline-flex items-center gap-2 self-start rounded-[10px] border border-white/40 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur-md transition-colors duration-300 hover:bg-white/20"
                 >
                   View Project
                   <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -194,26 +208,17 @@ function Index() {
               </div>
             </Reveal>
 
-            {/* Glass details card */}
-            <Reveal delay={160} className="md:col-span-5 md:col-start-8">
-              <div className="flex h-full flex-col justify-end rounded-2xl border border-white/20 bg-white/5 p-8 backdrop-blur-md md:p-10">
-                <dl className="space-y-6">
-                  <div className="border-b border-white/15 pb-5">
-                    <dt className="eyebrow text-white/70">Scope</dt>
-                    <dd className="mt-2 text-lg font-light text-white">Residential Architecture</dd>
-                    <dd className="mt-1 text-sm text-white/70">
-                      Interior + Exterior + Construction
-                    </dd>
-                  </div>
-                  <div className="border-b border-white/15 pb-5">
-                    <dt className="eyebrow text-white/70">Location</dt>
-                    <dd className="mt-2 text-lg font-light text-white">Los Angeles, California</dd>
-                  </div>
-                  <div>
-                    <dt className="eyebrow text-white/70">Status</dt>
-                    <dd className="mt-2 text-lg font-light text-white">Completed · 2025</dd>
-                  </div>
-                </dl>
+            {/* Image */}
+            <Reveal delay={160} className="md:col-span-6">
+              <div className="overflow-hidden rounded-[20px] border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
+                <img
+                  src={featuredProject}
+                  alt="White modern residence with a long horizontal roof under a clear blue sky"
+                  loading="lazy"
+                  width={1920}
+                  height={1200}
+                  className="aspect-16/10 w-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
+                />
               </div>
             </Reveal>
           </div>
