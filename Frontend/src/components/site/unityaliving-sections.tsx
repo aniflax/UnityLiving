@@ -153,7 +153,7 @@ export function UnityalivingVideo() {
     <section className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
       <Reveal>
         <div className="overflow-hidden rounded-[20px] border border-border bg-black">
-          <div className="relative aspect-video w-full">
+          <div className="relative aspect-[32/9] w-full">
             {!play ? (
               <button
                 type="button"
@@ -168,9 +168,15 @@ export function UnityalivingVideo() {
                   loading="lazy"
                 />
                 <span className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20" />
-                <span className="absolute left-1/2 top-1/2 flex h-[68px] w-[68px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 shadow-xl transition-transform group-hover:scale-105">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#212121">
-                    <path d="M8 5.14v13.72L19 12z" />
+                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 group-hover:scale-105">
+                  <svg width="68" height="48" viewBox="0 0 68 48" className="block">
+                    <path
+                      d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+                      fill="#212121"
+                      fillOpacity="0.8"
+                      className="transition-[fill,fill-opacity] duration-100 group-hover:fill-[#f00]"
+                    />
+                    <path d="M 45,24 27,14 27,34" fill="#fff" />
                   </svg>
                 </span>
               </button>
