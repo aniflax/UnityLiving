@@ -7,7 +7,7 @@ import { BlogCard } from "@/components/site/blog-card";
 import { Button } from "@/components/ui/button";
 import { UnityalivingProcess, UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
 import { CountUp, Reveal } from "@/components/site/reveal";
-import featuredProjectBg from "@/assets/featured-project-bg.jpg";
+import faqBackground from "@/assets/faq-background.png";
 import featuredProject from "@/assets/featured-project.jpg";
 import philosophy from "@/assets/philosophy.jpg";
 import ctaBuilding from "@/assets/cta-building.jpg";
@@ -162,7 +162,7 @@ function Index() {
         <div
           aria-hidden
           className="absolute inset-0 bg-cover bg-center md:bg-fixed"
-          style={{ backgroundImage: `url(${featuredProjectBg})` }}
+          style={{ backgroundImage: `url(${faqBackground})` }}
         />
         {/* Overlay for readability */}
         <div aria-hidden className="absolute inset-0 bg-black/60" />

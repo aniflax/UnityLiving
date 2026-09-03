@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import type { Faq } from "@/lib/data/faqs";
-import faqBackground from "@/assets/faq-background.png";
+import faqBackground from "@/assets/featured-project-bg.jpg";
 
 export function FaqSection({
   faqs,
