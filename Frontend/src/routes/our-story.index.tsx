@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/reveal";
 import { useSite } from "@/lib/site-context";
-import { UnityalivingAbout } from "@/components/site/unityaliving-sections";
 import philosophy from "@/assets/philosophy.jpg";
 import ctaImage from "@/assets/new/cta.jpg";
 import visionImage from "@/assets/new/prop-1.jpg";
@@ -20,22 +19,12 @@ export const Route = createFileRoute("/our-story/")({
   component: OurStoryPage,
 });
 
-const principles = [
-  "Thoughtfully designed spaces that hold a family as it grows",
-  "Attention to detail in every specification and every joint",
-  "Prime locations chosen for the commute they spare you",
-  "A commitment to customer satisfaction long past possession",
-];
-
 function OurStoryPage() {
   const site = useSite();
   const founderImage = site.directorImage || philosophy;
 
   return (
     <>
-      {/* FIRST SECTION — Unityaliving */}
-      <UnityalivingAbout />
-
       {/* 01 — THE FOUNDATION */}
       <section className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
         <Reveal>
@@ -63,27 +52,25 @@ function OurStoryPage() {
 
           <Reveal delay={120} className="flex md:col-span-7">
             <div className="flex w-full flex-col justify-center">
-              <p className="text-[0.95rem] leading-relaxed text-muted-foreground md:text-base">
-                Unityaliving exists because too much of what gets built in growing cities is
-                designed to be sold rather than lived in. We took the opposite position: fewer
-                projects, longer timelines, and a specification we would accept for our own
-                families.
+              <p
+                className="text-[11px] font-semibold tracking-[0.18em] uppercase"
+                style={{ color: "#ff6333" }}
+              >
+                Unityaliving
               </p>
-              <ul className="mt-10 border-t border-border">
-                {principles.map((p, i) => (
-                  <li
-                    key={p}
-                    className="flex items-baseline gap-5 border-b border-border py-5 md:py-6"
-                  >
-                    <span className="text-xs text-muted-foreground tabular-nums">
-                      0{i + 1}
-                    </span>
-                    <p className="max-w-xl text-sm leading-relaxed text-foreground md:text-base">
-                      {p}
-                    </p>
-                  </li>
-                ))}
-              </ul>
+              <h3
+                className="mt-3 font-serif text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.05] tracking-[-0.02em]"
+                style={{ color: "#786450" }}
+              >
+                Building Sattvic Communities with Purpose Since 2005
+              </h3>
+              <p className="mt-6 max-w-[50ch] text-[15px] leading-[1.7] text-[#3b3b3b]/80">
+                Unityaliving has been building Sattvic communities rooted in harmony, balance, and
+                conscious living. Through mindful planning, natural light, open green spaces, and
+                sustainable design, we create environments that nurture well-being and meaningful
+                connection. Each project reflects our commitment to responsible development and
+                enduring value for generations.
+              </p>
             </div>
           </Reveal>
         </div>
