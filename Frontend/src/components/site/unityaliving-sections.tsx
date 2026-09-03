@@ -262,12 +262,12 @@ const processSteps = [
 
 export function UnityalivingProcess() {
   return (
-    <section className="border-t border-border">
-      <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-24">
+    <section>
+      <div className="mx-auto max-w-[1400px] px-6 pt-8 pb-14 md:px-10 md:pt-10 md:pb-16">
         <div className="grid gap-10 md:grid-cols-4 md:gap-6">
           {processSteps.map((s, i) => (
             <Reveal key={s.title} delay={i * 90}>
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col items-center gap-6 text-center">
                 <div className="h-12 w-12 overflow-hidden rounded-[16px]">
                   <img
                     src={s.icon}
@@ -285,7 +285,6 @@ export function UnityalivingProcess() {
                   >
                     {s.title}
                   </h4>
-                  <p className="text-[15px] leading-[1.7] text-[#3b3b3b]/80">{s.copy}</p>
                 </div>
               </div>
             </Reveal>
