@@ -95,7 +95,8 @@ export function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [ready, setReady] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
+  const [showVideo, setShowVideo] = useState(true);
+  const [videoSession, setVideoSession] = useState(0);
   const [openField, setOpenField] = useState<FieldKey | null>(null);
   const [values, setValues] = useState<Record<FieldKey, string>>(defaultValues);
 
@@ -104,10 +105,13 @@ export function Hero() {
     return () => window.clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    const t = window.setTimeout(() => setShowVideo(true), 5000);
-    return () => window.clearTimeout(t);
-  }, []);
+  const onVideoEnded = () => {
+    setShowVideo(false);
+    window.setTimeout(() => {
+      setShowVideo(true);
+      setVideoSession((s) => s + 1);
+    }, 10000);
+  };
 
   const select = (key: FieldKey, option: string) => {
     setValues((v) => ({ ...v, [key]: option }));
@@ -127,22 +131,27 @@ export function Hero() {
 
   return (
     <section id="top" className="relative w-full overflow-x-clip bg-black">
-      {/* Full-bleed background image */}
+      {/* Full-bleed background image — shown after the video completes */}
       <img
         src={HERO_BG}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-top"
         loading="eager"
+        style={{
+          opacity: showVideo ? 0 : 1,
+          transition: "opacity 1.2s ease",
+        }}
       />
 
-      {/* Full-bleed hero video — fades in after 5 seconds */}
+      {/* Full-bleed hero video — plays first, then hands over to the image */}
       <video
+        key={videoSession}
         src={heroVideo}
         autoPlay
-        loop
         muted
         playsInline
+        onEnded={onVideoEnded}
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
         style={{
