@@ -207,7 +207,7 @@ function OurStoryPage() {
               </p>
               <span className="mx-auto mt-10 block h-px w-14 bg-background/25" />
               <p className="mt-8 text-xs font-medium tracking-[0.25em] text-background/70 uppercase">
-                Rohit Astololiya&nbsp;·&nbsp;Founder
+                Rohan Astoliya&nbsp;·&nbsp;Founder
               </p>
             </div>
           </Reveal>
@@ -231,7 +231,7 @@ function OurStoryPage() {
                   <div className="flex-1 overflow-hidden">
                     <img
                       src={founderImage}
-                      alt="Rohit Astololiya, Founder of Unitya Living"
+                      alt="Rohan Astoliya, Founder of Unitya Living"
                       loading="lazy"
                       width={1024}
                       height={1280}
@@ -251,7 +251,7 @@ function OurStoryPage() {
             <div className="flex md:col-span-7">
               <Reveal delay={180} className="flex w-full">
                 <div className="flex flex-col justify-center">
-                  <p className="display text-[clamp(1.7rem,2.8vw,2.4rem)]">Rohit Astololiya</p>
+                  <p className="display text-[clamp(1.7rem,2.8vw,2.4rem)]">Rohan Astoliya</p>
                   <p className="mt-8 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground md:text-base">
                     When we began Unityaliving, Indore was still a city that people described in
                     terms of what it might become. We chose to build here precisely because of that

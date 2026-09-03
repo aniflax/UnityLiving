@@ -10,7 +10,7 @@ export const Route = createFileRoute("/about/")({
       {
         name: "description",
         content:
-          "A letter from Rohit Astololiya, founder of Unitya Living — on why we build homes in Indore with patience rather than haste.",
+          "A letter from Rohan Astoliya, founder of Unitya Living — on why we build homes in Indore with patience rather than haste.",
       },
     ],
   }),
@@ -58,7 +58,7 @@ function AboutPage() {
               <div className="overflow-hidden rounded-[20px] border border-border">
                 <img
                   src={founderImage}
-                  alt="Rohit Astololiya, Founder of Unitya Living"
+                  alt="Rohan Astoliya, Founder of Unitya Living"
                   loading="lazy"
                   width={1024}
                   height={1280}
@@ -66,7 +66,7 @@ function AboutPage() {
                 />
               </div>
               <div className="mt-6 border-l border-border pl-6">
-                <p className="display text-2xl">Rohit Astololiya</p>
+                <p className="display text-2xl">Rohan Astoliya</p>
                 <p className="mt-1 text-sm text-muted-foreground">Founder, Unitya Living</p>
               </div>
             </Reveal>
@@ -91,7 +91,7 @@ function AboutPage() {
                 ))}
               </div>
               <div className="mt-10 border-t border-border pt-6">
-                <p className="font-serif text-2xl text-foreground">Rohit Astololiya</p>
+                <p className="font-serif text-2xl text-foreground">Rohan Astoliya</p>
                 <p className="mt-1 text-sm text-muted-foreground">Founder</p>
               </div>
             </Reveal>
