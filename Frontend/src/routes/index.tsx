@@ -58,7 +58,8 @@ const process = [
 
 function Index() {
   const { posts } = Route.useLoaderData();
-  const homePosts = posts.filter((p) => p.showOnHomePage).slice(0, 3);
+  const flagged = posts.filter((p) => p.showOnHomePage).slice(0, 3);
+  const homePosts = flagged.length > 0 ? flagged : posts.slice(0, 3);
 
   return (
     <div className="bg-background">
