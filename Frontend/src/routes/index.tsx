@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
 import { TestimonialsSection } from "@/components/site/testimonials";
-import { ContactSection } from "@/components/site/contact-section";
+import { EnquirySection } from "@/components/site/enquiry-section";
 import { UnityalivingProcess, UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProjectBg from "@/assets/featured-project-bg.jpg";
@@ -306,8 +306,8 @@ function Index() {
       <UnityalivingVideo />
       <UnityalivingRecentWorks />
 
-      {/* CONTACT SECTION */}
-      <ContactSection />
+      {/* ENQUIRY SECTION */}
+      <EnquirySection />
 
       {/* FINAL CTA */}
       <section id="contact" className="px-4 pt-24 pb-24 md:px-10 md:pt-32">
