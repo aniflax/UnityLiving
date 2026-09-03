@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useSite } from "@/lib/site-context";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const HERO_BG =
   "https://res.cloudinary.com/ezxnx53v/image/upload/v1788031505/ChatGPT_Image_Aug_30_2026_at_12_54_32_AM.png";
@@ -94,11 +95,17 @@ export function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [ready, setReady] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const [openField, setOpenField] = useState<FieldKey | null>(null);
   const [values, setValues] = useState<Record<FieldKey, string>>(defaultValues);
 
   useEffect(() => {
     const t = window.setTimeout(() => setReady(true), 80);
+    return () => window.clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    const t = window.setTimeout(() => setShowVideo(true), 5000);
     return () => window.clearTimeout(t);
   }, []);
 
@@ -127,6 +134,22 @@ export function Hero() {
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-top"
         loading="eager"
+      />
+
+      {/* Full-bleed hero video — fades in after 5 seconds */}
+      <video
+        src={heroVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{
+          opacity: showVideo ? 1 : 0,
+          transition: "opacity 1.2s ease",
+          pointerEvents: showVideo ? "auto" : "none",
+        }}
       />
 
       <div className="relative flex min-h-screen items-end p-3 md:p-6">
