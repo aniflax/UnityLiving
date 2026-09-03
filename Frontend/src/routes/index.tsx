@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
 import { TestimonialsSection } from "@/components/site/testimonials";
-import { UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
+import { UnityalivingProcess, UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProjectBg from "@/assets/featured-project-bg.jpg";
 import featuredProject from "@/assets/featured-project.jpg";
@@ -137,6 +137,8 @@ function Index() {
           </div>
         </Reveal>
       </section>
+
+      <UnityalivingProcess />
 
       <Services />
 

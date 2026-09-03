@@ -235,3 +235,63 @@ export function UnityalivingRecentWorks() {
     </section>
   );
 }
+
+// ---------- 5. How we work / process steps ----------
+const processSteps = [
+  {
+    title: "Enquire With Us",
+    copy: "Share your requirements and aspirations with our team to begin your journey.",
+    icon: "https://framerusercontent.com/images/bwtsx5vrHbuA82P7pJ9Cz9H6xk.png?width=160&height=160",
+  },
+  {
+    title: "We Arrive on Time",
+    copy: "We understand your needs, lifestyle, and vision to guide you to the right offering.",
+    icon: "https://framerusercontent.com/images/FsHXEJJtZlskjiT8bfewBOviqtY.png?width=160&height=160",
+  },
+  {
+    title: "Site Visit & Planning",
+    copy: "Experience the space, explore the design philosophy, and finalize details with clarity.",
+    icon: "https://framerusercontent.com/images/J40taA1IWJcIDemC7DS8ytu7Y.png?width=160&height=160",
+  },
+  {
+    title: "Seamless Ownership",
+    copy: "From documentation to handover, we ensure a smooth, transparent, and stress-free process.",
+    icon: "https://framerusercontent.com/images/CBnLFHIKMYLxY7gGxEBJAgnRMzk.png?width=160&height=160",
+  },
+];
+
+export function UnityalivingProcess() {
+  return (
+    <section className="border-t border-border">
+      <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-24">
+        <div className="grid gap-10 md:grid-cols-4 md:gap-6">
+          {processSteps.map((s, i) => (
+            <Reveal key={s.title} delay={i * 90}>
+              <div className="flex flex-col gap-6">
+                <div className="h-12 w-12 overflow-hidden rounded-[16px]">
+                  <img
+                    src={s.icon}
+                    alt=""
+                    loading="lazy"
+                    width={160}
+                    height={160}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-4">
+                  <h4
+                    className="font-serif text-[22px] leading-[1.4] tracking-[-0.01em]"
+                    style={{ color: brandBrown }}
+                  >
+                    {s.title}
+                  </h4>
+                  <p className="text-[15px] leading-[1.7] text-[#3b3b3b]/80">{s.copy}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
