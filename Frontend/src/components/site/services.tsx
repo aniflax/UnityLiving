@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import svcArchitecture from "@/assets/svc-architecture.jpg";
+import svcArchitecture from "@/assets/svc-architecture-model.jpg";
 import svcInterior from "@/assets/svc-interior.jpg";
 import svcExterior from "@/assets/svc-exterior.jpg";
 import svcConstruction from "@/assets/svc-construction.jpg";
