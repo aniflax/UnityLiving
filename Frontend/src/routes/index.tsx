@@ -52,11 +52,6 @@ function Index() {
   return (
     <div className="bg-background">
       <Hero />
-      {/* UNITYALIVING — 4 sections */}
-      <UnityalivingAbout />
-      <UnityalivingWhatWeDo />
-      <UnityalivingVideo />
-      <UnityalivingRecentWorks />
       {/* PROCESS */}
       <section>
         <div className="mx-auto max-w-[1400px] px-6 pt-24 pb-24 md:px-10 md:pt-28 md:pb-28">
@@ -300,6 +295,12 @@ function Index() {
 
       {/* WHAT CLIENTS SAY */}
       <TestimonialsSection />
+
+      {/* UNITYALIVING — 4 sections */}
+      <UnityalivingAbout />
+      <UnityalivingWhatWeDo />
+      <UnityalivingVideo />
+      <UnityalivingRecentWorks />
 
       {/* FINAL CTA */}
       <section id="contact" className="px-4 pt-24 pb-24 md:px-10 md:pt-32">
