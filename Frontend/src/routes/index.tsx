@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
 import { TestimonialsSection } from "@/components/site/testimonials";
-import { SumeruAbout, SumeruRecentWorks, SumeruVideo, SumeruWhatWeDo } from "@/components/site/sumeru-sections";
+import { UnityalivingAbout, UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProjectBg from "@/assets/featured-project-bg.jpg";
 import featuredProject from "@/assets/featured-project.jpg";
@@ -52,11 +52,11 @@ function Index() {
   return (
     <div className="bg-background">
       <Hero />
-      {/* SUMERU — exact copy 4 sections */}
-      <SumeruAbout />
-      <SumeruWhatWeDo />
-      <SumeruVideo />
-      <SumeruRecentWorks />
+      {/* UNITYALIVING — 4 sections */}
+      <UnityalivingAbout />
+      <UnityalivingWhatWeDo />
+      <UnityalivingVideo />
+      <UnityalivingRecentWorks />
       {/* PROCESS */}
       <section>
         <div className="mx-auto max-w-[1400px] px-6 pt-24 pb-24 md:px-10 md:pt-28 md:pb-28">

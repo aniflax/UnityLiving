@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { Reveal } from "@/components/site/reveal";
+import aboutImage from "@/assets/philosophy.jpg";
+import cardResidential from "@/assets/featured-project.jpg";
+import cardInstitutional from "@/assets/svc-architecture.jpg";
+import cardCommunity from "@/assets/cta-building.jpg";
+import cardMindful from "@/assets/svc-interior.jpg";
+import videoPoster from "@/assets/featured-project-bg.jpg";
+import work1 from "@/assets/prop-la.jpg";
+import work2 from "@/assets/prop-miami.jpg";
+import work3 from "@/assets/hero-building.jpg";
+import work4 from "@/assets/svc-exterior.jpg";
+import work5 from "@/assets/svc-construction.jpg";
+import work6 from "@/assets/svc-realestate.jpg";
 
-// Exact copy of 4 sections from sumerurealty.com (Framer) adapted to Unitya homepage
-// Colors taken from Sumeru tokens: --token-17fc5ccc = #786450, --token-c99df510 = #f6f7f9
-
-const sumaBrown = "#786450";
+const brandBrown = "#786450";
 
 // ---------- 1. Building Sattvic Communities ----------
-export function SumeruAbout() {
+export function UnityalivingAbout() {
   return (
     <section className="bg-[#f6f7f9]">
       <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
@@ -16,8 +25,8 @@ export function SumeruAbout() {
           <Reveal>
             <div className="overflow-hidden rounded-[30px]">
               <img
-                src="https://framerusercontent.com/images/24nWYgS8VONMe5z2ZJdg0Q74uw.jpg?width=1024&height=1334"
-                alt="Sattvic community living"
+                src={aboutImage}
+                alt="Unityaliving residence"
                 width={1024}
                 height={1280}
                 loading="lazy"
@@ -30,16 +39,16 @@ export function SumeruAbout() {
           <Reveal delay={120}>
             <div className="rounded-[24px] bg-white p-8 md:p-10 lg:p-12">
               <p className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#ff6333" }}>
-                Sri Sumeru Realty
+                Unityaliving
               </p>
               <h2
                 className="mt-3 font-serif text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.05] tracking-[-0.02em]"
-                style={{ color: sumaBrown }}
+                style={{ color: brandBrown }}
               >
                 Building Sattvic Communities with Purpose Since 2005
               </h2>
               <p className="mt-6 max-w-[50ch] text-[15px] leading-[1.7] text-[#3b3b3b]/80">
-                Sri Sumeru Realty has been building Sattvic communities rooted in harmony, balance, and conscious
+                Unityaliving has been building Sattvic communities rooted in harmony, balance, and conscious
                 living. Through mindful planning, natural light, open green spaces, and sustainable design, we create
                 environments that nurture well-being and meaningful connection. Each project reflects our commitment to
                 responsible development and enduring value for generations.
@@ -64,33 +73,33 @@ const whatWeDoCards = [
   {
     title: "CONSCIOUS RESIDENTIAL LIVING",
     copy: "Our residential projects are thoughtfully planned to promote mindful living through design, comfort, and functionality. Every home supports a balanced lifestyle rooted in everyday well-being.",
-    img: "https://framerusercontent.com/images/92sxWJ2I1rC392Pg1wREUjNrlA.jpg?width=2000&height=718",
+    img: cardResidential,
     href: "/properties",
   },
   {
     title: "SACRED & INSTITUTIONAL SPACES",
     copy: "We create purpose-driven spaces that support spiritual practice, learning, and collective well-being. Each project is designed to foster calm, clarity, and meaningful engagement.",
-    img: "https://framerusercontent.com/images/RWSLTwgk7d81wy8wR4nK7Zg3wc.png?width=572&height=636",
+    img: cardInstitutional,
     href: "/properties",
   },
   {
     title: "HOLISTIC COMMUNITY DEVELOPMENTS",
     copy: "Our community developments integrate living, wellness, and shared spaces into cohesive environments. The focus is on balance, accessibility, and long-term social harmony.",
-    img: "https://framerusercontent.com/images/bvMyufojKM8VmyaGIFz8wViSzQ.jpg?width=2736&height=1824",
+    img: cardCommunity,
     href: "/properties",
   },
   {
     title: "MINDFUL LIVING ENVIRONMENTS",
     copy: "Designed for those who value intention and simplicity, these living spaces prioritise natural flow, livability, and a deeper connection between people and their surroundings.",
-    img: "https://framerusercontent.com/images/ZHVD3ZWIf9n1Nj6bYTllXATHpqM.png?width=3000&height=2000",
+    img: cardMindful,
     href: "/properties",
   },
 ];
 
-export function SumeruWhatWeDo() {
+export function UnityalivingWhatWeDo() {
   return (
     <section className="relative overflow-hidden py-16 md:py-24">
-      {/* Background image like Sumeru */}
+      {/* Background image kept as original */}
       <div
         aria-hidden
         className="absolute inset-0 bg-cover bg-center"
@@ -123,7 +132,7 @@ export function SumeruWhatWeDo() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col justify-center py-6 md:py-4">
-                  <h3 className="font-serif text-[18px] leading-tight tracking-[-0.01em]" style={{ color: sumaBrown }}>
+                  <h3 className="font-serif text-[18px] leading-tight tracking-[-0.01em]" style={{ color: brandBrown }}>
                     {c.title}
                   </h3>
                   <p className="mt-3 text-[13.5px] leading-relaxed text-[#3b3b3b]/80">{c.copy}</p>
@@ -138,7 +147,7 @@ export function SumeruWhatWeDo() {
 }
 
 // ---------- 3. Youtube video section ----------
-export function SumeruVideo() {
+export function UnityalivingVideo() {
   const [play, setPlay] = useState(false);
   return (
     <section className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
@@ -153,7 +162,7 @@ export function SumeruVideo() {
                 aria-label="Play video"
               >
                 <img
-                  src="https://i.ytimg.com/vi_webp/HWvblfSkkDY/maxresdefault.webp"
+                  src={videoPoster}
                   alt="Youtube video thumbnail"
                   className="h-full w-full object-cover"
                   loading="lazy"
@@ -184,19 +193,19 @@ export function SumeruVideo() {
 
 // ---------- 4. Our recent works ----------
 const recentImages = [
-  { src: "https://framerusercontent.com/images/ua8xwFgxdaouZoJnYJTZ9TrP3IQ.jpg?width=1334&height=2000", alt: "Store entrance", span: "md:row-span-3" },
-  { src: "https://framerusercontent.com/images/jmHxgrqTa6no1RC2lD9hTrTZIZs.jpg?width=1334&height=2000", alt: "Private garden", span: "md:row-span-4" },
-  { src: "https://framerusercontent.com/images/Ezq9PbBtkvEJrVX43IQzJQLnmI.jpg?width=2000&height=783", alt: "Public park", span: "md:row-span-2" },
-  { src: "https://framerusercontent.com/images/v4ne44lhjAUyvD5njAddi5e3r0.jpg?width=2000&height=1306", alt: "Private garden 2", span: "md:row-span-2" },
-  { src: "https://framerusercontent.com/images/1yZAsGHh0cWLXiLPqrNYfqkgA.jpg?width=2000&height=783", alt: "Planting works", span: "md:row-span-2" },
-  { src: "https://framerusercontent.com/images/Vp2kcaJA8LP5P4djyujNd8DxVw.jpg?width=4480&height=6720", alt: "Public garden", span: "md:row-span-2" },
+  { src: work1, alt: "Store entrance", span: "md:row-span-3" },
+  { src: work2, alt: "Private garden", span: "md:row-span-4" },
+  { src: work3, alt: "Public park", span: "md:row-span-2" },
+  { src: work4, alt: "Private garden 2", span: "md:row-span-2" },
+  { src: work5, alt: "Planting works", span: "md:row-span-2" },
+  { src: work6, alt: "Public garden", span: "md:row-span-2" },
 ];
 
-export function SumeruRecentWorks() {
+export function UnityalivingRecentWorks() {
   return (
     <section className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
       <Reveal>
-        <h2 className="text-center font-serif text-[clamp(1.9rem,4vw,3rem)] tracking-[-0.02em]" style={{ color: sumaBrown }}>
+        <h2 className="text-center font-serif text-[clamp(1.9rem,4vw,3rem)] tracking-[-0.02em]" style={{ color: brandBrown }}>
           Our recent works
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-[14.5px] leading-relaxed text-[#3b3b3b]/70">
