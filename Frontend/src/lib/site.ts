@@ -29,6 +29,17 @@ export const STATIC_SITE = {
   rera: "RERA registered · Indore, Madhya Pradesh",
 } as const;
 
+/** Enquiry options shown in the contact form. */
+export const enquiryTypes = [
+  "Complete Design & Build",
+  "Architecture",
+  "Interior Design",
+  "Exterior Design",
+  "Construction",
+  "Real Estate",
+  "Other",
+] as const;
+
 /** Raw shape of the Strapi "Personal Informations" single type. */
 export type StrapiMedia =
   | {

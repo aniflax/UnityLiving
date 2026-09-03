@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteLayout } from "@/components/site/site-layout";
+import { Toaster } from "@/components/ui/sonner";
 import { SiteProvider } from "@/lib/site-context";
 import { fetchSite } from "@/lib/site";
 
@@ -126,6 +127,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster position="bottom-left" />
         <Scripts />
       </body>
     </html>
