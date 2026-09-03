@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useSite } from "@/lib/site-context";
 import heroVideo from "@/assets/hero-video.mp4";
@@ -97,6 +97,7 @@ export function Hero() {
   const [ready, setReady] = useState(false);
   const [showVideo, setShowVideo] = useState(true);
   const [videoSession, setVideoSession] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [openField, setOpenField] = useState<FieldKey | null>(null);
   const [values, setValues] = useState<Record<FieldKey, string>>(defaultValues);
 
@@ -104,6 +105,15 @@ export function Hero() {
     const t = window.setTimeout(() => setReady(true), 80);
     return () => window.clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    // Force autoplay on every session (mobile browsers often ignore autoPlay).
+    const video = videoRef.current;
+    if (!video || !showVideo) return;
+    const play = () => video.play().catch(() => {});
+    const t = window.setTimeout(play, 0);
+    return () => window.clearTimeout(t);
+  }, [showVideo, videoSession]);
 
   const onVideoEnded = () => {
     setShowVideo(false);
@@ -147,10 +157,14 @@ export function Hero() {
       {/* Full-bleed hero video — plays first, then hands over to the image */}
       <video
         key={videoSession}
+        ref={videoRef}
         src={heroVideo}
         autoPlay
         muted
         playsInline
+        preload="auto"
+        controls={false}
+        disablePictureInPicture
         onEnded={onVideoEnded}
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
