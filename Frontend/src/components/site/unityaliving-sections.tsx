@@ -263,7 +263,7 @@ const processSteps = [
 export function UnityalivingProcess() {
   return (
     <section>
-      <div className="mx-auto max-w-[1400px] px-6 pt-8 pb-14 md:px-10 md:pt-10 md:pb-16">
+      <div className="mx-auto max-w-[1400px] px-6 pt-2 pb-14 md:px-10 md:pt-3 md:pb-16">
         <div className="grid gap-10 md:grid-cols-4 md:gap-6">
           {processSteps.map((s, i) => (
             <Reveal key={s.title} delay={i * 90}>
