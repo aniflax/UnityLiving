@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/hero";
 import { Services } from "@/components/site/services";
 import { TestimonialsSection } from "@/components/site/testimonials";
-import { UnityalivingAbout, UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
+import { UnityalivingRecentWorks, UnityalivingVideo, UnityalivingWhatWeDo } from "@/components/site/unityaliving-sections";
 import { CountUp, Reveal } from "@/components/site/reveal";
 import featuredProjectBg from "@/assets/featured-project-bg.jpg";
 import featuredProject from "@/assets/featured-project.jpg";
@@ -273,6 +273,9 @@ function Index() {
         </div>
       </section>
 
+      {/* WHAT WE DO */}
+      <UnityalivingWhatWeDo />
+
       {/* NUMBERS */}
       <section className="border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10">
@@ -296,9 +299,7 @@ function Index() {
       {/* WHAT CLIENTS SAY */}
       <TestimonialsSection />
 
-      {/* UNITYALIVING — 4 sections */}
-      <UnityalivingAbout />
-      <UnityalivingWhatWeDo />
+      {/* UNITYALIVING — 2 sections */}
       <UnityalivingVideo />
       <UnityalivingRecentWorks />
 

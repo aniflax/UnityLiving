@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/reveal";
 import { useSite } from "@/lib/site-context";
-import heroBuilding from "@/assets/new/hero-building.jpg";
+import { UnityalivingAbout } from "@/components/site/unityaliving-sections";
 import philosophy from "@/assets/philosophy.jpg";
 import ctaImage from "@/assets/new/cta.jpg";
 import visionImage from "@/assets/new/prop-1.jpg";
@@ -33,30 +33,8 @@ function OurStoryPage() {
 
   return (
     <>
-      {/* PAGE HERO */}
-      <section className="relative flex min-h-[60vh] items-end overflow-hidden bg-black">
-        <img
-          src={heroBuilding}
-          alt="Modern white residential building against a blue sky"
-          loading="eager"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/45 to-black/25" />
-        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-12 pt-32 md:px-10 md:pb-16">
-          <Reveal>
-            <p className="eyebrow text-white/80">About us</p>
-            <h1 className="display mt-4 max-w-5xl text-[clamp(2.4rem,6vw,5rem)] text-white">
-              Redefining the Standard
-              <br />
-              of Thoughtful Living
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-              We build a small number of residences in Indore each year, and we build them to be
-              lived in for decades.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* FIRST SECTION — Unityaliving */}
+      <UnityalivingAbout />
 
       {/* 01 — THE FOUNDATION */}
       <section className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
