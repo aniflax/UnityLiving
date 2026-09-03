@@ -107,12 +107,28 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    // Force autoplay on every session (mobile browsers often ignore autoPlay).
+    // Force autoplay on every session. Mobile browsers (iOS/Android) often
+    // ignore autoPlay and need muted to be set imperatively, plus the media
+    // must be ready before play() resolves.
     const video = videoRef.current;
     if (!video || !showVideo) return;
-    const play = () => video.play().catch(() => {});
-    const t = window.setTimeout(play, 0);
-    return () => window.clearTimeout(t);
+    let cancelled = false;
+    const tryPlay = () => {
+      if (cancelled) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.play().catch(() => {});
+    };
+    tryPlay();
+    if (video.readyState < 2) {
+      video.addEventListener("loadeddata", tryPlay, { once: true });
+      video.addEventListener("canplay", tryPlay, { once: true });
+    }
+    return () => {
+      cancelled = true;
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+    };
   }, [showVideo, videoSession]);
 
   const onVideoEnded = () => {
