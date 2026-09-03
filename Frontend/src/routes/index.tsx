@@ -82,14 +82,14 @@ function Index() {
         <div className="mx-auto grid max-w-[1400px] gap-12 px-6 pb-24 md:grid-cols-12 md:px-10 md:pb-32">
           <div className="md:col-span-6">
             <Reveal>
-              <div className="overflow-hidden rounded-[20px] border border-border">
+              <div className="group overflow-hidden rounded-[20px] border border-border">
                 <img
                   src={philosophy}
                   alt="Sculptural white concrete architecture against a blue sky"
                   loading="lazy"
                   width={1200}
                   height={1504}
-                  className="aspect-4/5 w-full object-cover"
+                  className="aspect-4/5 w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]"
                 />
               </div>
             </Reveal>
@@ -208,17 +208,22 @@ function Index() {
               </div>
             </Reveal>
 
-            {/* Image */}
+            {/* Image — same glass treatment as Client Stories */}
             <Reveal delay={160} className="md:col-span-6">
-              <div className="overflow-hidden rounded-[20px] border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
-                <img
-                  src={featuredProject}
-                  alt="White modern residence with a long horizontal roof under a clear blue sky"
-                  loading="lazy"
-                  width={1920}
-                  height={1200}
-                  className="aspect-16/10 w-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
-                />
+              <div className="rounded-2xl border border-white/20 bg-white/5 p-5 backdrop-blur-md md:p-6">
+                <p className="text-xs font-medium tracking-[0.2em] text-white/60 uppercase">
+                  Featured project
+                </p>
+                <div className="mt-4 overflow-hidden rounded-xl border border-white/15">
+                  <img
+                    src={featuredProject}
+                    alt="White modern residence with a long horizontal roof under a clear blue sky"
+                    loading="lazy"
+                    width={1920}
+                    height={1200}
+                    className="aspect-16/10 w-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.04]"
+                  />
+                </div>
               </div>
             </Reveal>
           </div>

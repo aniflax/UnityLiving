@@ -130,7 +130,7 @@ export function Hero() {
       />
 
       <div className="relative flex min-h-screen items-end p-3 md:p-6">
-        <div className="relative flex min-h-[calc(100vh-24px)] w-full flex-col justify-between overflow-hidden rounded-[18px] border border-white/20 shadow-[0_30px_80px_rgba(0,0,0,0.55)] md:min-h-[calc(100vh-48px)] md:rounded-[24px]">
+        <div className="relative flex min-h-[calc(100vh-24px)] w-full flex-col justify-between overflow-visible rounded-[18px] border border-white/20 shadow-[0_30px_80px_rgba(0,0,0,0.55)] md:min-h-[calc(100vh-48px)] md:rounded-[24px]">
           {/* Dark gradient overlay (bottom heavy, like exp12) */}
           <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/70" />
 
@@ -301,7 +301,7 @@ export function Hero() {
           )}
 
           {/* ===== HERO CONTENT (bottom aligned) ===== */}
-          <div className="relative z-10 flex flex-col gap-3 p-5 pb-20 md:gap-4 md:p-10 md:pb-36">
+          <div className="relative z-10 flex flex-col gap-3 p-5 pb-8 md:gap-4 md:p-10 md:pb-16">
             <p
               className="text-base text-white/90"
               style={{
@@ -314,7 +314,7 @@ export function Hero() {
             </p>
 
             <h1
-              className="text-[clamp(32px,5vw,64px)] leading-[1.04] font-extrabold tracking-[-0.02em] text-white"
+              className="text-[clamp(38px,6.4vw,84px)] leading-[1.02] font-extrabold tracking-[-0.02em] text-white"
               style={{
                 opacity: ready ? 1 : 0,
                 transform: ready ? "none" : "translateY(16px)",
