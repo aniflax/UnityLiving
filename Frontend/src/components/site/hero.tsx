@@ -119,7 +119,7 @@ export function Hero() {
   };
 
   return (
-    <section id="top" className="relative w-full overflow-hidden bg-black">
+    <section id="top" className="relative w-full overflow-x-clip bg-black">
       {/* Full-bleed background image */}
       <img
         src={HERO_BG}
@@ -132,7 +132,7 @@ export function Hero() {
       <div className="relative flex min-h-screen items-end p-3 md:p-6">
         <div className="relative flex min-h-[calc(100vh-24px)] w-full flex-col justify-between overflow-visible rounded-[18px] border border-white/20 shadow-[0_30px_80px_rgba(0,0,0,0.55)] md:min-h-[calc(100vh-48px)] md:rounded-[24px]">
           {/* Dark gradient overlay (bottom heavy, like exp12) */}
-          <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/70" />
+          <div className="absolute inset-0 rounded-[inherit] bg-linear-to-b from-transparent via-transparent to-black/70" />
 
           {/* ===== NAVBAR (inside hero card) ===== */}
           <nav className="relative z-10 flex items-center justify-between p-4 md:px-8 md:py-5">
@@ -314,21 +314,21 @@ export function Hero() {
             </p>
 
             <h1
-              className="text-[clamp(38px,6.4vw,84px)] leading-[1.02] font-extrabold tracking-[-0.02em] text-white"
+              className="text-[clamp(34px,5.4vw,72px)] leading-[1.02] font-extrabold tracking-[-0.02em] text-white"
               style={{
                 opacity: ready ? 1 : 0,
                 transform: ready ? "none" : "translateY(16px)",
                 transition: "opacity 1s ease 300ms, transform 1s cubic-bezier(0.22,1,0.36,1) 300ms",
               }}
             >
-              We design spaces.
+              We design spaces
               <br />
               You live the vision.
             </h1>
 
             {/* Service / Project Type / Scope dropdowns */}
             <div
-              className="mt-2 flex flex-wrap items-end gap-x-5 gap-y-3.5 md:mt-4"
+              className="mt-6 flex flex-wrap items-end gap-x-5 gap-y-3.5 md:mt-10"
               style={{
                 opacity: ready ? 1 : 0,
                 transform: ready ? "none" : "translateY(18px)",
@@ -355,10 +355,10 @@ export function Hero() {
                       <Chevron />
                     </button>
                     <div
-                      className={`absolute top-full left-0 z-30 mt-2 w-max min-w-full overflow-y-auto rounded-xl border border-neutral-200 bg-white p-1 shadow-[0_20px_50px_rgba(0,0,0,0.25)] transition-all duration-200 ${
+                      className={`absolute right-0 bottom-full z-30 mb-2 w-max min-w-full overflow-y-auto rounded-xl border border-neutral-200 bg-white p-1 shadow-[0_20px_50px_rgba(0,0,0,0.25)] transition-all duration-200 ${
                         open
                           ? "visible translate-y-0 opacity-100"
-                          : "pointer-events-none invisible -translate-y-1 opacity-0"
+                          : "pointer-events-none invisible translate-y-1 opacity-0"
                       }`}
                     >
                       <div
