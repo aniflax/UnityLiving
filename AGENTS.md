@@ -14,7 +14,7 @@ shows how the fetch layer worked.
 - **Never ask before pushing** — commit and push to `main` automatically at the end of every task.
 - **No co-author trailer** on commit messages (do not append `Co-authored-by: ...`).
 - Pushing to `main` auto-deploys both the frontend (Cloudflare) and backend (Render).
-- `ex_frontend/` and `new_frontend/` are **gitignored and never pushed** — keep them local.
+- `ex_frontend/` is **gitignored and never pushed** — keep it local as the reference for the previous frontend. The former `new_frontend/` design source has been merged into `Frontend/public` and deleted.
 
 ## Topology
 
@@ -51,20 +51,25 @@ Media URLs: cdn.unityaliving.com (Cloudflare R2 custom domain)
 
 ## Repo layout
 
-- `Frontend/` — the deployed React/TanStack SSR app: a **thin redirect shell**
-  that serves the `new_frontend/` static site verbatim from `public/` (so the UI
-  is byte-identical and every template plugin works). See `Frontend/AGENTS.md`.
-- `new_frontend/` — the static HTML/CSS/JS design source. **Gitignored**, kept
-  local as the reference and copied into `Frontend/public/` for deployment.
+- `Frontend/` — the deployed React/TanStack SSR app: a **thin shell** that
+  serves the static site verbatim from `public/` (so the UI is byte-identical
+  and every template plugin works) with clean URLs via a server rewrite. See
+  `Frontend/AGENTS.md`.
 - `ex_frontend/` — the previous (superseded) React frontend. **Gitignored**,
   kept local as the reference for the old backend fetch layer & structure.
 - `backend/` — Strapi 5 project. See `backend/AGENTS.md`.
 
+`Frontend/public` is the source of truth for the UI — it is the former
+`new_frontend/` template copied verbatim (now deleted as a separate folder).
+
 ## Frontend data flow
 
-- **Current (static):** the deployed site is the `new_frontend/` template served
-  verbatim from `Frontend/public/`; clean URLs are 307-redirected to the static
-  files by the React shell. No env vars are required.
+- **Current (static):** the deployed site is the static template served
+  verbatim from `Frontend/public/`; clean URLs like `/about` and
+  `/projects/cafe-cotta` are served from their `index.html` /
+  `project-detail.html` files via a server rewrite in `src/server.ts` that
+  keeps the URL clean (no `index.html` in the address bar). No env vars are
+  required. Live: https://unityaliving.com — 200, SEO branded to Unitya Living.
 - **Next pass (CMS integration):** rebuild pages as real React components and
   re-add the `STRAPI_URL` resolution and `src/lib/site.ts` fetch of the
   "Personal Informations" single type
@@ -97,16 +102,17 @@ Frontend (set in **Cloudflare Worker**):
 
 Changes pushed to `main` (auto-deployed) — add new entries on top as they ship.
 
+- **SEO: titles and keywords branded to Unitya Living; clean URLs without `index.html`**: all `public/*.html` meta titles/keywords/author/descriptions cleaned of `Modern Template` / `arkit` and set to Unitya Living; `src/server.ts` now serves clean URLs via a 200 rewrite (e.g. `/about` serves `/about/index.html` without changing the URL) instead of a 307 redirect. Live https://unityaliving.com is 200 with correct SEO.
+
 - **Frontend switched to serving the new static design verbatim**: the deployed
   `Frontend/` now copies the whole `new_frontend/` static template into `public/`
   and serves it byte-for-byte (every page, its CSS/fonts/images and all jQuery
   plugins work exactly as designed — Revolution Slider home hero, carousels,
   isotope filters, project-detail filler). The React/TanStack Start app became a
-  thin redirect shell (`src/routes/*` 307-redirect clean URLs like `/about` and
-  `/projects/:slug` to the matching `*.html` files; `/` → `/index.html`) plus a
-  404. The previous React-port routes and extracted content were removed. The
-  old `Frontend/` is archived at `ex_frontend/` and the design source stays in
-  `new_frontend/`; both are gitignored and never pushed.
+  thin shell that keeps URLs clean via a server rewrite. The previous React-port
+  routes and extracted content were removed. The old `Frontend/` is archived at
+  `ex_frontend/` (gitignored); the design source was merged into
+  `Frontend/public` and the `new_frontend/` folder deleted.
 
 - **Frontend rebuilt as the new design (React port of `new_frontend/`); folders renamed**: the
   deployed `Frontend/` is now a React/TanStack Start SSR port of the new static design
@@ -121,10 +127,10 @@ Changes pushed to `main` (auto-deployed) — add new entries on top as they ship
 
 ## Gotchas
 
-- `ex_frontend/` and `new_frontend/` are intentionally **not** in the repo — if a fresh clone
-  needs them, restore from a local backup; never commit them.
+- `ex_frontend/` is intentionally **not** in the repo — if a fresh clone
+  needs it, restore from a local backup; never commit it.
 - The new frontend is fully static and byte-identical to `new_frontend/`: contact/social info,
-  pages, theme and media are edited in `new_frontend/` (then synced into `Frontend/public/`), not
+  pages, theme and media are edited in `Frontend/public/` (the former `new_frontend/` template, now deleted as a separate folder), not
   in the backend or in React components.
 - To sync the static site into the deployable folder: `rm -rf Frontend/public && cp -R new_frontend Frontend/public`.
 - When the CMS is integrated, if `STRAPI_URL` is set in Cloudflare it must be exactly
