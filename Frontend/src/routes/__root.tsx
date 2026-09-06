@@ -65,6 +65,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Unitya Living — Architecture, Interiors, Construction & Real Estate, Indore" },
+      {
+        name: "description",
+        content:
+          "Unitya Living — luxury architecture, interiors, construction and real estate in Indore. Crafting premium homes and living spaces with timeless design.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Unitya Living, luxury homes Indore, architecture Indore, interior design Indore, real estate Indore, premium villas, construction Indore, luxury living",
+      },
+      { name: "author", content: "Unitya Living" },
     ],
     links: [
       { rel: "icon", href: "/images/favicon.ico", type: "image/x-icon" },
