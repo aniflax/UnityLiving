@@ -1,5 +1,9 @@
 # Kept locally but intentionally not pushed (superseded frontend).
-ex_Frontend/
+ex_frontend/
+
+# Static design source for the current React frontend (new_frontend/ template).
+# The React port lives in Frontend/; this folder is the HTML/CSS/JS reference.
+new_frontend/
 
 # macOS
 .DS_Store

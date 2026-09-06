@@ -1,6 +1,12 @@
-# Unityaliving — Architecture
+# Unitya Living — Architecture
 
-Luxury real-estate marketing site ("Unityaliving", Indore, India). Headless CMS front-end built with React/TanStack Start (SSR) deployed on Cloudflare Workers, backed by a Strapi headless CMS running on Render.
+Luxury real-estate marketing site ("Unitya Living", Indore, India). The public
+site is a React/TanStack Start SSR frontend deployed on Cloudflare Workers,
+backed by a Strapi headless CMS running on Render. The deployed `Frontend/`
+**serves the new static design (`new_frontend/`) verbatim** (original HTML/CSS/JS,
+all jQuery plugins intact) behind a thin React redirect shell; the backend
+integration (Strapi) is a later pass — the previous frontend (`ex_frontend/`)
+shows how the fetch layer worked.
 
 ## Workflow
 
@@ -8,13 +14,15 @@ Luxury real-estate marketing site ("Unityaliving", Indore, India). Headless CMS 
 - **Never ask before pushing** — commit and push to `main` automatically at the end of every task.
 - **No co-author trailer** on commit messages (do not append `Co-authored-by: ...`).
 - Pushing to `main` auto-deploys both the frontend (Cloudflare) and backend (Render).
+- `ex_frontend/` and `new_frontend/` are **gitignored and never pushed** — keep them local.
 
 ## Topology
 
 ```
 Browser ──> unityaliving.com (Cloudflare Worker, SSR frontend)
                  │
-                 │  fetch (server-side, cached 5 min)
+                 │  (currently static content; backend fetch to be re-added
+                 │   when the new frontend is integrated with the CMS)
                  ▼
         admin.unityaliving.com (Render → Strapi CMS)
                  │
@@ -43,15 +51,25 @@ Media URLs: cdn.unityaliving.com (Cloudflare R2 custom domain)
 
 ## Repo layout
 
-- `Frontend/` — TanStack Start SSR app (Vite + React + Tailwind + Framer Motion). See `Frontend/AGENTS.md`.
+- `Frontend/` — the deployed React/TanStack SSR app: a **thin redirect shell**
+  that serves the `new_frontend/` static site verbatim from `public/` (so the UI
+  is byte-identical and every template plugin works). See `Frontend/AGENTS.md`.
+- `new_frontend/` — the static HTML/CSS/JS design source. **Gitignored**, kept
+  local as the reference and copied into `Frontend/public/` for deployment.
+- `ex_frontend/` — the previous (superseded) React frontend. **Gitignored**,
+  kept local as the reference for the old backend fetch layer & structure.
 - `backend/` — Strapi 5 project. See `backend/AGENTS.md`.
 
-## Key data flow
+## Frontend data flow
 
-- The frontend reads site-wide contact/social info (email, phone, WhatsApp, Instagram, etc.) from the Strapi single type **Personal Informations** at:
-  `GET https://admin.unityaliving.com/api/personal-information` (public, `auth: false`).
-- Fetch logic + URL resolution lives in `Frontend/src/lib/site.ts`. Result is cached ~5 min in worker memory.
-- Media files are uploaded to R2 and served from `https://cdn.unityaliving.com/...`.
+- **Current (static):** the deployed site is the `new_frontend/` template served
+  verbatim from `Frontend/public/`; clean URLs are 307-redirected to the static
+  files by the React shell. No env vars are required.
+- **Next pass (CMS integration):** rebuild pages as real React components and
+  re-add the `STRAPI_URL` resolution and `src/lib/site.ts` fetch of the
+  "Personal Informations" single type
+  (`GET https://admin.unityaliving.com/api/personal-information`, public) from
+  `ex_frontend/`.
 
 ## Environment variables
 
@@ -62,13 +80,13 @@ Backend (set in **Render** service env):
 - `CORS_ORIGINS` (comma-separated; defaults to `*`)
 
 Frontend (set in **Cloudflare Worker**):
-- `STRAPI_URL=https://admin.unityaliving.com` (runtime variable). The code also falls back to this URL in production builds, so the variable is optional.
-- `VITE_STRAPI_URL` (build-time alternative; rarely needed).
+- Currently none. When the CMS is integrated: `STRAPI_URL=https://admin.unityaliving.com`
+  (runtime variable; the code falls back to this URL in production builds).
 
 ## Local development
 
 - Backend: `cd backend && npm run develop` → http://localhost:1337 (defaults to local SQLite).
-- Frontend: `cd Frontend && npm run dev`. In dev, the site fetch falls back to `http://localhost:1337`; set `STRAPI_URL` or run the backend for live data.
+- Frontend: `cd Frontend && npm run dev` → http://localhost:8080. Fully static — no backend needed to preview.
 
 ## Build & deploy
 
@@ -79,15 +97,38 @@ Frontend (set in **Cloudflare Worker**):
 
 Changes pushed to `main` (auto-deployed) — add new entries on top as they ship.
 
-- **Hero nav: original look + corrected links**: the hero's first-header pill keeps the original 5-link look (Home, Properties, About, Blog, Contact) with the exact original pill styling, but the links now carry corrected navigation: Properties → `/properties`, About → hover dropdown (Our Story → `/our-story`, Founder → `/about`, plain-link trigger, no chevron), Blog → `/media`, Contact → `/#contact`. Search buttons still link to `/properties`.
-- **Our Story page imagery + hero nav style**: the `/our-story` page now uses photography throughout (architecture image in The Foundation, a residential build in Our Mission, a Unityaliving residence in Our Vision, and the founder's photo — Strapi `directorImage` — in the Leadership card, replacing the initials avatar). The hero's internal nav pill was returned to the design-UI style: the About trigger is a plain pill link (chevron removed) and its dropdown panel now uses the same glass treatment (`bg-white/10`, `border-white/15`, `backdrop-blur`) as the pill.
-- **Our Story page + hero nav/search fixes**: new `/our-story` page (`Frontend/src/routes/our-story.index.tsx`) with the full brand narrative — hero, The Foundation (4 principles), Our Mission, Our Vision, founder quote, and a Leadership section linking to the founder page. The nav "Our Story" item (desktop dropdown + mobile) now points to `/our-story` instead of the homepage anchor, as does the homepage "Our Story" button. The hero's internal nav pill was rebuilt to match the real site nav (About dropdown → Our Story/Founder, Properties, Services, Media) and the three search buttons now show Indore context values and link to `/properties`.
-- **Founder page + About nav dropdown + homepage CTA gap**: new `/about` founder page (`Frontend/src/routes/about.index.tsx`) with the founder letter, name (Rohan Astoliya) and the director image from the Strapi `Personal Informations` single type (`directorImage`); the header **About** link moved before **Properties** and is now a hover dropdown (Founder → `/about`, Our Story → `/#about`) with matching mobile sub-links; the homepage final CTA ("LET'S BUILD SOMETHING EXCEPTIONAL.") got top padding so it no longer touches the testimonials section.
-- **Testimonials section → fixed background + glassmorphism**: "Client stories" on the homepage now uses `Frontend/src/assets/Homepage Background.png` as a fixed (parallax) background with a dark overlay and grain; the quote card is a translucent glass card (`backdrop-blur`). The background stays fixed while scrolling so the next section slides over it.
-- **Testimonials section + Services page**: added "What Clients Say" carousel to the homepage (`Frontend/src/components/site/testimonials.tsx`, data in `Frontend/src/lib/data/testimonials.ts`) and a new `/services` page (`Frontend/src/routes/services.index.tsx`, data in `Frontend/src/lib/data/services.ts`) with "What We Offer / Our Services" (Architecture, Interior Design, Exterior Design, Construction, Real Estate) and "In Detail / Our Process" (Discovery, Design Development, Site & Execution, Styling & Experience). Nav + footer now link to `/services`.
+- **Frontend switched to serving the new static design verbatim**: the deployed
+  `Frontend/` now copies the whole `new_frontend/` static template into `public/`
+  and serves it byte-for-byte (every page, its CSS/fonts/images and all jQuery
+  plugins work exactly as designed — Revolution Slider home hero, carousels,
+  isotope filters, project-detail filler). The React/TanStack Start app became a
+  thin redirect shell (`src/routes/*` 307-redirect clean URLs like `/about` and
+  `/projects/:slug` to the matching `*.html` files; `/` → `/index.html`) plus a
+  404. The previous React-port routes and extracted content were removed. The
+  old `Frontend/` is archived at `ex_frontend/` and the design source stays in
+  `new_frontend/`; both are gitignored and never pushed.
+
+- **Frontend rebuilt as the new design (React port of `new_frontend/`); folders renamed**: the
+  deployed `Frontend/` is now a React/TanStack Start SSR port of the new static design
+  (`new_frontend/` — "arkit" template themed for Unitya Living): home hero (crossfade/kenburns
+  React slider replacing the Revolution Slider), shared React header/footer/enquiry/scroll-top,
+  and faithful page bodies embedded from `src/content/*.html` with client-side jQuery widgets
+  (owl carousels, isotope, counters, magnific) scoped per page. Routes: `/`, `/about`, `/founder`,
+  `/services`, `/media` (+ `/media/design`, `/media/market`, `/media/project`), `/projects`
+  (+ `/projects/:slug` for 7 projects). Content is fully static — no backend wiring yet
+  (integration is the next pass). The old `Frontend/` was renamed to `ex_frontend/` and the
+  static design source stays in `new_frontend/`; both are gitignored and never pushed.
 
 ## Gotchas
 
-- If `STRAPI_URL` is set in Cloudflare it must be exactly `https://admin.unityaliving.com` (no trailing slash, no `/api`, must include `https://`) — a bad value overrides the built-in fallback and the footer shows empty.
-- `Frontend/src/lib/site.ts` resolves the backend URL: runtime `process.env.STRAPI_URL` → build-time `VITE_STRAPI_URL` → `localhost:1337` (dev) / `https://admin.unityaliving.com` (prod).
-- If the site renders empty contact/social info, check the worker can reach the backend (the fetch silently falls back to an empty site on error).
+- `ex_frontend/` and `new_frontend/` are intentionally **not** in the repo — if a fresh clone
+  needs them, restore from a local backup; never commit them.
+- The new frontend is fully static and byte-identical to `new_frontend/`: contact/social info,
+  pages, theme and media are edited in `new_frontend/` (then synced into `Frontend/public/`), not
+  in the backend or in React components.
+- To sync the static site into the deployable folder: `rm -rf Frontend/public && cp -R new_frontend Frontend/public`.
+- When the CMS is integrated, if `STRAPI_URL` is set in Cloudflare it must be exactly
+  `https://admin.unityaliving.com` (no trailing slash, no `/api`, must include `https://`) —
+  a bad value overrides the built-in fallback and the footer shows empty.
+- The old fetch layer silently fell back to an empty site on backend error; keep that behaviour
+  when re-adding it so pages still render if the CMS is down.

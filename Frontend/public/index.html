@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+    <meta name="description" content="" />
+
+    <!-- FAVICONS ICON -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+
+    <!-- PAGE TITLE HERE -->
+    <title>Modern Template | Home Page Style 2</title>
+
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- LOADER DISABLED — direct load, no preloader -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- BOOTSTRAP STYLE SHEET -->
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/font-awesome.min.css" />
+    <!-- FONTAWESOME STYLE SHEET -->
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+    <!-- OWL CAROUSEL STYLE SHEET -->
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.min.css">
+    <!-- MAGNIFIC POPUP STYLE SHEET -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- MAIN STYLE SHEET -->
+    <!-- REVOLUTION SLIDER 4 STYLE -->
+    <link rel="stylesheet" type="text/css" href="css/rev-slider-4.css">
+    <!-- REVOLUTION SLIDER CSS -->
+    <link rel="stylesheet" type="text/css" href="plugins/revolution/revolution/css/settings.css">
+    <!-- REVOLUTION NAVIGATION STYLE -->
+    <link rel="stylesheet" type="text/css" href="plugins/revolution/revolution/css/navigation.css">
+    <!-- ARKIT SERVICES (exact copy) -->
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-arkit.min.css">
+    <link rel="stylesheet" type="text/css" href="css/arkit-services.css">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,800,800i,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crete+Round:400,400i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Hero — Arkit kenburns-top-right replication + arrows removed */
+        #welcome .tparrows, #welcome .tp-leftarrow, #welcome .tp-rightarrow { display:none !important; }
+        /* ensure slide image covers and can be transformed */
+        #welcome .rev-slidebg { transform-origin: 84% 16%; }
+        #welcome .active-revslide .rev-slidebg {
+            animation: modern-kenburns 10s ease-out both;
+        }
+        @keyframes modern-kenburns {
+            0% { transform: scale(1) translate(0,0); transform-origin: 84% 16%; }
+            100% { transform: scale(1.25) translate(20px,-15px); transform-origin: right top; }
+        }
+        @-webkit-keyframes modern-kenburns {
+            0% { -webkit-transform: scale(1) translate(0,0); transform: scale(1) translate(0,0); -webkit-transform-origin: 84% 16%; transform-origin: 84% 16%; }
+            100% { -webkit-transform: scale(1.25) translate(20px,-15px); transform: scale(1.25) translate(20px,-15px); -webkit-transform-origin: right top; transform-origin: right top; }
+        }
+        /* hide arrows if inline style injects them */
+        .tp-bullet { }
+        /* Our approach circle — same as Services heading */
+        .approach-label { position: relative; display: inline-block; z-index: 1; }
+        .approach-label:before { background-color: transparent; position: absolute; content: ""; width: 30px; height: 30px; left: -15px; top: -10px; border: 3px solid #111; opacity: 0.15; z-index: -1; }
+        html { scroll-behavior: smooth; }
+        #about, #founder, #services, #projects, #media, #contact { scroll-margin-top: 90px; }
+        @media (max-width: 991px) { .service-btn-float { position: static !important; margin-bottom: 12px; } }
+        /* Home blog cards — hover animation (subtle lift, no dark shadow) */
+        .latest-blog-dark-outer, .latest-blog-dark-outer2 { transition: transform 0.45s cubic-bezier(0.22,1,0.36,1); }
+        .latest-blog-dark-outer:hover, .latest-blog-dark-outer2:hover { transform: translateY(-4px); }
+        .latest-blog-dark-outer .overlay-main, .latest-blog-dark-outer2 .overlay-main { transition: opacity 0.4s ease; }
+        .latest-blog-dark-outer:hover .overlay-main, .latest-blog-dark-outer2:hover .overlay-main { opacity: 0.45; }
+        /* Home Latest Project — modern project cards */
+        .lp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 40px; max-width: 1240px; }
+        .lp-card { display: block; border: 1px solid #ececec; border-radius: 20px; overflow: hidden; background: #fff; text-decoration: none; transition: box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+        .lp-card:hover { box-shadow: 0 22px 48px rgba(0,0,0,0.09); transform: translateY(-6px); }
+        .lp-card-media { position: relative; overflow: hidden; background: #f5f5f5; }
+        .lp-card-media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; transition: transform 1.1s cubic-bezier(0.22,1,0.36,1); }
+        .lp-card:hover .lp-card-media img { transform: scale(1.06); }
+        .lp-card-cat { position: absolute; left: 14px; top: 14px; z-index: 2; background: rgba(255,255,255,0.94); color: #111; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; font-family: 'Inter', sans-serif; padding: 6px 12px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lp-card-body { padding: 18px 20px 20px; }
+        .lp-card-body h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.3; letter-spacing: -0.01em; text-transform: uppercase; color: #111; margin: 0; }
+        .lp-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #efefef; }
+        .lp-card-foot .meta { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #999; font-family: 'Inter', sans-serif; }
+        .lp-card-view { display: inline-flex; align-items: center; justify-content: center; padding: 8px 18px; background: transparent; border: 1px solid #111; border-radius: 999px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: #111; font-family: 'Inter', sans-serif; transition: background 0.3s ease, color 0.3s ease; }
+        .lp-card:hover .lp-card-view { background: #111; color: #fff; }
+        /* The Process section — new */
+        .process-reveal, .process-step { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+        .process-reveal.in-view, .process-step.in-view { opacity: 1; transform: translateY(0); }
+        .process-step { transition-delay: var(--d, 0ms); }
+        .process-step:hover { transition-delay: 0ms !important; transform: translateY(-6px); }
+        .process-icon { width: 26px; height: 26px; display: block; object-fit: contain; margin: 0 auto; }
+        .process-icon-dot { width: 56px; height: 56px; border-radius: 50%; background: #fff; border: 1px solid #e7e7e7; display: flex; align-items: center; justify-content: center; margin: 0 auto; box-shadow: 0 4px 14px rgba(0,0,0,0.06); transition: box-shadow 0.4s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+        .process-step:hover .process-icon-dot { box-shadow: 0 10px 24px rgba(0,0,0,0.12); transform: translateY(-4px); }
+        .process-step { text-align: center; }
+        .process-grid { position: relative; }
+        .process-line { position: absolute; top: 28px; left: 0; right: 0; height: 1px; background: #e3e3e3; }
+        @media (max-width: 767px) { .process-line { display: none; } }
+        /* Lifestyle card on hero — hidden on mobile as Unitya */
+        @media (max-width: 768px){ .unitya-lifestyle-hero-card { display:none !important; } #unitya-socials { display:none !important; } }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="page-wraper">
+
+        <!-- HEADER START -->
+        <header class="site-header header-style-1  nav-wide mobile-sider-drawer-menu">
+
+            <div class="sticky-header main-bar-wraper">
+                <div class="main-bar bg-white p-t10">
+                    <div class="container">
+                        <div class="logo-header">
+                            <div class="logo-header-inner logo-header-one">
+                                <a href="index.html" style="display:flex; align-items:center; gap:8px; text-decoration:none; line-height:1;">
+                                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width:34px; height:34px; display:block; flex-shrink:0;"><path d="m295.393 478v-34.579l-15.762-15.762c-47.655 4.455-100.779-49.254-93.064-97.648a7.991 7.991 0 0 1 6.56-6.7c24.808-4.271 51.7 8.562 70.2 27.06 17.477 17.477 29.832 42.3 27.62 65.976l4.45 4.45v-210.609l-41.297-41.24-105.923 43.287v265.765zm-32.874-67.455c-13.595-3.126-26.813-11.084-37.552-21.822-13.432-13.432-23.616-32.217-23.194-50.236a56.965 56.965 0 0 1 21.948 4.261c23.3 9.157 44.493 32.035 50.112 56.486l-29.688-29.688a8 8 0 1 0 -11.313 11.312zm48.874 10.255 12.351-12.352c-3.628-32.107 13.272-66.205 37.1-90.031a135.1 135.1 0 0 1 45.587-30.369c16.73-6.576 33.626-8.74 48.629-6.133a7.991 7.991 0 0 1 6.56 6.7c5.377 33.647-11.489 69.005-36.53 94.046-23.826 23.826-57.926 40.727-90.032 37.1l-23.663 23.663v34.576h174.605a8 8 0 0 1 0 16h-460a8 8 0 0 1 -8-8v-393.3a7.981 7.981 0 0 1 2.788-6.069l65.934-65.85a7.925 7.925 0 0 1 9.807-1.852l162.471 66.398a7.963 7.963 0 0 1 4.963 7.375h.037v63.585l44.605 44.548a7.982 7.982 0 0 1 2.788 6.068zm28.233-28.234 47.683-47.683a8 8 0 1 1 11.312 11.313l-47.682 47.683c38.336-4.009 75.606-36.907 89.642-72.616 4.653-11.836 6.7-23.61 5.959-34.3-26.541-1.838-54.649 13.029-74.385 32.765-17.277 17.272-30.139 39.972-32.529 62.834zm-305.626 85.434h50.785v-432.734l-50.785 50.72zm66.785 0v-440.128l147.215 60.161v56.207l-110.823 45.288a7.965 7.965 0 0 0 -4.963 7.375h-.037v271.097z" fill="#111" fill-rule="evenodd"/></svg>
+                                    <span style="display:flex; align-items:center; gap:10px;">
+                                        <span style="font-family:'Poppins',sans-serif; font-weight:800; font-size:20px; letter-spacing:2px; color:#111; line-height:1; text-transform:uppercase;">UNITYA</span>
+                                        <span style="width:1px; height:20px; background:#111; opacity:0.12; display:inline-block;"></span>
+                                        <span style="font-family:'Poppins',sans-serif; font-weight:300; font-size:11px; letter-spacing:4px; color:#111; opacity:0.75; line-height:1; text-transform:uppercase; padding-top:1px;">LIVING</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- NAV Toggle Button -->
+                        <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar icon-bar-first"></span>
+                            <span class="icon-bar icon-bar-two"></span>
+                            <span class="icon-bar icon-bar-three"></span>
+                        </button>
+                        <!-- ETRA Nav -->
+                        <!-- MAIN Vav -->
+                        <div class="header-nav navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="about/">About</a></li>
+                                <li><a href="founder/">Founder</a></li>
+                                <li><a href="projects/">Projects</a></li>
+                                <li><a href="services/">Services</a></li>
+                                <li><a href="media/">Media</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="extra-nav">
+                            <div class="extra-cell">
+                                <a href="#search" class="site-search-btn"><i class="fa fa-search"></i></a>
+                            </div>
+                            <div class="extra-cell">
+                                <div class="dropdown share-icon-btn">
+                                    <a href="javascript:;" class="site-search-btn dropdown-toggle" title="Your Cart" data-bs-toggle="dropdown">
+                                        <i class="fa fa-share-alt"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu bg-white">
+                                        <div class="top-bar">
+                                            <ul class="social-bx list-inline">
+                                                <li><a href="javascript:void(0);" class="fa fa-facebook"></a></li>
+                                                <li><a href="javascript:void(0);" class="fa fa-twitter"></a></li>
+                                                <li><a href="javascript:void(0);" class="fa fa-linkedin"></a></li>
+                                                <li><a href="javascript:void(0);" class="fa fa-rss"></a></li>
+                                                <li><a href="javascript:void(0);" class="fa fa-youtube"></a></li>
+                                                <li><a href="javascript:void(0);" class="fa fa-instagram"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- SITE Search -->
+                        <div id="search">
+                            <span class="close"></span>
+                            <form role="search" id="searchform" action="/search" method="get" class="radius-xl">
+                                <div class="input-group">
+                                    <input value="" name="q" type="search" placeholder="Type to search" />
+                                    <span class="input-group-btn"><button type="button" class="search-btn"><i class="fa fa-search"></i></button></span>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!-- HEADER END -->
+
+        <!-- CONTENT START -->
+        <div class="page-content">
+
+            <!-- SLIDER START -->
+            <div id="welcome_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="goodnews-header" data-source="gallery" style="background:#eeeeee;padding:0px;">
+                <div id="welcome" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.3.1">
+                    <ul>
+                        <!-- SLIDE 1 -->
+                        <!-- SLIDE 1 -->
+                                                <!-- SLIDE 1 -->
+<li data-index="rs-901" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/new-hero-images/heather-doty-Yy-nfkEYkkc-unsplash.jpg"
+                            data-rotate="0" data-fstransition="fade" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
+                            data-param8="" data-param9="" data-param10="" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/new-hero-images/heather-doty-Yy-nfkEYkkc-unsplash.jpg" alt="" data-lazyload="images/new-hero-images/heather-doty-Yy-nfkEYkkc-unsplash.jpg" data-bgposition="center center" data-bgfit="cover" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="125" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-901-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','0','0']" data-width="full" data-height="['400','400','400','550']"
+                                data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":100,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":0,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-901-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" data-width="full"
+                                data-height="['400','400','400','550']" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- Decorative line — arkit style -->
+                            <div class="tp-caption tp-shape tp-shapewrapper" id="slide-901-line" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['300','300','255','225']" data-width="72" data-height="2" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"x:[-100%];opacity:0;","speed":900,"to":"o:1;","delay":300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index:6;background-color:rgba(255,255,255,0.92);">
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption BigBold-Title   tp-resizeme" id="slide-901-layer-3" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['210','210','180','175']" data-fontsize="['80','60','50','30']"
+                                data-lineheight="['100','90','60','60']" data-fontweight="['800','800','800','800']" data-width="['none','none','none','400']" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide"
+                                data-responsive_offset="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":900,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
+                                data-paddingleft="[0,0,0,0]" style="z-index: 6; 
+                                text-transform:uppercase;
+                                color:#fff;"><span class="text-yellow">Homes that </span> endure</div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption BigBold-SubTitle  " id="slide-901-layer-4" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','95','80','75']" data-fontsize="['15','15','15','13']"
+                                data-lineheight="['24','24','24','20']" data-width="['410','410','410','280']" data-height="['60','100','100','100']" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off"
+                                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":900,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; 
+                                color:#fff;
+                                ">Architecture that holds its character long after handover.</div>
+
+                            <!-- LAYER NR. 5 -->
+                            <div class="tp-caption BigBold-Button rev-btn " id="slide-901-layer-5" data-x="['left','left','left','left']" data-hoffset="['480','480','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','130','50','40']" data-width="none"
+                                data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},
+                                {"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]' data-textAlign="['left','left','left','left']"
+                                data-paddingtop="[15,15,15,15]" data-paddingright="[50,50,50,50]" data-paddingbottom="[15,15,15,15]" data-paddingleft="[50,50,0,0]" style="z-index: 11; "><a href="about-1.html" class="site-button outline white">READ MORE</a> </div>
+
+                            <!-- Border Part -->                                                        <!-- Border Part -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " id="slide-901-layer-8" data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full" data-height="full"
+                                data-whitespace="nowrap" data-visibility="['on','on','off','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":50,"speed":100,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"Power3.easeIn"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10;background-color:rgba(0, 0, 0, 0);border-color:rgb(255,255,255);border-style:solid;border-width:0px 80px 80px 80px;">
+                            </div>
+
+                        </li>
+                        <!-- SLIDE 2 -->
+<li data-index="rs-902" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/new-hero-images/tazz-anderson-ya9POX9IxVM-unsplash.jpg"
+                            data-rotate="0" data-fstransition="fade" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
+                            data-param8="" data-param9="" data-param10="" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/new-hero-images/tazz-anderson-ya9POX9IxVM-unsplash.jpg" alt="" data-lazyload="images/new-hero-images/tazz-anderson-ya9POX9IxVM-unsplash.jpg" data-bgposition="center center" data-bgfit="cover" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="125" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-902-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','0','0']" data-width="full" data-height="['400','400','400','550']"
+                                data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":100,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":0,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-902-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" data-width="full"
+                                data-height="['400','400','400','550']" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- Decorative line — arkit style -->
+                            <div class="tp-caption tp-shape tp-shapewrapper" id="slide-902-line" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['300','300','255','225']" data-width="72" data-height="2" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"x:[-100%];opacity:0;","speed":900,"to":"o:1;","delay":300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index:6;background-color:rgba(255,255,255,0.92);">
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption BigBold-Title   tp-resizeme" id="slide-902-layer-3" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['210','210','180','175']" data-fontsize="['80','60','50','30']"
+                                data-lineheight="['100','90','60','60']" data-fontweight="['800','800','800','800']" data-width="['none','none','none','400']" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide"
+                                data-responsive_offset="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":900,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
+                                data-paddingleft="[0,0,0,0]" style="z-index: 6; 
+                                text-transform:uppercase;
+                                color:#fff;"><span class="text-yellow">Built to </span> last</div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption BigBold-SubTitle  " id="slide-902-layer-4" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','95','80','75']" data-fontsize="['15','15','15','13']"
+                                data-lineheight="['24','24','24','20']" data-width="['410','410','410','280']" data-height="['60','100','100','100']" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off"
+                                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":900,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; 
+                                color:#fff;
+                                ">Materials chosen for how they age, not just how they look.</div>
+
+                            <!-- LAYER NR. 5 -->
+                            <div class="tp-caption BigBold-Button rev-btn " id="slide-902-layer-5" data-x="['left','left','left','left']" data-hoffset="['480','480','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','130','50','40']" data-width="none"
+                                data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},
+                                {"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]' data-textAlign="['left','left','left','left']"
+                                data-paddingtop="[15,15,15,15]" data-paddingright="[50,50,50,50]" data-paddingbottom="[15,15,15,15]" data-paddingleft="[50,50,0,0]" style="z-index: 11; "><a href="about-1.html" class="site-button outline white">READ MORE</a> </div>
+
+                            <!-- Border Part -->                                                        <!-- Border Part -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " id="slide-902-layer-8" data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full" data-height="full"
+                                data-whitespace="nowrap" data-visibility="['on','on','off','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":50,"speed":100,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"Power3.easeIn"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10;background-color:rgba(0, 0, 0, 0);border-color:rgb(255,255,255);border-style:solid;border-width:0px 80px 80px 80px;">
+                            </div>
+
+                        </li>
+                        <!-- SLIDE 3 -->
+<li data-index="rs-903" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/new-hero-images/compagnons-2BwV9My8xAo-unsplash.jpg"
+                            data-rotate="0" data-fstransition="fade" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
+                            data-param8="" data-param9="" data-param10="" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/new-hero-images/compagnons-2BwV9My8xAo-unsplash.jpg" alt="" data-lazyload="images/new-hero-images/compagnons-2BwV9My8xAo-unsplash.jpg" data-bgposition="center center" data-bgfit="cover" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="125" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-903-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','0','0']" data-width="full" data-height="['400','400','400','550']"
+                                data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":100,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":0,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-903-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" data-width="full"
+                                data-height="['400','400','400','550']" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- Decorative line — arkit style -->
+                            <div class="tp-caption tp-shape tp-shapewrapper" id="slide-903-line" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['300','300','255','225']" data-width="72" data-height="2" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"x:[-100%];opacity:0;","speed":900,"to":"o:1;","delay":300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index:6;background-color:rgba(255,255,255,0.92);">
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption BigBold-Title   tp-resizeme" id="slide-903-layer-3" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['210','210','180','175']" data-fontsize="['80','60','50','30']"
+                                data-lineheight="['100','90','60','60']" data-fontweight="['800','800','800','800']" data-width="['none','none','none','400']" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide"
+                                data-responsive_offset="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":900,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
+                                data-paddingleft="[0,0,0,0]" style="z-index: 6; 
+                                text-transform:uppercase;
+                                color:#fff;"><span class="text-yellow">Modern </span> house </div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption BigBold-SubTitle  " id="slide-903-layer-4" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','95','80','75']" data-fontsize="['15','15','15','13']"
+                                data-lineheight="['24','24','24','20']" data-width="['410','410','410','280']" data-height="['60','100','100','100']" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off"
+                                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":900,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; 
+                                color:#fff;
+                                ">Our company takes orders to external architectural offices & edited, designed and created.
+                            </div>
+
+                            <!-- LAYER NR. 5 -->
+                            <div class="tp-caption BigBold-Button rev-btn " id="slide-903-layer-5" data-x="['left','left','left','left']" data-hoffset="['480','480','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','130','50','40']" data-width="none"
+                                data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},
+                                {"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]' data-textAlign="['left','left','left','left']"
+                                data-paddingtop="[15,15,15,15]" data-paddingright="[50,50,50,50]" data-paddingbottom="[15,15,15,15]" data-paddingleft="[50,50,0,0]" style="z-index: 11; "><a href="about-1.html" class="site-button outline white">READ MORE</a> </div>
+
+                            <!-- Border Part -->                                                        <!-- Border Part -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " id="slide-903-layer-8" data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full" data-height="full"
+                                data-whitespace="nowrap" data-visibility="['on','on','off','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":50,"speed":100,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"Power3.easeIn"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10;background-color:rgba(0, 0, 0, 0);border-color:rgb(255,255,255);border-style:solid;border-width:0px 80px 80px 80px;">
+                            </div>
+
+                        </li>
+                        <!-- SLIDE 4 -->
+<li data-index="rs-904" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/new-hero-images/dillon-kydd-2keCPb73aQY-unsplash.jpg"
+                            data-rotate="0" data-fstransition="fade" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
+                            data-param8="" data-param9="" data-param10="" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/new-hero-images/dillon-kydd-2keCPb73aQY-unsplash.jpg" alt="" data-lazyload="images/new-hero-images/dillon-kydd-2keCPb73aQY-unsplash.jpg" data-bgposition="center center" data-bgfit="cover" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="125" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-904-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','0','0']" data-width="full" data-height="['400','400','400','550']"
+                                data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":100,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":0,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-904-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" data-width="full"
+                                data-height="['400','400','400','550']" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- Decorative line — arkit style -->
+                            <div class="tp-caption tp-shape tp-shapewrapper" id="slide-904-line" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['300','300','255','225']" data-width="72" data-height="2" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"x:[-100%];opacity:0;","speed":900,"to":"o:1;","delay":300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index:6;background-color:rgba(255,255,255,0.92);">
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption BigBold-Title   tp-resizeme" id="slide-904-layer-3" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['210','210','180','175']" data-fontsize="['80','60','50','30']"
+                                data-lineheight="['100','90','60','60']" data-fontweight="['800','800','800','800']" data-width="['none','none','none','400']" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide"
+                                data-responsive_offset="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":900,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
+                                data-paddingleft="[0,0,0,0]" style="z-index: 6; 
+                                text-transform:uppercase;
+                                color:#fff;"><span class="text-yellow">Design to </span> Reality </div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption BigBold-SubTitle  " id="slide-904-layer-4" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','95','80','75']" data-fontsize="['15','15','15','13']"
+                                data-lineheight="['24','24','24','20']" data-width="['410','410','410','280']" data-height="['60','100','100','100']" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off"
+                                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":900,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; 
+                                color:#fff;
+                                ">Our company takes orders to external architectural offices & edited, designed and created.
+                            </div>
+
+                            <!-- LAYER NR. 5 -->
+                            <div class="tp-caption BigBold-Button rev-btn " id="slide-904-layer-5" data-x="['left','left','left','left']" data-hoffset="['480','480','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','130','50','40']" data-width="none"
+                                data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},
+                                {"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]' data-textAlign="['left','left','left','left']"
+                                data-paddingtop="[15,15,15,15]" data-paddingright="[50,50,50,50]" data-paddingbottom="[15,15,15,15]" data-paddingleft="[50,50,0,0]" style="z-index: 11; "><a href="about-1.html" class="site-button outline white">READ MORE</a> </div>
+
+                            <!-- Border Part -->                                                        <!-- Border Part -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " id="slide-904-layer-8" data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full" data-height="full"
+                                data-whitespace="nowrap" data-visibility="['on','on','off','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":50,"speed":100,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"Power3.easeIn"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10;background-color:rgba(0, 0, 0, 0);border-color:rgb(255,255,255);border-style:solid;border-width:0px 80px 80px 80px;">
+                            </div>
+
+                        </li>
+                        <!-- SLIDE 5 -->
+<li data-index="rs-905" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/new-hero-images/dillon-kydd-XGvwt544g8k-unsplash.jpg"
+                            data-rotate="0" data-fstransition="fade" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
+                            data-param8="" data-param9="" data-param10="" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/new-hero-images/dillon-kydd-XGvwt544g8k-unsplash.jpg" alt="" data-lazyload="images/new-hero-images/dillon-kydd-XGvwt544g8k-unsplash.jpg" data-bgposition="center center" data-bgfit="cover" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="125" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-905-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','0','0']" data-width="full" data-height="['400','400','400','550']"
+                                data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":100,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":0,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-905-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" data-width="full"
+                                data-height="['400','400','400','550']" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- Decorative line — arkit style -->
+                            <div class="tp-caption tp-shape tp-shapewrapper" id="slide-905-line" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['300','300','255','225']" data-width="72" data-height="2" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"x:[-100%];opacity:0;","speed":900,"to":"o:1;","delay":300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index:6;background-color:rgba(255,255,255,0.92);">
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption BigBold-Title   tp-resizeme" id="slide-905-layer-3" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['210','210','180','175']" data-fontsize="['80','60','50','30']"
+                                data-lineheight="['100','90','60','60']" data-fontweight="['800','800','800','800']" data-width="['none','none','none','400']" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide"
+                                data-responsive_offset="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":900,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
+                                data-paddingleft="[0,0,0,0]" style="z-index: 6; 
+                                text-transform:uppercase;
+                                color:#fff;"><span class="text-yellow">Your dream</span> We design </div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption BigBold-SubTitle  " id="slide-905-layer-4" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','95','80','75']" data-fontsize="['15','15','15','13']"
+                                data-lineheight="['24','24','24','20']" data-width="['410','410','410','280']" data-height="['60','100','100','100']" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off"
+                                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":900,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; 
+                                color:#fff;
+                                ">Our company takes orders to external architectural offices & edited, designed and created.
+                            </div>
+
+                            <!-- LAYER NR. 5 -->
+                            <div class="tp-caption BigBold-Button rev-btn " id="slide-905-layer-5" data-x="['left','left','left','left']" data-hoffset="['480','480','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','130','50','40']" data-width="none"
+                                data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},
+                                {"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]' data-textAlign="['left','left','left','left']"
+                                data-paddingtop="[15,15,15,15]" data-paddingright="[50,50,50,50]" data-paddingbottom="[15,15,15,15]" data-paddingleft="[50,50,0,0]" style="z-index: 11; "><a href="about-1.html" class="site-button outline white">READ MORE</a> </div>
+
+                            <!-- Border Part -->                                                        <!-- Border Part -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " id="slide-905-layer-8" data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full" data-height="full"
+                                data-whitespace="nowrap" data-visibility="['on','on','off','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":50,"speed":100,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"Power3.easeIn"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10;background-color:rgba(0, 0, 0, 0);border-color:rgb(255,255,255);border-style:solid;border-width:0px 80px 80px 80px;">
+                            </div>
+
+                        </li>
+                        <!-- SLIDE 6 -->
+<li data-index="rs-906" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/new-hero-images/erik-mclean-bdSR9RpVSKA-unsplash.jpg"
+                            data-rotate="0" data-fstransition="fade" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
+                            data-param8="" data-param9="" data-param10="" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/new-hero-images/erik-mclean-bdSR9RpVSKA-unsplash.jpg" alt="" data-lazyload="images/new-hero-images/erik-mclean-bdSR9RpVSKA-unsplash.jpg" data-bgposition="center center" data-bgfit="cover" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="125" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-906-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','0','0']" data-width="full" data-height="['400','400','400','550']"
+                                data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":100,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":0,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-906-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" data-width="full"
+                                data-height="['400','400','400','550']" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- Decorative line — arkit style -->
+                            <div class="tp-caption tp-shape tp-shapewrapper" id="slide-906-line" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['300','300','255','225']" data-width="72" data-height="2" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"x:[-100%];opacity:0;","speed":900,"to":"o:1;","delay":300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index:6;background-color:rgba(255,255,255,0.92);">
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption BigBold-Title   tp-resizeme" id="slide-906-layer-3" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['210','210','180','175']" data-fontsize="['80','60','50','30']"
+                                data-lineheight="['100','90','60','60']" data-fontweight="['800','800','800','800']" data-width="['none','none','none','400']" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide"
+                                data-responsive_offset="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":900,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
+                                data-paddingleft="[0,0,0,0]" style="z-index: 6; 
+                                text-transform:uppercase;
+                                color:#fff;"><span class="text-yellow">Light &amp; </span> Space </div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption BigBold-SubTitle  " id="slide-906-layer-4" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','95','80','75']" data-fontsize="['15','15','15','13']"
+                                data-lineheight="['24','24','24','20']" data-width="['410','410','410','280']" data-height="['60','100','100','100']" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off"
+                                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":900,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; 
+                                color:#fff;
+                                ">Spaces shaped by daylight, proportion and restraint.
+                            </div>
+
+                            <!-- LAYER NR. 5 -->
+                            <div class="tp-caption BigBold-Button rev-btn " id="slide-906-layer-5" data-x="['left','left','left','left']" data-hoffset="['480','480','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','130','50','40']" data-width="none"
+                                data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},
+                                {"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]' data-textAlign="['left','left','left','left']"
+                                data-paddingtop="[15,15,15,15]" data-paddingright="[50,50,50,50]" data-paddingbottom="[15,15,15,15]" data-paddingleft="[50,50,0,0]" style="z-index: 11; "><a href="about-1.html" class="site-button outline white">READ MORE</a> </div>
+
+                            <!-- Border Part -->                                                        <!-- Border Part -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " id="slide-906-layer-8" data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full" data-height="full"
+                                data-whitespace="nowrap" data-visibility="['on','on','off','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":50,"speed":100,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"Power3.easeIn"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10;background-color:rgba(0, 0, 0, 0);border-color:rgb(255,255,255);border-style:solid;border-width:0px 80px 80px 80px;">
+                            </div>
+
+                        </li>
+                        <!-- SLIDE 7 -->
+<li data-index="rs-907" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/new-hero-images/will-haddock-rmIPODeK8WM-unsplash.jpg"
+                            data-rotate="0" data-fstransition="fade" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
+                            data-param8="" data-param9="" data-param10="" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/new-hero-images/will-haddock-rmIPODeK8WM-unsplash.jpg" alt="" data-lazyload="images/new-hero-images/will-haddock-rmIPODeK8WM-unsplash.jpg" data-bgposition="center center" data-bgfit="cover" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="125" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-907-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','0','0']" data-width="full" data-height="['400','400','400','550']"
+                                data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":100,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":0,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  " id="slide-907-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" data-width="full"
+                                data-height="['400','400','400','550']" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
+                                border-width:0px;background:linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);cursor:default;">
+                            </div>
+
+                            <!-- Decorative line — arkit style -->
+                            <div class="tp-caption tp-shape tp-shapewrapper" id="slide-907-line" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['300','300','255','225']" data-width="72" data-height="2" data-whitespace="nowrap" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"x:[-100%];opacity:0;","speed":900,"to":"o:1;","delay":300,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index:6;background-color:rgba(255,255,255,0.92);">
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption BigBold-Title   tp-resizeme" id="slide-907-layer-3" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['210','210','180','175']" data-fontsize="['80','60','50','30']"
+                                data-lineheight="['100','90','60','60']" data-fontweight="['800','800','800','800']" data-width="['none','none','none','400']" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide"
+                                data-responsive_offset="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":900,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]"
+                                data-paddingleft="[0,0,0,0]" style="z-index: 6; 
+                                text-transform:uppercase;
+                                color:#fff;"><span class="text-yellow">Spaces for </span> life </div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption BigBold-SubTitle  " id="slide-907-layer-4" data-x="['left','left','left','left']" data-hoffset="['120','120','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','95','80','75']" data-fontsize="['15','15','15','13']"
+                                data-lineheight="['24','24','24','20']" data-width="['410','410','410','280']" data-height="['60','100','100','100']" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off"
+                                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":900,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; 
+                                color:#fff;
+                                ">Every detail resolved with precision and care.
+                            </div>
+
+                            <!-- LAYER NR. 5 -->
+                            <div class="tp-caption BigBold-Button rev-btn " id="slide-907-layer-5" data-x="['left','left','left','left']" data-hoffset="['480','480','30','30']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['130','130','50','40']" data-width="none"
+                                data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":900,"to":"o:1;","delay":1300,"ease":"Power3.easeInOut"},
+                                {"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},
+                                {"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]' data-textAlign="['left','left','left','left']"
+                                data-paddingtop="[15,15,15,15]" data-paddingright="[50,50,50,50]" data-paddingbottom="[15,15,15,15]" data-paddingleft="[50,50,0,0]" style="z-index: 11; "><a href="about-1.html" class="site-button outline white">READ MORE</a> </div>
+
+                            <!-- Border Part -->                                                        <!-- Border Part -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " id="slide-907-layer-8" data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full" data-height="full"
+                                data-whitespace="nowrap" data-visibility="['on','on','off','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":50,"speed":100,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"Power3.easeIn"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10;background-color:rgba(0, 0, 0, 0);border-color:rgb(255,255,255);border-style:solid;border-width:0px 80px 80px 80px;">
+                            </div>
+
+                        </li>
+                    </ul>
+                    <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+                </div>
+                <!-- Lifestyle small card on hero — rotating every 3s (4 items) -->
+                <div id="unitya-lifestyle-card" class="unitya-lifestyle-hero-card" style="position:absolute; right:104px; bottom:108px; z-index:20; display:flex; max-width:340px; align-items:center; gap:16px; border-radius:22px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); padding:10px 10px 10px 20px; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); transition: opacity 0.5s ease;">
+                    <p id="unitya-lifestyle-text" style="font-family:'Inter', sans-serif; font-size:14.5px; font-weight:700; line-height:1.42; color:#fff; margin:0; flex:1; transition: opacity 0.5s ease;">We design spaces — You live the vision</p>
+                    <img id="unitya-lifestyle-img" src="images/media/hero-building.jpg" alt="Property lifestyle" style="width:100px; height:100px; flex-shrink:0; border-radius:14px; border:1.5px solid rgba(255,255,255,0.55); object-fit:cover; display:block; transition: opacity 0.5s ease;">
+                </div>
+                <!-- Unitya hero social icons -->
+                <div id="unitya-socials" style="position:absolute; left:120px; bottom:100px; z-index:20; display:flex; align-items:center; gap:6px;"><a href="#" target="_blank" rel="noreferrer" aria-label="Facebook" style="color:#fff; display:inline-flex; width:34px; height:34px; align-items:center; justify-content:center; text-decoration:none; transition:opacity .3s;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:26px; height:26px; display:block;"><path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1z"/></svg></a><a href="#" target="_blank" rel="noreferrer" aria-label="Twitter" style="color:#fff; display:inline-flex; width:34px; height:34px; align-items:center; justify-content:center; text-decoration:none; transition:opacity .3s;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:26px; height:26px; display:block;"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.8.5-1.7.8-2.6 1A4.1 4.1 0 0 0 11.7 8c0 .3 0 .6.1.9-3.4-.2-6.4-1.8-8.4-4.2-.4.6-.6 1.3-.6 2.1 0 1.4.7 2.7 1.7 3.4-.6 0-1.2-.2-1.8-.5v.1c0 2 1.4 3.7 3.3 4.1-.3.1-.7.1-1 .1-.2 0-.5 0-.7-.1.5 1.6 2 2.8 3.8 2.8A8.3 8.3 0 0 1 3 18.5 11.7 11.7 0 0 0 9.3 20c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.1z"/></svg></a><a href="#" target="_blank" rel="noreferrer" aria-label="Linkedin" style="color:#fff; display:inline-flex; width:34px; height:34px; align-items:center; justify-content:center; text-decoration:none; transition:opacity .3s;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:26px; height:26px; display:block;"><path d="M6.5 8.5H3V21h3.5V8.5zM4.8 3C3.7 3 3 3.8 3 4.8s.7 1.8 1.8 1.8 1.8-.8 1.8-1.8S5.9 3 4.8 3zM21 13.8c0-3.8-2-5.6-4.8-5.6-2.2 0-3.2 1.2-3.8 2v-1.7H9V21h3.5v-6.2c0-1.6.3-3.2 2.3-3.2 2 0 2 1.9 2 3.3V21H21v-7.2z"/></svg></a></div>
+                <script>
+                    (function(){
+                        var items = [
+                            { text: "We design spaces — You live the vision", img: "images/media/hero-building.jpg" },
+                            { text: "Building Sattvic Communities with Purpose Since 2005", img: "images/our-story/philosophy.jpg" },
+                            { text: "Every home we build reflects our commitment to enhancing your lifestyle", img: "images/lifestyle/lifestyle.png" },
+                            { text: "A home is not sold in an afternoon — we build for the second part", img: "images/our-story/cta.jpg" }
+                        ];
+                        var idx = 0;
+                        var textEl = document.getElementById('unitya-lifestyle-text');
+                        var imgEl = document.getElementById('unitya-lifestyle-img');
+                        var card = document.getElementById('unitya-lifestyle-card');
+                        if(!textEl || !imgEl || !card) return;
+                        function schedule(){
+                            var delay = (idx === 0 || idx === 1) ? 4000 : 3000;
+                            setTimeout(function(){
+                                idx = (idx + 1) % items.length;
+                                textEl.style.opacity = '0';
+                                imgEl.style.opacity = '0';
+                                setTimeout(function(){
+                                    textEl.textContent = items[idx].text;
+                                    imgEl.src = items[idx].img;
+                                    textEl.style.opacity = '1';
+                                    imgEl.style.opacity = '1';
+                                    schedule();
+                                }, 250);
+                            }, delay);
+                        }
+                        schedule();
+                    })();
+                </script>
+            </div>
+            <!-- SLIDER END -->
+
+            <!-- WELCOME SECTION START -->
+            <div id="about" class="section-full clearfix p-t80  bg-gray">
+                <div class="container">
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 m-b30 text-black">
+                                <span class="approach-label font-12 font-weight-700 d-block m-b10 text-uppercase" style="letter-spacing:4px; color:#111;">Our approach</span>
+                                <h2 class="font-40 text-uppercase" style="line-height:1; letter-spacing:-1px;">
+                                    <span style="font-weight:800;">WE DESIGN</span> <span style="font-weight:800;">SPACES</span><br><span style="font-weight:800;">YOU LIVE</span> <span style="font-weight:800;">THE VISION.</span>
+                                </h2>
+                                <p class="text-lowercase m-t20" style="font-size:15px; line-height:1.8; color:#555; text-transform:none;">Every project begins with function and ends with detail. We choose materials that age well, design for daylight and longevity, and hold every junction to the same standard of craftsmanship — so a space still feels considered decades after it is finished.
+                                </p>
+                                <a href="about-1.html" class="btn-half site-button button-lg m-b15 m-t20"><span>Read More</span><em></em></a>
+                            </div>
+
+                            <div class="col-lg-7 col-md-12">
+                                <div class="m-carousel-1 m-l100">
+                                    <div class="owl-carousel home-carousel-1 owl-btn-vertical-center">
+                                        <!-- COLUMNS 5 — now first for 4s -->
+                                        <div class="item">
+                                            <div class="ow-img wt-img-effect zoom-slow">
+                                                <a href="about-1.html"><img src="images/gallery/pic5.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <!-- COLUMNS 2 -->
+                                        <div class="item">
+                                            <div class="ow-img wt-img-effect zoom-slow">
+                                                <a href="about-1.html"><img src="images/gallery/pic2.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <!-- COLUMNS 3 -->
+                                        <div class="item">
+                                            <div class="owl-img wt-img-effect zoom-slow">
+                                                <a href="about-1.html"><img src="images/gallery/pic3.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <!-- COLUMNS 4 -->
+                                        <div class="item">
+                                            <div class="ow-img wt-img-effect zoom-slow">
+                                                <a href="about-1.html"><img src="images/gallery/pic4.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hilite-title p-lr20 m-tb20 text-right text-uppercase bdr-gray bdr-right">
+                            <strong>18 Year</strong>
+                            <span class="text-black">Experience Working</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- WELCOME  SECTION END -->
+
+            <!-- ARKIT SERVICES SECTION — exact copy from arkit/index.html:263, same text/font/background/images -->
+            <section id="services" class="service-section bg-grey padding">
+                <div class="dots"></div>
+                <div class="container">
+                    <div class="section-heading text-center mb-40">
+                        <span>Services</span>
+                        <h2>Our speciallization</h2>
+                    </div>
+                    <!--/.section-heading-->
+                    <div class="service-wrap row">
+                        <div class="col-lg-4 col-sm-6 padding-15">
+                            <div class="service-item">
+                                <div class="service-thumb">
+                                    <img src="images/arkit-services/service-1.jpg" alt="thumb">
+                                </div>
+                                <div class="service-content">
+                                    <i class="fas fa-drafting-compass"></i>
+                                    <h3>Architecture</h3>
+                                    <p>We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
+                                    <a href="#">View Projects</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Item 1-->
+                        <div class="col-lg-4 col-sm-6 padding-15">
+                            <div class="service-item">
+                                <div class="service-thumb">
+                                    <img src="images/arkit-services/service-2.jpg" alt="thumb">
+                                </div>
+                                <div class="service-content">
+                                    <i class="fas fa-couch"></i>
+                                    <h3>Interior Design</h3>
+                                    <p>We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
+                                    <a href="#">View Projects</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Item 2-->
+                        <div class="col-lg-4 col-sm-6 padding-15" style="position:relative;">
+                            <div class="service-btn-float" style="position:absolute; top:-36px; right:15px;">
+                                <a href="services/" style="display:inline-block; background:transparent; color:#111; border:0; padding:0; font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; font-family:'Inter',sans-serif; border-bottom:1px solid #111;">All Services <span>→</span></a>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-thumb">
+                                    <img src="images/arkit-services/service-3.jpg" alt="thumb">
+                                </div>
+                                <div class="service-content">
+                                    <i class="fas fa-industry"></i>
+                                    <h3>Commercial Design</h3>
+                                    <p>We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
+                                    <a href="#">View Projects</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Item 3-->
+                    </div>
+                </div>
+            </section>
+            <!-- ARKIT SERVICES SECTION END -->
+
+            <!-- PROCESS SECTION START -->
+            <section style="background:#fafafa; border-top:1px solid #eee; padding:96px 0;">
+                <div style="max-width:1400px; margin:0 auto; padding:0 24px;">
+                    <div class="section-heading text-center mb-40 process-reveal">
+                        <span>Our Method</span>
+                        <h2>The Process</h2>
+                    </div>
+                    <div class="process-grid" style="margin-top:56px; display:grid; gap:40px 32px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                        <div class="process-line"></div>
+                        <div class="process-step" style="--d:0ms;">
+                            <div class="process-icon-dot">
+                                <img src="images/process/discover.svg" alt="Discover icon" class="process-icon">
+                            </div>
+                            <h3 class="display" style="margin-top:16px; font-size:16px; color:#111;">DISCOVER</h3>
+                            <p style="margin-top:8px; font-size:13px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Understand the vision.</p>
+                        </div>
+                        <div class="process-step" style="--d:120ms;">
+                            <div class="process-icon-dot">
+                                <img src="images/process/plan.svg" alt="Plan icon" class="process-icon">
+                            </div>
+                            <h3 class="display" style="margin-top:16px; font-size:16px; color:#111;">PLAN</h3>
+                            <p style="margin-top:8px; font-size:13px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Shape the direction.</p>
+                        </div>
+                        <div class="process-step" style="--d:240ms;">
+                            <div class="process-icon-dot">
+                                <img src="images/process/design.svg" alt="Design icon" class="process-icon">
+                            </div>
+                            <h3 class="display" style="margin-top:16px; font-size:16px; color:#111;">DESIGN</h3>
+                            <p style="margin-top:8px; font-size:13px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Bring ideas to life.</p>
+                        </div>
+                        <div class="process-step" style="--d:360ms;">
+                            <div class="process-icon-dot">
+                                <img src="images/process/build.svg" alt="Build icon" class="process-icon">
+                            </div>
+                            <h3 class="display" style="margin-top:16px; font-size:16px; color:#111;">BUILD</h3>
+                            <p style="margin-top:8px; font-size:13px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Build with precision.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- PROCESS SECTION END -->
+
+            <!-- UNITYA INTERIOR + PROCESS — exact copy from Unitya/src/components/site/unityaliving-sections.tsx -->
+            <section style="background:#fff;">
+                <div class="container" style="max-width:1400px; margin:0 auto; padding:24px 24px 0;">
+                    <div style="overflow:hidden;">
+                        <img src="images/unitya-interior.png" alt="Interior design section" style="width:100%; height:auto; display:block; object-fit:cover;">
+                    </div>
+                </div>
+            </section>
+            <section style="background:#fff; padding: 16px 0 64px;">
+                <div class="container" style="max-width:1400px; margin:0 auto; padding:0 24px;">
+                    <div class="row" style="margin:0;">
+                        <div class="col-lg-3 col-sm-6" style="padding:24px 12px;">
+                            <div style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
+                                <div style="width:48px; height:48px; overflow:hidden; border-radius:16px; flex-shrink:0;">
+                                    <img src="images/icons/enquire.png" alt="" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <div style="display:flex; flex-direction:column; gap:12px;">
+                                    <h4 style="font-family:'Poppins', sans-serif; font-size:14px; font-weight:700; line-height:1.4; letter-spacing:1px; text-transform:uppercase; color:#111; margin:0;">Enquire With Us</h4>
+                                    <p style="font-family:'Inter', sans-serif; font-size:13px; line-height:1.5; color:rgba(59,59,59,0.7); margin:0;">Share your requirements to begin your journey.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6" style="padding:24px 12px;">
+                            <div style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
+                                <div style="width:48px; height:48px; overflow:hidden; border-radius:16px; flex-shrink:0;">
+                                    <img src="images/icons/arrive.png" alt="" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <div style="display:flex; flex-direction:column; gap:12px;">
+                                    <h4 style="font-family:'Poppins', sans-serif; font-size:14px; font-weight:700; line-height:1.4; letter-spacing:1px; text-transform:uppercase; color:#111; margin:0;">We Arrive on Time</h4>
+                                    <p style="font-family:'Inter', sans-serif; font-size:13px; line-height:1.5; color:rgba(59,59,59,0.7); margin:0;">We understand your needs and vision.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6" style="padding:24px 12px;">
+                            <div style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
+                                <div style="width:48px; height:48px; overflow:hidden; border-radius:16px; flex-shrink:0;">
+                                    <img src="images/icons/site-visit.png" alt="" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <div style="display:flex; flex-direction:column; gap:12px;">
+                                    <h4 style="font-family:'Poppins', sans-serif; font-size:14px; font-weight:700; line-height:1.4; letter-spacing:1px; text-transform:uppercase; color:#111; margin:0;">Site Visit &amp; Planning</h4>
+                                    <p style="font-family:'Inter', sans-serif; font-size:13px; line-height:1.5; color:rgba(59,59,59,0.7); margin:0;">Explore the design and finalize the details.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6" style="padding:24px 12px;">
+                            <div style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
+                                <div style="width:48px; height:48px; overflow:hidden; border-radius:16px; flex-shrink:0;">
+                                    <img src="images/icons/ownership.png" alt="" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <div style="display:flex; flex-direction:column; gap:12px;">
+                                    <h4 style="font-family:'Poppins', sans-serif; font-size:14px; font-weight:700; line-height:1.4; letter-spacing:1px; text-transform:uppercase; color:#111; margin:0;">Seamless Ownership</h4>
+                                    <p style="font-family:'Inter', sans-serif; font-size:13px; line-height:1.5; color:rgba(59,59,59,0.7); margin:0;">A smooth, transparent, stress-free handover.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- UNITYA INTERIOR + PROCESS END -->
+
+            <!-- LATEST PRJECTS SLIDER START -->
+            <div id="projects" class="section-full p-t80 p-lr80 latest_project-outer square_shape3" style="padding-bottom:96px;">
+
+                <!-- TITLE START -->
+                <div class="section-head text-left">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <h2 class="text-uppercase font-36">Latest Project</h2>
+                            <div class="wt-separator-outer">
+                                <div class="wt-separator bg-black"></div>
+                            </div>
+                            <a href="projects/" style="display:inline-block; margin-top:14px; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#777; text-decoration:none; font-family:'Inter',sans-serif;">View All Projects <span>→</span></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- TITLE END -->
+
+                <!-- LATEST PROJECT CARDS -->
+                <div class="section-content">
+                    <div class="lp-grid">
+                        <a class="lp-card" href="projects/project-detail.html?project=hillcrest-residence" aria-label="View Hillcrest Residence project">
+                            <div class="lp-card-media">
+                                <img src="images/latest-project/architecture.jpg" alt="Hillcrest Residence" loading="lazy">
+                            </div>
+                            <div class="lp-card-body">
+                                <h3>Hillcrest Residence</h3>
+                                <div class="lp-card-foot">
+                                    <span class="meta">Paters Hill · 2025</span>
+                                    <span class="lp-card-view">View</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="lp-card" href="projects/project-detail.html?project=nest-apartments" aria-label="View Nest Apartments project">
+                            <div class="lp-card-media">
+                                <img src="images/latest-project/nest-apartments.jpg" alt="Nest Apartments" loading="lazy">
+                            </div>
+                            <div class="lp-card-body">
+                                <h3>Nest Apartments</h3>
+                                <div class="lp-card-foot">
+                                    <span class="meta">Bicholi Mardana · 2025</span>
+                                    <span class="lp-card-view">View</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="lp-card" href="projects/project-detail.html?project=studio-loft" aria-label="View The Studio Loft project">
+                            <div class="lp-card-media">
+                                <img src="images/latest-project/interior.png" alt="The Studio Loft" loading="lazy">
+                            </div>
+                            <div class="lp-card-body">
+                                <h3>The Studio Loft</h3>
+                                <div class="lp-card-foot">
+                                    <span class="meta">RNT Marg · 2025</span>
+                                    <span class="lp-card-view">View</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="lp-card" href="projects/project-detail.html?project=cafe-cotta" aria-label="View Café Cotta project">
+                            <div class="lp-card-media">
+                                <img src="images/latest-project/restaurant.jpg" alt="Café Cotta" loading="lazy">
+                            </div>
+                            <div class="lp-card-body">
+                                <h3>Café Cotta</h3>
+                                <div class="lp-card-foot">
+                                    <span class="meta">Saket Square · 2026</span>
+                                    <span class="lp-card-view">View</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- LATEST PRJECTS SLIDER END -->
+
+
+            <!-- BLOG SECTION START -->
+            <div id="media" class="section-full p-t80 clearfix bg-repeat" style="background-image:url(images/background/ptn-1.png);">
+                <div class="container">
+                    <div class="section-content">
+                        <!-- TITLE START -->
+                        <div class="section-head text-left">
+                            <h2 class="text-uppercase font-36">Latest Blog</h2>
+                            <div class="wt-separator-outer">
+                                <div class="wt-separator bg-black"></div>
+                            </div>
+                        </div>
+                        <!-- TITLE END -->
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <a href="media/market/" style="display:block; text-decoration:none;"><div class="overlay-wraper bg-no-repeat bg-cover latest-blog-dark-outer p-a20 m-b30" style="background-image:url(images/blog/landscap-half/pic1.jpg);">
+                                    <div class="overlay-main bg-black opacity-04"></div>
+                                    <div class="latest-blog-dark text-uppercase p-a20">
+                                        <h3 class="m-a0"><span class="text-white">5 Reasons Indore Is Emerging</span></h3>
+                                        <div class="v-date  text-white font-weight-700">28 July 2026</div>
+                                    </div>
+                                </div></a>
+                                <a href="media/design/" style="display:block; text-decoration:none;"><div class="overlay-wraper bg-no-repeat bg-cover latest-blog-dark-outer p-a20 m-b30" style="background-image:url(images/blog/landscap-half/pic2.jpg);">
+                                    <div class="overlay-main bg-black opacity-04"></div>
+                                    <div class="latest-blog-dark text-uppercase p-a20">
+                                        <h3 class="m-a0"><span class="text-white">Materials That Age Well</span></h3>
+                                        <div class="v-date  text-white font-weight-700">19 June 2026</div>
+                                    </div>
+                                </div></a>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <a href="media/project/" style="display:block; text-decoration:none;"><div class="overlay-wraper bg-no-repeat bg-cover latest-blog-dark-outer2 m-b30" style="background-image:url(images/blog/square/pic1.jpg);">
+                                    <div class="overlay-main bg-black opacity-04"></div>
+                                    <div class="latest-blog-square text-white">
+                                        <h2 class="m-t0 m-b10"><span class="text-white font-30 text-uppercase">Small & Minimal House On Paters on Hill</span></h2>
+                                        <p class="font-weight-300">A compact retreat shaped by light, proportion and restraint — where every square foot is considered.</p>
+                                        <span class="letter-spacing-4 font-12 text-white text-uppercase">Read More</span>
+                                        <div class="v-date  text-white font-weight-700 text-uppercase">6 Aug 2026</div>
+                                    </div>
+                                </div></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="hilite-title p-lr20 m-tb20 text-right text-uppercase bdr-gray bdr-right">
+                        <strong>Blog</strong>
+                        <span class="text-black">Post</span>
+                    </div>
+                </div>
+            </div>
+            <!-- BLOG SECTION END -->
+
+            <!-- COMPANY DETAIL SECTION START -->
+            <div class="section-full p-t80 p-b50 overlay-wraper bg-top-center bg-parallax" data-stellar-background-ratio="0.5" style="background-image:url(images/background/backround.png);">
+                <div class="overlay-main opacity-06 bg-black"></div>
+                <div class="container ">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-12 m-b30">
+                            <div class="some-facts">
+                                <div class="text-white text-uppercase">
+                                    <span class="font-40 font-weight-300">Some</span>
+                                    <h2 class="font-50">
+                                        <span class="text-white">Interesting Facts</span>
+                                    </h2>
+                                    <p class="font-18 font-weight-300">A practice built on patient, measured growth in Indore — every home specified for its fifth year, not just its first. The numbers below are what that discipline has added up to.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="row some-facts-counter">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="wt-icon-box-wraper p-a10 text-white m-b30">
+                                        <div class="icon-content text-center">
+                                            <div class="font-40 font-weight-600 m-b5 text-white"><span class="counter">451</span></div>
+                                            <div class="wt-separator-outer m-b20">
+                                                <div class="wt-separator bg-white"></div>
+                                            </div>
+                                            <span class="text-uppercase">Happy Clients</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="wt-icon-box-wraper p-a10 text-white m-b30">
+                                        <div class="icon-content text-center">
+                                            <div class="font-40 font-weight-600 m-b5 text-white"><span class="counter">532</span></div>
+                                            <div class="wt-separator-outer m-b20">
+                                                <div class="wt-separator bg-white"></div>
+                                            </div>
+                                            <span class="text-uppercase">Finished projects</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="wt-icon-box-wraper p-a10 text-white m-b30">
+                                        <div class="icon-content text-center">
+                                            <div class="font-40 font-weight-600 m-b5 text-white"><span class="counter">299</span></div>
+                                            <div class="wt-separator-outer m-b20">
+                                                <div class="wt-separator bg-white"></div>
+                                            </div>
+                                            <span class="text-uppercase">Working Days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- COMPANY DETAIL SECTION End -->
+
+            <!-- UNITYA YOUTUBE VIDEO SECTION — exact copy from Unitya/src/components/site/unityaliving-sections.tsx:150 -->
+            <section style="background:#fff; padding: 96px 0;">
+                <div class="container" style="max-width:1220px; margin:0 auto; padding:0 24px;">
+                    <div style="overflow:hidden; border-radius:20px; border:1px solid #e9e9e9; background:#000; max-width:1120px; margin:0 auto;">
+                        <div id="unitya-video-wrap" style="position:relative; aspect-ratio:16/5; width:100%; background:#000;">
+                            <button id="unitya-video-play" type="button" aria-label="Play video" style="position:absolute; inset:0; width:100%; height:100%; border:0; padding:0; background:transparent; cursor:pointer;">
+                                <img src="images/youtube.png" alt="Youtube video thumbnail" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy">
+                                <span class="yt-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.1); transition:background 0.3s;"></span>
+                                <span class="yt-play" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); transition:transform 0.3s;">
+                                    <svg width="68" height="48" viewBox="0 0 68 48" style="display:block;">
+                                        <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path>
+                                        <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            <iframe id="unitya-video-iframe" style="display:none; position:absolute; inset:0; width:100%; height:100%; border:0;" src="" title="Youtube Video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <script>
+                (function(){
+                    var btn = document.getElementById('unitya-video-play');
+                    var iframe = document.getElementById('unitya-video-iframe');
+                    if(btn && iframe){
+                        btn.addEventListener('click', function(){
+                            btn.style.display='none';
+                            iframe.style.display='block';
+                            iframe.src='https://www.youtube.com/embed/HWvblfSkkDY?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+                        });
+                        btn.addEventListener('mouseenter', function(){ 
+                            var overlay = btn.querySelector('.yt-overlay'); if(overlay) overlay.style.background='rgba(0,0,0,0.2)';
+                            var play = btn.querySelector('.yt-play'); if(play) play.style.transform='translate(-50%,-50%) scale(1.05)';
+                        });
+                        btn.addEventListener('mouseleave', function(){
+                            var overlay = btn.querySelector('.yt-overlay'); if(overlay) overlay.style.background='rgba(0,0,0,0.1)';
+                            var play = btn.querySelector('.yt-play'); if(play) play.style.transform='translate(-50%,-50%) scale(1)';
+                        });
+                    }
+                })();
+            </script>
+            <!-- UNITYA YOUTUBE VIDEO SECTION END -->
+
+            <!-- TESTIMONIALS SECTION START -->
+            <div class="section-full p-t80 clearfixbg-repeat " style="background-image:url(images/background/ptn-1.png);">
+                <div class="container">
+                    <div class="section-content">
+                        <!-- TITLE START -->
+                        <div class="section-head text-left">
+                            <h2 class="text-uppercase font-36">Testimonials</h2>
+                            <div class="wt-separator-outer">
+                                <div class="wt-separator bg-black"></div>
+                            </div>
+                        </div>
+                        <!-- TITLE END -->
+                        <!-- TESTIMONIAL 4 START ON BACKGROUND -->
+                        <div class="section-content">
+                            <div class="owl-carousel testimonial-home">
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block">
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic1.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix bg-white">
+                                            <div class="testimonial-detail clearfix">
+                                                <strong class="testimonial-name">Taylor Roberts</strong>
+                                                <span class="testimonial-position p-t0">Co-manager associated</span>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t15">
+                                                <span class="fa fa-quote-left"></span>
+                                                <p>typefaces and layouts, and in appearance of different general the content of dummy text is nonsensical.typefaces of dummy text is nonsensical.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block">
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic4.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix bg-white">
+                                            <div class="testimonial-detail clearfix">
+                                                <strong class="testimonial-name">Robert willson</strong>
+                                                <span class="testimonial-position p-t0">Co-manager associated</span>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t15">
+                                                <span class="fa fa-quote-left"></span>
+                                                <p>typefaces and layouts, and in appearance of different general the content of dummy text is nonsensical.typefaces of dummy text is nonsensical.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block">
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic2.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix bg-white">
+                                            <div class="testimonial-detail clearfix">
+                                                <strong class="testimonial-name">Taylor Roberts</strong>
+                                                <span class="testimonial-position p-t0">Co-manager associated</span>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t15">
+                                                <span class="fa fa-quote-left"></span>
+                                                <p>typefaces and layouts, and in appearance of different general the content of dummy text is nonsensical.typefaces of dummy text is nonsensical.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block">
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic3.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix bg-white">
+                                            <div class="testimonial-detail clearfix">
+                                                <strong class="testimonial-name">Robert willson</strong>
+                                                <span class="testimonial-position p-t0">Co-manager associated</span>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t15">
+                                                <span class="fa fa-quote-left"></span>
+                                                <p>typefaces and layouts, and in appearance of different general the content of dummy text is nonsensical.typefaces of dummy text is nonsensical.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block">
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic1.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix bg-white">
+                                            <div class="testimonial-detail clearfix">
+                                                <strong class="testimonial-name">Taylor Roberts</strong>
+                                                <span class="testimonial-position p-t0">Co-manager associated</span>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t15">
+                                                <span class="fa fa-quote-left"></span>
+                                                <p>typefaces and layouts, and in appearance of different general the content of dummy text is nonsensical.typefaces of dummy text is nonsensical.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block">
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic4.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix bg-white">
+                                            <div class="testimonial-detail clearfix">
+                                                <strong class="testimonial-name">Taylor Roberts</strong>
+                                                <span class="testimonial-position p-t0">Co-manager associated</span>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t15">
+                                                <span class="fa fa-quote-left"></span>
+                                                <p>typefaces and layouts, and in appearance of different general the content of dummy text is nonsensical.typefaces of dummy text is nonsensical.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="hilite-title p-lr20 m-tb20 text-right text-uppercase bdr-gray bdr-right">
+                        <strong>Client</strong>
+                        <span class="text-black">Says</span>
+                    </div>
+                </div>
+            </div>
+            <!-- TESTIMONIALS SECTION END -->
+
+
+        </div>
+        <!-- CONTENT END -->
+
+
+                <!-- ENQUIRY SECTION — exact copy from Unitya/src/components/site/enquiry-section.tsx:39 -->
+        <section id="enquire" style="background:rgba(249,249,249,0.6); padding:96px 0;">
+            <div style="max-width:1400px; margin:0 auto; padding:0 24px; display:grid; gap:56px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items:start;">
+                <div>
+                    <p style="font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#c2410c; font-family:'Inter', sans-serif; font-weight:600;">Plan Your Space</p>
+                    <h2 style="margin-top:16px; font-family:'Poppins', sans-serif; font-weight:700; font-size: clamp(1.5rem,3.2vw,2.4rem); line-height:1.05; letter-spacing:-0.02em; color:#111; text-transform:uppercase;">Ready to plan your space in Indore?</h2>
+                    <p style="margin-top:24px; max-width:36ch; font-size:16px; line-height:1.7; color:#777; font-family:'Inter', sans-serif;">Leave your details and we will call you back within one working day. For faster confirmation, message us on WhatsApp.</p>
+                    <a href="https://wa.me/916232691255?text=Hi%20Unitya%20Living%2C%20I%27d%20like%20to%20discuss%20your%20project%20with%20Unitya%20Living.%20Please%20share%20the%20details%20and%20get%20back%20to%20me." target="_blank" rel="noopener noreferrer" style="margin-top:32px; display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; border-radius:999px; padding:12px 24px; font-size:14px; font-weight:500; text-decoration:none; font-family:'Inter', sans-serif;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+                <div style="background:#fff; border:1px solid #e9e9e9; border-radius:24px; padding:32px; box-shadow:0 12px 40px rgba(0,0,0,0.06);">
+                    <form onsubmit="event.preventDefault(); alert('Enquiry received — our team will call you back within one working day.'); this.reset();" style="display:flex; flex-direction:column; gap:24px;" novalidate>
+                        <label style="display:block;">
+                            <span style="display:block; margin-bottom:6px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#777; font-family:'Inter',sans-serif;">Name</span>
+                            <input type="text" placeholder="Your full name" required style="height:48px; width:100%; border-radius:12px; border:1px solid #e9e9e9; background:#fff; padding:0 16px; font-size:14px; color:#111; outline:none; font-family:'Inter',sans-serif;">
+                        </label>
+                        <div style="display:grid; gap:24px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                            <label style="display:block;">
+                                <span style="display:block; margin-bottom:6px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#777; font-family:'Inter',sans-serif;">Phone</span>
+                                <input type="tel" placeholder="+91" required style="height:48px; width:100%; border-radius:12px; border:1px solid #e9e9e9; background:#fff; padding:0 16px; font-size:14px; color:#111; outline:none; font-family:'Inter',sans-serif;">
+                            </label>
+                            <label style="display:block;">
+                                <span style="display:block; margin-bottom:6px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#777; font-family:'Inter',sans-serif;">Email</span>
+                                <input type="email" placeholder="you@example.com" required style="height:48px; width:100%; border-radius:12px; border:1px solid #e9e9e9; background:#fff; padding:0 16px; font-size:14px; color:#111; outline:none; font-family:'Inter',sans-serif;">
+                            </label>
+                        </div>
+                        <label style="display:block;">
+                            <span style="display:block; margin-bottom:6px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#777; font-family:'Inter',sans-serif;">Enquiring as…</span>
+                            <select style="height:48px; width:100%; border-radius:12px; border:1px solid #e9e9e9; background:#fff; padding:0 16px; font-size:14px; color:#111; outline:none; font-family:'Inter',sans-serif; cursor:pointer; appearance:none;">
+                                <option>Complete Design &amp; Build</option>
+                                <option>Architecture</option>
+                                <option>Interior Design</option>
+                                <option>Exterior Design</option>
+                                <option>Construction</option>
+                                <option>Real Estate</option>
+                                <option>Other</option>
+                            </select>
+                        </label>
+                        <label style="display:flex; align-items:flex-start; gap:12px; cursor:pointer;">
+                            <input type="checkbox" required style="margin-top:2px; width:16px; height:16px; accent-color:#111; cursor:pointer;">
+                            <span style="font-size:12px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">I agree to be contacted about my enquiry and accept the <span style="text-decoration:underline;">Privacy Policy</span>.</span>
+                        </label>
+                        <button type="submit" style="width:100%; background:#111; color:#fff; border-radius:999px; padding:14px 24px; font-size:14px; font-weight:500; border:0; cursor:pointer; font-family:'Inter',sans-serif;">Request a Callback</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- ENQUIRY SECTION END -->
+
+        <!-- FOOTER START -->
+        <footer id="contact" class="site-footer footer-dark footer-wide" style="background:#0a0a0a; color:#fff; border-top:1px solid rgba(255,255,255,0.08);">
+        <div style="max-width:1400px; margin:0 auto; padding:64px 24px;">
+            <div style="display:grid; gap:48px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <!-- Brand -->
+                <div>
+                    <a href="index.html" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width:30px; height:30px; display:block; flex-shrink:0;"><path d="m295.393 478v-34.579l-15.762-15.762c-47.655 4.455-100.779-49.254-93.064-97.648a7.991 7.991 0 0 1 6.56-6.7c24.808-4.271 51.7 8.562 70.2 27.06 17.477 17.477 29.832 42.3 27.62 65.976l4.45 4.45v-210.609l-41.297-41.24-105.923 43.287v265.765zm-32.874-67.455c-13.595-3.126-26.813-11.084-37.552-21.822-13.432-13.432-23.616-32.217-23.194-50.236a56.965 56.965 0 0 1 21.948 4.261c23.3 9.157 44.493 32.035 50.112 56.486l-29.688-29.688a8 8 0 1 0 -11.313 11.312zm48.874 10.255 12.351-12.352c-3.628-32.107 13.272-66.205 37.1-90.031a135.1 135.1 0 0 1 45.587-30.369c16.73-6.576 33.626-8.74 48.629-6.133a7.991 7.991 0 0 1 6.56 6.7c5.377 33.647-11.489 69.005-36.53 94.046-23.826 23.826-57.926 40.727-90.032 37.1l-23.663 23.663v34.576h174.605a8 8 0 0 1 0 16h-460a8 8 0 0 1 -8-8v-393.3a7.981 7.981 0 0 1 2.788-6.069l65.934-65.85a7.925 7.925 0 0 1 9.807-1.852l162.471 66.398a7.963 7.963 0 0 1 4.963 7.375h.037v63.585l44.605 44.548a7.982 7.982 0 0 1 2.788 6.068zm28.233-28.234 47.683-47.683a8 8 0 1 1 11.312 11.313l-47.682 47.683c38.336-4.009 75.606-36.907 89.642-72.616 4.653-11.836 6.7-23.61 5.959-34.3-26.541-1.838-54.649 13.029-74.385 32.765-17.277 17.272-30.139 39.972-32.529 62.834zm-305.626 85.434h50.785v-432.734l-50.785 50.72zm66.785 0v-440.128l147.215 60.161v56.207l-110.823 45.288a7.965 7.965 0 0 0 -4.963 7.375h-.037v271.097z" fill="white" fill-rule="evenodd"/></svg>
+                        <span style="display:flex; align-items:center; gap:8px;">
+                            <span style="font-family:'Poppins',sans-serif; font-weight:800; font-size:18px; letter-spacing:1.5px; color:#fff; line-height:1;">UNITYA</span>
+                            <span style="font-family:'Poppins',sans-serif; font-weight:300; font-size:10px; letter-spacing:3px; color:rgba(255,255,255,0.7); line-height:1;">LIVING</span>
+                        </span>
+                    </a>
+                    <p style="margin-top:16px; max-width:320px; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif;">Architecture · Interiors · Construction · Real Estate. Redefining the standard of thoughtful living in Indore, Madhya Pradesh.</p>
+                    <div style="margin-top:24px; display:flex; gap:10px; flex-wrap:wrap;">
+                        
+            <a href="#" target="_blank" rel="noreferrer" aria-label="Instagram" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); text-decoration:none; transition: all 0.2s;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; display:block;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" target="_blank" rel="noreferrer" aria-label="Facebook" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); text-decoration:none; transition: all 0.2s;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; display:block;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); text-decoration:none; transition: all 0.2s;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; display:block;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" target="_blank" rel="noreferrer" aria-label="YouTube" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); text-decoration:none; transition: all 0.2s;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; display:block;"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" target="_blank" rel="noreferrer" aria-label="Twitter" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); text-decoration:none; transition: all 0.2s;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; display:block;"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+            <a href="https://wa.me/916232691255" target="_blank" rel="noreferrer" aria-label="WhatsApp" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); text-decoration:none; transition: all 0.2s;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px; height:16px; display:block;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+                    </div>
+                </div>
+                <!-- Explore -->
+                <div>
+                    <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); font-family:'Inter',sans-serif;">Explore</div>
+                    <ul style="margin-top:20px; list-style:none; padding:0; display:flex; flex-direction:column; gap:12px;">
+                        
+              <li><a href="projects/" style="color:rgba(255,255,255,0.8); text-decoration:none; font-size:14px; font-family:'Inter',sans-serif;">Properties</a></li>
+              <li><a href="services/" style="color:rgba(255,255,255,0.8); text-decoration:none; font-size:14px; font-family:'Inter',sans-serif;">Services</a></li>
+              <li><a href="media/" style="color:rgba(255,255,255,0.8); text-decoration:none; font-size:14px; font-family:'Inter',sans-serif;">Media</a></li>
+              <li><a href="index.html#contact" style="color:rgba(255,255,255,0.8); text-decoration:none; font-size:14px; font-family:'Inter',sans-serif;">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Reach us -->
+                <div>
+                    <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); font-family:'Inter',sans-serif;">Reach us</div>
+                    <ul style="margin-top:20px; list-style:none; padding:0; display:flex; flex-direction:column; gap:16px;">
+                        <li style="display:flex; gap:12px; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="width:16px; height:16px; flex-shrink:0; margin-top:2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>Unitya Living, Indore, Madhya Pradesh, India</span>
+                        </li>
+                        <li style="display:flex; gap:12px; font-size:14px; color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="width:16px; height:16px; flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <a href="tel:+916232691255" style="color:rgba(255,255,255,0.8); text-decoration:none;">+91 62326 91255</a>
+                        </li>
+                        <li style="display:flex; gap:12px; font-size:14px; color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="width:16px; height:16px; flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <a href="mailto:hello@unityaliving.com" style="color:rgba(255,255,255,0.8); text-decoration:none;">hello@unityaliving.com</a>
+                        </li>
+                        <li style="font-size:12px; color:rgba(255,255,255,0.4); font-family:'Inter',sans-serif;">Mon–Sat · 10am–7pm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</footer>
+        <!-- FOOTER END -->
+
+        <!-- BUTTON TOP START -->
+        <button class="scroltop"><span class="fa fa-angle-up  relative" id="btn-vibrate"></span></button>
+
+    </div>
+
+    <!-- LOADING AREA REMOVED — loads directly without logo -->
+
+    <!-- JAVASCRIPT  FILES ========================================= -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- JQUERY.MIN JS -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- BOOTSTRAP.MIN JS -->
+    <script src="js/magnific-popup.min.js"></script>
+    <!-- MAGNIFIC-POPUP JS -->
+    <script src="js/waypoints.min.js"></script>
+    <!-- WAYPOINTS JS -->
+    <script src="js/counterup.min.js"></script>
+    <!-- COUNTERUP JS -->
+    <script src="js/waypoints-sticky.min.js"></script>
+    <!-- COUNTERUP JS -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- MASONRY  -->
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <!-- MASONRY  -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- OWL  SLIDER  -->
+    <script src="js/jquery.owl-filter.js"></script>
+    <script src="js/scrolla.min.js"></script>
+    <!-- ON SCROLL CONTENT ANIMTE   -->
+    <script src="js/custom.js"></script>
+    <!-- CUSTOM FUCTIONS  -->
+    <script src="js/shortcode.js"></script>
+    <!-- SHORTCODE FUCTIONS  -->
+    <!-- REVOLUTION JS FILES -->
+    <script src="plugins/revolution/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script src="plugins/revolution/revolution/js/extensions/revolution-plugin.js"></script>
+    <!-- REVOLUTION SLIDER SCRIPT FILES -->
+    <script src="js/rev-script-1.js"></script>
+
+
+    <script src="js/particles.js"></script>
+    <!-- CANVAS EFFECT   -->
+    <script src="js/app.js"></script>
+    <!-- CANVAS EFFECT   -->
+
+    <script>
+        /* The Process section — scroll-triggered reveal */
+        (function () {
+            function run() {
+                var els = document.querySelectorAll('.process-reveal, .process-step');
+                if (!('IntersectionObserver' in window)) {
+                    els.forEach(function (el) { el.classList.add('in-view'); });
+                    return;
+                }
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+                    });
+                }, { threshold: 0.18 });
+                els.forEach(function (el) { io.observe(el); });
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+            else run();
+        })();
+    </script>
+
+</body>
+
+</html>

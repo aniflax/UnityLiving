@@ -9,202 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutIndexRouteImport } from './routes/about.index'
-import { Route as MediaIndexRouteImport } from './routes/media.index'
-import { Route as MediaSlugRouteImport } from './routes/media.$slug'
-import { Route as OurStoryIndexRouteImport } from './routes/our-story.index'
-import { Route as PropertiesIndexRouteImport } from './routes/properties.index'
-import { Route as PropertiesSlugRouteImport } from './routes/properties.$slug'
-import { Route as ServicesIndexRouteImport } from './routes/services.index'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutIndexRoute = AboutIndexRouteImport.update({
-  id: '/about/',
-  path: '/about/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MediaIndexRoute = MediaIndexRouteImport.update({
-  id: '/media/',
-  path: '/media/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MediaSlugRoute = MediaSlugRouteImport.update({
-  id: '/media/$slug',
-  path: '/media/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OurStoryIndexRoute = OurStoryIndexRouteImport.update({
-  id: '/our-story/',
-  path: '/our-story/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PropertiesIndexRoute = PropertiesIndexRouteImport.update({
-  id: '/properties/',
-  path: '/properties/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PropertiesSlugRoute = PropertiesSlugRouteImport.update({
-  id: '/properties/$slug',
-  path: '/properties/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/services/',
-  path: '/services/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-
-export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/media/$slug': typeof MediaSlugRoute
-  '/properties/$slug': typeof PropertiesSlugRoute
-  '/about/': typeof AboutIndexRoute
-  '/media/': typeof MediaIndexRoute
-  '/our-story/': typeof OurStoryIndexRoute
-  '/properties/': typeof PropertiesIndexRoute
-  '/services/': typeof ServicesIndexRoute
-}
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/media/$slug': typeof MediaSlugRoute
-  '/properties/$slug': typeof PropertiesSlugRoute
-  '/about': typeof AboutIndexRoute
-  '/media': typeof MediaIndexRoute
-  '/our-story': typeof OurStoryIndexRoute
-  '/properties': typeof PropertiesIndexRoute
-  '/services': typeof ServicesIndexRoute
-}
+export interface FileRoutesByFullPath {}
+export interface FileRoutesByTo {}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/media/$slug': typeof MediaSlugRoute
-  '/properties/$slug': typeof PropertiesSlugRoute
-  '/about/': typeof AboutIndexRoute
-  '/media/': typeof MediaIndexRoute
-  '/our-story/': typeof OurStoryIndexRoute
-  '/properties/': typeof PropertiesIndexRoute
-  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/media/$slug'
-    | '/properties/$slug'
-    | '/about/'
-    | '/media/'
-    | '/our-story/'
-    | '/properties/'
-    | '/services/'
+  fullPaths: never
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/media/$slug'
-    | '/properties/$slug'
-    | '/about'
-    | '/media'
-    | '/our-story'
-    | '/properties'
-    | '/services'
-  id:
-    | '__root__'
-    | '/'
-    | '/media/$slug'
-    | '/properties/$slug'
-    | '/about/'
-    | '/media/'
-    | '/our-story/'
-    | '/properties/'
-    | '/services/'
+  to: never
+  id: '__root__'
   fileRoutesById: FileRoutesById
 }
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  MediaSlugRoute: typeof MediaSlugRoute
-  PropertiesSlugRoute: typeof PropertiesSlugRoute
-  AboutIndexRoute: typeof AboutIndexRoute
-  MediaIndexRoute: typeof MediaIndexRoute
-  OurStoryIndexRoute: typeof OurStoryIndexRoute
-  PropertiesIndexRoute: typeof PropertiesIndexRoute
-  ServicesIndexRoute: typeof ServicesIndexRoute
-}
+export interface RootRouteChildren {}
 
 declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about/': {
-      id: '/about/'
-      path: '/about'
-      fullPath: '/about/'
-      preLoaderRoute: typeof AboutIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/media/': {
-      id: '/media/'
-      path: '/media'
-      fullPath: '/media/'
-      preLoaderRoute: typeof MediaIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/media/$slug': {
-      id: '/media/$slug'
-      path: '/media/$slug'
-      fullPath: '/media/$slug'
-      preLoaderRoute: typeof MediaSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/our-story/': {
-      id: '/our-story/'
-      path: '/our-story'
-      fullPath: '/our-story/'
-      preLoaderRoute: typeof OurStoryIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/properties/': {
-      id: '/properties/'
-      path: '/properties'
-      fullPath: '/properties/'
-      preLoaderRoute: typeof PropertiesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/properties/$slug': {
-      id: '/properties/$slug'
-      path: '/properties/$slug'
-      fullPath: '/properties/$slug'
-      preLoaderRoute: typeof PropertiesSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/': {
-      id: '/services/'
-      path: '/services'
-      fullPath: '/services/'
-      preLoaderRoute: typeof ServicesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
+  interface FileRoutesByPath {}
 }
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  MediaSlugRoute: MediaSlugRoute,
-  PropertiesSlugRoute: PropertiesSlugRoute,
-  AboutIndexRoute: AboutIndexRoute,
-  MediaIndexRoute: MediaIndexRoute,
-  OurStoryIndexRoute: OurStoryIndexRoute,
-  PropertiesIndexRoute: PropertiesIndexRoute,
-  ServicesIndexRoute: ServicesIndexRoute,
-}
+const rootRouteChildren: RootRouteChildren = {}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()

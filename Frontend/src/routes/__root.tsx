@@ -1,74 +1,58 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  Link,
-  createRootRouteWithContext,
-  useRouter,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
-
-import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteLayout } from "@/components/site/site-layout";
-import { Toaster } from "@/components/ui/sonner";
-import { SiteProvider } from "@/lib/site-context";
-import { fetchSite } from "@/lib/site";
+import { HeadContent, Scripts, createRootRouteWithContext, Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
+import type { QueryClient } from "@tanstack/react-query";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+    <div
+      style={{
+        minHeight: "60vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        padding: "0 24px",
+      }}
+    >
+      <div style={{ maxWidth: 480 }}>
+        <h1
+          style={{
+            fontFamily: "'Poppins',sans-serif",
+            fontWeight: 800,
+            fontSize: 80,
+            margin: 0,
+            color: "#111",
+          }}
+        >
+          404
+        </h1>
+        <h2
+          style={{
+            fontFamily: "'Poppins',sans-serif",
+            fontWeight: 600,
+            fontSize: 22,
+            margin: "16px 0 8px",
+            color: "#111",
+          }}
+        >
+          Page not found
+        </h2>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 15, color: "#777", margin: 0 }}>
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <div className="mt-6">
+        <div style={{ marginTop: 28 }}>
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="site-button outline black"
+            style={{
+              padding: "14px 44px",
+              textTransform: "uppercase",
+              letterSpacing: "0.15em",
+              fontFamily: "'Poppins',sans-serif",
+            }}
           >
             Go home
           </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
-  const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
-
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Try again
-          </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
-          </a>
         </div>
       </div>
     </div>
@@ -80,43 +64,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ATELIER NORTH — Architecture & Real Estate Studio" },
-      {
-        name: "description",
-        content:
-          "Architecture, interiors, exterior design, construction and real estate under one vision.",
-      },
-      { name: "author", content: "Unitya Living" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { title: "Unitya Living — Architecture, Interiors, Construction & Real Estate, Indore" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossOrigin: "anonymous",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/images/favicon.ico", type: "image/x-icon" },
+      { rel: "shortcut icon", type: "image/x-icon", href: "/images/favicon.png" },
+      { rel: "stylesheet", href: "/css/bootstrap.min.css" },
+      { rel: "stylesheet", href: "/css/style.css" },
     ],
   }),
 
   shellComponent: RootShell,
-  component: RootComponent,
+  component: () => null,
   notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
-  loader: async () => {
-    const site = await fetchSite();
-    return { site };
-  },
 });
 
 function RootShell({ children }: { children: ReactNode }) {
@@ -127,22 +87,8 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
-        <Toaster position="bottom-left" />
         <Scripts />
       </body>
     </html>
-  );
-}
-
-function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-  const { site } = Route.useLoaderData();
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <SiteProvider site={site}>
-        <SiteLayout />
-      </SiteProvider>
-    </QueryClientProvider>
   );
 }
