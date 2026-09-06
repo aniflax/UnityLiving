@@ -345,16 +345,24 @@
     (function () {
         var buttons = document.querySelectorAll('.project-filter');
         var cards = document.querySelectorAll('.project-card');
+        function applyFilter(f){
+            buttons.forEach(function(b){ b.classList.toggle('is-active', b.getAttribute('data-filter')===f); });
+            cards.forEach(function(card){ card.style.display = (f === 'all' || card.getAttribute('data-category') === f) ? '' : 'none'; });
+        }
         buttons.forEach(function (btn) {
             btn.addEventListener('click', function () {
-                buttons.forEach(function (b) { b.classList.remove('is-active'); });
-                btn.classList.add('is-active');
+                applyFilter(btn.getAttribute('data-filter'));
+                var url = new URL(window.location.href);
                 var f = btn.getAttribute('data-filter');
-                cards.forEach(function (card) {
-                    card.style.display = (f === 'all' || card.getAttribute('data-category') === f) ? '' : 'none';
-                });
+                if(f==='all') url.searchParams.delete('filter'); else url.searchParams.set('filter', f);
+                history.replaceState(null,'',url.toString());
             });
         });
+        // Apply filter from URL on load (e.g. /projects?filter=architecture from home Services)
+        var initFilter = new URLSearchParams(window.location.search).get('filter');
+        if(initFilter && document.querySelector('.project-filter[data-filter="'+initFilter+'"]')){
+            applyFilter(initFilter);
+        }
     })();
 </script>
 </body>

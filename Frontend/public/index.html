@@ -719,9 +719,9 @@
                                 </div>
                                 <div class="service-content">
                                     <i class="fas fa-drafting-compass"></i>
-                                    <h3>Architecture</h3>
+                                    <h3><a href="/projects?filter=architecture" style="color:inherit;text-decoration:none;">Architecture</a></h3>
                                     <p>We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
-                                    <a href="#">View Projects</a>
+                                    <a href="/projects?filter=architecture">View Projects</a>
                                 </div>
                             </div>
                         </div>
@@ -733,9 +733,9 @@
                                 </div>
                                 <div class="service-content">
                                     <i class="fas fa-couch"></i>
-                                    <h3>Interior Design</h3>
+                                    <h3><a href="/projects?filter=interior" style="color:inherit;text-decoration:none;">Interior Design</a></h3>
                                     <p>We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
-                                    <a href="#">View Projects</a>
+                                    <a href="/projects?filter=interior">View Projects</a>
                                 </div>
                             </div>
                         </div>
@@ -750,9 +750,9 @@
                                 </div>
                                 <div class="service-content">
                                     <i class="fas fa-industry"></i>
-                                    <h3>Commercial Design</h3>
+                                    <h3><a href="/projects?filter=commercial" style="color:inherit;text-decoration:none;">Commercial Design</a></h3>
                                     <p>We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
-                                    <a href="#">View Projects</a>
+                                    <a href="/projects?filter=commercial">View Projects</a>
                                 </div>
                             </div>
                         </div>
@@ -760,7 +760,21 @@
                     </div>
                 </div>
             </section>
-            <!-- ARKIT SERVICES SECTION END -->
+            <script>
+            (function(){
+              var map={'Architecture':'architecture','Interior Design':'interior','Commercial Design':'commercial'};
+              document.querySelectorAll('.service-item').forEach(function(card){
+                var h3=card.querySelector('h3'); if(!h3) return;
+                var cat=map[h3.textContent.trim()]; if(!cat) return;
+                card.style.cursor='pointer';
+                card.addEventListener('click', function(e){
+                  if(e.target.closest('a')) return;
+                  window.location.href='/projects?filter='+cat;
+                });
+              });
+            })();
+            </script>
+            <!-- Unitya Living Services Section End -->
 
             <!-- PROCESS SECTION START -->
             <section style="background:#fafafa; border-top:1px solid #eee; padding:96px 0;">
