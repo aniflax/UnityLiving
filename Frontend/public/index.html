@@ -76,8 +76,20 @@
         .latest-blog-dark-outer:hover, .latest-blog-dark-outer2:hover { transform: translateY(-4px); }
         .latest-blog-dark-outer .overlay-main, .latest-blog-dark-outer2 .overlay-main { transition: opacity 0.4s ease; }
         .latest-blog-dark-outer:hover .overlay-main, .latest-blog-dark-outer2:hover .overlay-main { opacity: 0.45; }
-        /* Home Latest Project — Unitya Living project cards */
-        .lp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 40px; max-width: 1240px; }
+        /* Header contact icon — larger + properly centered */
+        .extra-nav .extra-cell .site-search-btn { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; vertical-align:middle; }
+        .extra-nav .extra-cell .site-search-btn svg { width:22px !important; height:22px !important; }
+        /* Home Latest Project — horizontal scrollable */
+        .lp-grid { display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; gap: 24px; margin-top: 40px; max-width: 1240px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px; }
+        .lp-grid::-webkit-scrollbar { display: none; }
+        .lp-card { flex: 0 0 calc((100% - 72px) / 4); scroll-snap-align: start; min-width: 0; }
+        @media (max-width: 1200px) { .lp-card { flex: 0 0 calc((100% - 48px) / 3); } }
+        @media (max-width: 900px) { .lp-card { flex: 0 0 calc((100% - 24px) / 2); } }
+        @media (max-width: 600px) { .lp-card { flex: 0 0 85%; } }
+        /* one-time hint nudge */
+        .lp-grid.lp-hint { scroll-behavior: smooth; }
+        @keyframes lp-nudge { 0%{transform:translateX(0)} 30%{transform:translateX(-36px)} 70%{transform:translateX(-36px)} 100%{transform:translateX(0)} }
+        .lp-grid.lp-hint-animate { animation: lp-nudge 0.9s cubic-bezier(0.22,1,0.36,1); }
         .lp-card { display: block; border: 1px solid #ececec; border-radius: 20px; overflow: hidden; background: #fff; text-decoration: none; transition: box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1); }
         .lp-card:hover { box-shadow: 0 22px 48px rgba(0,0,0,0.09); transform: translateY(-6px); }
         .lp-card-media { position: relative; overflow: hidden; background: #f5f5f5; }
@@ -157,7 +169,7 @@
                             </div>
                             <div class="extra-cell">
                                 <a href="#contact" class="site-search-btn" title="Contact" aria-label="Contact">
-                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:15px; height:15px; display:block;" aria-hidden="true"><g clip-rule="evenodd" fill-rule="evenodd" fill="currentColor"><path d="m50 2.5000012c-26.2199707 0-47.5 21.2799664-47.5 47.5 0 26.2199707 21.2800312 47.5 47.5 47.5s47.5-21.2800305 47.5-47.5000012c0-26.2200317-21.2800293-47.4999988-47.5-47.4999988zm0 88.6699817c-22.7199707 0-41.1699228-18.4500122-41.1699228-41.1699829 0-22.7200317 18.4499521-41.170043 41.1699228-41.170043s41.1699219 18.4500113 41.1699219 41.170043c0 22.7199707-18.4499512 41.1699829-41.1699219 41.1699829z"/><path d="m65.8300781 40.3299561c0 8.7400513-7.0900879 15.8400269-15.8300781 15.8400269s-15.8300781-7.0999756-15.8300781-15.8400269c0-8.7399903 7.0900879-15.8299561 15.8300781-15.8299561s15.8300781 7.0899658 15.8300781 15.8299561z"/><path d="m74.9899902 74.25c-6.3300781 6.5299683-15.1899414 10.5799561-24.9899902 10.5799561s-18.6599121-4.0499878-24.9899902-10.5799561c-1-1.0200195-1.1799316-2.5800171-.4599609-3.8099976 3.8499755-6.540039 10.9699706-10.9400024 19.119873-10.9400024h12.6601562c8.1499023 0 15.2698975 4.3999634 19.119873 10.9400024.7199708 1.2299805.5400391 2.7899781-.4599609 3.8099976z"/></g></svg>
+                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:22px; height:22px; display:block;" aria-hidden="true"><g clip-rule="evenodd" fill-rule="evenodd" fill="currentColor"><path d="m50 2.5000012c-26.2199707 0-47.5 21.2799664-47.5 47.5 0 26.2199707 21.2800312 47.5 47.5 47.5s47.5-21.2800305 47.5-47.5000012c0-26.2200317-21.2800293-47.4999988-47.5-47.4999988zm0 88.6699817c-22.7199707 0-41.1699228-18.4500122-41.1699228-41.1699829 0-22.7200317 18.4499521-41.170043 41.1699228-41.170043s41.1699219 18.4500113 41.1699219 41.170043c0 22.7199707-18.4499512 41.1699829-41.1699219 41.1699829z"/><path d="m65.8300781 40.3299561c0 8.7400513-7.0900879 15.8400269-15.8300781 15.8400269s-15.8300781-7.0999756-15.8300781-15.8400269c0-8.7399903 7.0900879-15.8299561 15.8300781-15.8299561s15.8300781 7.0899658 15.8300781 15.8299561z"/><path d="m74.9899902 74.25c-6.3300781 6.5299683-15.1899414 10.5799561-24.9899902 10.5799561s-18.6599121-4.0499878-24.9899902-10.5799561c-1-1.0200195-1.1799316-2.5800171-.4599609-3.8099976 3.8499755-6.540039 10.9699706-10.9400024 19.119873-10.9400024h12.6601562c8.1499023 0 15.2698975 4.3999634 19.119873 10.9400024.7199708 1.2299805.5400391 2.7899781-.4599609 3.8099976z"/></g></svg>
                                 </a>
                             </div>
                         </div>
@@ -1327,6 +1339,47 @@
             }
             if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
             else run();
+        })();
+    </script>
+    <script>
+        /* Latest Project — one-time horizontal hint on first vertical scroll into view */
+        (function(){
+            var grid = document.querySelector('.lp-grid');
+            var section = document.getElementById('projects');
+            if(!grid || !section) return;
+            var hinted = false;
+            try { hinted = sessionStorage.getItem('lpHintDone') === '1'; } catch(e){}
+            if(hinted) return;
+            function doHint(){
+                hinted = true;
+                try { sessionStorage.setItem('lpHintDone','1'); } catch(e){}
+                // try real scroll if overflow exists, else CSS transform nudge
+                var canScroll = grid.scrollWidth > grid.clientWidth + 4;
+                if(canScroll){
+                    grid.classList.add('lp-hint');
+                    var start = grid.scrollLeft;
+                    var target = Math.min(grid.scrollWidth - grid.clientWidth, 84);
+                    grid.scrollTo({ left: target, behavior: 'smooth' });
+                    setTimeout(function(){ grid.scrollTo({ left: start, behavior: 'smooth' }); }, 850);
+                    setTimeout(function(){ grid.classList.remove('lp-hint'); }, 1400);
+                } else {
+                    grid.classList.add('lp-hint-animate');
+                    grid.addEventListener('animationend', function(){ grid.classList.remove('lp-hint-animate'); }, { once: true });
+                }
+            }
+            if(!('IntersectionObserver' in window)){
+                setTimeout(doHint, 600);
+                return;
+            }
+            var io2 = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if(e.isIntersecting && !hinted){
+                        doHint();
+                        io2.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.35 });
+            io2.observe(section);
         })();
     </script>
 
