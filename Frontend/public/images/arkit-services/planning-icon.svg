@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<!-- rolled blueprint left edge -->
+<path d="M12 18 C 12 12 18 8 24 12 L 24 92 C 18 96 12 92 12 86 L 12 22" />
+<path d="M12 86 C 12 82 16 78 20 78 C 24 78 28 82 24 86 C 22 88 18 88 12 86" />
+<!-- main sheet -->
+<path d="M24 22 H 88 V 88 H 40" />
+<path d="M40 92 H 90 V 45" />
+<!-- floor plan inside -->
+<path d="M26 34 H 86 H 64 V 52 H 54 V 64 H 44 V 54 H 26 V 34 Z" />
+<path d="M26 48 H 32" />
+<path d="M44 36 V 42" />
+<path d="M54 58 V 64" />
+<path d="M62 70 V 82 H 38 V 66 H 48 V 82" />
+<path d="M38 78 A 10 10 0 0 0 48 68" />
+<path d="M78 58 V 78" />
+<!-- pencil -->
+<path d="M62 62 L 86 18 C 88 15 92 15 94 18 L 96 20 C 98 22 98 26 96 28 L 72 54 Z" />
+<path d="M86 18 L 96 28" />
+<path d="M88 20 L 86 26 L 82 30 L 72 54" />
+<path d="M78 32 L 90 36" />
+<!-- triangular ruler -->
+<path d="M55 94 L 90 58 L 90 94 Z" />
+<path d="M68 84 L 84 68 L 84 84 Z" />
+<path d="M90 66 H 86" />
+<path d="M90 72 H 86" />
+<path d="M90 78 H 86" />
+<path d="M90 84 H 86" />
+</svg>

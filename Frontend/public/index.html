@@ -725,13 +725,13 @@
                         <div class="col-lg-4 col-sm-6 padding-15">
                             <div class="service-item">
                                 <div class="service-thumb">
-                                    <img src="images/arkit-services/service-2.jpg" alt="thumb">
+                                    <img src="images/arkit-services/service-planning.jpg" alt="Planning - architectural blueprint and model">
                                 </div>
                                 <div class="service-content">
-                                    <i class="fas fa-couch"></i>
-                                    <h3><a href="/projects?filter=interior" style="color:inherit;text-decoration:none;">Interior Design</a></h3>
+                                    <span style="background:#111;border-radius:2px;padding:10px;display:inline-block;margin-bottom:10px;line-height:1"><img src="images/arkit-services/planning-icon.svg" alt="Planning icon" style="width:28px;height:28px;display:block;"></span>
+                                    <h3><a href="/projects?filter=planning" style="color:inherit;text-decoration:none;">Planning</a></h3>
                                     <p>We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
-                                    <a href="/projects?filter=interior">View Projects</a>
+                                    <a href="/projects?filter=planning">View Projects</a>
                                 </div>
                             </div>
                         </div>
@@ -758,7 +758,7 @@
             </section>
             <script>
             (function(){
-              var map={'Architecture':'architecture','Interior Design':'interior','Commercial Design':'commercial'};
+              var map={'Architecture':'architecture','Planning':'planning','Commercial Design':'commercial'};
               document.querySelectorAll('.service-item').forEach(function(card){
                 var h3=card.querySelector('h3'); if(!h3) return;
                 var cat=map[h3.textContent.trim()]; if(!cat) return;

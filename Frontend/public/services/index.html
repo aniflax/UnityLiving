@@ -112,8 +112,8 @@
                             <div style="display:flex; align-items:flex-start; gap:24px; padding:32px 8px;">
                                 <span style="width:40px; padding-top:6px; font-size:11px; letter-spacing:0.2em; color:#777; font-family:'Inter',sans-serif;">02</span>
                                 <div style="flex:1;">
-                                    <h3 class="display" style="font-size: clamp(1.5rem,2.5vw,2rem); line-height:1; color:#111;">Interior Design</h3>
-                                    <p style="margin-top:12px; max-width:36ch; font-size:13px; line-height:1.7; color:#777; font-family:'Inter',sans-serif; font-weight:300;">Crafting meaningful interiors — residences, workspaces and cafés — with a focus on comfort, function and lasting aesthetics.</p>
+                                    <h3 class="display" style="font-size: clamp(1.5rem,2.5vw,2rem); line-height:1; color:#111;">Planning</h3>
+                                    <p style="margin-top:12px; max-width:36ch; font-size:13px; line-height:1.7; color:#777; font-family:'Inter',sans-serif; font-weight:300;">We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
                                 </div>
                                 <span style="padding-top:8px; font-size:18px; color:#111;">↗</span>
                             </div>
@@ -153,7 +153,7 @@
                 <!-- Image -->
                 <div style="display:none; position:sticky; top:128px; height:544px; overflow:hidden; border-radius:16px; border:1px solid #e9e9e9; background:#fdf9f3;" class="d-none d-lg-block" id="services-image-wrap">
                     <img src="../images/services/svc-architecture-model.jpg" alt="Architecture" data-svc="0" class="svc-img active" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:1; transform:scale(1); transition:opacity 0.8s ease, transform 0.8s ease;">
-                    <img src="../images/services/svc-interior.jpg" alt="Interior Design" data-svc="1" class="svc-img" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.05); transition:opacity 0.8s ease, transform 0.8s ease;">
+                    <img src="../images/arkit-services/service-planning.jpg" alt="Planning" data-svc="1" class="svc-img" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.05); transition:opacity 0.8s ease, transform 0.8s ease;">
                     <img src="../images/services/svc-exterior.jpg" alt="Exterior Design" data-svc="2" class="svc-img" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.05); transition:opacity 0.8s ease, transform 0.8s ease;">
                     <img src="../images/services/svc-construction.jpg" alt="Construction" data-svc="3" class="svc-img" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.05); transition:opacity 0.8s ease, transform 0.8s ease;">
                     <img src="../images/services/svc-realestate.jpg" alt="Real Estate" data-svc="4" class="svc-img" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.05); transition:opacity 0.8s ease, transform 0.8s ease;">
@@ -396,7 +396,7 @@
         var imgs = document.querySelectorAll('.svc-img');
         var label = document.getElementById('services-label');
         var num = document.getElementById('services-num');
-        var names = ['Architecture','Interior Design','Exterior Design','Construction','Real Estate'];
+        var names = ['Architecture','Planning','Exterior Design','Construction','Real Estate'];
         function activate(i){
             rows.forEach(function(r, idx){
                 var isActive = idx===parseInt(i);
