@@ -114,6 +114,51 @@
         .process-grid { position: relative; }
         .process-line { position: absolute; top: 28px; left: 0; right: 0; height: 1px; background: #e3e3e3; }
         @media (max-width: 767px) { .process-line { display: none; } }
+
+        /* FIX: hero glitch - reserve height + fade in */
+        #welcome_wrapper { min-height: 520px; background:#0a0a0a; }
+        @media (min-width: 768px){ #welcome_wrapper { min-height: 100vh; min-height: 100dvh; } }
+        .page-wraper { opacity: 0; transition: opacity 0.45s ease; }
+        .page-wraper.is-loaded { opacity: 1; }
+        /* FIX: service thumbs uniform height so PLANNING card matches others */
+        .service-thumb { aspect-ratio: 16/10; height: 220px; overflow:hidden; }
+        .service-thumb img { width:100%; height:100%; object-fit:cover; }
+        /* FIX: planning icon identical to other 2 - same 48px black square */
+        .service-content i.service-planning-icon { background:#111; border-radius:2px; width:48px; height:48px; display:inline-flex; align-items:center; justify-content:center; margin-bottom:10px; vertical-align:middle; }
+        .service-content i.service-planning-icon::before { display:none !important; }
+        /* HIGHLIGHT: ALL SERVICES button animation */
+        .service-btn-float a { display:inline-flex !important; align-items:center; gap:8px; background:#111 !important; color:#fff !important; border-radius:999px !important; padding:10px 18px !important; border:1px solid #111 !important; box-shadow:0 6px 18px rgba(0,0,0,0.12); position:relative; overflow:hidden; transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important; }
+        .service-btn-float a::after { content:""; position:absolute; inset:0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%); transform: translateX(-100%); transition: transform 0.7s ease; }
+        .service-btn-float a:hover { transform: translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.16); background:#000 !important; }
+        .service-btn-float a:hover::after { transform: translateX(100%); }
+        .service-btn-float a span { transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); display:inline-block; }
+        .service-btn-float a:hover span { transform: translateX(4px); }
+        @keyframes allServicesPulse { 0%,100%{ transform: translateY(0); box-shadow:0 6px 18px rgba(0,0,0,0.12);} 50%{ transform: translateY(-1px); box-shadow:0 8px 22px rgba(0,0,0,0.16);} }
+        .service-btn-float a { animation: allServicesPulse 2.8s ease-in-out infinite; }
+        /* PROCESS COOL redesign */
+        .process-cool-wrap { display:grid; gap:40px; grid-template-columns: 1fr 1.15fr; align-items:start; }
+        @media (max-width: 991px){ .process-cool-wrap { grid-template-columns: 1fr; } .process-showcase { height: 420px !important; } }
+        .process-list { display:flex; flex-direction:column; gap:14px; position:sticky; top:110px; }
+        .process-item { display:flex; gap:18px; align-items:center; padding:18px 16px; border-radius:14px; border:1px solid transparent; cursor:pointer; transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1); }
+        .process-item:hover { background:#fff; border-color:#e9e9e9; transform: translateX(4px); }
+        .process-item.active { background:#fdf9f3; border-color:#e9e9e9; box-shadow:0 4px 14px rgba(0,0,0,0.05); }
+        .process-num { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; letter-spacing:0.06em; font-family:'Inter',sans-serif; flex-shrink:0; transition: background 0.35s, color 0.35s; }
+        .process-item.active .process-num { background:#111 !important; color:#fff !important; }
+        .process-item:not(.active) .process-num { background:#f5efe6; color:#111; }
+        .process-item-copy h3 { font-family:'Poppins',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:#111; margin:0; }
+        .process-item-copy p { margin:4px 0 0; font-size:13px; line-height:1.5; color:#777; font-family:'Inter',sans-serif; }
+        .process-item.active .process-item-copy p { color:#111; }
+        .process-arrow { margin-left:auto; font-size:16px; color:#777; transition: color 0.3s, transform 0.3s; }
+        .process-item.active .process-arrow { color:#111; transform: translateX(2px); }
+        .process-showcase { position:sticky; top:110px; height:560px; border-radius:20px; overflow:hidden; border:1px solid #e9e9e9; background:#fdf9f3; }
+        .process-showcase .process-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.04); transition: opacity 0.7s ease, transform 1.2s cubic-bezier(0.22,1,0.36,1); }
+        .process-showcase .process-img.active { opacity:1; transform:scale(1); }
+        .process-overlay { position:absolute; inset:auto 0 0 0; background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 55%, transparent 100%); padding:24px; }
+        .process-overlay-label { font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.85); font-family:'Inter',sans-serif; margin:0; }
+        .process-overlay-title { margin-top:6px; font-family:'Poppins',sans-serif; font-weight:700; font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:#fff; }
+        .process-overlay-desc { margin-top:8px; max-width:36ch; font-size:13px; line-height:1.5; color:rgba(255,255,255,0.85); font-family:'Inter',sans-serif; }
+        .process-progress { position:absolute; bottom:0; left:0; height:3px; background:#111; width:25%; transition: width 0.6s cubic-bezier(0.22,1,0.36,1); }
+
         /* Lifestyle card on hero — hidden on mobile as Unitya */
         @media (max-width: 768px){ .unitya-lifestyle-hero-card { display:none !important; } #unitya-socials { display:none !important; } }
     </style>
@@ -728,7 +773,7 @@
                                     <img src="images/arkit-services/service-planning.jpg" alt="Planning - architectural blueprint and model">
                                 </div>
                                 <div class="service-content">
-                                    <span style="background:#111;border-radius:2px;padding:10px;display:inline-block;margin-bottom:10px;line-height:1"><img src="images/arkit-services/planning-icon.svg" alt="Planning icon" style="width:28px;height:28px;display:block;"></span>
+                                    <i class="service-planning-icon"><img src="images/arkit-services/planning-icon.svg" alt="Planning icon" style="width:28px;height:28px;display:block;"></i>
                                     <h3><a href="/projects?filter=planning" style="color:inherit;text-decoration:none;">Planning</a></h3>
                                     <p>We offer a fully integrated service that complements the architectural concept, we ensure all projects.</p>
                                     <a href="/projects?filter=planning">View Projects</a>
@@ -772,42 +817,62 @@
             </script>
             <!-- Unitya Living Services Section End -->
 
-            <!-- PROCESS SECTION START -->
-            <section style="background:#fafafa; border-top:1px solid #eee; padding:96px 0;">
+            <!-- PROCESS SECTION START — COOL REDESIGN (services-page inspired, with auto image changing) -->
+            <section id="process" style="background:#fafafa; border-top:1px solid #eee; padding:96px 0;">
                 <div style="max-width:1400px; margin:0 auto; padding:0 24px;">
                     <div class="section-heading text-center mb-40 process-reveal">
                         <span>Our Method</span>
                         <h2>The Process</h2>
+                        <p style="margin:12px auto 0; max-width:52ch; font-size:14px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">A clear path from first sketch to handover — hover, tap or wait and watch the story unfold.</p>
                     </div>
-                    <div class="process-grid" style="margin-top:56px; display:grid; gap:40px 32px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-                        <div class="process-line"></div>
-                        <div class="process-step" style="--d:0ms;">
-                            <div class="process-icon-dot">
-                                <img src="images/process/discover.svg" alt="Discover icon" class="process-icon">
+                    <div class="process-cool-wrap" style="margin-top:56px;">
+                        <!-- Left: interactive list -->
+                        <div class="process-list" id="process-list">
+                            <div class="process-item active" data-step="0">
+                                <div class="process-num">01</div>
+                                <div class="process-item-copy">
+                                    <h3>Discover</h3>
+                                    <p>Understand the vision.</p>
+                                </div>
+                                <span class="process-arrow">→</span>
                             </div>
-                            <h3 class="display" style="margin-top:16px; font-size:16px; color:#111;">DISCOVER</h3>
-                            <p style="margin-top:8px; font-size:13px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Understand the vision.</p>
+                            <div class="process-item" data-step="1">
+                                <div class="process-num">02</div>
+                                <div class="process-item-copy">
+                                    <h3>Plan</h3>
+                                    <p>Shape the direction.</p>
+                                </div>
+                                <span class="process-arrow">→</span>
+                            </div>
+                            <div class="process-item" data-step="2">
+                                <div class="process-num">03</div>
+                                <div class="process-item-copy">
+                                    <h3>Design</h3>
+                                    <p>Bring ideas to life.</p>
+                                </div>
+                                <span class="process-arrow">→</span>
+                            </div>
+                            <div class="process-item" data-step="3">
+                                <div class="process-num">04</div>
+                                <div class="process-item-copy">
+                                    <h3>Build</h3>
+                                    <p>Build with precision.</p>
+                                </div>
+                                <span class="process-arrow">→</span>
+                            </div>
                         </div>
-                        <div class="process-step" style="--d:120ms;">
-                            <div class="process-icon-dot">
-                                <img src="images/process/plan.svg" alt="Plan icon" class="process-icon">
+                        <!-- Right: image showcase -->
+                        <div class="process-showcase" id="process-showcase">
+                            <img data-step="0" class="process-img active" src="images/gallery/pic2.jpg" alt="Discover - understanding the vision" loading="lazy">
+                            <img data-step="1" class="process-img" src="images/process/plan-blueprint.jpg" alt="Plan - shaping the direction" loading="lazy">
+                            <img data-step="2" class="process-img" src="images/gallery/pic3.jpg" alt="Design - bringing ideas to life" loading="lazy">
+                            <img data-step="3" class="process-img" src="images/gallery/pic4.jpg" alt="Build - built with precision" loading="lazy">
+                            <div class="process-overlay">
+                                <p class="process-overlay-label" id="process-overlay-label">Step 01 — Discover</p>
+                                <p class="process-overlay-title" id="process-overlay-title">Understand the vision.</p>
+                                <p class="process-overlay-desc" id="process-overlay-desc">We start by listening — site, light, habits and how you want to live — before a single line is drawn.</p>
                             </div>
-                            <h3 class="display" style="margin-top:16px; font-size:16px; color:#111;">PLAN</h3>
-                            <p style="margin-top:8px; font-size:13px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Shape the direction.</p>
-                        </div>
-                        <div class="process-step" style="--d:240ms;">
-                            <div class="process-icon-dot">
-                                <img src="images/process/design.svg" alt="Design icon" class="process-icon">
-                            </div>
-                            <h3 class="display" style="margin-top:16px; font-size:16px; color:#111;">DESIGN</h3>
-                            <p style="margin-top:8px; font-size:13px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Bring ideas to life.</p>
-                        </div>
-                        <div class="process-step" style="--d:360ms;">
-                            <div class="process-icon-dot">
-                                <img src="images/process/build.svg" alt="Build icon" class="process-icon">
-                            </div>
-                            <h3 class="display" style="margin-top:16px; font-size:16px; color:#111;">BUILD</h3>
-                            <p style="margin-top:8px; font-size:13px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Build with precision.</p>
+                            <div class="process-progress" id="process-progress"></div>
                         </div>
                     </div>
                 </div>
@@ -1322,10 +1387,25 @@
     <!-- CANVAS EFFECT   -->
 
     <script>
-        /* The Process section — scroll-triggered reveal */
+        /* FIX: hero glitch - fade in page after hero reserves height */
+        (function(){
+            function markLoaded(){ var w=document.querySelector('.page-wraper'); if(w) w.classList.add('is-loaded'); }
+            if(document.readyState==='complete') markLoaded();
+            else window.addEventListener('load', markLoaded);
+            setTimeout(markLoaded, 900);
+            // also mark quickly after rev slider init
+            var tries=0; var iv=setInterval(function(){
+                var slider=document.querySelector('#welcome');
+                if(slider && getComputedStyle(slider).display!=='none'){ markLoaded(); clearInterval(iv); }
+                if(++tries>30) clearInterval(iv);
+            }, 200);
+        })();
+    </script>
+    <script>
+        /* The Process section — scroll-triggered reveal (for heading) */
         (function () {
             function run() {
-                var els = document.querySelectorAll('.process-reveal, .process-step');
+                var els = document.querySelectorAll('.process-reveal');
                 if (!('IntersectionObserver' in window)) {
                     els.forEach(function (el) { el.classList.add('in-view'); });
                     return;
@@ -1339,6 +1419,67 @@
             }
             if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
             else run();
+        })();
+    </script>
+    <script>
+        /* PROCESS COOL - image changing + auto-rotate + hover */
+        (function(){
+            var items = document.querySelectorAll('.process-item');
+            var imgs = document.querySelectorAll('.process-img');
+            var label = document.getElementById('process-overlay-label');
+            var title = document.getElementById('process-overlay-title');
+            var desc = document.getElementById('process-overlay-desc');
+            var progress = document.getElementById('process-progress');
+            var showcase = document.getElementById('process-showcase');
+            if(!items.length || !imgs.length) return;
+            var data = [
+                { label:'Step 01 — Discover', title:'Understand the vision.', desc:'We start by listening — site, light, habits and how you want to live — before a single line is drawn.' },
+                { label:'Step 02 — Plan', title:'Shape the direction.', desc:'We translate vision into a clear plan — massing, flow and structure resolved early so every decision has a reason.' },
+                { label:'Step 03 — Design', title:'Bring ideas to life.', desc:'Materials, details and light are refined until the idea feels inevitable — calm, precise and built to age well.' },
+                { label:'Step 04 — Build', title:'Build with precision.', desc:'On site we hold the line — tolerances checked, junctions resolved, handover that feels effortless.' }
+            ];
+            var active = 0;
+            var timer = null;
+            function activate(i){
+                active = parseInt(i);
+                items.forEach(function(el, idx){
+                    var isActive = idx===active;
+                    el.classList.toggle('active', isActive);
+                });
+                imgs.forEach(function(img){
+                    var on = img.getAttribute('data-step')==active;
+                    img.classList.toggle('active', on);
+                });
+                if(label) label.textContent = data[active].label;
+                if(title) title.textContent = data[active].title;
+                if(desc) desc.textContent = data[active].desc;
+                if(progress) progress.style.width = ((active+1)/items.length*100)+'%';
+            }
+            function next(){ activate((active+1)%items.length); }
+            function startAuto(){ stopAuto(); timer = setInterval(next, 3200); }
+            function stopAuto(){ if(timer){ clearInterval(timer); timer=null; } }
+            items.forEach(function(row){
+                row.addEventListener('mouseenter', function(){ activate(this.getAttribute('data-step')); stopAuto(); });
+                row.addEventListener('click', function(){ activate(this.getAttribute('data-step')); });
+                row.addEventListener('focus', function(){ activate(this.getAttribute('data-step')); });
+            });
+            if(showcase){
+                showcase.addEventListener('mouseenter', stopAuto);
+                showcase.addEventListener('mouseleave', startAuto);
+            }
+            // auto-rotate only when section is in view
+            var section = document.getElementById('process');
+            if('IntersectionObserver' in window && section){
+                var io = new IntersectionObserver(function(entries){
+                    entries.forEach(function(e){
+                        if(e.isIntersecting) startAuto(); else stopAuto();
+                    });
+                }, { threshold: 0.3 });
+                io.observe(section);
+            } else {
+                startAuto();
+            }
+            activate(0);
         })();
     </script>
     <script>
