@@ -115,9 +115,7 @@
         .process-line { position: absolute; top: 28px; left: 0; right: 0; height: 1px; background: #e3e3e3; }
         @media (max-width: 767px) { .process-line { display: none; } }
 
-        /* FIX: hero glitch - reserve height + fade in */
-        #welcome_wrapper { min-height: 520px; background:#0a0a0a; }
-        @media (min-width: 768px){ #welcome_wrapper { min-height: 100vh; min-height: 100dvh; } }
+        /* FIX: hero glitch - fade in without extending hero (keeps original lower padding) */
         .page-wraper { opacity: 0; transition: opacity 0.45s ease; }
         .page-wraper.is-loaded { opacity: 1; }
         /* FIX: service thumbs uniform height so PLANNING card matches others */
