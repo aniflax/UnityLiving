@@ -205,12 +205,11 @@
     // Better: use /media/<documentId> with a generic detail handler, but we don't have that route yet
     // So we map Type to the existing static detail pages
     var type = (blog.Type || "").toLowerCase();
-    if (type.indexOf("market") !== -1) return "media/market/";
-    if (type.indexOf("design") !== -1) return "media/design/";
-    if (type.indexOf("project") !== -1) return "media/project/";
+    if (type.indexOf("market") !== -1) return "/media/market/";
+    if (type.indexOf("design") !== -1) return "/media/design/";
+    if (type.indexOf("project") !== -1) return "/media/project/";
     // Fallback: use project
-    return "media/project/";
-    // TODO: when a generic blog detail page is created, use: return "media/blog.html?id=" + blog.documentId;
+    return "/media/project/";
   }
 
   function escapeHtml(str) {
@@ -297,17 +296,12 @@
   }
 
   function getBlogHrefForMedia(blog) {
+    // Absolute root-relative so links work from any page (homepage, /media, or /media/<type>/ detail)
     var type = (blog.Type || "").toLowerCase();
-    if (type.indexOf("market") !== -1) return "market/";
-    if (type.indexOf("design") !== -1) return "design/";
-    if (type.indexOf("project") !== -1) return "project/";
-    // For media/index.html, links are relative to media/
-    // So return type + "/"
-    if (window.location.pathname.indexOf("/media/") !== -1 && window.location.pathname.split("/").length <= 4) {
-      // we are on /media/index.html, so href should be "design/" etc.
-      if (type) return type.toLowerCase() + "/";
-    }
-    return "media/" + (type || "project") + "/";
+    if (type.indexOf("market") !== -1) return "/media/market/";
+    if (type.indexOf("design") !== -1) return "/media/design/";
+    if (type.indexOf("project") !== -1) return "/media/project/";
+    return "/media/" + (type || "project") + "/";
   }
 
   function blogStringToHtml(text) {
@@ -413,9 +407,9 @@
     var grid = document.getElementById("related-grid");
     if (!grid) return;
     var others = allBlogs.filter(function (b) { return b !== current && (b.id !== current.id) && (b.documentId !== current.documentId); });
-    // take up to 2, most recent first
+    // take up to 4, most recent first (4 per row)
     others.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
-    others = others.slice(0, 2);
+    others = others.slice(0, 4);
     if (others.length === 0) return;
     grid.innerHTML = "";
     others.forEach(function (blog) {
