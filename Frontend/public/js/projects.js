@@ -88,9 +88,8 @@
         if (yearSpec) year = yearSpec.value;
       }
       var meta = loc ? loc + (year ? " · " + year : "") : (proj.smallText || "");
-      var href = "projects/" + (proj.type || "").toLowerCase() + "/";
-      // Fallback to project-detail with query if needed
-      if (!proj.type) href = "projects/project-detail.html?project=" + (proj.documentId || "");
+      var href = "/projects/detail/?project=" + (proj.type || proj.documentId || "").toLowerCase();
+      if (!proj.type) href = "/projects/detail/?project=" + (proj.documentId || "");
 
       var card = document.createElement("a");
       card.className = "lp-card";
@@ -133,11 +132,12 @@
       grid.innerHTML = "";
       var filtered = projects;
       if (filter && filter !== "all") {
+        var fNorm = filter.toLowerCase().replace(/-/g, " ");
         filtered = projects.filter(function (p) {
-          var catName = (p.categoryName || (p.category && p.category.name) || "").toLowerCase().replace(/\s+/g, "-");
           var catRaw = (p.categoryName || (p.category && p.category.name) || "").toLowerCase();
+          var catDash = catRaw.replace(/\s+/g, "-");
           var typeLow = (p.type || "").toLowerCase();
-          return catName === filter || catRaw === filter || typeLow === filter;
+          return catDash === filter || catRaw === fNorm || catRaw.indexOf(fNorm) !== -1 || typeLow === filter;
         });
       }
       if (filtered.length === 0) {
@@ -150,8 +150,8 @@
         var title = proj.Headline || "Untitled";
         var intro = proj.title || "";
         if (intro.length > 120) intro = intro.substring(0, 120) + "...";
-        var href = "project-detail.html?project=" + (proj.type || proj.documentId || "");
-        if (proj.type) href = proj.type.toLowerCase() + "/";
+        var href = "detail/?project=" + (proj.type || proj.documentId || "").toLowerCase();
+        if (!proj.type) href = "detail/?project=" + (proj.documentId || "");
 
         var article = document.createElement("article");
         article.className = "project-card";
@@ -195,13 +195,14 @@
   }
 
   function renderDetail(projects) {
-    // Determine slug from URL: /projects/:type/ or ?project=...
+    // Determine slug from ?project= query (detail page is served at /projects/detail/)
     var slug = null;
-    var pathMatch = window.location.pathname.match(/\/projects\/([^\/\?#]+)/);
-    if (pathMatch) slug = pathMatch[1];
+    var params = new URLSearchParams(window.location.search);
+    slug = params.get("project");
     if (!slug) {
-      var params = new URLSearchParams(window.location.search);
-      slug = params.get("project");
+      // Fallback: try clean path /projects/<type>/
+      var pathMatch = window.location.pathname.match(/\/projects\/([^\/\?#]+)\/?$/);
+      if (pathMatch && pathMatch[1] !== "detail") slug = pathMatch[1];
     }
     if (!slug) slug = "hillcrest-residence";
     slug = decodeURIComponent(slug).toLowerCase();
@@ -312,7 +313,7 @@
       others.forEach(function (other) {
         var thumb = getMediaUrl(other.heroImage) || "../images/gallery/portrait/pic1.jpg";
         var cat = (other.category && other.category.name) || other.type || "Architecture";
-        var href = other.type ? other.type.toLowerCase() + "/" : "project-detail.html?project=" + other.documentId;
+        var href = other.type ? "detail/?project=" + other.type.toLowerCase() : "detail/?project=" + other.documentId;
         var card = document.createElement("article");
         card.className = "related-card";
         card.innerHTML = '<a href="' + href + '" style="display:block; overflow:hidden; background:#f5f5f5;"><img src="' + thumb + '" alt="' + (other.Headline || "") + '" style="width:100%; aspect-ratio:4/3; object-fit:cover;" class="img-zoom" loading="lazy"></a>' +
