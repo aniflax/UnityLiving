@@ -120,36 +120,33 @@
     var row = section.querySelector(".row");
     if (!row) return;
     var normalized = blogs.map(normalize).filter(Boolean);
-    if (normalized.length === 0) return; // keep static fallback
+    if (normalized.length === 0) return;
 
-    // Filter for homepage: showOnhomePage true, sort by date desc
+    // Only blogs flagged for homepage; otherwise show nothing (Strapi-only, no fallback)
     var homeBlogs = normalized.filter(function (b) { return b.showOnhomePage; });
-    if (homeBlogs.length === 0) homeBlogs = normalized; // fallback to all if none flagged
     homeBlogs.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
     // Limit to 3
     homeBlogs = homeBlogs.slice(0, 3);
     if (homeBlogs.length === 0) return;
 
-    // Determine big (imp) and small
+    // The imp blog is big; others are small. If no imp flag, all are small.
     var big = homeBlogs.find(function (b) { return b.imp; });
-    if (!big) big = homeBlogs[0];
-    var small = homeBlogs.filter(function (b) { return b !== big; });
-    // If only one blog, show it as big
-    // If big is the only one, small will be empty
+    var small = big ? homeBlogs.filter(function (b) { return b !== big; }) : homeBlogs;
 
-    // Build left column (small cards)
+    // Build columns
     var leftCol = row.querySelector(".col-lg-6.col-md-12");
     var rightCol = row.querySelectorAll(".col-lg-6.col-md-12")[1];
     if (!leftCol || !rightCol) {
-      // Fallback: try to find by structure
       var cols = row.querySelectorAll(".col-lg-6");
       if (cols.length >= 2) { leftCol = cols[0]; rightCol = cols[1]; }
     }
     if (!leftCol || !rightCol) return;
 
-    // Clear existing
     leftCol.innerHTML = "";
     rightCol.innerHTML = "";
+    leftCol.style.display = "";
+    rightCol.style.display = "";
+    rightCol.className = "col-lg-6 col-md-12";
 
     // Render small cards in leftCol
     small.forEach(function (blog) {
@@ -172,13 +169,14 @@
       leftCol.appendChild(el);
     });
 
-    // If no small, keep leftCol empty or hide
-    if (small.length === 0) {
-      leftCol.style.display = "none";
-      rightCol.className = "col-lg-12 col-md-12";
+    // If no imp blog: no big right card, all small (right col hidden, left spans full)
+    if (!big) {
+      leftCol.className = "col-lg-12 col-md-12";
+      rightCol.style.display = "none";
+      return;
     }
 
-    // Render big card in rightCol
+    // Render big card in rightCol (only when imp is true)
     var bigImg = getImageUrl(big.image) || "images/blog/square/pic1.jpg";
     var bigTitle = big.Title || "Untitled";
     var bigDate = formatDate(big.date);
@@ -233,38 +231,46 @@
     if (normalized.length === 0) return;
     normalized.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
 
-    var big = normalized.find(function (b) { return b.imp; }) || normalized[0];
-    var small = normalized.filter(function (b) { return b !== big; }).slice(0, 2);
+    // Big featured card ONLY when imp:true; otherwise all cards are normal size
+    var big = normalized.find(function (b) { return b.imp; });
+    var small = big ? normalized.filter(function (b) { return b !== big; }) : normalized;
 
-    // Render featured
-    var bigImg = getImageUrl(big.image) || "../images/blog/square/pic1.jpg";
-    var bigType = big.Type || "Project";
-    var bigDate = formatDate(big.date);
-    var bigReading = big.ReadingTime ? big.ReadingTime + " min read" : "";
-    var bigTitle = big.Title || "Untitled";
-    var bigExcerpt = getExcerpt(big);
-    var bigHref = getBlogHrefForMedia(big);
+    // Hide featured block when there is no imp blog
+    var featuredSection = featuredWrap.closest("div");
+    if (!big && featuredSection) {
+      featuredSection.style.display = "none";
+    } else if (big && featuredSection) {
+      featuredSection.style.display = "";
+    }
 
-    // Update featured article's inner HTML
-    var featuredLink = featuredWrap.querySelector("a");
-    var featuredImg = featuredWrap.querySelector("img");
-    if (featuredImg) { featuredImg.src = bigImg; featuredImg.alt = bigTitle; }
-    if (featuredLink) { featuredLink.href = bigHref; }
-    var metaSpans = featuredWrap.querySelectorAll("span");
-    // Find Type and date spans
-    var typeSpan = featuredWrap.querySelector("span[style*='color:#777']");
-    if (typeSpan) typeSpan.textContent = bigType.toUpperCase();
-    var dateSpans = featuredWrap.querySelectorAll("span[style*='rgba(119,119,119,0.6)']");
-    if (dateSpans[0]) dateSpans[0].textContent = bigDate;
-    var titleLink = featuredWrap.querySelector("h3 a");
-    if (titleLink) { titleLink.textContent = bigTitle; titleLink.href = bigHref; }
-    var excerptP = featuredWrap.querySelector("p[style*='color:#777']");
-    if (excerptP) excerptP.textContent = bigExcerpt;
-    var readingP = featuredWrap.querySelectorAll("p[style*='letter-spacing:0.16em']");
-    if (readingP[0]) readingP[0].textContent = bigReading || readingP[0].textContent;
+    // Render featured ONLY when imp:true
+    if (big) {
+      var bigImg = getImageUrl(big.image) || "../images/blog/square/pic1.jpg";
+      var bigType = big.Type || "Project";
+      var bigDate = formatDate(big.date);
+      var bigReading = big.ReadingTime ? big.ReadingTime + " min read" : "";
+      var bigTitle = big.Title || "Untitled";
+      var bigExcerpt = getExcerpt(big);
+      var bigHref = getBlogHrefForMedia(big);
+
+      // Update featured article's inner HTML
+      var featuredLink = featuredWrap.querySelector("a");
+      var featuredImg = featuredWrap.querySelector("img");
+      if (featuredImg) { featuredImg.src = bigImg; featuredImg.alt = bigTitle; }
+      if (featuredLink) { featuredLink.href = bigHref; }
+      var typeSpan = featuredWrap.querySelector("span[style*='color:#777']");
+      if (typeSpan) typeSpan.textContent = bigType.toUpperCase();
+      var dateSpans = featuredWrap.querySelectorAll("span[style*='rgba(119,119,119,0.6)']");
+      if (dateSpans[0]) dateSpans[0].textContent = bigDate;
+      var titleLink = featuredWrap.querySelector("h3 a");
+      if (titleLink) { titleLink.textContent = bigTitle; titleLink.href = bigHref; }
+      var excerptP = featuredWrap.querySelector("p[style*='color:#777']");
+      if (excerptP) excerptP.textContent = bigExcerpt;
+      var readingP = featuredWrap.querySelectorAll("p[style*='letter-spacing:0.16em']");
+      if (readingP[0]) readingP[0].textContent = bigReading || readingP[0].textContent;
+    }
 
     // Render grid: clear and repopulate
-    // Find the grid container's parent
     var gridContainer = gridWrap;
     gridContainer.innerHTML = "";
     small.forEach(function (blog) {

@@ -102,51 +102,30 @@
             </div>
         </section>
 
-        <!-- FEATURED + GRID -->
+        <!-- FEATURED + GRID (rendered from Strapi via js/blogs.js; no static fallback) -->
         <section style="max-width:1400px; margin:0 auto; padding:96px 24px;">
-            <!-- Featured -->
+            <!-- Featured (shown only when a blog has imp=true) -->
             <div style="margin-bottom:80px; border-bottom:1px solid #e9e9e9; padding-bottom:80px;">
                 <article class="media-card-featured" style="display:grid; gap:32px; padding:12px; border-radius:20px;">
                     <div style="display:grid; gap:32px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items:center;">
                         <a href="project/" style="display:block; overflow:hidden; border-radius:12px; background:#f5f5f5;">
-                            <img src="../images/blog/square/pic1.jpg" alt="Small & Minimal House On Paters on Hill" style="width:100%; aspect-ratio:4/3; object-fit:cover;" class="img-zoom">
+                            <img src="../images/blog/square/pic1.jpg" alt="" style="width:100%; aspect-ratio:4/3; object-fit:cover;" class="img-zoom">
                         </a>
                         <div style="display:flex; flex-direction:column; padding:12px;">
                             <div style="display:flex; align-items:center; gap:12px; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; font-family:'Inter',sans-serif;">
-                                <span style="color:#777;">PROJECT</span>
+                                <span style="color:#777;"></span>
                                 <span style="width:16px; height:1px; background:#e9e9e9;"></span>
-                                <span style="color:rgba(119,119,119,0.6);">6 Aug 2026</span>
+                                <span style="color:rgba(119,119,119,0.6);"></span>
                             </div>
-                            <h3 class="display" style="margin-top:16px; font-size: clamp(1.3rem,2.4vw,1.8rem); line-height:1.2;"><a href="project/" style="color:inherit; text-decoration:none;">Small & Minimal House On Paters on Hill</a></h3>
-                            <p style="margin-top:12px; font-size:14px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">A compact retreat shaped by light, proportion and restraint — where every square foot is considered.</p>
-                            <p style="margin-top:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(119,119,119,0.7); font-family:'Inter',sans-serif;">4 min read</p>
+                            <h3 class="display" style="margin-top:16px; font-size: clamp(1.3rem,2.4vw,1.8rem); line-height:1.2;"><a href="project/" style="color:inherit; text-decoration:none;"></a></h3>
+                            <p style="margin-top:12px; font-size:14px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;"></p>
+                            <p style="margin-top:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(119,119,119,0.7); font-family:'Inter',sans-serif;"></p>
                         </div>
                     </div>
                 </article>
             </div>
 
-            <div style="display:grid; gap:32px 32px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width:800px;">
-                <!-- Post 2 — Design (small as Unitya) -->
-                <article class="media-card" style="display:flex; flex-direction:column; padding:12px; max-width:420px;">
-                    <a href="design/" style="display:block; overflow:hidden; border-radius:12px; background:#f5f5f5;"><img src="../images/blog/landscap-half/pic2.jpg" alt="Modern living room with neutral palette" style="width:100%; aspect-ratio:16/11; object-fit:cover;" class="img-zoom"></a>
-                    <div style="flex:1; display:flex; flex-direction:column; padding-top:20px;">
-                        <div style="display:flex; align-items:center; gap:12px; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; font-family:'Inter',sans-serif;"><span style="color:#777;">Design</span><span style="width:16px; height:1px; background:#e9e9e9;"></span><span style="color:rgba(119,119,119,0.6);">19 June 2026</span></div>
-                        <h3 class="display" style="margin-top:16px; font-size:16px; line-height:1.4;"><a href="design/" style="color:inherit; text-decoration:none;">Materials That Age Well</a></h3>
-                        <p style="margin-top:12px; font-size:14px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Why we specify honed limestone over polished vitrified, engineered oak over laminate, and matte ironmongery over chrome.</p>
-                        <p style="margin-top:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(119,119,119,0.7); font-family:'Inter',sans-serif;">5 min read</p>
-                    </div>
-                </article>
-                <!-- Post 3 — Market (swapped) -->
-                <article class="media-card" style="display:flex; flex-direction:column; padding:12px; max-width:420px;">
-                    <a href="market/" style="display:block; overflow:hidden; border-radius:12px; background:#f5f5f5;"><img src="../images/blog/landscap-half/pic1.jpg" alt="Modern white residential building against a blue sky" style="width:100%; aspect-ratio:16/11; object-fit:cover;" class="img-zoom"></a>
-                    <div style="flex:1; display:flex; flex-direction:column; padding-top:20px;">
-                        <div style="display:flex; align-items:center; gap:12px; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; font-family:'Inter',sans-serif;"><span style="color:#777;">Market</span><span style="width:16px; height:1px; background:#e9e9e9;"></span><span style="color:rgba(119,119,119,0.6);">28 July 2026</span></div>
-                        <h3 class="display" style="margin-top:16px; font-size:16px; line-height:1.4;"><a href="market/" style="color:inherit; text-decoration:none;">5 Reasons Indore Is Emerging</a></h3>
-                        <p style="margin-top:12px; font-size:14px; line-height:1.6; color:#777; font-family:'Inter',sans-serif;">Infrastructure that arrived ahead of demand, a services economy that keeps hiring, and land still priced below comparable Tier-2 cities.</p>
-                        <p style="margin-top:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(119,119,119,0.7); font-family:'Inter',sans-serif;">6 min read</p>
-                    </div>
-                </article>
-            </div>
+            <div style="display:grid; gap:32px 32px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width:800px;"></div>
         </section>
 
         <!-- CTA -->
