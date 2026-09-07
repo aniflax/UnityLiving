@@ -36,7 +36,10 @@
     "image": {
       "type": "media",
       "multiple": false,
-      "required": false
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "imp": {
       "type": "boolean",
