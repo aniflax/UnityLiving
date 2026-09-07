@@ -25,7 +25,7 @@ const fixFile = (file: any): boolean => {
   return changed;
 };
 
-/** Idempotently grants the public role read access to the blog collection API. */
+/** Idempotently grants the public role read access to public collection APIs. */
 async function ensurePublicBlogPermissions(strapi: Core.Strapi) {
   try {
     const publicRole = await strapi.db
@@ -37,7 +37,14 @@ async function ensurePublicBlogPermissions(strapi: Core.Strapi) {
       .query('plugin::users-permissions.permission')
       .findMany({ where: { role: { type: 'public' } } });
     const existingActions = new Set(existing.map((p: any) => p.action));
-    const wanted = ['api::blog.blog.find', 'api::blog.blog.findOne'];
+    const wanted = [
+      'api::blog.blog.find',
+      'api::blog.blog.findOne',
+      'api::project.project.find',
+      'api::project.project.findOne',
+      'api::category.category.find',
+      'api::category.category.findOne',
+    ];
 
     for (const action of wanted) {
       if (!existingActions.has(action)) {

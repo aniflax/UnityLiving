@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_project_specs",
+  "info": {
+    "displayName": "Spec",
+    "icon": "list",
+    "description": "Label and value pair for project specifications"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
