@@ -137,20 +137,22 @@
         .service-btn-float a { animation: allServicesPulse 2.8s ease-in-out infinite; }
         /* PROCESS COOL redesign */
         .process-cool-wrap { display:grid; gap:40px; grid-template-columns: 1fr 1.15fr; align-items:start; }
-        @media (max-width: 991px){ .process-cool-wrap { grid-template-columns: 1fr; } .process-showcase { height: 420px !important; } }
+        @media (max-width: 991px){ .process-cool-wrap { grid-template-columns: 1fr; } .process-showcase { height: 360px !important; } }
         .process-list { display:flex; flex-direction:column; gap:14px; position:sticky; top:110px; }
         .process-item { display:flex; gap:18px; align-items:center; padding:18px 16px; border-radius:14px; border:1px solid transparent; cursor:pointer; transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1); }
         .process-item:hover { background:#fff; border-color:#e9e9e9; transform: translateX(4px); }
         .process-item.active { background:#fdf9f3; border-color:#e9e9e9; box-shadow:0 4px 14px rgba(0,0,0,0.05); }
         .process-num { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; letter-spacing:0.06em; font-family:'Inter',sans-serif; flex-shrink:0; transition: background 0.35s, color 0.35s; }
         .process-item.active .process-num { background:#111 !important; color:#fff !important; }
+        .process-num img { filter: brightness(0) invert(1); }
+        .process-item:not(.active) .process-num img { filter: none; }
         .process-item:not(.active) .process-num { background:#f5efe6; color:#111; }
         .process-item-copy h3 { font-family:'Poppins',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:#111; margin:0; }
         .process-item-copy p { margin:4px 0 0; font-size:13px; line-height:1.5; color:#777; font-family:'Inter',sans-serif; }
         .process-item.active .process-item-copy p { color:#111; }
         .process-arrow { margin-left:auto; font-size:16px; color:#777; transition: color 0.3s, transform 0.3s; }
         .process-item.active .process-arrow { color:#111; transform: translateX(2px); }
-        .process-showcase { position:sticky; top:110px; height:560px; border-radius:20px; overflow:hidden; border:1px solid #e9e9e9; background:#fdf9f3; }
+        .process-showcase { position:sticky; top:110px; height:420px; border-radius:20px; overflow:hidden; border:1px solid #e9e9e9; background:#fdf9f3; }
         .process-showcase .process-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.04); transition: opacity 0.7s ease, transform 1.2s cubic-bezier(0.22,1,0.36,1); }
         .process-showcase .process-img.active { opacity:1; transform:scale(1); }
         .process-overlay { position:absolute; inset:auto 0 0 0; background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 55%, transparent 100%); padding:24px; }
@@ -829,7 +831,7 @@
                         <!-- Left: interactive list -->
                         <div class="process-list" id="process-list">
                             <div class="process-item active" data-step="0">
-                                <div class="process-num">01</div>
+                                <div class="process-num"><img src="images/process/discover.svg" alt="Discover" style="width:22px;height:22px;display:block;"></div>
                                 <div class="process-item-copy">
                                     <h3>Discover</h3>
                                     <p>Understand the vision.</p>
@@ -837,7 +839,7 @@
                                 <span class="process-arrow">→</span>
                             </div>
                             <div class="process-item" data-step="1">
-                                <div class="process-num">02</div>
+                                <div class="process-num"><img src="images/process/plan.svg" alt="Plan" style="width:22px;height:22px;display:block;"></div>
                                 <div class="process-item-copy">
                                     <h3>Plan</h3>
                                     <p>Shape the direction.</p>
@@ -845,7 +847,7 @@
                                 <span class="process-arrow">→</span>
                             </div>
                             <div class="process-item" data-step="2">
-                                <div class="process-num">03</div>
+                                <div class="process-num"><img src="images/process/design.svg" alt="Design" style="width:22px;height:22px;display:block;"></div>
                                 <div class="process-item-copy">
                                     <h3>Design</h3>
                                     <p>Bring ideas to life.</p>
@@ -853,7 +855,7 @@
                                 <span class="process-arrow">→</span>
                             </div>
                             <div class="process-item" data-step="3">
-                                <div class="process-num">04</div>
+                                <div class="process-num"><img src="images/process/build.svg" alt="Build" style="width:22px;height:22px;display:block;"></div>
                                 <div class="process-item-copy">
                                     <h3>Build</h3>
                                     <p>Build with precision.</p>
@@ -863,7 +865,7 @@
                         </div>
                         <!-- Right: image showcase -->
                         <div class="process-showcase" id="process-showcase">
-                            <img data-step="0" class="process-img active" src="images/gallery/pic2.jpg" alt="Discover - understanding the vision" loading="lazy">
+                            <img data-step="0" class="process-img active" src="images/process/discover-house.jpg" alt="Discover - house model on blueprint" loading="lazy">
                             <img data-step="1" class="process-img" src="images/process/plan-blueprint.jpg" alt="Plan - shaping the direction" loading="lazy">
                             <img data-step="2" class="process-img" src="images/gallery/pic3.jpg" alt="Design - bringing ideas to life" loading="lazy">
                             <img data-step="3" class="process-img" src="images/gallery/pic4.jpg" alt="Build - built with precision" loading="lazy">
