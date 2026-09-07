@@ -13,13 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
-    },
-    "slug": {
-      "type": "uid"
-    },
-    "description": {
-      "type": "text"
+      "type": "string",
+      "required": true
     }
   }
 }
