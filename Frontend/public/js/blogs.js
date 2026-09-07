@@ -366,12 +366,12 @@
       metaEl.textContent = "Unitya Living · " + formatDate(blog.date);
     }
 
-    // Update article body
-    var article = document.querySelector("article[style*='max-width:672px']");
-    if (article) {
-      var displayP = article.querySelector("p.display");
+    // Update article body — target the 672px container (article itself is 1400px)
+    var bodyWrap = document.querySelector("article div[style*='max-width:672px']");
+    if (bodyWrap) {
+      var displayP = bodyWrap.querySelector("p.display");
       if (displayP && blog.shortTag) displayP.textContent = blog.shortTag;
-      var contentDiv = article.querySelector("div[style*='flex-direction:column']");
+      var contentDiv = bodyWrap.querySelector("div[style*='flex-direction:column']");
       if (contentDiv) {
         var blogHtml = "";
         if (typeof blog.Blog === "string" && blog.Blog.trim()) {
