@@ -44,6 +44,7 @@ const uploadConfig = (env: Core.Config.Shared.ConfigParams['env']) => {
           endpoint: env('R2_ENDPOINT'),
           forcePathStyle: true,
           params: {
+            ACL: 'public-read',
             Bucket: env('R2_BUCKET_NAME'),
           },
         },
