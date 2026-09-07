@@ -310,9 +310,24 @@
     return "media/" + (type || "project") + "/";
   }
 
+  function blogStringToHtml(text) {
+    // Blog field stored as a plain string with newlines. Convert to styled blocks.
+    var blocks = text.split(/\r?\n+/).map(function (s) { return s.trim(); }).filter(Boolean);
+    var out = "";
+    blocks.forEach(function (block) {
+      // Heuristic: short line without sentence-ending punctuation = heading
+      var isHeading = block.length <= 70 && !/[.!?…]$/.test(block) && !/^[A-Z][^.!?]*\.\s+[A-Z]/.test(block.slice(0, 40)) && block.split(" ").length <= 9;
+      if (isHeading) {
+        out += '<h2 class="display" style="margin-top:28px; font-size: clamp(1.2rem,2.2vw,1.5rem); line-height:1.3;">' + escapeHtml(block) + '</h2>';
+      } else {
+        out += '<p style="font-size:16px; line-height:1.85; color:#777; font-family:\'Inter\',sans-serif;">' + escapeHtml(block) + '</p>';
+      }
+    });
+    return out;
+  }
+
   function renderDetailPage(blogs) {
     // For /media/design/, /media/market/, /media/project/
-    // Determine which Type this page should show
     var path = window.location.pathname;
     var typeMap = {
       "/media/design": "design",
@@ -328,12 +343,11 @@
     // Find blog with matching Type (case-insensitive)
     var blog = normalized.find(function (b) { return (b.Type || "").toLowerCase().indexOf(expectedType) !== -1; });
     if (!blog) {
-      // fallback to first blog
       blog = normalized[0];
     }
     if (!blog) return;
 
-    // Update hero
+    // Update hero — use the Strapi-uploaded image
     var heroImg = document.querySelector("section[style*='min-height:35vh'] img");
     if (heroImg) {
       var imgUrl = getImageUrl(blog.image);
@@ -349,8 +363,7 @@
     if (titleEl) titleEl.textContent = blog.Title || titleEl.textContent;
     var metaEl = document.querySelector("section[style*='min-height:35vh'] p[style*='color:rgba(255,255,255,0.75)']");
     if (metaEl) {
-      var author = blog.shortTag || "Unitya Living";
-      metaEl.textContent = author + " · " + formatDate(blog.date);
+      metaEl.textContent = "Unitya Living · " + formatDate(blog.date);
     }
 
     // Update article body
@@ -358,23 +371,19 @@
     if (article) {
       var displayP = article.querySelector("p.display");
       if (displayP && blog.shortTag) displayP.textContent = blog.shortTag;
-      // Find the content container
       var contentDiv = article.querySelector("div[style*='flex-direction:column']");
-      if (contentDiv && blog.Blog) {
-        // Render Blog richtext
+      if (contentDiv) {
         var blogHtml = "";
-        if (typeof blog.Blog === "string") {
-          blogHtml = blog.Blog;
+        if (typeof blog.Blog === "string" && blog.Blog.trim()) {
+          blogHtml = blogStringToHtml(blog.Blog);
         } else if (Array.isArray(blog.Blog)) {
-          // Convert blocks to HTML
           blogHtml = blog.Blog.map(function (block) {
             if (block.type === "paragraph") {
               var text = (block.children || []).map(function (c) { return escapeHtml(c.text || ""); }).join("");
               return '<p style="font-size:16px; line-height:1.85; color:#777; font-family:\'Inter\',sans-serif;">' + text + '</p>';
             } else if (block.type === "heading") {
-              var level = block.level || 2;
               var text = (block.children || []).map(function (c) { return escapeHtml(c.text || ""); }).join("");
-              return '<h2 class="display" style="margin-top:24px; font-size: clamp(1.2rem,2.2vw,1.5rem);">' + text + '</h2>';
+              return '<h2 class="display" style="margin-top:28px; font-size: clamp(1.2rem,2.2vw,1.5rem); line-height:1.3;">' + text + '</h2>';
             } else if (block.type === "quote") {
               var text = (block.children || []).map(function (c) { return escapeHtml(c.text || ""); }).join("");
               return '<blockquote style="border-left:2px solid #e9e9e9; padding-left:24px; margin:0; font-family:\'Poppins\', sans-serif; font-size:17px; line-height:1.6; font-style:italic; color:#111;">' + text + '</blockquote>';
@@ -388,23 +397,45 @@
             return "";
           }).join("");
         }
-        // Also append Ending
+        // Append Ending
         if (blog.Ending) {
           blogHtml += '<blockquote style="border-left:2px solid #e9e9e9; padding-left:24px; margin:0; font-family:\'Poppins\', sans-serif; font-size:17px; line-height:1.6; font-style:italic; color:#111;">' + escapeHtml(blog.Ending) + '</blockquote>';
         }
-        if (blogHtml) {
-          // Keep the first displayP, replace the rest
-          var existingPs = contentDiv.querySelectorAll("p, h2, blockquote, ul");
-          // Clear all except first displayP if it was shortTag
-          contentDiv.innerHTML = blogHtml;
-          // Re-add the displayP at top if needed
-          if (displayP && blog.shortTag) {
-            contentDiv.insertBefore(displayP, contentDiv.firstChild);
-          }
-        }
+        contentDiv.innerHTML = blogHtml;
       }
     }
+
+    // Render related / continue reading (dynamic, Strapi only)
+    renderRelated(normalized, blog);
   }
+
+  function renderRelated(allBlogs, current) {
+    var grid = document.getElementById("related-grid");
+    if (!grid) return;
+    var others = allBlogs.filter(function (b) { return b !== current && (b.id !== current.id) && (b.documentId !== current.documentId); });
+    // take up to 2, most recent first
+    others.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+    others = others.slice(0, 2);
+    if (others.length === 0) return;
+    grid.innerHTML = "";
+    others.forEach(function (blog) {
+      var imgUrl = getImageUrl(blog.image) || "../images/media/hero-building.jpg";
+      var type = blog.Type || "Design";
+      var dateStr = formatDate(blog.date);
+      var title = blog.Title || "Untitled";
+      var href = getBlogHrefForMedia(blog);
+      var art = document.createElement("article");
+      art.style.cssText = "border:1px solid #e9e9e9; border-radius:20px; background:#fff; padding:12px; max-width:420px;";
+      art.innerHTML =
+        '<a href="' + href + '" style="display:block; overflow:hidden; border-radius:12px;"><img src="' + imgUrl + '" alt="' + escapeHtml(title) + '" style="width:100%; aspect-ratio:16/11; object-fit:cover;"></a>' +
+        '<div style="padding-top:20px;">' +
+        '  <div style="display:flex; gap:12px; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; font-family:\'Inter\',sans-serif; color:#777;"><span>' + escapeHtml(type) + '</span><span style="width:16px; height:1px; background:#e9e9e9;"></span><span style="color:rgba(119,119,119,0.6);">' + escapeHtml(dateStr) + '</span></div>' +
+        '  <h3 class="display" style="margin-top:12px; font-size:16px;"><a href="' + href + '" style="color:inherit; text-decoration:none;">' + escapeHtml(title) + '</a></h3>' +
+        '</div>';
+      grid.appendChild(art);
+    });
+  }
+
 
   function init() {
     var path = window.location.pathname;
