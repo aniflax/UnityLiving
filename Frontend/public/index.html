@@ -182,9 +182,34 @@
         html[data-intro="seen"] #brand-intro { display:none; }
 
         /* ===== PHONE ONLY ===== */
+        #mobile-hero {
+            display:none;
+            position:absolute;
+            left:24px;
+            bottom:40px;
+            z-index:25;
+            max-width:80%;
+        }
+        #mobile-hero .mh-line { width:44px; height:2px; background:rgba(255,255,255,0.9); margin-bottom:16px; }
+        #mobile-hero .mh-title {
+            font-family:'Poppins',sans-serif; font-weight:800; font-size:clamp(28px, 8vw, 36px);
+            line-height:1.05; letter-spacing:-0.01em; text-transform:uppercase; color:#fff; margin:0;
+            transition:opacity 0.45s ease, transform 0.45s ease;
+        }
+        #mobile-hero .mh-sub {
+            margin:10px 0 0; max-width:32ch; font-size:13px; line-height:1.55;
+            color:rgba(255,255,255,0.85); font-family:'Inter',sans-serif;
+            transition:opacity 0.45s ease, transform 0.45s ease;
+        }
+        #mobile-hero .mh-btn {
+            display:inline-block; margin-top:22px; border:1px solid #fff; color:#fff;
+            padding:12px 26px; font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+            font-family:'Inter',sans-serif; text-decoration:none; transition:background 0.3s, color 0.3s;
+        }
+        #mobile-hero .mh-btn:hover { background:#fff; color:#111; }
         @media (max-width: 767px) {
-            /* Hero: shorter height */
-            #welcome_wrapper, #welcome, #welcome_wrapper .rev_slider {
+            /* Hero: shorter height — shrink rev slider's outer wrapper too (kills blank space) */
+            #welcome_forcefullwidth, #welcome_wrapper, #welcome, #welcome_wrapper .rev_slider {
                 height: 66vh !important;
                 min-height: 66vh !important;
                 max-height: 66vh !important;
@@ -197,10 +222,10 @@
                 background-repeat: no-repeat !important;
                 animation: unityaHeroZoom 9s cubic-bezier(0.22,1,0.36,1) forwards;
             }
-            #welcome .rev-slidebg, #welcome .tp-bgimg {
-                background-image: none !important;
-                visibility: hidden !important;
-            }
+            /* Phone: no slide transitions, no bullets/arrows — hide the slider */
+            #welcome { display: none !important; }
+            /* Phone: show our static hero text */
+            #mobile-hero { display: block !important; }
             /* Social icons: small, bottom-right of hero */
             #unitya-socials {
                 display: flex !important;
@@ -792,6 +817,13 @@
                 </div>
                 <!-- Unitya hero social icons -->
                 <div id="unitya-socials" style="position:absolute; left:120px; bottom:100px; z-index:20; display:flex; align-items:center; gap:6px;"><a href="#" target="_blank" rel="noreferrer" aria-label="Facebook" style="color:#fff; display:inline-flex; width:34px; height:34px; align-items:center; justify-content:center; text-decoration:none; transition:opacity .3s;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:26px; height:26px; display:block;"><path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1z"/></svg></a><a href="#" target="_blank" rel="noreferrer" aria-label="Twitter" style="color:#fff; display:inline-flex; width:34px; height:34px; align-items:center; justify-content:center; text-decoration:none; transition:opacity .3s;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:26px; height:26px; display:block;"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.8.5-1.7.8-2.6 1A4.1 4.1 0 0 0 11.7 8c0 .3 0 .6.1.9-3.4-.2-6.4-1.8-8.4-4.2-.4.6-.6 1.3-.6 2.1 0 1.4.7 2.7 1.7 3.4-.6 0-1.2-.2-1.8-.5v.1c0 2 1.4 3.7 3.3 4.1-.3.1-.7.1-1 .1-.2 0-.5 0-.7-.1.5 1.6 2 2.8 3.8 2.8A8.3 8.3 0 0 1 3 18.5 11.7 11.7 0 0 0 9.3 20c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.1z"/></svg></a><a href="#" target="_blank" rel="noreferrer" aria-label="Linkedin" style="color:#fff; display:inline-flex; width:34px; height:34px; align-items:center; justify-content:center; text-decoration:none; transition:opacity .3s;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:26px; height:26px; display:block;"><path d="M6.5 8.5H3V21h3.5V8.5zM4.8 3C3.7 3 3 3.8 3 4.8s.7 1.8 1.8 1.8 1.8-.8 1.8-1.8S5.9 3 4.8 3zM21 13.8c0-3.8-2-5.6-4.8-5.6-2.2 0-3.2 1.2-3.8 2v-1.7H9V21h3.5v-6.2c0-1.6.3-3.2 2.3-3.2 2 0 2 1.9 2 3.3V21H21v-7.2z"/></svg></a></div>
+                <!-- Phone hero text (rotating, phone only) -->
+                <div id="mobile-hero">
+                    <div class="mh-line"></div>
+                    <h2 class="mh-title">Light &amp; Space</h2>
+                    <p class="mh-sub">Spaces shaped by daylight, proportion and restraint.</p>
+                    <a class="mh-btn" href="about-1.html">Read More</a>
+                </div>
                 <script>
                     (function(){
                         var items = [
@@ -821,6 +853,40 @@
                             }, delay);
                         }
                         schedule();
+                    })();
+                </script>
+                <script>
+                    /* Phone hero text rotator — static 6th image, text cycles */
+                    (function(){
+                        if (!window.matchMedia || !window.matchMedia('(max-width: 767px)').matches) return;
+                        var hero = document.getElementById('mobile-hero');
+                        if (!hero) return;
+                        var title = hero.querySelector('.mh-title');
+                        var sub = hero.querySelector('.mh-sub');
+                        if (!title || !sub) return;
+                        var slides = [
+                            { t: "Homes that endure", s: "Architecture that holds its character long after handover." },
+                            { t: "Built to last", s: "Materials chosen for how they age, not just how they look." },
+                            { t: "Modern house", s: "Thoughtful structures for site, people and purpose." },
+                            { t: "Design to Reality", s: "Every idea refined until the built result feels inevitable." },
+                            { t: "Your dream We design", s: "From first sketch to finished space, in one studio." },
+                            { t: "Light & Space", s: "Spaces shaped by daylight, proportion and restraint." },
+                            { t: "Spaces for life", s: "Every detail resolved with precision and care." }
+                        ];
+                        var i = 5;
+                        function show(idx){
+                            var it = slides[idx];
+                            title.style.opacity = '0'; title.style.transform = 'translateY(8px)';
+                            sub.style.opacity = '0'; sub.style.transform = 'translateY(8px)';
+                            setTimeout(function(){
+                                title.textContent = it.t;
+                                sub.textContent = it.s;
+                                title.style.opacity = '1'; title.style.transform = 'translateY(0)';
+                                sub.style.opacity = '1'; sub.style.transform = 'translateY(0)';
+                            }, 300);
+                        }
+                        show(i);
+                        setInterval(function(){ i = (i + 1) % slides.length; show(i); }, 4200);
                     })();
                 </script>
             </div>
