@@ -241,19 +241,22 @@
       var html = "";
       if (typeof desc === "string") {
         // Handle richtext as string with sections
-        var parts = desc.split(/\n\s*\n/);
-        parts.forEach(function (part) {
-          part = part.trim();
-          if (!part) return;
-          // Detect headings like DESIGN INTENT, MATERIAL AND CRAFT (all caps)
-          if (part === part.toUpperCase() && part.length < 50) {
-            html += '<h2 class="display" style="margin-top:28px; font-size: clamp(1.2rem,2.2vw,1.5rem);">' + part + '</h2>';
-          } else {
-            html += '<p style="font-size:16px; line-height:1.85; color:#777; font-family:Inter,sans-serif;">' + part.replace(/\n/g, "<br>") + '</p>';
-          }
-        });
-        // If description contains HTML already, use as is
-        if (desc.indexOf("<") !== -1) html = desc;
+        if (desc.indexOf("<") !== -1) {
+          // Description already contains HTML — use as is
+          html = desc;
+        } else {
+          var lines = desc.split(/\n+/);
+          lines.forEach(function (line) {
+            line = line.trim();
+            if (!line) return;
+            // Detect headings like DESIGN INTENT, MATERIAL AND CRAFT (all caps)
+            if (line === line.toUpperCase() && line.length < 60) {
+              html += '<h2 class="display" style="margin-top:28px; font-size: clamp(1.2rem,2.2vw,1.5rem);">' + line + '</h2>';
+            } else {
+              html += '<p style="font-size:16px; line-height:1.85; color:#777; font-family:Inter,sans-serif;">' + line + '</p>';
+            }
+          });
+        }
       } else if (Array.isArray(desc)) {
         html = desc.map(function (block) {
           if (block.type === "paragraph") {
@@ -268,16 +271,6 @@
       }
       overviewEl.innerHTML = html;
     }
-
-    // Intent, material, closing - try to split description if those headings exist
-    // For now, keep them empty or split from description if needed
-    // The description already contains those sections, so we can leave intent/material empty
-    var intentEl = document.getElementById("project-intent");
-    var materialEl = document.getElementById("project-material");
-    var closingEl = document.getElementById("project-closing");
-    if (intentEl) intentEl.textContent = "";
-    if (materialEl) materialEl.textContent = "";
-    if (closingEl) closingEl.textContent = "";
 
     // Stats
     var statsEl = document.getElementById("project-stats");

@@ -182,6 +182,7 @@
         html[data-intro="seen"] #brand-intro { display:none; }
 
         /* ===== PHONE ONLY ===== */
+        #mobile-hero-bg { display: none; }
         #mobile-hero {
             display:none;
             position:absolute;
@@ -214,12 +215,17 @@
                 min-height: 66vh !important;
                 max-height: 66vh !important;
             }
-            /* Hero: only the 6th image, as a static background that zooms once */
-            #welcome_wrapper {
-                background-image: url('images/new-hero-images/erik-mclean-bdSR9RpVSKA-unsplash.jpg') !important;
-                background-size: 100%;
-                background-position: center !important;
-                background-repeat: no-repeat !important;
+            /* Hero: only the 6th image — full-cover layer that zooms once */
+            #welcome_wrapper { overflow: hidden !important; }
+            #mobile-hero-bg {
+                display: block !important;
+                position: absolute;
+                inset: 0;
+                background-image: url('images/new-hero-images/erik-mclean-bdSR9RpVSKA-unsplash.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                z-index: 1;
                 animation: unityaHeroZoom 9s cubic-bezier(0.22,1,0.36,1) forwards;
             }
             /* Phone: no slide transitions, no bullets/arrows — hide the slider */
@@ -260,8 +266,8 @@
             }
         }
         @keyframes unityaHeroZoom {
-            from { background-size: 100%; }
-            to { background-size: 115%; }
+            from { transform: scale(1); }
+            to { transform: scale(1.12); }
         }
     </style>
     <script>
@@ -406,6 +412,7 @@
 
             <!-- SLIDER START -->
             <div id="welcome_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="goodnews-header" data-source="gallery" style="background:#eeeeee;padding:0px;">
+                <div id="mobile-hero-bg" aria-hidden="true"></div>
                 <div id="welcome" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.3.1">
                     <ul>
                         <!-- SLIDE 1 -->
