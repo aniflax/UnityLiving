@@ -98,7 +98,7 @@
                 <div>
                     <div style="height:1px; background:#e9e9e9; margin-bottom:4px;"></div>
                     <div id="services-list">
-                        <div class="service-row active" data-index="0" style="border-bottom:1px solid #e9e9e9; cursor:pointer; background:#fdf9f3;">
+                        <div class="service-row active" data-index="0" style="border-bottom:1px solid #e9e9e9; cursor:pointer; background:#fff; box-shadow:0 10px 24px rgba(0,0,0,0.08); border-radius:14px; padding:0 8px;">
                             <div style="display:flex; align-items:flex-start; gap:24px; padding:32px 8px;">
                                 <span style="width:40px; padding-top:6px; font-size:11px; letter-spacing:0.2em; color:#c2410c; font-family:'Inter',sans-serif; font-weight:600;">01</span>
                                 <div style="flex:1;">
@@ -400,7 +400,10 @@
         function activate(i){
             rows.forEach(function(r, idx){
                 var isActive = idx===parseInt(i);
-                r.style.background = isActive ? '#fdf9f3' : 'transparent';
+                r.style.background = isActive ? '#fff' : 'transparent';
+                r.style.boxShadow = isActive ? '0 10px 24px rgba(0,0,0,0.08)' : 'none';
+                r.style.borderRadius = isActive ? '14px' : '0';
+                r.style.padding = isActive ? '0 8px' : '0';
                 var span = r.querySelector('span');
                 if(span) span.style.color = isActive ? '#c2410c' : '#777';
                 var arrow = r.querySelector('span:last-child');
@@ -431,7 +434,7 @@
                 var active = idx==i;
                 b.style.background = active ? '#fff' : 'transparent';
                 b.style.borderColor = active ? '#e9e9e9' : 'transparent';
-                b.style.boxShadow = active ? '0 1px 3px rgba(0,0,0,0.05)' : 'none';
+                b.style.boxShadow = active ? '0 10px 24px rgba(0,0,0,0.08)' : 'none';
                 var icon = b.querySelector('span');
                 if(icon) { icon.style.background = active ? '#c2410c' : '#f5efe6'; icon.style.color = active ? '#fff' : '#111'; }
                 var arrow = b.querySelector('span:last-child');

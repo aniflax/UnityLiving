@@ -43,6 +43,7 @@
       heroImage: hero,
       Gallery: gallery,
       category: cat,
+      categoryName: a.categoryName,
       showOnHomepage: !!a.showOnHomepage,
       _raw: a
     };
@@ -150,8 +151,8 @@
         var title = proj.Headline || "Untitled";
         var intro = proj.title || "";
         if (intro.length > 120) intro = intro.substring(0, 120) + "...";
-        var href = "detail/?project=" + (proj.type || proj.documentId || "").toLowerCase();
-        if (!proj.type) href = "detail/?project=" + (proj.documentId || "");
+        var href = "/projects/detail/?project=" + (proj.type || proj.documentId || "").toLowerCase();
+        if (!proj.type) href = "/projects/detail/?project=" + (proj.documentId || "");
 
         var article = document.createElement("article");
         article.className = "project-card";
@@ -313,7 +314,7 @@
       others.forEach(function (other) {
         var thumb = getMediaUrl(other.heroImage) || "../images/gallery/portrait/pic1.jpg";
         var cat = (other.category && other.category.name) || other.type || "Architecture";
-        var href = other.type ? "detail/?project=" + other.type.toLowerCase() : "detail/?project=" + other.documentId;
+        var href = other.type ? "/projects/detail/?project=" + other.type.toLowerCase() : "/projects/detail/?project=" + other.documentId;
         var card = document.createElement("article");
         card.className = "related-card";
         card.innerHTML = '<a href="' + href + '" style="display:block; overflow:hidden; background:#f5f5f5;"><img src="' + thumb + '" alt="' + (other.Headline || "") + '" style="width:100%; aspect-ratio:4/3; object-fit:cover;" class="img-zoom" loading="lazy"></a>' +

@@ -27,6 +27,7 @@ const STATIC_MAP: Record<string, string> = {
   "/media/market": "/media/market/index.html",
   "/media/project": "/media/project/index.html",
   "/projects": "/projects/index.html",
+  "/projects/detail": "/projects/detail/index.html",
 };
 
 function normalizePath(pathname: string): string {
