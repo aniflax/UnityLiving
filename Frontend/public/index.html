@@ -179,7 +179,20 @@
         @media (prefers-reduced-motion: reduce){
             #brand-intro { display:none; }
         }
+        html[data-intro="seen"] #brand-intro { display:none; }
     </style>
+    <script>
+        /* Show the brand intro only on first load of the session */
+        (function(){
+            try {
+                if (sessionStorage.getItem('unityaIntroShown')) {
+                    document.documentElement.setAttribute('data-intro', 'seen');
+                } else {
+                    sessionStorage.setItem('unityaIntroShown', '1');
+                }
+            } catch (e) { /* storage unavailable: intro plays every load */ }
+        })();
+    </script>
 
 </head>
 
@@ -1381,10 +1394,14 @@
     <!-- CANVAS EFFECT   -->
 
     <script>
-        /* BRAND INTRO - animated logo, then reveal the page */
+        /* BRAND INTRO - animated logo on first load only, then reveal the page */
         (function(){
             var intro = document.getElementById('brand-intro');
             if(!intro) return;
+            if (document.documentElement.getAttribute('data-intro') === 'seen') {
+                if (intro.parentNode) intro.parentNode.removeChild(intro);
+                return;
+            }
             requestAnimationFrame(function(){
                 setTimeout(function(){ intro.classList.add('is-run'); }, 60);
             });
