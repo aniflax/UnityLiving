@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "facts",
+  "info": {
+    "singularName": "fact",
+    "pluralName": "facts",
+    "displayName": "Facts",
+    "description": "Homepage 'Facts' section: title, subtext and up to 3 labelled stats"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtext": {
+      "type": "text"
+    },
+    "specs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "project.spec",
+      "max": 3
+    }
+  }
+}

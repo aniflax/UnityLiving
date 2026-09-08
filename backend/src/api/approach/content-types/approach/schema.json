@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "approaches",
+  "info": {
+    "singularName": "approach",
+    "pluralName": "approaches",
+    "displayName": "Our Approach",
+    "description": "Homepage 'Our Approach' section: title, subtitle and years badge"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "years": {
+      "type": "string"
+    },
+    "yearsLabel": {
+      "type": "string"
+    },
+    "yearsCaption": {
+      "type": "string"
+    }
+  }
+}
