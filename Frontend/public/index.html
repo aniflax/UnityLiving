@@ -158,7 +158,7 @@
         .process-progress { position:absolute; bottom:0; left:0; height:3px; background:#111; width:25%; transition: width 0.6s cubic-bezier(0.22,1,0.36,1); }
 
         /* Lifestyle card on hero — hidden on mobile as Unitya */
-        @media (max-width: 768px){ .unitya-lifestyle-hero-card { display:none !important; } #unitya-socials { display:none !important; } }
+        @media (max-width: 768px){ .unitya-lifestyle-hero-card { display:none !important; } }
 
         /* BRAND INTRO */
         #brand-intro { position:fixed; inset:0; z-index:99999; background:#fff; display:flex; align-items:center; justify-content:center; opacity:1; visibility:visible; transition:opacity 0.9s ease, visibility 0.9s ease; }
@@ -180,6 +180,64 @@
             #brand-intro { display:none; }
         }
         html[data-intro="seen"] #brand-intro { display:none; }
+
+        /* ===== PHONE ONLY ===== */
+        @media (max-width: 767px) {
+            /* Hero: shorter height */
+            #welcome_wrapper, #welcome, #welcome_wrapper .rev_slider {
+                height: 66vh !important;
+                min-height: 66vh !important;
+                max-height: 66vh !important;
+            }
+            /* Hero: only the 6th image, as a static background that zooms once */
+            #welcome_wrapper {
+                background-image: url('images/new-hero-images/erik-mclean-bdSR9RpVSKA-unsplash.jpg') !important;
+                background-size: 100%;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+                animation: unityaHeroZoom 9s cubic-bezier(0.22,1,0.36,1) forwards;
+            }
+            #welcome .rev-slidebg, #welcome .tp-bgimg {
+                background-image: none !important;
+                visibility: hidden !important;
+            }
+            /* Social icons: small, bottom-right of hero */
+            #unitya-socials {
+                display: flex !important;
+                left: auto !important;
+                right: 12px !important;
+                bottom: 14px !important;
+                gap: 4px;
+            }
+            #unitya-socials a {
+                width: 28px !important;
+                height: 28px !important;
+                background: rgba(255,255,255,0.14);
+                border-radius: 8px;
+            }
+            #unitya-socials a svg { width: 15px !important; height: 15px !important; }
+            /* Header: remove search icon */
+            .extra-nav .extra-cell:has(a[href="#search"]) { display: none !important; }
+            /* Header: hamburger drawer shows nav buttons cleanly */
+            .header-style-1.mobile-sider-drawer-menu .header-nav .nav {
+                padding: 88px 20px 24px;
+            }
+            .header-style-1.mobile-sider-drawer-menu .header-nav .nav > li {
+                border-bottom: 1px solid #f0f0f0;
+            }
+            .header-style-1.mobile-sider-drawer-menu .header-nav .nav > li > a {
+                color: #111;
+                font-weight: 500;
+                font-size: 15px;
+                letter-spacing: 0.04em;
+                padding: 14px 4px;
+                display: block;
+            }
+        }
+        @keyframes unityaHeroZoom {
+            from { background-size: 100%; }
+            to { background-size: 115%; }
+        }
     </style>
     <script>
         /* Show the brand intro only on first load of the session */
