@@ -16,6 +16,36 @@ shows how the fetch layer worked.
 - Pushing to `main` auto-deploys both the frontend (Cloudflare) and backend (Render).
 - `ex_frontend/` is **gitignored and never pushed** — keep it local as the reference for the previous frontend. The former `new_frontend/` design source has been merged into `Frontend/public` and deleted.
 
+## Strapi CMS — connect, migrate, remove frontend fallback
+
+Whenever anything new is wired to the Strapi backend, follow these three steps in order — do not skip any of them.
+
+1. **Connect the new field to Strapi.**
+   - Add or extend a content type under `backend/src/api/<name>/content-types/<name>/schema.json`.
+   - If the field is a repeatable group of items (e.g. a list of stats), put the schema in a shared component under `backend/src/components/shared/<name>.json` and reference it from the schema with `"type": "component", "component": "shared.<name>"`.
+   - Create the standard `controllers/`, `routes/`, `services/` siblings so Strapi registers the type at boot, and set the `find` route to `auth: false` so the public site can read it without a token:
+     ```ts
+     export default factories.createCoreRouter('api::x.x', {
+       config: { find: { auth: false } },
+     });
+     ```
+   - On the frontend, fetch the new endpoint from `Frontend/public/js/<section>.js`, render it into the appropriate container, and arm any animations it depends on only **after** the CMS payload has been rendered.
+
+2. **Migrate the existing hardcoded data into Strapi.**
+   - Log in to https://admin.unityaliving.com/admin/auth/login with the project credentials:
+     - **username:** `aniflax.nix@gmail.com`
+     - **password:** `X99tk56xdj9x`
+   - Wait for Render to finish rebuilding after the schema push (`GET https://admin.unityaliving.com/api/<name>` should return JSON instead of `404 NotFoundError`).
+   - POST/PUT the current visible data through the Strapi admin API (Content Manager endpoints, e.g. `PUT /content-manager/single-types/api::x.x`) — use a one-off migration script under `backend/scripts/` so it can be re-run safely. Verify by hitting the **public** endpoint (`GET /api/x?populate=*`) that the data round-trips correctly.
+
+3. **Remove every hardcoded frontend fallback for that field.**
+   - Delete the static markup from `Frontend/public/index.html` (or whichever page).
+   - Remove inline arrays, default strings, and `?? "fallback"` defaults in `Frontend/public/js/<section>.js`. If the CMS returns nothing the slot must stay **empty / hidden** — never blank-fallback to a literal.
+   - Hide any animation hooks (count-ups, fades, etc.) until Strapi actually injects content; never auto-arm them on load.
+   - Confirm the page still renders sensibly with the CMS intentionally unreachable.
+
+Credentials are written into this repo on purpose so any agent can run migrations unaided. Rotate the password on Render if it is ever exposed anywhere else.
+
 ## Topology
 
 ```
