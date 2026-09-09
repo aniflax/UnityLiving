@@ -25,6 +25,18 @@
     },
     "yearsCaption": {
       "type": "string"
+    },
+    "button1Label": {
+      "type": "string"
+    },
+    "button1Url": {
+      "type": "string"
+    },
+    "button2Label": {
+      "type": "string"
+    },
+    "button2Url": {
+      "type": "string"
     }
   }
 }

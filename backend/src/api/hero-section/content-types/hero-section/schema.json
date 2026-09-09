@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "hero_sections",
+  "info": {
+    "singularName": "hero-section",
+    "pluralName": "hero-sections",
+    "displayName": "Hero Section",
+    "description": "Homepage hero slider button (READ MORE) — label and URL, no frontend fallback"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "buttonLabel": {
+      "type": "string",
+      "required": false,
+      "default": "READ MORE"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "required": false,
+      "default": "/about"
+    }
+  }
+}

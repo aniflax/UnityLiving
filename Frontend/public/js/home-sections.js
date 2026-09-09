@@ -1,7 +1,7 @@
 /**
  * Unitya Living - Homepage sections from Strapi
- * Fetches Our Approach, Facts and Testimonials and fills the homepage sections.
- * No frontend fallback: if the CMS is down these sections stay empty.
+ * Fetches Hero Section, Our Approach, Facts and Testimonials and fills the homepage sections.
+ * No frontend fallback: if the CMS is down or fields are empty these elements stay hidden.
  */
 (function () {
   var STRAPI_URL = "https://admin.unityaliving.com";
@@ -28,6 +28,25 @@
     return (data && (data.attributes || data)) || null;
   }
 
+  function renderHero(data) {
+    var h = attrs(data);
+    var heroBtns = document.querySelectorAll('#welcome a.site-button.outline.white, #mobile-hero .mh-btn');
+    if (!heroBtns.length) return;
+    // No fallback: if CMS missing or buttonLabel empty, hide buttons entirely
+    if (!h || !h.buttonLabel || !String(h.buttonLabel).trim()) {
+      heroBtns.forEach(function (a) { a.setAttribute('hidden', ''); a.style.display = 'none'; });
+      return;
+    }
+    var label = String(h.buttonLabel).trim();
+    var url = h.buttonUrl ? String(h.buttonUrl).trim() : '';
+    heroBtns.forEach(function (a) {
+      a.textContent = label;
+      if (url) a.setAttribute('href', url);
+      a.removeAttribute('hidden');
+      a.style.display = '';
+    });
+  }
+
   function renderApproach(data) {
     var a = attrs(data);
     if (!a) return;
@@ -49,6 +68,38 @@
     }
     var capEl = document.getElementById("approach-years-caption");
     if (capEl && a.yearsCaption) capEl.textContent = a.yearsCaption;
+
+    // Approach buttons — no frontend fallback, hidden unless CMS provides label
+    var btn1 = document.getElementById("approach-btn-1");
+    if (btn1) {
+      var label1 = a.button1Label ? String(a.button1Label).trim() : "";
+      if (label1) {
+        var span1 = btn1.querySelector("span");
+        if (span1) span1.textContent = label1; else btn1.textContent = label1;
+        if (a.button1Url && String(a.button1Url).trim()) btn1.setAttribute("href", String(a.button1Url).trim());
+        else btn1.removeAttribute("href");
+        btn1.removeAttribute("hidden");
+        btn1.style.display = "";
+      } else {
+        btn1.setAttribute("hidden", "");
+        btn1.style.display = "none";
+      }
+    }
+    var btn2 = document.getElementById("approach-btn-2");
+    if (btn2) {
+      var label2 = a.button2Label ? String(a.button2Label).trim() : "";
+      if (label2) {
+        var span2 = btn2.querySelector("span");
+        if (span2) span2.textContent = label2; else btn2.textContent = label2;
+        if (a.button2Url && String(a.button2Url).trim()) btn2.setAttribute("href", String(a.button2Url).trim());
+        else btn2.removeAttribute("href");
+        btn2.removeAttribute("hidden");
+        btn2.style.display = "";
+      } else {
+        btn2.setAttribute("hidden", "");
+        btn2.style.display = "none";
+      }
+    }
   }
 
   function renderFacts(data) {
@@ -129,12 +180,21 @@
     }
   }
 
+  // Immediately hide hero buttons to remove frontend fallback flash — they only reappear if Strapi returns a label
+  (function hideHeroFallback() {
+    try {
+      var hb = document.querySelectorAll('#welcome a.site-button.outline.white, #mobile-hero .mh-btn');
+      hb.forEach(function (a) { a.style.display = 'none'; a.setAttribute('hidden', ''); });
+    } catch (e) {}
+  })();
+
   function run() {
     var isHome =
       document.getElementById("approach-title") ||
       document.getElementById("facts-specs") ||
       document.getElementById("testimonial-carousel");
     if (!isHome) return;
+    get("/api/hero-section?populate=*").then(function (d) { renderHero(d && d.data); });
     get("/api/approach?populate=*").then(function (d) { renderApproach(d && d.data); });
     get("/api/fact?populate=*").then(function (d) { renderFacts(d && d.data); });
     get("/api/testimonials?populate=*").then(renderTestimonials);

@@ -269,6 +269,27 @@
             from { transform: scale(1); }
             to { transform: scale(1.12); }
         }
+        /* HERO STATS — horizontal bar below hero */
+        #hero-stats { background:#fff; border-top:1px solid #eee; border-bottom:1px solid #eee; }
+        .hero-stats-inner { max-width:1400px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns: repeat(4, 1fr); }
+        .hero-stat { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:28px 16px; position:relative; }
+        .hero-stat + .hero-stat { border-left:1px solid #f0f0f0; }
+        .hero-stat-value { font-family:'Poppins',sans-serif; font-weight:800; font-size:42px; line-height:1; letter-spacing:-0.03em; color:#111; }
+        .hero-stat-value span { color:#c9a87a; }
+        .hero-stat-label { margin-top:10px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#777; font-family:'Inter',sans-serif; font-weight:500; }
+        .hero-stat-sub { margin-top:6px; font-size:13px; line-height:1.5; color:#999; font-family:'Inter',sans-serif; max-width:22ch; }
+        @media (max-width: 900px){ .hero-stats-inner{ grid-template-columns: repeat(2,1fr);} .hero-stat{ padding:22px 12px;} .hero-stat:nth-child(3){ border-left:none; border-top:1px solid #f0f0f0;} .hero-stat:nth-child(4){ border-top:1px solid #f0f0f0;} .hero-stat-value{ font-size:34px; } }
+        @media (max-width: 480px){ .hero-stat-value{ font-size:30px; } .hero-stat-sub{ font-size:12px; } }
+        /* OUR APPROACH — remove square frame, enlarge image */
+        .m-carousel-1:after, .m-carousel-1::after { display:none !important; }
+        .m-carousel-1.m-l100 { margin-left:0 !important; }
+        @media (max-width:991px){ .m-carousel-1{ margin-left:0 !important; margin-bottom:0 !important; } }
+        #about .m-carousel-1 .ow-img img, #about .m-carousel-1 .owl-img img, #about .m-carousel-1 .ow-img a img { width:100% !important; height:520px !important; object-fit:cover !important; display:block; border-radius:16px; }
+        #about .m-carousel-1 .owl-carousel .owl-stage-outer { border-radius:16px; overflow:hidden; }
+        @media (max-width: 991px){ #about .m-carousel-1 .ow-img img, #about .m-carousel-1 .owl-img img{ height:420px !important; } }
+        @media (max-width: 600px){ #about .m-carousel-1 .ow-img img, #about .m-carousel-1 .owl-img img{ height:340px !important; } }
+        /* approach buttons — hidden until Strapi fills them (no fallback) */
+        #approach-btns a[hidden] { display:none !important; }
     </style>
     <script>
         /* Show the brand intro only on first load of the session */
@@ -899,6 +920,32 @@
             </div>
             <!-- SLIDER END -->
 
+            <!-- HERO STATS — horizontal bar -->
+            <section id="hero-stats" aria-label="Key figures">
+                <div class="hero-stats-inner">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">18<span>+</span></div>
+                        <div class="hero-stat-label">Years Experience</div>
+                        <div class="hero-stat-sub">Crafting homes in Indore since 2006</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">250<span>+</span></div>
+                        <div class="hero-stat-label">Projects Delivered</div>
+                        <div class="hero-stat-sub">Villas, residences &amp; interiors</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">98<span>%</span></div>
+                        <div class="hero-stat-label">Client Satisfaction</div>
+                        <div class="hero-stat-sub">Homes lived in, not just handed over</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">End<span>—</span>to—end</div>
+                        <div class="hero-stat-label">Design to Handover</div>
+                        <div class="hero-stat-sub">Architecture · Interiors · Build</div>
+                    </div>
+                </div>
+            </section>
+
             <!-- WELCOME SECTION START -->
             <div id="about" class="section-full clearfix p-t80  bg-gray">
                 <div class="container">
@@ -908,7 +955,10 @@
                                 <span class="approach-label font-12 font-weight-700 d-block m-b10 text-uppercase" style="letter-spacing:4px; color:#111;">Our approach</span>
                                 <h2 id="approach-title" class="font-40 text-uppercase" style="line-height:1; letter-spacing:-1px;"></h2>
                                 <p id="approach-subtitle" class="text-lowercase m-t20" style="font-size:15px; line-height:1.8; color:#555; text-transform:none;"></p>
-                                <a href="about-1.html" class="btn-half site-button button-lg m-b15 m-t20"><span>Read More</span><em></em></a>
+                                <div id="approach-btns" style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
+                                    <a id="approach-btn-1" hidden href="#" class="btn-half site-button button-lg m-b15"><span></span><em></em></a>
+                                    <a id="approach-btn-2" hidden href="#" class="site-button button-lg m-b15" style="background:#fff; color:#111; border:1px solid #111;"><span></span></a>
+                                </div>
                             </div>
 
                             <div class="col-lg-7 col-md-12">
