@@ -304,30 +304,36 @@ All JavaScript fuctions Start
 
     // > Home Carousel_1 Full Screen with no margin function by = owl.carousel.js ========================== //
     function home_carousel_1() {
-        jQuery('.home-carousel-1').owlCarousel({
+        var FIRST_MS = 8000;   // first slide waits longer
+        var NEXT_MS  = 4000;   // all other slides
+        var $c = jQuery('.home-carousel-1');
+        $c.owlCarousel({
             loop: true,
             margin: 0,
-            autoplay: true,
-            autoplayTimeout: 4000,
-            //center: true,
+            autoplay: false,
             nav: false,
             dots: true,
             navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
             responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1
-                },
-                767: {
-                    items: 1
-                },
-                1000: {
-                    items: 1
-                }
+                0: { items: 1 },
+                480: { items: 1 },
+                767: { items: 1 },
+                1000: { items: 1 }
             }
         });
+        // Manual per-slide timer: first slide = FIRST_MS, every other slide = NEXT_MS
+        var timer = null;
+        function scheduleNext(){
+            if (timer) { clearTimeout(timer); timer = null; }
+            var wait = $c.find('.owl-item.active').index() === 0 ? FIRST_MS : NEXT_MS;
+            timer = setTimeout(function(){ $c.trigger('next.owl.carousel'); }, wait);
+        }
+        $c.on('initialized.owl.carousel translated.owl.carousel', scheduleNext);
+        $c.on('change.owl.carousel beforeChange.owl.carousel', function(){
+            if (timer) { clearTimeout(timer); timer = null; }
+        });
+        // Kick off the first delay immediately (initial slide shown on load = 8s)
+        scheduleNext();
     }
 
     // > Home Carousel_1 Full Screen with no margin function by = owl.carousel.js ========================== //
