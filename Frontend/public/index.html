@@ -1612,26 +1612,25 @@
                 if (!section || section.hasAttribute('hidden')) return;
                 var nums = section.querySelectorAll('.hero-stat-value .num[data-count-to]');
                 if (!nums.length) return;
-                var io;
+                if (section.__unityaStatsArmed) return;
+                section.__unityaStatsArmed = true;
                 function animate(){
+                    if (section.classList.contains('in-view')) return;
                     section.classList.add('in-view');
                     nums.forEach(function(el){ runCount(el); });
-                    if (io) io.disconnect();
                 }
                 if ('IntersectionObserver' in window){
-                    io = new IntersectionObserver(function(entries){
+                    var io = new IntersectionObserver(function(entries){
                         entries.forEach(function(en){
-                            if (en.isIntersecting){ animate(); }
+                            if (en.isIntersecting){ animate(); io.disconnect(); }
                         });
                     }, { threshold: 0.25 });
                     io.observe(section);
-                    // Fallback: trigger after a short delay if observer never fires (e.g. off-screen on initial layout)
-                    setTimeout(function(){ if (!section.classList.contains('in-view')) animate(); }, 800);
                 } else {
                     animate();
                 }
             };
-            window.__unityaArmStats();
+            // No auto-fire: the section only animates once JS rebuilds it from Strapi.
         })();
     </script>
 </body>
