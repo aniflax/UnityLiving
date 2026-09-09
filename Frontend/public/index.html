@@ -269,17 +269,28 @@
             from { transform: scale(1); }
             to { transform: scale(1.12); }
         }
-        /* HERO STATS — horizontal bar below hero */
-        #hero-stats { background:#fff; border-top:1px solid #eee; border-bottom:1px solid #eee; }
-        .hero-stats-inner { max-width:1400px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns: repeat(4, 1fr); }
-        .hero-stat { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:28px 16px; position:relative; }
-        .hero-stat + .hero-stat { border-left:1px solid #f0f0f0; }
-        .hero-stat-value { font-family:'Poppins',sans-serif; font-weight:800; font-size:42px; line-height:1; letter-spacing:-0.03em; color:#111; }
-        .hero-stat-value span { color:#c9a87a; }
-        .hero-stat-label { margin-top:10px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#777; font-family:'Inter',sans-serif; font-weight:500; }
-        .hero-stat-sub { margin-top:6px; font-size:13px; line-height:1.5; color:#999; font-family:'Inter',sans-serif; max-width:22ch; }
-        @media (max-width: 900px){ .hero-stats-inner{ grid-template-columns: repeat(2,1fr);} .hero-stat{ padding:22px 12px;} .hero-stat:nth-child(3){ border-left:none; border-top:1px solid #f0f0f0;} .hero-stat:nth-child(4){ border-top:1px solid #f0f0f0;} .hero-stat-value{ font-size:34px; } }
-        @media (max-width: 480px){ .hero-stat-value{ font-size:30px; } .hero-stat-sub{ font-size:12px; } }
+        /* HERO STATS — horizontal bar below hero — thin serif numerals, no subtitle */
+        #hero-stats { background:#fff; padding:28px 0 36px; }
+        .hero-stats-inner { max-width:1400px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns: repeat(4, 1fr); gap:24px; }
+        .hero-stat { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; text-align:left; padding:6px 8px; position:relative; }
+        .hero-stat + .hero-stat { border-left:1px solid #ececec; padding-left:32px; }
+        .hero-stat-value { font-family:'Instrument Serif', 'Cormorant Garamond', serif; font-weight:300; font-style:italic; font-size:68px; line-height:0.95; letter-spacing:-0.02em; color:#111; display:inline-flex; align-items:baseline; gap:2px; }
+        .hero-stat-value .num { font-weight:300; }
+        .hero-stat-value .sym { font-family:'Instrument Serif', serif; font-weight:300; font-style:italic; font-size:38px; color:#666; margin-left:2px; line-height:1; }
+        .hero-stat-label { margin-top:14px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#555; font-weight:400; }
+        @media (max-width: 900px){ .hero-stats-inner{ grid-template-columns: repeat(2,1fr); } .hero-stat{ padding:12px 6px; } .hero-stat + .hero-stat{ border-left:none; padding-left:6px; } .hero-stat:nth-child(odd){ border-right:1px solid #ececec; } .hero-stat:nth-child(3){ border-top:1px solid #ececec; padding-top:22px; margin-top:6px; } .hero-stat:nth-child(4){ border-top:1px solid #ececec; padding-top:22px; margin-top:6px; } .hero-stat-value{ font-size:54px; } }
+        @media (max-width: 480px){ .hero-stat-value{ font-size:46px; } .hero-stat-label{ font-size:10px; letter-spacing:0.24em; } }
+
+        /* HERO HEIGHT — taller image, slimmer header (reduces top + bottom padding above stats) */
+        .sticky-header.main-bar-wraper .main-bar.bg-white { padding:0; }
+        .sticky-header.main-bar-wraper .main-bar.bg-white > .container { padding-top:6px; padding-bottom:6px; min-height:60px; }
+        .logo-header, .logo-header-inner { display:flex; align-items:center; height:52px; }
+        .logo-header a { height:52px; display:inline-flex; align-items:center; }
+        .sticky-header.is-fixed .logo-header a { height:46px; }
+        .extra-nav .extra-cell a.site-search-btn { height:36px !important; width:36px !important; }
+        #welcome_forcefullwidth, #welcome_wrapper, #welcome { height: calc(100vh - 58px) !important; min-height: calc(100vh - 58px) !important; max-height: calc(100vh - 58px) !important; }
+        #welcome_wrapper .rev_slider, #welcome_forcefullwidth .rev_slider { height: 100% !important; min-height: 100% !important; max-height: 100% !important; }
+        @media (max-width: 767px) { #welcome_forcefullwidth, #welcome_wrapper, #welcome, #welcome_wrapper .rev_slider { height: 70vh !important; min-height: 70vh !important; max-height: 70vh !important; } }
         /* OUR APPROACH — remove square frame, enlarge image */
         .m-carousel-1:after, .m-carousel-1::after { display:none !important; }
         .m-carousel-1.m-l100 { margin-left:0 !important; }
@@ -924,24 +935,20 @@
             <section id="hero-stats" aria-label="Key figures">
                 <div class="hero-stats-inner">
                     <div class="hero-stat">
-                        <div class="hero-stat-value">18<span>+</span></div>
-                        <div class="hero-stat-label">Years Experience</div>
-                        <div class="hero-stat-sub">Crafting homes in Indore since 2006</div>
+                        <div class="hero-stat-value"><span class="num">17</span><span class="sym">yrs</span></div>
+                        <div class="hero-stat-label">years experience</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-value">250<span>+</span></div>
-                        <div class="hero-stat-label">Projects Delivered</div>
-                        <div class="hero-stat-sub">Villas, residences &amp; interiors</div>
+                        <div class="hero-stat-value"><span class="num">220</span><span class="sym">+</span></div>
+                        <div class="hero-stat-label">homes delivered</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-value">98<span>%</span></div>
-                        <div class="hero-stat-label">Client Satisfaction</div>
-                        <div class="hero-stat-sub">Homes lived in, not just handed over</div>
+                        <div class="hero-stat-value"><span class="num">94</span><span class="sym">%</span></div>
+                        <div class="hero-stat-label">referral clients</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-value">End<span>—</span>to—end</div>
-                        <div class="hero-stat-label">Design to Handover</div>
-                        <div class="hero-stat-sub">Architecture · Interiors · Build</div>
+                        <div class="hero-stat-value"><span class="num">42</span><span class="sym">/mo</span></div>
+                        <div class="hero-stat-label">studio capacity</div>
                     </div>
                 </div>
             </section>
