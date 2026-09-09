@@ -283,12 +283,13 @@
 
         /* HERO HEIGHT — taller image, slimmer header (reduces top + bottom padding above stats) */
         .sticky-header.main-bar-wraper .main-bar.bg-white { padding:0; }
-        .sticky-header.main-bar-wraper .main-bar.bg-white > .container { padding-top:6px; padding-bottom:6px; min-height:60px; }
-        .logo-header, .logo-header-inner { display:flex; align-items:center; height:52px; }
-        .logo-header a { height:52px; display:inline-flex; align-items:center; }
-        .sticky-header.is-fixed .logo-header a { height:46px; }
-        .extra-nav .extra-cell a.site-search-btn { height:36px !important; width:36px !important; }
-        #welcome_forcefullwidth, #welcome_wrapper, #welcome { height: calc(100vh - 58px) !important; min-height: calc(100vh - 58px) !important; max-height: calc(100vh - 58px) !important; }
+        .sticky-header.main-bar-wraper .main-bar.bg-white > .container { padding-top:4px; padding-bottom:4px; min-height:48px; }
+        .logo-header, .logo-header-inner { display:flex; align-items:center; height:42px; }
+        .logo-header a { height:42px; display:inline-flex; align-items:center; gap:8px; }
+        .sticky-header.is-fixed .logo-header a { height:38px; }
+        .sticky-header.is-fixed .main-bar.bg-white > .container { min-height:42px; padding-top:3px; padding-bottom:3px; }
+        .extra-nav .extra-cell a.site-search-btn { height:32px !important; width:32px !important; }
+        #welcome_forcefullwidth, #welcome_wrapper, #welcome { height: calc(100vh - 46px) !important; min-height: calc(100vh - 46px) !important; max-height: calc(100vh - 46px) !important; }
         #welcome_wrapper .rev_slider, #welcome_forcefullwidth .rev_slider { height: 100% !important; min-height: 100% !important; max-height: 100% !important; }
         @media (max-width: 767px) { #welcome_forcefullwidth, #welcome_wrapper, #welcome, #welcome_wrapper .rev_slider { height: 70vh !important; min-height: 70vh !important; max-height: 70vh !important; } }
         /* OUR APPROACH — remove square frame, enlarge image */
@@ -301,6 +302,10 @@
         @media (max-width: 600px){ #about .m-carousel-1 .ow-img img, #about .m-carousel-1 .owl-img img{ height:340px !important; } }
         /* approach buttons — hidden until Strapi fills them (no fallback) */
         #approach-btns a[hidden] { display:none !important; }
+        /* approach buttons — slimmer than default `.button-lg`, both share the SAME typography (font + size + spacing) */
+        #approach-btns a.site-button { font-family:'Inter',sans-serif !important; font-size:11px !important; font-weight:500 !important; letter-spacing:0.22em !important; text-transform:uppercase !important; padding:11px 22px !important; min-height:0 !important; height:auto !important; line-height:1.2 !important; display:inline-flex; align-items:center; justify-content:center; border-radius:0; transition: background 0.3s, color 0.3s, border-color 0.3s; }
+        #approach-btns a.site-button span { font-family:'Inter',sans-serif !important; font-size:11px !important; font-weight:500 !important; letter-spacing:0.22em !important; }
+        #approach-btns a.btn-half { padding:11px 22px !important; min-height:0 !important; height:auto !important; line-height:1.2 !important; }
     </style>
     <script>
         /* Show the brand intro only on first load of the session */
@@ -962,9 +967,9 @@
                                 <span class="approach-label font-12 font-weight-700 d-block m-b10 text-uppercase" style="letter-spacing:4px; color:#111;">Our approach</span>
                                 <h2 id="approach-title" class="font-40 text-uppercase" style="line-height:1; letter-spacing:-1px;"></h2>
                                 <p id="approach-subtitle" class="text-lowercase m-t20" style="font-size:15px; line-height:1.8; color:#555; text-transform:none;"></p>
-                                <div id="approach-btns" style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
-                                    <a id="approach-btn-1" hidden href="#" class="btn-half site-button button-lg m-b15"><span></span><em></em></a>
-                                    <a id="approach-btn-2" hidden href="#" class="site-button button-lg m-b15" style="background:#fff; color:#111; border:1px solid #111;"><span></span></a>
+                                <div id="approach-btns" style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+                                    <a id="approach-btn-1" hidden href="#" class="btn-half site-button m-b15"><span></span><em></em></a>
+                                    <a id="approach-btn-2" hidden href="#" class="site-button m-b15" style="background:transparent; color:#111; border:1px solid #111;"><span></span></a>
                                 </div>
                             </div>
 
