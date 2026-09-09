@@ -950,26 +950,9 @@
             </div>
             <!-- SLIDER END -->
 
-            <!-- HERO STATS — horizontal bar -->
-            <section id="hero-stats" aria-label="Key figures">
-                <div class="hero-stats-inner">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value"><span class="num" data-count-to="17">0</span><span class="sym">yrs</span></div>
-                        <div class="hero-stat-label">years experience</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value"><span class="num" data-count-to="220">0</span><span class="sym">+</span></div>
-                        <div class="hero-stat-label">homes delivered</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value"><span class="num" data-count-to="94">0</span><span class="sym">%</span></div>
-                        <div class="hero-stat-label">referral clients</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value"><span class="num" data-count-to="42">0</span><span class="sym">/mo</span></div>
-                        <div class="hero-stat-label">studio capacity</div>
-                    </div>
-                </div>
+            <!-- HERO STATS — horizontal bar (rendered from Strapi /api/hero-stat, no frontend fallback) -->
+            <section id="hero-stats" aria-label="Key figures" hidden>
+                <div class="hero-stats-inner" id="hero-stats-list"></div>
             </section>
 
             <!-- WELCOME SECTION START -->
@@ -1607,16 +1590,13 @@
     <script src="js/projects.js"></script>
     <script src="js/home-sections.js"></script>
     <script>
-        /* Hero stats — IntersectionObserver-driven fade-up + count-up animation */
+        /* Hero stats — IntersectionObserver-driven fade-up + count-up animation (re-armable after Strapi injects items) */
         (function(){
-            var section = document.getElementById('hero-stats');
-            if (!section) return;
-            var nums = section.querySelectorAll('.hero-stat-value .num[data-count-to]');
             function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
             function runCount(el){
                 var target = parseInt(el.getAttribute('data-count-to'), 10) || 0;
                 if (!target) { el.textContent = '0'; return; }
-                var dur = 1400 + Math.random()*400; // slight stagger
+                var dur = 1400 + Math.random()*400;
                 var start = null;
                 function tick(now){
                     if (!start) start = now;
@@ -1627,20 +1607,31 @@
                 }
                 requestAnimationFrame(tick);
             }
-            function animate(){
-                section.classList.add('in-view');
-                nums.forEach(function(el){ runCount(el); });
-            }
-            if ('IntersectionObserver' in window){
-                var io = new IntersectionObserver(function(entries){
-                    entries.forEach(function(en){
-                        if (en.isIntersecting){ animate(); io.disconnect(); }
-                    });
-                }, { threshold: 0.25 });
-                io.observe(section);
-            } else {
-                animate();
-            }
+            window.__unityaArmStats = function () {
+                var section = document.getElementById('hero-stats');
+                if (!section || section.hasAttribute('hidden')) return;
+                var nums = section.querySelectorAll('.hero-stat-value .num[data-count-to]');
+                if (!nums.length) return;
+                var io;
+                function animate(){
+                    section.classList.add('in-view');
+                    nums.forEach(function(el){ runCount(el); });
+                    if (io) io.disconnect();
+                }
+                if ('IntersectionObserver' in window){
+                    io = new IntersectionObserver(function(entries){
+                        entries.forEach(function(en){
+                            if (en.isIntersecting){ animate(); }
+                        });
+                    }, { threshold: 0.25 });
+                    io.observe(section);
+                    // Fallback: trigger after a short delay if observer never fires (e.g. off-screen on initial layout)
+                    setTimeout(function(){ if (!section.classList.contains('in-view')) animate(); }, 800);
+                } else {
+                    animate();
+                }
+            };
+            window.__unityaArmStats();
         })();
     </script>
 </body>

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_hero_stat_items",
+  "info": {
+    "name": "Hero Stat Item",
+    "icon": "chart-bar",
+    "displayName": "Hero Stat Item",
+    "description": "Single cell in the homepage hero stats bar (label + numeric value + optional symbol)"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "integer",
+      "required": true
+    },
+    "symbol": {
+      "type": "string"
+    }
+  }
+}

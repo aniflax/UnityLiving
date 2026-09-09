@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "hero_stats",
+  "info": {
+    "singularName": "hero-stat",
+    "pluralName": "hero-stats",
+    "displayName": "Hero Stats",
+    "description": "Homepage horizontal stats bar — up to 4 items (label + number + symbol)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.hero-stat-item",
+      "max": 4
+    }
+  }
+}

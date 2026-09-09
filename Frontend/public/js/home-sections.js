@@ -188,13 +188,58 @@
     } catch (e) {}
   })();
 
+  function renderHeroStats(data) {
+    var d = data || {};
+    var section = document.getElementById("hero-stats");
+    var list = document.getElementById("hero-stats-list");
+    if (!section || !list) return;
+    var a = attrs(d);
+    if (!a || !Array.isArray(a.stats) || a.stats.length === 0) {
+      // No fallback — keep the section hidden entirely if CMS returns nothing
+      section.setAttribute("hidden", "");
+      list.innerHTML = "";
+      return;
+    }
+    var html = "";
+    a.stats.forEach(function (s) {
+      if (!s) return;
+      var label = String(s.label || "").trim();
+      var value = parseInt(s.value, 10);
+      if (!label || isNaN(value)) return;
+      var symbol = s.symbol ? String(s.symbol) : "";
+      // escape symbol text for inline HTML
+      var symHtml = "";
+      if (symbol) symHtml = '<span class="sym">' + symbol.replace(/[<&>]/g, "") + "</span>";
+      html +=
+        '<div class="hero-stat">' +
+        '<div class="hero-stat-value"><span class="num" data-count-to="' + value + '">0</span>' + symHtml + '</div>' +
+        '<div class="hero-stat-label">' + label.replace(/[<&>]/g, function (c) {
+          return { "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c];
+        }) + "</div>" +
+        "</div>";
+    });
+    if (!html) {
+      section.setAttribute("hidden", "");
+      list.innerHTML = "";
+      return;
+    }
+    list.innerHTML = html;
+    section.removeAttribute("hidden");
+    // Arm the count-up animation for the freshly-rendered cells
+    if (window.__unityaArmStats) {
+      try { window.__unityaArmStats(); } catch (e) {}
+    }
+  }
+
   function run() {
     var isHome =
       document.getElementById("approach-title") ||
       document.getElementById("facts-specs") ||
-      document.getElementById("testimonial-carousel");
+      document.getElementById("testimonial-carousel") ||
+      document.getElementById("hero-stats");
     if (!isHome) return;
     get("/api/hero-section?populate=*").then(function (d) { renderHero(d && d.data); });
+    get("/api/hero-stat?populate=*").then(function (d) { renderHeroStats(d && d.data); });
     get("/api/approach?populate=*").then(function (d) { renderApproach(d && d.data); });
     get("/api/fact?populate=*").then(function (d) { renderFacts(d && d.data); });
     get("/api/testimonials?populate=*").then(renderTestimonials);
