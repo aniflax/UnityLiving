@@ -46,7 +46,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,800,800i,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Crete+Round:400,400i&amp;subset=latin-ext" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Fraunces:opsz,wght@9..144,200;9..144,300;9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* Hero — Arkit kenburns-top-right replication + arrows removed */
         #welcome .tparrows, #welcome .tp-leftarrow, #welcome .tp-rightarrow { display:none !important; }
@@ -269,28 +269,30 @@
             from { transform: scale(1); }
             to { transform: scale(1.12); }
         }
-        /* HERO STATS — horizontal bar below hero — thin serif numerals, no subtitle */
+        /* HERO STATS — horizontal bar below hero — thin display numerals, animated count-up */
         #hero-stats { background:#fff; padding:36px 0 44px; border-bottom:1px solid #f0f0f0; }
         .hero-stats-inner { max-width:1240px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); column-gap:0; align-items:stretch; }
-        .hero-stat { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8px 28px; position:relative; min-height:140px; }
-        .hero-stat + .hero-stat::before { content:""; position:absolute; left:0; top:18%; bottom:18%; width:1px; background:#ececec; }
-        .hero-stat-value { font-family:'Instrument Serif', 'Cormorant Garamond', serif; font-weight:300; font-style:italic; font-size:64px; line-height:1; letter-spacing:-0.02em; color:#111; display:inline-flex; align-items:baseline; gap:3px; }
-        .hero-stat-value .num { font-weight:300; }
-        .hero-stat-value .sym { font-family:'Instrument Serif', serif; font-weight:300; font-style:italic; font-size:34px; color:#666; line-height:1; transform:translateY(-6px); }
-        .hero-stat-label { margin-top:16px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#555; font-weight:500; text-align:center; line-height:1.4; max-width:22ch; }
+        .hero-stat { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8px 28px; position:relative; min-height:140px; opacity:0; transform:translateY(14px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+        #hero-stats.in-view .hero-stat { opacity:1; transform:translateY(0); }
+        #hero-stats.in-view .hero-stat:nth-child(1){ transition-delay:0.05s; }
+        #hero-stats.in-view .hero-stat:nth-child(2){ transition-delay:0.18s; }
+        #hero-stats.in-view .hero-stat:nth-child(3){ transition-delay:0.31s; }
+        #hero-stats.in-view .hero-stat:nth-child(4){ transition-delay:0.44s; }
+        .hero-stat + .hero-stat::before { content:""; position:absolute; left:0; top:18%; bottom:18%; width:1px; background:#ececec; opacity:0; transition: opacity 0.6s ease 0.4s; }
+        #hero-stats.in-view .hero-stat + .hero-stat::before { opacity:1; }
+        .hero-stat-value { font-family:'Fraunces','Cormorant Garamond',serif; font-weight:200; font-variation-settings:"opsz" 144; font-style:normal; font-size:76px; line-height:0.95; letter-spacing:-0.04em; color:#111; display:inline-flex; align-items:baseline; gap:1px; }
+        .hero-stat-value .num { font-weight:200; display:inline-block; }
+        .hero-stat-value .sym { font-family:'Fraunces',serif; font-weight:300; font-variation-settings:"opsz" 144; font-style:italic; font-size:36px; color:#555; line-height:1; margin-left:2px; }
+        .hero-stat-label { margin-top:18px; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#555; font-weight:500; text-align:center; line-height:1.4; max-width:22ch; }
         @media (max-width: 900px){
             .hero-stats-inner { grid-template-columns:repeat(2, minmax(0,1fr)); row-gap:18px; }
             .hero-stat { padding:14px 18px; min-height:120px; }
-            .hero-stat:nth-child(odd)::before { display:block; }
+            .hero-stat:nth-child(odd)::before { display:block; opacity:1; }
             .hero-stat:nth-child(even)::before { display:none; }
             .hero-stat:nth-child(3), .hero-stat:nth-child(4) { border-top:1px solid #ececec; padding-top:24px; margin-top:6px; }
-            .hero-stat-value { font-size:54px; } .hero-stat-value .sym { font-size:30px; }
+            .hero-stat-value { font-size:60px; } .hero-stat-value .sym { font-size:30px; }
         }
-        @media (max-width: 480px){
-            .hero-stat { padding:10px 12px; min-height:110px; }
-            .hero-stat-value { font-size:46px; } .hero-stat-value .sym { font-size:26px; }
-            .hero-stat-label { font-size:10px; letter-spacing:0.22em; }
-        }
+        @media (max-width: 480px){ #hero-stats { display:none !important; } }
 
         /* HERO HEIGHT — taller image, slimmer header (reduces top + bottom padding above stats) */
         .sticky-header.main-bar-wraper .main-bar.bg-white { padding:0; }
@@ -310,13 +312,14 @@
         #about .m-carousel-1 .ow-img img, #about .m-carousel-1 .owl-img img, #about .m-carousel-1 .ow-img a img { width:100% !important; height:520px !important; object-fit:cover !important; display:block; border-radius:16px; }
         #about .m-carousel-1 .owl-carousel .owl-stage-outer { border-radius:16px; overflow:hidden; }
         @media (max-width: 991px){ #about .m-carousel-1 .ow-img img, #about .m-carousel-1 .owl-img img{ height:420px !important; } }
-        @media (max-width: 600px){ #about .m-carousel-1 .ow-img img, #about .m-carousel-1 .owl-img img{ height:340px !important; } }
+        @media (max-width: 600px){ #about .m-carousel-1 .ow-img img, #about .m-carousel-1 .owl-img img{ height:240px !important; } }
         /* approach buttons — hidden until Strapi fills them (no fallback) */
         #approach-btns a[hidden] { display:none !important; }
-        /* approach buttons — slimmer than default `.button-lg`, both share the SAME typography (font + size + spacing) */
-        #approach-btns a.site-button { font-family:'Inter',sans-serif !important; font-size:11px !important; font-weight:500 !important; letter-spacing:0.22em !important; text-transform:uppercase !important; padding:11px 22px !important; min-height:0 !important; height:auto !important; line-height:1.2 !important; display:inline-flex; align-items:center; justify-content:center; border-radius:0; transition: background 0.3s, color 0.3s, border-color 0.3s; }
-        #approach-btns a.site-button span { font-family:'Inter',sans-serif !important; font-size:11px !important; font-weight:500 !important; letter-spacing:0.22em !important; }
-        #approach-btns a.btn-half { padding:11px 22px !important; min-height:0 !important; height:auto !important; line-height:1.2 !important; }
+        /* approach buttons — larger than the previous size; both share the SAME typography (font + size + spacing) */
+        #approach-btns a.site-button { font-family:'Inter',sans-serif !important; font-size:13px !important; font-weight:500 !important; letter-spacing:0.24em !important; text-transform:uppercase !important; padding:17px 32px !important; min-height:0 !important; height:auto !important; line-height:1.2 !important; display:inline-flex; align-items:center; justify-content:center; border-radius:0; transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.25s ease; }
+        #approach-btns a.site-button span { font-family:'Inter',sans-serif !important; font-size:13px !important; font-weight:500 !important; letter-spacing:0.24em !important; }
+        #approach-btns a.btn-half { padding:17px 32px !important; min-height:0 !important; height:auto !important; line-height:1.2 !important; }
+        #approach-btns a.site-button:hover { transform:translateY(-2px); }
     </style>
     <script>
         /* Show the brand intro only on first load of the session */
@@ -951,19 +954,19 @@
             <section id="hero-stats" aria-label="Key figures">
                 <div class="hero-stats-inner">
                     <div class="hero-stat">
-                        <div class="hero-stat-value"><span class="num">17</span><span class="sym">yrs</span></div>
+                        <div class="hero-stat-value"><span class="num" data-count-to="17">0</span><span class="sym">yrs</span></div>
                         <div class="hero-stat-label">years experience</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-value"><span class="num">220</span><span class="sym">+</span></div>
+                        <div class="hero-stat-value"><span class="num" data-count-to="220">0</span><span class="sym">+</span></div>
                         <div class="hero-stat-label">homes delivered</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-value"><span class="num">94</span><span class="sym">%</span></div>
+                        <div class="hero-stat-value"><span class="num" data-count-to="94">0</span><span class="sym">%</span></div>
                         <div class="hero-stat-label">referral clients</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-value"><span class="num">42</span><span class="sym">/mo</span></div>
+                        <div class="hero-stat-value"><span class="num" data-count-to="42">0</span><span class="sym">/mo</span></div>
                         <div class="hero-stat-label">studio capacity</div>
                     </div>
                 </div>
@@ -1603,6 +1606,43 @@
     <script src="js/site.js"></script>
     <script src="js/projects.js"></script>
     <script src="js/home-sections.js"></script>
+    <script>
+        /* Hero stats — IntersectionObserver-driven fade-up + count-up animation */
+        (function(){
+            var section = document.getElementById('hero-stats');
+            if (!section) return;
+            var nums = section.querySelectorAll('.hero-stat-value .num[data-count-to]');
+            function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+            function runCount(el){
+                var target = parseInt(el.getAttribute('data-count-to'), 10) || 0;
+                if (!target) { el.textContent = '0'; return; }
+                var dur = 1400 + Math.random()*400; // slight stagger
+                var start = null;
+                function tick(now){
+                    if (!start) start = now;
+                    var t = Math.min(1, (now - start) / dur);
+                    el.textContent = Math.round(easeOutCubic(t) * target);
+                    if (t < 1) requestAnimationFrame(tick);
+                    else el.textContent = target;
+                }
+                requestAnimationFrame(tick);
+            }
+            function animate(){
+                section.classList.add('in-view');
+                nums.forEach(function(el){ runCount(el); });
+            }
+            if ('IntersectionObserver' in window){
+                var io = new IntersectionObserver(function(entries){
+                    entries.forEach(function(en){
+                        if (en.isIntersecting){ animate(); io.disconnect(); }
+                    });
+                }, { threshold: 0.25 });
+                io.observe(section);
+            } else {
+                animate();
+            }
+        })();
+    </script>
 </body>
 
 </html>
